@@ -4,20 +4,23 @@
         <name>itext.styledxmlparser</name>
     </assembly>
     <members>
-        <member name="F:iText.StyledXmlParser.CommonAttributeConstants.ID">
-            <summary>The Constant ID.</summary>
-        </member>
         <member name="F:iText.StyledXmlParser.CommonAttributeConstants.CLASS">
             <summary>The Constant CLASS.</summary>
+        </member>
+        <member name="F:iText.StyledXmlParser.CommonAttributeConstants.DISABLED">
+            <summary>The Constant DISABLED.</summary>
+        </member>
+        <member name="F:iText.StyledXmlParser.CommonAttributeConstants.ID">
+            <summary>The Constant ID.</summary>
         </member>
         <member name="F:iText.StyledXmlParser.CommonAttributeConstants.LANG">
             <summary>The Constant LANG.</summary>
         </member>
-        <member name="F:iText.StyledXmlParser.CommonAttributeConstants.STYLESHEET">
-            <summary>The Constant LANG.</summary>
-        </member>
         <member name="F:iText.StyledXmlParser.CommonAttributeConstants.REL">
-            <summary>The Constant LANG.</summary>
+            <summary>The Constant REL.</summary>
+        </member>
+        <member name="F:iText.StyledXmlParser.CommonAttributeConstants.STYLESHEET">
+            <summary>The Constant STYLESHEET.</summary>
         </member>
         <member name="T:iText.StyledXmlParser.CssRuleSetComparator">
             <summary>Comparator class used to sort CSS rule set objects.</summary>
@@ -681,6 +684,9 @@
         </member>
         <member name="F:iText.StyledXmlParser.Css.CommonCssConstants.BORDER_STYLE_VALUES">
             <summary>The Constant BORDER_STYLE_VALUES.</summary>
+        </member>
+        <member name="F:iText.StyledXmlParser.Css.CommonCssConstants.FONT_ABSOLUTE_SIZE_KEYWORDS_VALUES">
+            <summary>The Constant FONT_ABSOLUTE_SIZE_KEYWORDS.</summary>
         </member>
         <member name="F:iText.StyledXmlParser.Css.CommonCssConstants.ACTIVE">
             <summary>The Constant ACTIVE.</summary>
@@ -1993,6 +1999,18 @@
         </member>
         <member name="T:iText.StyledXmlParser.Css.Parse.CssDeclarationValueTokenizer.TokenType">
             <summary>Enumeration of the different token types.</summary>
+        </member>
+        <member name="F:iText.StyledXmlParser.Css.Parse.CssDeclarationValueTokenizer.TokenType.STRING">
+            <summary>The string type.</summary>
+        </member>
+        <member name="F:iText.StyledXmlParser.Css.Parse.CssDeclarationValueTokenizer.TokenType.FUNCTION">
+            <summary>The function type.</summary>
+        </member>
+        <member name="F:iText.StyledXmlParser.Css.Parse.CssDeclarationValueTokenizer.TokenType.COMMA">
+            <summary>The comma type.</summary>
+        </member>
+        <member name="F:iText.StyledXmlParser.Css.Parse.CssDeclarationValueTokenizer.TokenType.UNKNOWN">
+            <summary>Unknown type.</summary>
         </member>
         <member name="T:iText.StyledXmlParser.Css.Parse.CssPageSelectorParser">
             <summary>Utilities class to parse CSS page selectors.</summary>
@@ -3518,6 +3536,55 @@
             <param name="remValue">the root em value</param>
             <returns>the unit value</returns>
         </member>
+        <member name="M:iText.StyledXmlParser.Css.Util.CssUtils.ParseAbsoluteFontSize(System.String,System.String)">
+            <summary>Parses the absolute font size.</summary>
+            <remarks>
+            Parses the absolute font size.
+            <para />
+            A numeric value (without px, pt, etc in the given length string) is considered to be in the default metric that
+            was given.
+            </remarks>
+            <param name="fontSizeValue">
+            the font size value as a
+            <see cref="T:System.String"/>
+            </param>
+            <param name="defaultMetric">
+            the string containing the metric if it is possible that the length string does not contain
+            one. If null the length is considered to be in px as is default in HTML/CSS.
+            </param>
+            <returns>
+            the font size value as a
+            <c>float</c>
+            </returns>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Util.CssUtils.ParseAbsoluteFontSize(System.String)">
+            <summary>Parses the absolute font size.</summary>
+            <remarks>
+            Parses the absolute font size.
+            <para />
+            A numeric value (without px, pt, etc in the given length string) is considered to be in the px.
+            </remarks>
+            <param name="fontSizeValue">
+            the font size value as a
+            <see cref="T:System.String"/>
+            </param>
+            <returns>
+            the font size value as a
+            <c>float</c>
+            </returns>
+        </member>
+        <member name="M:iText.StyledXmlParser.Css.Util.CssUtils.ParseRelativeFontSize(System.String,System.Single)">
+            <summary>Parses the relative font size.</summary>
+            <param name="relativeFontSizeValue">
+            the relative font size value as a
+            <see cref="T:System.String"/>
+            </param>
+            <param name="baseValue">the base value</param>
+            <returns>
+            the relative font size value as a
+            <c>float</c>
+            </returns>
+        </member>
         <member name="M:iText.StyledXmlParser.Css.Util.CssUtils.ParseSpecificCornerBorderRadius(System.String,System.Single,System.Single)">
             <summary>Parses the border radius of specific corner.</summary>
             <param name="specificBorderRadius">string that defines the border radius of specific corner.</param>
@@ -4318,20 +4385,7 @@
             <param name="out">Outputsettings</param>
             <returns>Returns whether collapsible or not</returns>
         </member>
-        <member name="T:iText.StyledXmlParser.Jsoup.Nodes.Attributes">
-            <summary>The attributes of an Element.</summary>
-            <remarks>
-            The attributes of an Element.
-            <p>
-            Attributes are treated as a map: there can be only one value associated with an attribute key.
-            </p>
-            <p>
-            Attribute key and value comparisons are done case insensitively, and keys are normalised to
-            lower-case.
-            </p>
-            </remarks>
-            <author>Jonathan Hedley, jonathan@hedley.net</author>
-        </member>
+        <!-- Badly formed XML comment ignored for member "T:iText.StyledXmlParser.Jsoup.Nodes.Attributes" -->
         <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Attributes.Get(System.String)">
             <summary>Get an attribute value by key.</summary>
             <param name="key">the attribute key</param>
@@ -4558,12 +4612,15 @@
             <see cref="M:iText.StyledXmlParser.Jsoup.Nodes.OutputSettings.Charset(System.Text.Encoding)">OutputSettings.charset(Charset)</see>
             but in addition it updates the
             charset / encoding element within the document.
-            <p>This enables
+            <para />
+            This enables
             <see cref="M:iText.StyledXmlParser.Jsoup.Nodes.Document.UpdateMetaCharsetElement(System.Boolean)">meta charset update</see>
-            .</p>
-            <p>If there's no element with charset / encoding information yet it will
-            be created. Obsolete charset / encoding definitions are removed!</p>
-            <p><b>Elements used:</b></p>
+            .
+            <para />
+            If there's no element with charset / encoding information yet it will
+            be created. Obsolete charset / encoding definitions are removed!
+            <para />
+            <b>Elements used:</b>
             <ul>
             <li><b>Html:</b> <i>&lt;meta charset="CHARSET"&gt;</i></li>
             <li><b>Xml:</b> <i>&lt;?xml version="1.0" encoding="CHARSET"&gt;</i></li>
@@ -4590,8 +4647,9 @@
             updated on changes through
             <see cref="M:iText.StyledXmlParser.Jsoup.Nodes.Document.Charset(System.Text.Encoding)">Document.charset(Charset)</see>
             or not.
-            <p>If set to <tt>false</tt> <i>(default)</i> there are no elements
-            modified.</p>
+            <para />
+            If set to <tt>false</tt> <i>(default)</i> there are no elements
+            modified.
             </summary>
             <param name="update">
             If <tt>true</tt> the element updated on charset
@@ -4627,7 +4685,7 @@
             <li>If there's no element yet it will be inserted</li>
             <li>Obsolete elements are removed</li>
             </ul>
-            <p><b>Elements used:</b></p>
+            <b>Elements used:</b>
             <ul>
             <li><b>Html:</b> <i>&lt;meta charset="CHARSET"&gt;</i></li>
             <li><b>Xml:</b> <i>&lt;?xml version="1.0" encoding="CHARSET"&gt;</i></li>
@@ -4646,7 +4704,21 @@
         <member name="T:iText.StyledXmlParser.Jsoup.Nodes.OutputSettings">
             <summary>A Document's output settings control the form of the text() and html() methods.</summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.StyledXmlParser.Jsoup.Nodes.OutputSettings.EscapeMode" -->
+        <member name="M:iText.StyledXmlParser.Jsoup.Nodes.OutputSettings.EscapeMode">
+            <summary>
+            Get the document's current HTML escape mode: <code>base</code>, which provides a limited set of named HTML
+            entities and escapes other characters as numbered entities for maximum compatibility; or <code>extended</code>,
+            which uses the complete set of HTML named entities.
+            </summary>
+            <remarks>
+            Get the document's current HTML escape mode: <code>base</code>, which provides a limited set of named HTML
+            entities and escapes other characters as numbered entities for maximum compatibility; or <code>extended</code>,
+            which uses the complete set of HTML named entities.
+            <para />
+            The default escape mode is <code>base</code>.
+            </remarks>
+            <returns>the document's current escape mode</returns>
+        </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Nodes.OutputSettings.EscapeMode(iText.StyledXmlParser.Jsoup.Nodes.Entities.EscapeMode)">
             <summary>
             Set the document's escape mode, which determines how characters are escaped when the output character set
@@ -4655,7 +4727,20 @@
             <param name="escapeMode">the new escape mode to use</param>
             <returns>the document's output settings, for chaining</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.StyledXmlParser.Jsoup.Nodes.OutputSettings.Charset" -->
+        <member name="M:iText.StyledXmlParser.Jsoup.Nodes.OutputSettings.Charset">
+            <summary>
+            Get the document's current output charset, which is used to control which characters are escaped when
+            generating HTML (via the <code>html()</code> methods), and which are kept intact.
+            </summary>
+            <remarks>
+            Get the document's current output charset, which is used to control which characters are escaped when
+            generating HTML (via the <code>html()</code> methods), and which are kept intact.
+            <para />
+            Where possible (when parsing from a URL or File), the document's output charset is automatically set to the
+            input charset. Otherwise, it defaults to UTF-8.
+            </remarks>
+            <returns>the document's current charset.</returns>
+        </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Nodes.OutputSettings.Charset(System.Text.Encoding)">
             <summary>Update the document's output charset.</summary>
             <param name="charset">the new charset to use.</param>
@@ -4835,7 +4920,31 @@
             <param name="attributeValue">the attribute value</param>
             <returns>this element</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.StyledXmlParser.Jsoup.Nodes.Element.Dataset" -->
+        <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Element.Dataset">
+            <summary>Get this element's HTML5 custom data attributes.</summary>
+            <remarks>
+            Get this element's HTML5 custom data attributes. Each attribute in the element that has a key
+            starting with "data-" is included the dataset.
+            <para />
+            E.g., the element
+            <c>&lt;div data-package="jsoup" data-language="Java" class="group"&gt;...</c>
+            has the dataset
+            <c>package=jsoup, language=java</c>
+            .
+            <para />
+            This map is a filtered view of the element's attribute map. Changes to one map (add, remove, update) are reflected
+            in the other map.
+            <para />
+            You can find elements that have data attributes using the
+            <c>[^data-]</c>
+            attribute key prefix selector.
+            </remarks>
+            <returns>
+            a map of
+            <c>key=value</c>
+            custom data attributes.
+            </returns>
+        </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Element.Parents">
             <summary>Get this element's parent and ancestors, up to the document root.</summary>
             <returns>this element's stack of parents, closest first.</returns>
@@ -4844,10 +4953,9 @@
             <summary>Get a child element of this element, by its 0-based index number.</summary>
             <remarks>
             Get a child element of this element, by its 0-based index number.
-            <p>
+            <para />
             Note that an element can have both mixed Nodes and Elements as children. This method inspects
             a filtered list of children that are elements, and the index is based on that filtered list.
-            </p>
             </remarks>
             <param name="index">the index number of the element to retrieve</param>
             <returns>
@@ -4860,11 +4968,10 @@
             <summary>Get this element's child elements.</summary>
             <remarks>
             Get this element's child elements.
-            <p>
+            <para />
             This is effectively a filter on
             <see cref="M:iText.StyledXmlParser.Jsoup.Nodes.Node.ChildNodes"/>
             to get Element nodes.
-            </p>
             </remarks>
             <returns>
             child elements. If this element has no children, returns an
@@ -4872,16 +4979,61 @@
             </returns>
             <seealso cref="M:iText.StyledXmlParser.Jsoup.Nodes.Node.ChildNodes"/>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.StyledXmlParser.Jsoup.Nodes.Element.TextNodes" -->
+        <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Element.TextNodes">
+            <summary>Get this element's child text nodes.</summary>
+            <remarks>
+            Get this element's child text nodes. The list is unmodifiable but the text nodes may be manipulated.
+            <para />
+            This is effectively a filter on
+            <see cref="M:iText.StyledXmlParser.Jsoup.Nodes.Node.ChildNodes"/>
+            to get Text nodes.
+            </remarks>
+            <returns>
+            child text nodes. If this element has no text nodes, returns an
+            empty list.
+            <para />
+            For example, with the input HTML:
+            <c>&lt;p&gt;One &lt;span&gt;Two&lt;/span&gt; Three &lt;br&gt; Four&lt;/p&gt;</c>
+            with the
+            <c>p</c>
+            element selected:
+            <ul>
+            <li>
+            <c>p.text()</c>
+            =
+            <c>"One Two Three Four"</c>
+            </li>
+            <li>
+            <c>p.ownText()</c>
+            =
+            <c>"One Three Four"</c>
+            </li>
+            <li>
+            <c>p.children()</c>
+            =
+            <c>Elements[&lt;span&gt;, &lt;br&gt;]</c>
+            </li>
+            <li>
+            <c>p.childNodes()</c>
+            =
+            <c>List&lt;Node&gt;["One ", &lt;span&gt;, " Three ", &lt;br&gt;, " Four"]</c>
+            </li>
+            <li>
+            <c>p.textNodes()</c>
+            =
+            <c>List&lt;TextNode&gt;["One ", " Three ", " Four"]</c>
+            </li>
+            </ul>
+            </returns>
+        </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Element.DataNodes">
             <summary>Get this element's child data nodes.</summary>
             <remarks>
             Get this element's child data nodes. The list is unmodifiable but the data nodes may be manipulated.
-            <p>
+            <para />
             This is effectively a filter on
             <see cref="M:iText.StyledXmlParser.Jsoup.Nodes.Node.ChildNodes"/>
             to get Data nodes.
-            </p>
             </remarks>
             <returns>
             child data nodes. If this element has no data nodes, returns an
@@ -5026,13 +5178,12 @@
             <summary>Get a CSS selector that will uniquely select this element.</summary>
             <remarks>
             Get a CSS selector that will uniquely select this element.
-            <p>
+            <para />
             If the element has an ID, returns #id;
             otherwise returns the parent (if any) CSS selector, followed by
             <literal>'&gt;'</literal>
             ,
             followed by a unique selector for the element (tag.class.class:nth-child(n)).
-            </p>
             </remarks>
             <returns>the CSS Path that can be used to retrieve the element in a selector.</returns>
         </member>
@@ -5059,11 +5210,10 @@
             is the second
             <c>p</c>
             .
-            <p>
+            <para />
             This is similar to
             <see cref="M:iText.StyledXmlParser.Jsoup.Nodes.Node.NextSibling"/>
             , but specifically finds only Elements
-            </p>
             </remarks>
             <returns>the next element, or null if there is no next element</returns>
             <seealso cref="M:iText.StyledXmlParser.Jsoup.Nodes.Element.PreviousElementSibling"/>
@@ -5095,8 +5245,36 @@
             <returns>a matching unmodifiable list of elements. Will be empty if this element and none of its children match.
                 </returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.StyledXmlParser.Jsoup.Nodes.Element.GetElementById(System.String)" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.StyledXmlParser.Jsoup.Nodes.Element.GetElementsByClass(System.String)" -->
+        <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Element.GetElementById(System.String)">
+            <summary>Find an element by ID, including or under this element.</summary>
+            <remarks>
+            Find an element by ID, including or under this element.
+            <para />
+            Note that this finds the first matching ID, starting with this element. If you search down from a different
+            starting point, it is possible to find a different element by ID. For unique element by ID within a Document,
+            use
+            <see cref="M:iText.StyledXmlParser.Jsoup.Nodes.Element.GetElementById(System.String)"/>
+            </remarks>
+            <param name="id">The ID to search for.</param>
+            <returns>The first matching element by ID, starting with this element, or null if none found.</returns>
+        </member>
+        <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Element.GetElementsByClass(System.String)">
+            <summary>Find elements that have this class, including or under this element.</summary>
+            <remarks>
+            Find elements that have this class, including or under this element. Case insensitive.
+            <para />
+            Elements can have multiple classes (e.g.
+            <c>&lt;div class="header round first"&gt;</c>
+            . This method
+            checks each class, so you can find the above with
+            <c>el.getElementsByClass("header");</c>
+            .
+            </remarks>
+            <param name="className">the name of the class to search for.</param>
+            <returns>elements with the supplied class name, empty if none</returns>
+            <seealso cref="M:iText.StyledXmlParser.Jsoup.Nodes.Element.HasClass(System.String)"/>
+            <seealso cref="M:iText.StyledXmlParser.Jsoup.Nodes.Element.ClassNames"/>
+        </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Element.GetElementsByAttribute(System.String)">
             <summary>Find elements that have a named attribute set.</summary>
             <remarks>Find elements that have a named attribute set. Case insensitive.</remarks>
@@ -5234,8 +5412,49 @@
             <summary>Find all elements under this element (including self, and children of children).</summary>
             <returns>all elements</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.StyledXmlParser.Jsoup.Nodes.Element.Text" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.StyledXmlParser.Jsoup.Nodes.Element.OwnText" -->
+        <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Element.Text">
+            <summary>Gets the combined text of this element and all its children.</summary>
+            <remarks>
+            Gets the combined text of this element and all its children. Whitespace is normalized and trimmed.
+            <para />
+            For example, given HTML
+            <c>&lt;p&gt;Hello  &lt;b&gt;there&lt;/b&gt; now! &lt;/p&gt;</c>
+            ,
+            <c>p.text()</c>
+            returns
+            <c>"Hello there now!"</c>
+            </remarks>
+            <returns>unencoded text, or empty string if none.</returns>
+            <seealso cref="M:iText.StyledXmlParser.Jsoup.Nodes.Element.OwnText"/>
+            <seealso cref="M:iText.StyledXmlParser.Jsoup.Nodes.Element.TextNodes"/>
+        </member>
+        <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Element.OwnText">
+            <summary>Gets the text owned by this element only; does not get the combined text of all children.</summary>
+            <remarks>
+            Gets the text owned by this element only; does not get the combined text of all children.
+            <para />
+            For example, given HTML
+            <c>&lt;p&gt;Hello &lt;b&gt;there&lt;/b&gt; now!&lt;/p&gt;</c>
+            ,
+            <c>p.ownText()</c>
+            returns
+            <c>"Hello now!"</c>
+            ,
+            whereas
+            <c>p.text()</c>
+            returns
+            <c>"Hello there now!"</c>
+            .
+            Note that the text within the
+            <c>b</c>
+            element is not returned, as it is not a direct child of the
+            <c>p</c>
+            element.
+            </remarks>
+            <returns>unencoded text, or empty string if none.</returns>
+            <seealso cref="M:iText.StyledXmlParser.Jsoup.Nodes.Element.Text"/>
+            <seealso cref="M:iText.StyledXmlParser.Jsoup.Nodes.Element.TextNodes"/>
+        </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Element.Text(System.String)">
             <summary>Set the text of this element.</summary>
             <remarks>Set the text of this element. Any existing contents (text or elements) will be cleared</remarks>
@@ -5458,12 +5677,12 @@
             <summary>Get an attribute's value by its key.</summary>
             <remarks>
             Get an attribute's value by its key.
-            <p>
+            <para />
             To get an absolute URL from an attribute that may be a relative URL, prefix the key with <code><b>abs</b></code>,
             which is a shortcut to the
             <see cref="M:iText.StyledXmlParser.Jsoup.Nodes.Node.AbsUrl(System.String)"/>
             method.
-            </p>
+            <para />
             E.g.:
             <blockquote><code>String url = a.attr("abs:href");</code></blockquote>
             </remarks>
@@ -5507,23 +5726,20 @@
             <remarks>
             Get an absolute URL from a URL attribute that may be relative (i.e. an <code>&lt;a href&gt;</code> or
             <code>&lt;img src&gt;</code>).
-            <p>
+            <para />
             E.g.: <code>String absUrl = linkEl.absUrl("href");</code>
-            </p>
-            <p>
+            <para />
             If the attribute value is already absolute (i.e. it starts with a protocol, like
             <code>http://</code> or <code>https://</code> etc), and it successfully parses as a URL, the attribute is
             returned directly. Otherwise, it is treated as a URL relative to the element's
             <see cref="F:iText.StyledXmlParser.Jsoup.Nodes.Node.baseUri"/>
             , and made
             absolute using that.
-            </p>
-            <p>
+            <para />
             As an alternate, you can use the
             <see cref="M:iText.StyledXmlParser.Jsoup.Nodes.Node.Attr(System.String)"/>
             method with the <code>abs:</code> prefix, e.g.:
             <code>String absUrl = linkEl.attr("abs:href");</code>
-            </p>
             </remarks>
             <param name="attributeKey">The attribute key</param>
             <returns>
@@ -5622,20 +5838,19 @@
             <remarks>
             Removes this node from the DOM, and moves its children up into the node's parent. This has the effect of dropping
             the node but keeping its children.
-            <p>
+            <para />
             For example, with the input html:
-            </p>
-            <p>
+            <para />
             <c>&lt;div&gt;One &lt;span&gt;Two &lt;b&gt;Three&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;</c>
-            </p>
+            <para />
             Calling
             <c>element.unwrap()</c>
             on the
             <c>span</c>
             element will result in the html:
-            <p>
+            <para />
             <c>&lt;div&gt;One Two &lt;b&gt;Three&lt;/b&gt;&lt;/div&gt;</c>
-            </p>
+            <para />
             and the
             <c>"Two "</c>
             
@@ -5730,7 +5945,19 @@
             <param name="o">other object to compare to</param>
             <returns>true if the content of this node is the same as the other</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.StyledXmlParser.Jsoup.Nodes.Node.Clone" -->
+        <member name="M:iText.StyledXmlParser.Jsoup.Nodes.Node.Clone">
+            <summary>Create a stand-alone, deep copy of this node, and all of its children.</summary>
+            <remarks>
+            Create a stand-alone, deep copy of this node, and all of its children. The cloned node will have no siblings or
+            parent node. As a stand-alone object, any changes made to the clone or any of its children will not impact the
+            original node.
+            <para />
+            The cloned node may be adopted into another Document or node structure using
+            <see cref="M:iText.StyledXmlParser.Jsoup.Nodes.Element.AppendChild(iText.StyledXmlParser.Jsoup.Nodes.Node)"/>
+            .
+            </remarks>
+            <returns>stand-alone cloned node</returns>
+        </member>
         <member name="T:iText.StyledXmlParser.Jsoup.Nodes.TextNode">
             <summary>A text node.</summary>
             <author>Jonathan Hedley, jonathan@hedley.net</author>
@@ -5981,9 +6208,8 @@
             <summary>Get a Tag by name.</summary>
             <remarks>
             Get a Tag by name. If not previously defined (unknown), returns a new generic tag, that can do anything.
-            <p>
+            <para />
             Pre-defined tags (P, DIV etc) will be ==, but unknown tags are not registered and will only .equals().
-            </p>
             </remarks>
             <param name="tagName">Name of tag, e.g. "p". Case insensitive.</param>
             <returns>The tag, either defined or new generic.</returns>
@@ -6134,7 +6360,16 @@
             <summary>Consume one character off queue.</summary>
             <returns>first character on queue.</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.StyledXmlParser.Jsoup.Parser.TokenQueue.Consume(System.String)" -->
+        <member name="M:iText.StyledXmlParser.Jsoup.Parser.TokenQueue.Consume(System.String)">
+            <summary>Consumes the supplied sequence of the queue.</summary>
+            <remarks>
+            Consumes the supplied sequence of the queue. If the queue does not start with the supplied sequence, will
+            throw an illegal state exception -- but you should be running match() against that condition.
+            <para />
+            Case insensitive.
+            </remarks>
+            <param name="seq">sequence to remove from head of queue.</param>
+        </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Parser.TokenQueue.ConsumeTo(System.String)">
             <summary>Pulls a string off the queue, up to but exclusive of the match sequence, or to the queue running out.
                 </summary>
@@ -6149,7 +6384,19 @@
             <param name="seq">any number of terminators to consume to. <b>Case insensitive.</b></param>
             <returns>consumed string</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.StyledXmlParser.Jsoup.Parser.TokenQueue.ChompTo(System.String)" -->
+        <member name="M:iText.StyledXmlParser.Jsoup.Parser.TokenQueue.ChompTo(System.String)">
+            <summary>Pulls a string off the queue (like consumeTo), and then pulls off the matched string (but does not return it).
+                </summary>
+            <remarks>
+            Pulls a string off the queue (like consumeTo), and then pulls off the matched string (but does not return it).
+            <para />
+            If the queue runs out of characters before finding the seq, will return as much as it can (and queue will go
+            isEmpty() == true).
+            </remarks>
+            <param name="seq">String to match up to, and not include in return, and to pull off queue. <b>Case sensitive.</b>
+                </param>
+            <returns>Data matched from queue.</returns>
+        </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Parser.TokenQueue.ChompBalanced(System.Char,System.Char)">
             <summary>Pulls a balanced string off the queue.</summary>
             <remarks>
@@ -6208,9 +6455,9 @@
             <c>XmlTreeBuilder</c>
             when you want to parse XML without any of the HTML DOM rules being applied to the
             document.
-            <p>Usage example:
+            <para />
+            Usage example:
             <c>Document xmlDoc = Jsoup.parse(html, baseUrl, Parser.xmlParser());</c>
-            </p>
             </summary>
             <author>Jonathan Hedley</author>
         </member>
@@ -6228,21 +6475,18 @@
             <remarks>
             The whitelist based HTML cleaner. Use to ensure that end-user provided HTML contains only the elements and attributes
             that you are expecting; no junk, and no cross-site scripting attacks!
-            <p>
+            <para />
             The HTML cleaner parses the input as HTML and then runs it through a white-list, so the output HTML can only contain
             HTML that is allowed by the whitelist.
-            </p>
-            <p>
+            <para />
             It is assumed that the input HTML is a body fragment; the clean methods only pull from the source's body, and the
             canned white-lists only allow body contained tags.
-            </p>
-            <p>
+            <para />
             Rather than interacting directly with a Cleaner object, generally see the
             <c>clean</c>
             methods in
             <see cref="T:iText.StyledXmlParser.Jsoup.Jsoup"/>
             .
-            </p>
             </remarks>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Safety.Cleaner.#ctor(iText.StyledXmlParser.Jsoup.Safety.Whitelist)">
@@ -6264,13 +6508,12 @@
             <remarks>
             Determines if the input document is valid, against the whitelist. It is considered valid if all the tags and attributes
             in the input HTML are allowed by the whitelist.
-            <p>
+            <para />
             This method can be used as a validator for user input forms. An invalid document will still be cleaned successfully
             using the
             <see cref="M:iText.StyledXmlParser.Jsoup.Safety.Cleaner.Clean(iText.StyledXmlParser.Jsoup.Nodes.Document)"/>
             document. If using as a validator, it is recommended to still clean the document
             to ensure enforced attributes are set correctly, and that the output is tidied.
-            </p>
             </remarks>
             <param name="dirtyDocument">document to test</param>
             <returns>true if no tags or attributes need to be removed; false if they do</returns>
@@ -6291,7 +6534,22 @@
             </remarks>
             <returns>whitelist</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.StyledXmlParser.Jsoup.Safety.Whitelist.Basic" -->
+        <member name="M:iText.StyledXmlParser.Jsoup.Safety.Whitelist.Basic">
+            <summary>
+            This whitelist allows a fuller range of text nodes: <code>a, b, blockquote, br, cite, code, dd, dl, dt, em, i, li,
+            ol, p, pre, q, small, span, strike, strong, sub, sup, u, ul</code>, and appropriate attributes.
+            </summary>
+            <remarks>
+            This whitelist allows a fuller range of text nodes: <code>a, b, blockquote, br, cite, code, dd, dl, dt, em, i, li,
+            ol, p, pre, q, small, span, strike, strong, sub, sup, u, ul</code>, and appropriate attributes.
+            <para />
+            Links (<code>a</code> elements) can point to <code>http, https, ftp, mailto</code>, and have an enforced
+            <code>rel=nofollow</code> attribute.
+            <para />
+            Does not allow images.
+            </remarks>
+            <returns>whitelist</returns>
+        </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Safety.Whitelist.BasicWithImages">
             <summary>
             This whitelist allows the same text tags as
@@ -6301,7 +6559,21 @@
             </summary>
             <returns>whitelist</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.StyledXmlParser.Jsoup.Safety.Whitelist.Relaxed" -->
+        <member name="M:iText.StyledXmlParser.Jsoup.Safety.Whitelist.Relaxed">
+            <summary>
+            This whitelist allows a full range of text and structural body HTML: <code>a, b, blockquote, br, caption, cite,
+            code, col, colgroup, dd, div, dl, dt, em, h1, h2, h3, h4, h5, h6, i, img, li, ol, p, pre, q, small, span, strike, strong, sub,
+            sup, table, tbody, td, tfoot, th, thead, tr, u, ul</code>
+            </summary>
+            <remarks>
+            This whitelist allows a full range of text and structural body HTML: <code>a, b, blockquote, br, caption, cite,
+            code, col, colgroup, dd, div, dl, dt, em, h1, h2, h3, h4, h5, h6, i, img, li, ol, p, pre, q, small, span, strike, strong, sub,
+            sup, table, tbody, td, tfoot, th, thead, tr, u, ul</code>
+            <para />
+            Links do not have an enforced <code>rel=nofollow</code> attribute, but you can add that if desired.
+            </remarks>
+            <returns>whitelist</returns>
+        </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Safety.Whitelist.#ctor">
             <summary>Create a new, empty whitelist.</summary>
             <remarks>Create a new, empty whitelist. Generally it will be better to start with a default prepared whitelist instead.
@@ -6329,14 +6601,12 @@
             <summary>Add a list of allowed attributes to a tag.</summary>
             <remarks>
             Add a list of allowed attributes to a tag. (If an attribute is not allowed on an element, it will be removed.)
-            <p>
+            <para />
             E.g.: <code>addAttributes("a", "href", "class")</code> allows <code>href</code> and <code>class</code> attributes
             on <code>a</code> tags.
-            </p>
-            <p>
+            <para />
             To make an attribute valid for <b>all tags</b>, use the pseudo tag <code>:all</code>, e.g.
             <code>addAttributes(":all", "class")</code>.
-            </p>
             </remarks>
             <param name="tag">The tag the attributes are for. The tag will be added to the allowed tag list if necessary.
                 </param>
@@ -6347,14 +6617,12 @@
             <summary>Remove a list of allowed attributes from a tag.</summary>
             <remarks>
             Remove a list of allowed attributes from a tag. (If an attribute is not allowed on an element, it will be removed.)
-            <p>
+            <para />
             E.g.: <code>removeAttributes("a", "href", "class")</code> disallows <code>href</code> and <code>class</code>
             attributes on <code>a</code> tags.
-            </p>
-            <p>
+            <para />
             To make an attribute invalid for <b>all tags</b>, use the pseudo tag <code>:all</code>, e.g.
             <code>removeAttributes(":all", "class")</code>.
-            </p>
             </remarks>
             <param name="tag">The tag the attributes are for.</param>
             <param name="keys">List of invalid attributes for the tag</param>
@@ -6365,10 +6633,9 @@
             <remarks>
             Add an enforced attribute to a tag. An enforced attribute will always be added to the element. If the element
             already has the attribute set, it will be overridden.
-            <p>
+            <para />
             E.g.: <code>addEnforcedAttribute("a", "rel", "nofollow")</code> will make all <code>a</code> tags output as
             <code>&lt;a href="..." rel="nofollow"&gt;</code>
-            </p>
             </remarks>
             <param name="tag">The tag the enforced attribute is for. The tag will be added to the allowed tag list if necessary.
                 </param>
@@ -6393,7 +6660,7 @@
             e.g.
             <c>http://</c>
             .
-            <p>
+            <para />
             Note that when handling relative links, the input document must have an appropriate
             <c>base URI</c>
             set when
@@ -6404,7 +6671,6 @@
             </c>
             option, the link must be resolvable against the base URI to an allowed protocol; otherwise the attribute
             will be removed.
-            </p>
             </remarks>
             <param name="preserve">
             
@@ -6421,13 +6687,11 @@
             <remarks>
             Add allowed URL protocols for an element's URL attribute. This restricts the possible values of the attribute to
             URLs with the defined protocol.
-            <p>
+            <para />
             E.g.: <code>addProtocols("a", "href", "ftp", "http", "https")</code>
-            </p>
-            <p>
+            <para />
             To allow a link to an in-page URL anchor (i.e. <code>&lt;a href="#anchor"&gt;</code>, add a <code>#</code>:<br />
             E.g.: <code>addProtocols("a", "href", "#")</code>
-            </p>
             </remarks>
             <param name="tag">Tag the URL protocol is for</param>
             <param name="key">Attribute key</param>
@@ -6438,9 +6702,8 @@
             <summary>Remove allowed URL protocols for an element's URL attribute.</summary>
             <remarks>
             Remove allowed URL protocols for an element's URL attribute.
-            <p>
+            <para />
             E.g.: <code>removeProtocols("a", "href", "ftp")</code>
-            </p>
             </remarks>
             <param name="tag">Tag the URL protocol is for</param>
             <param name="key">Attribute key</param>
@@ -6479,21 +6742,7 @@
                 </remarks>
             <param name="evaluators">initial OR clause (these are wrapped into an AND evaluator).</param>
         </member>
-        <member name="T:iText.StyledXmlParser.Jsoup.Select.Elements">
-            <summary>
-            A list of
-            <see cref="T:iText.StyledXmlParser.Jsoup.Nodes.Element"/>
-            s, with methods that act on every element in the list.
-            <p>
-            To get an
-            <c>Elements</c>
-            object, use the
-            <see cref="M:iText.StyledXmlParser.Jsoup.Nodes.Element.Select(System.String)"/>
-            method.
-            </p>
-            </summary>
-            <author>Jonathan Hedley, jonathan@hedley.net</author>
-        </member>
+        <!-- Badly formed XML comment ignored for member "T:iText.StyledXmlParser.Jsoup.Select.Elements" -->
         <member name="M:iText.StyledXmlParser.Jsoup.Select.Elements.Clone">
             <summary>Creates a deep copy of these elements.</summary>
             <returns>a deep copy</returns>
@@ -6656,28 +6905,7 @@
             <returns>this (for chaining)</returns>
             <seealso cref="M:iText.StyledXmlParser.Jsoup.Nodes.Element.Wrap(System.String)"/>
         </member>
-        <member name="M:iText.StyledXmlParser.Jsoup.Select.Elements.Unwrap">
-            <summary>Removes the matched elements from the DOM, and moves their children up into their parents.</summary>
-            <remarks>
-            Removes the matched elements from the DOM, and moves their children up into their parents. This has the effect of
-            dropping the elements but keeping their children.
-            <p>
-            This is useful for e.g removing unwanted formatting elements but keeping their contents.
-            </p>
-            E.g. with HTML: <p>
-            <c>&lt;div&gt;&lt;font&gt;One&lt;/font&gt; &lt;font&gt;&lt;a href="/"&gt;Two&lt;/a&gt;&lt;/font&gt;&lt;/div&gt;
-                </c>
-            </p>
-            <p>
-            <c>doc.select("font").unwrap();</c>
-            </p>
-            <p>HTML =
-            <c>&lt;div&gt;One &lt;a href="/"&gt;Two&lt;/a&gt;&lt;/div&gt;</c>
-            </p>
-            </remarks>
-            <returns>this (for chaining)</returns>
-            <seealso cref="M:iText.StyledXmlParser.Jsoup.Nodes.Node.Unwrap"/>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:iText.StyledXmlParser.Jsoup.Select.Elements.Unwrap" -->
         <!-- Badly formed XML comment ignored for member "M:iText.StyledXmlParser.Jsoup.Select.Elements.Empty" -->
         <!-- Badly formed XML comment ignored for member "M:iText.StyledXmlParser.Jsoup.Select.Elements.Remove" -->
         <member name="M:iText.StyledXmlParser.Jsoup.Select.Elements.Select(System.String)">
@@ -6835,9 +7063,8 @@
             <summary>Depth-first node traversor.</summary>
             <remarks>
             Depth-first node traversor. Use to iterate through all nodes under and including the specified root node.
-            <p>
+            <para />
             This implementation does not use recursion, so a deep DOM does not risk blowing the stack.
-            </p>
             </remarks>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Select.NodeTraversor.#ctor(iText.StyledXmlParser.Jsoup.Select.NodeVisitor)">
@@ -6858,7 +7085,7 @@
             Node visitor interface. Provide an implementing class to
             <see cref="T:iText.StyledXmlParser.Jsoup.Select.NodeTraversor"/>
             to iterate through nodes.
-            <p>
+            <para />
             This interface provides two methods,
             <c>head</c>
             and
@@ -6866,7 +7093,6 @@
             . The head method is called when the node is first
             seen, and the tail method when all of the node's children have been visited. As an example, head can be used to
             create a start tag for a node, and tail to create the end tag.
-            </p>
             </remarks>
         </member>
         <member name="M:iText.StyledXmlParser.Jsoup.Select.NodeVisitor.Head(iText.StyledXmlParser.Jsoup.Nodes.Node,System.Int32)">
@@ -6960,6 +7186,9 @@
         </member>
         <member name="F:iText.StyledXmlParser.LogMessageConstant.DEFAULT_VALUE_OF_CSS_PROPERTY_UNKNOWN">
             <summary>The Constant DEFAULT_VALUE_OF_CSS_PROPERTY_UNKNOWN.</summary>
+        </member>
+        <member name="F:iText.StyledXmlParser.LogMessageConstant.ERROR_ADDING_CHILD_NODE">
+            <summary>The Constant ERROR_ADDING_CHILD_NODE.</summary>
         </member>
         <member name="F:iText.StyledXmlParser.LogMessageConstant.ERROR_PARSING_COULD_NOT_MAP_NODE">
             <summary>The Constant ERROR_PARSING_COULD_NOT_MAP_NODE</summary>
@@ -7399,6 +7628,9 @@
         <member name="T:iText.StyledXmlParser.Resolver.Resource.ResourceResolver">
             <summary>Utilities class to resolve resources.</summary>
         </member>
+        <member name="F:iText.StyledXmlParser.Resolver.Resource.ResourceResolver.BASE64IDENTIFIER">
+            <summary>Identifier string used when loading in base64 images</summary>
+        </member>
         <member name="F:iText.StyledXmlParser.Resolver.Resource.ResourceResolver.uriResolver">
             <summary>
             The
@@ -7413,9 +7645,6 @@
             instance.
             </summary>
         </member>
-        <member name="F:iText.StyledXmlParser.Resolver.Resource.ResourceResolver.BASE64IDENTIFIER">
-            <summary>Identifier string used when loading in base64 images</summary>
-        </member>
         <member name="M:iText.StyledXmlParser.Resolver.Resource.ResourceResolver.#ctor(System.String)">
             <summary>
             Creates
@@ -7425,10 +7654,9 @@
             is a string that represents an absolute URI with any schema
             except "file" - resources url values will be resolved exactly as "new URL(baseUrl, uriString)". Otherwise base URI
             will be handled as path in local file system.
-            <p>
+            <para />
             If empty string or relative URI string is passed as base URI, then it will be resolved against current working
             directory of this application instance.
-            </p>
             </summary>
             <param name="baseUri">base URI against which all relative resource URIs will be resolved.</param>
         </member>
@@ -7473,6 +7701,7 @@
             <remarks>
             Deprecated: use retrieveBytesFromResource instead
             Replaced by retrieveBytesFromResource for the sake of method name clarity.
+            <para />
             Retrieve a resource as a byte array from a source that
             can either be a link to a file, or a base64 encoded
             <see cref="T:System.String"/>
@@ -7495,6 +7724,15 @@
             <summary>Retrieve the resource found in src as an InputStream</summary>
             <param name="src">path to the resource</param>
             <returns>InputStream for the resource</returns>
+        </member>
+        <member name="M:iText.StyledXmlParser.Resolver.Resource.ResourceResolver.IsContains64Mark(System.String)">
+            <summary>Checks if string contains base64 mark.</summary>
+            <remarks>
+            Checks if string contains base64 mark.
+            It does not guarantee that src is a correct base64 data-string.
+            </remarks>
+            <param name="src">string to test</param>
+            <returns/>
         </member>
         <member name="M:iText.StyledXmlParser.Resolver.Resource.ResourceResolver.ResolveAgainstBaseUri(System.String)">
             <summary>Resolves a given URI against the base URI.</summary>
@@ -7522,6 +7760,12 @@
             containing the Image loaded in
             </returns>
             <exception cref="T:System.Exception">thrown if error occurred during fetching or constructing the image</exception>
+        </member>
+        <member name="M:iText.StyledXmlParser.Resolver.Resource.ResourceResolver.IsDataSrc(System.String)">
+            <summary>Checks if source is under data URI scheme.</summary>
+            <remarks>Checks if source is under data URI scheme. (eg data:[&lt;media type&gt;][;base64],&lt;data&gt;)</remarks>
+            <param name="src">String to test</param>
+            <returns/>
         </member>
         <member name="T:iText.StyledXmlParser.Resolver.Resource.SimpleImageCache">
             <summary>Simple implementation of an image cache.</summary>

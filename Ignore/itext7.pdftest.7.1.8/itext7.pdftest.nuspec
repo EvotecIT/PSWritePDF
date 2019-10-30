@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>itext7.pdftest</id>
+    <version>7.1.8</version>
+    <title>iText 7 pdftest module</title>
+    <authors>iText Software</authors>
+    <owners>iText Software</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <licenseUrl>https://www.gnu.org/licenses/agpl.html</licenseUrl>
+    <projectUrl>https://itextpdf.com/</projectUrl>
+    <iconUrl>https://itextpdf.com/sites/default/files/ITSC-avatar.png</iconUrl>
+    <description>A special module for test purposes</description>
+    <summary></summary>
+    <releaseNotes>https://itextpdf.com/itext7release</releaseNotes>
+    <copyright>Copyright (c) 1998-2019 iText Group NV</copyright>
+    <language>en-US</language>
+    <tags>itext itext7 itextsharp c# .net csharp pdf tests</tags>
+  </metadata>
+</package>

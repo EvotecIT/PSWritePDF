@@ -11,6 +11,9 @@
             <summary>The null Border, i.e.</summary>
             <remarks>The null Border, i.e. the presence of such border is equivalent to the absence of the border</remarks>
         </member>
+        <member name="F:iText.Layout.Borders.Border.CURV">
+            <summary>Value used by discontinuous borders during the drawing process</summary>
+        </member>
         <member name="F:iText.Layout.Borders.Border.SOLID">
             <summary>The solid border.</summary>
             <seealso cref="T:iText.Layout.Borders.SolidBorder"/>
@@ -95,9 +98,109 @@
             <param name="opacity">the opacity which border should have; a float between 0 and 1, where 1 stands for fully opaque color and 0 - for fully transparent
                 </param>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Borders.Border.Draw(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side,System.Single,System.Single)" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Borders.Border.Draw(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side,System.Single,System.Single)" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Borders.Border.Draw(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side,System.Single,System.Single)" -->
+        <member name="M:iText.Layout.Borders.Border.Draw(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side,System.Single,System.Single)">
+            <summary>
+            All borders are supposed to be drawn in such way, that inner content of the element is on the right from the
+            drawing direction.
+            </summary>
+            <remarks>
+            All borders are supposed to be drawn in such way, that inner content of the element is on the right from the
+            drawing direction. Borders are drawn in this order: top, right, bottom, left.
+            <para />
+            Given points specify the line which lies on the border of the content area,
+            therefore the border itself should be drawn to the left from the drawing direction.
+            <para />
+            <code>borderWidthBefore</code> and <code>borderWidthAfter</code> parameters are used to
+            define the widths of the borders that are before and after the current border, e.g. for
+            the bottom border, <code>borderWidthBefore</code> specifies width of the right border and
+            <code>borderWidthAfter</code> - width of the left border. Those width are used to handle areas
+            of border joins.
+            </remarks>
+            <param name="canvas">PdfCanvas to be written to</param>
+            <param name="x1">x coordinate of the beginning point of the element side, that should be bordered</param>
+            <param name="y1">y coordinate of the beginning point of the element side, that should be bordered</param>
+            <param name="x2">x coordinate of the ending point of the element side, that should be bordered</param>
+            <param name="y2">y coordinate of the ending point of the element side, that should be bordered</param>
+            <param name="defaultSide">
+            the
+            <see cref="T:iText.Layout.Borders.Border.Side"/>
+            , that we will fallback to, if it cannot be determined by border coordinates
+            </param>
+            <param name="borderWidthBefore">defines width of the border that is before the current one</param>
+            <param name="borderWidthAfter">defines width of the border that is after the current one</param>
+        </member>
+        <member name="M:iText.Layout.Borders.Border.Draw(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side,System.Single,System.Single)">
+            <summary>
+            All borders are supposed to be drawn in such way, that inner content of the element is on the right from the
+            drawing direction.
+            </summary>
+            <remarks>
+            All borders are supposed to be drawn in such way, that inner content of the element is on the right from the
+            drawing direction. Borders are drawn in this order: top, right, bottom, left.
+            <para />
+            Given points specify the line which lies on the border of the content area,
+            therefore the border itself should be drawn to the left from the drawing direction.
+            <para />
+            <code>borderWidthBefore</code> and <code>borderWidthAfter</code> parameters are used to
+            define the widths of the borders that are before and after the current border, e.g. for
+            the bottom border, <code>borderWidthBefore</code> specifies width of the right border and
+            <code>borderWidthAfter</code> - width of the left border. Those width are used to handle areas
+            of border joins.
+            <para />
+            <code>borderRadius</code> is used to draw rounded borders.
+            </remarks>
+            <param name="canvas">PdfCanvas to be written to</param>
+            <param name="x1">x coordinate of the beginning point of the element side, that should be bordered</param>
+            <param name="y1">y coordinate of the beginning point of the element side, that should be bordered</param>
+            <param name="x2">x coordinate of the ending point of the element side, that should be bordered</param>
+            <param name="y2">y coordinate of the ending point of the element side, that should be bordered</param>
+            <param name="borderRadius">defines the radius of the element's corners</param>
+            <param name="defaultSide">
+            the
+            <see cref="T:iText.Layout.Borders.Border.Side"/>
+            , that we will fallback to, if it cannot be determined by border coordinates
+            </param>
+            <param name="borderWidthBefore">defines width of the border that is before the current one</param>
+            <param name="borderWidthAfter">defines width of the border that is after the current one</param>
+        </member>
+        <member name="M:iText.Layout.Borders.Border.Draw(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side,System.Single,System.Single)">
+            <summary>
+            All borders are supposed to be drawn in such way, that inner content of the element is on the right from the
+            drawing direction.
+            </summary>
+            <remarks>
+            All borders are supposed to be drawn in such way, that inner content of the element is on the right from the
+            drawing direction. Borders are drawn in this order: top, right, bottom, left.
+            <para />
+            Given points specify the line which lies on the border of the content area,
+            therefore the border itself should be drawn to the left from the drawing direction.
+            <para />
+            <code>borderWidthBefore</code> and <code>borderWidthAfter</code> parameters are used to
+            define the widths of the borders that are before and after the current border, e.g. for
+            the bottom border, <code>borderWidthBefore</code> specifies width of the right border and
+            <code>borderWidthAfter</code> - width of the left border. Those width are used to handle areas
+            of border joins.
+            <para />
+            <code>horizontalRadius1</code>, <code>verticalRadius1</code>, <code>horizontalRadius2</code>
+            and <code>verticalRadius2</code> are used to draw rounded borders.
+            </remarks>
+            <param name="canvas">PdfCanvas to be written to</param>
+            <param name="x1">x coordinate of the beginning point of the element side, that should be bordered</param>
+            <param name="y1">y coordinate of the beginning point of the element side, that should be bordered</param>
+            <param name="x2">x coordinate of the ending point of the element side, that should be bordered</param>
+            <param name="y2">y coordinate of the ending point of the element side, that should be bordered</param>
+            <param name="horizontalRadius1">defines the horizontal radius of the border's first corner</param>
+            <param name="verticalRadius1">defines the vertical radius of the border's first corner</param>
+            <param name="horizontalRadius2">defines the horizontal radius of the border's second corner</param>
+            <param name="verticalRadius2">defines the vertical radius of the border's second corner</param>
+            <param name="defaultSide">
+            the
+            <see cref="T:iText.Layout.Borders.Border.Side"/>
+            , that we will fallback to, if it cannot be determined by border coordinates
+            </param>
+            <param name="borderWidthBefore">defines width of the border that is before the current one</param>
+            <param name="borderWidthAfter">defines width of the border that is after the current one</param>
+        </member>
         <member name="M:iText.Layout.Borders.Border.DrawCellBorder(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side)">
             <summary>Draws the border of a cell.</summary>
             <param name="canvas">PdfCanvas to be written to</param>
@@ -196,6 +299,49 @@
             The rectangle sides are expected to be parallel to corresponding page sides
             Otherwise the result is Side.NONE
             </remarks>
+        </member>
+        <member name="M:iText.Layout.Borders.Border.GetDotsGap(System.Double,System.Single)">
+            <summary>Adjusts the size of the gap between dots</summary>
+            <param name="distance">
+            the
+            <see cref="T:iText.Layout.Borders.Border">border</see>
+            length
+            </param>
+            <param name="initialGap">the initial size of the gap</param>
+            <returns>the adjusted size of the gap</returns>
+        </member>
+        <member name="M:iText.Layout.Borders.Border.DrawDiscontinuousBorders(iText.Kernel.Pdf.Canvas.PdfCanvas,iText.Kernel.Geom.Rectangle,System.Single[],System.Single[],iText.Layout.Borders.Border.Side,System.Single,System.Single)">
+            <summary>Perform drawing operations to draw discontinuous borders.</summary>
+            <remarks>
+            Perform drawing operations to draw discontinuous borders. Used by
+            <see cref="T:iText.Layout.Borders.DashedBorder"/>
+            ,
+            <see cref="T:iText.Layout.Borders.DottedBorder"/>
+            and
+            <see cref="T:iText.Layout.Borders.RoundDotsBorder"/>
+            .
+            </remarks>
+            <param name="canvas">canvas to draw on</param>
+            <param name="boundingRectangle">rectangle representing the bounding box of the drawing operations</param>
+            <param name="horizontalRadii">the horizontal radius of the border's two corners</param>
+            <param name="verticalRadii">the vertical radius of the border's two corners</param>
+            <param name="defaultSide">
+            the
+            <see cref="T:iText.Layout.Borders.Border.Side"/>
+            , that we will fallback to, if it cannot be determined by border coordinates
+            </param>
+            <param name="borderWidthBefore">defines width of the border that is before the current one</param>
+            <param name="borderWidthAfter">defines width of the border that is after the current one</param>
+        </member>
+        <member name="M:iText.Layout.Borders.Border.GetStartingPointsForBorderSide(System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side)">
+            <summary>Calculate adjusted starting points for discontinuous borders, given two opposing points (A and B) that define the bounding rectangle
+                </summary>
+            <param name="x1">x-coordinate of point A</param>
+            <param name="y1">y-ordinate of point A</param>
+            <param name="x2">x-coordinate of point B</param>
+            <param name="y2">y-ordinate of point B</param>
+            <param name="defaultSide">default side of the border used to determine the side given by points A and B</param>
+            <returns>float[] containing the adjusted starting points in the form {x1,y1,x2,y2}</returns>
         </member>
         <member name="T:iText.Layout.Borders.Border3D">
             <summary>Represents a border that is displayed using a 3D effect.</summary>
@@ -316,10 +462,7 @@
             <summary><inheritDoc/></summary>
         </member>
         <member name="M:iText.Layout.Borders.DashedBorder.GetDotsGap(System.Double,System.Single)">
-            <summary>
-            /
-            Adjusts the size of the gap between dots
-            </summary>
+            <summary>Adjusts the size of the gap between dots</summary>
             <param name="distance">
             the
             <see cref="T:iText.Layout.Borders.Border">border</see>
@@ -831,7 +974,30 @@
             It is also used to determine if autotagging is enabled.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Canvas.#ctor(iText.Kernel.Pdf.PdfPage,iText.Kernel.Geom.Rectangle)" -->
+        <member name="M:iText.Layout.Canvas.#ctor(iText.Kernel.Pdf.PdfPage,iText.Kernel.Geom.Rectangle)">
+            <summary>Creates a new Canvas to manipulate a specific page content stream.</summary>
+            <remarks>
+            Creates a new Canvas to manipulate a specific page content stream. The given page shall not be flushed:
+            drawing on flushed pages is impossible because their content is already written to the output stream.
+            Use this constructor to be able to add
+            <see cref="T:iText.Layout.Element.Link"/>
+            elements on it
+            (using any other constructor would result in inability to add PDF annotations, based on which, for example, links work).
+            <para />
+            If the
+            <see cref="M:iText.Kernel.Pdf.PdfDocument.IsTagged"/>
+            is true, using this constructor would automatically enable
+            the tagging for the content. Regarding tagging the effect is the same as using
+            <see cref="M:iText.Layout.Canvas.EnableAutoTagging(iText.Kernel.Pdf.PdfPage)"/>
+            .
+            </remarks>
+            <param name="page">
+            the page on which this canvas will be rendered, shall not be flushed (see
+            <see cref="M:iText.Kernel.Pdf.PdfObjectWrapper`1.IsFlushed"/>
+            ).
+            </param>
+            <param name="rootArea">the maximum area that the Canvas may write upon</param>
+        </member>
         <member name="M:iText.Layout.Canvas.#ctor(iText.Kernel.Pdf.Canvas.PdfCanvas,iText.Kernel.Pdf.PdfDocument,iText.Kernel.Geom.Rectangle)">
             <summary>
             Creates a new Canvas to manipulate a specific document and content stream, which might be for example a page
@@ -1003,7 +1169,23 @@
             </summary>
             <returns>the array index of the next area that will be written on</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:iText.Layout.Document" -->
+        <member name="T:iText.Layout.Document">
+            <summary>Document is the default root element when creating a self-sufficient PDF.</summary>
+            <remarks>
+            Document is the default root element when creating a self-sufficient PDF. It
+            mainly operates high-level operations e.g. setting page size and rotation,
+            adding elements, and writing text at specific coordinates. It has no
+            knowledge of the actual PDF concepts and syntax.
+            <para />
+            A
+            <see cref="T:iText.Layout.Document"/>
+            's rendering behavior can be modified by extending
+            <see cref="T:iText.Layout.Renderer.DocumentRenderer"/>
+            and setting an instance of this newly created with
+            <see cref="M:iText.Layout.Document.SetRenderer(iText.Layout.Renderer.DocumentRenderer)"></see>
+            .
+            </remarks>
+        </member>
         <member name="M:iText.Layout.Document.#ctor(iText.Kernel.Pdf.PdfDocument)">
             <summary>
             Creates a document from a
@@ -1082,7 +1264,21 @@
             flush their contents to the content stream.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Document.Relayout" -->
+        <member name="M:iText.Layout.Document.Relayout">
+            <summary>
+            Performs an entire recalculation of the document flow, taking into
+            account all its current child elements.
+            </summary>
+            <remarks>
+            Performs an entire recalculation of the document flow, taking into
+            account all its current child elements. May become very
+            resource-intensive for large documents.
+            <para />
+            Do not use when you have set
+            <see cref="F:iText.Layout.RootElement`1.immediateFlush"/>
+            to <code>true</code>.
+            </remarks>
+        </member>
         <member name="M:iText.Layout.Document.GetLeftMargin">
             <summary>Gets the left margin, measured in points</summary>
             <returns>a <code>float</code> containing the left margin value</returns>
@@ -1255,9 +1451,87 @@
             </param>
             <returns>this Element.</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.ElementPropertyContainer`1.SetFont(iText.Kernel.Font.PdfFont)" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.ElementPropertyContainer`1.SetFontFamily(System.String[])" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.ElementPropertyContainer`1.SetFontFamily(System.Collections.Generic.IList{System.String})" -->
+        <member name="M:iText.Layout.ElementPropertyContainer`1.SetFont(iText.Kernel.Font.PdfFont)">
+            <summary>Sets the font of this Element.</summary>
+            <remarks>
+            Sets the font of this Element.
+            <para />
+            This property overrides the value set by
+            <see cref="M:iText.Layout.ElementPropertyContainer`1.SetFontFamily(System.String[])"/>
+            . Font is set either via exact
+            <see cref="T:iText.Kernel.Font.PdfFont"/>
+            instance or via font-family name that should correspond to the font in
+            <see cref="T:iText.Layout.Font.FontProvider"/>
+            , but not both.
+            </remarks>
+            <param name="font">
+            a
+            <see cref="T:iText.Kernel.Font.PdfFont">font</see>
+            </param>
+            <returns>this Element.</returns>
+        </member>
+        <member name="M:iText.Layout.ElementPropertyContainer`1.SetFontFamily(System.String[])">
+            <summary>Sets the preferable font families for this Element.</summary>
+            <remarks>
+            Sets the preferable font families for this Element.
+            Note that
+            <see cref="T:iText.Layout.Font.FontProvider"/>
+            shall be set as well.
+            See
+            <see cref="M:iText.Layout.RootElement`1.SetFontProvider(iText.Layout.Font.FontProvider)"/>
+            <para />
+            This property overrides the value set by
+            <see cref="M:iText.Layout.ElementPropertyContainer`1.SetFont(iText.Kernel.Font.PdfFont)"/>
+            . Font is set either via exact
+            <see cref="T:iText.Kernel.Font.PdfFont"/>
+            instance or via font-family name that should correspond to the font in
+            <see cref="T:iText.Layout.Font.FontProvider"/>
+            , but not both.
+            <para />
+            All
+            <see cref="T:System.String"/>
+            that are passed as argument are directly handled as a collection of font family names,
+            without any pre-processing. Every font family name is treated as a preferable font-family to be used
+            inside the element. The
+            <paramref name="fontFamilyNames"/>
+            argument is interpreted as as an ordered list,
+            where every next font-family should be used if font for the previous one was not found or doesn't contain required glyphs.
+            </remarks>
+            <seealso cref="T:iText.IO.Font.Constants.StandardFontFamilies"/>
+            <param name="fontFamilyNames">defines an ordered list of preferable font families for this Element.</param>
+            <returns>this Element.</returns>
+        </member>
+        <member name="M:iText.Layout.ElementPropertyContainer`1.SetFontFamily(System.Collections.Generic.IList{System.String})">
+            <summary>Sets the preferable font families for this Element.</summary>
+            <remarks>
+            Sets the preferable font families for this Element.
+            Note that
+            <see cref="T:iText.Layout.Font.FontProvider"/>
+            shall be set as well.
+            See
+            <see cref="M:iText.Layout.RootElement`1.SetFontProvider(iText.Layout.Font.FontProvider)"/>
+            <para />
+            This property overrides the value set by
+            <see cref="M:iText.Layout.ElementPropertyContainer`1.SetFont(iText.Kernel.Font.PdfFont)"/>
+            . Font is set either via exact
+            <see cref="T:iText.Kernel.Font.PdfFont"/>
+            instance or via font-family name that should correspond to the font in
+            <see cref="T:iText.Layout.Font.FontProvider"/>
+            , but not both.
+            <para />
+            All
+            <see cref="T:System.String"/>
+            that are passed as argument are directly handled as a collection of font family names,
+            without any pre-processing. Every font family name is treated as a preferable font-family to be used
+            inside the element. The
+            <paramref name="fontFamilyNames"/>
+            argument is interpreted as as an ordered list,
+            where every next font-family should be used if font for the previous one was not found or doesn't contain required glyphs.
+            </remarks>
+            <seealso cref="T:iText.IO.Font.Constants.StandardFontFamilies"/>
+            <param name="fontFamilyNames">defines an ordered list of preferable font families for this Element.</param>
+            <returns>this Element.</returns>
+        </member>
         <member name="M:iText.Layout.ElementPropertyContainer`1.SetFont(System.String)">
             <summary>Sets the font family of this Element.</summary>
             <remarks>
@@ -1571,8 +1845,64 @@
             <param name="yPosition">the absolute y position relative to the baseline</param>
             <returns>this element</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.ElementPropertyContainer`1.SetUnderline(iText.Kernel.Colors.Color,System.Single,System.Single,System.Single,System.Single,System.Int32)" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.ElementPropertyContainer`1.SetUnderline(iText.Kernel.Colors.Color,System.Single,System.Single,System.Single,System.Single,System.Single,System.Int32)" -->
+        <member name="M:iText.Layout.ElementPropertyContainer`1.SetUnderline(iText.Kernel.Colors.Color,System.Single,System.Single,System.Single,System.Single,System.Int32)">
+            <summary>Sets an horizontal line that can be an underline or a strikethrough.</summary>
+            <remarks>
+            Sets an horizontal line that can be an underline or a strikethrough.
+            Actually, the line can be anywhere vertically due to position parameter.
+            Multiple call to this method will produce multiple lines.
+            <para />
+            The thickness of the line will be
+            <c>thickness + thicknessMul * fontSize</c>
+            .
+            The position of the line will be
+            <c>baseLine + yPosition + yPositionMul * fontSize</c>
+            .
+            </remarks>
+            <param name="color">
+            the color of the line or <CODE>null</CODE> to follow the
+            text color
+            </param>
+            <param name="thickness">the absolute thickness of the line</param>
+            <param name="thicknessMul">the thickness multiplication factor with the font size</param>
+            <param name="yPosition">the absolute y position relative to the baseline</param>
+            <param name="yPositionMul">the position multiplication factor with the font size</param>
+            <param name="lineCapStyle">
+            the end line cap style. Allowed values are enumerated in
+            <see cref="T:iText.Kernel.Pdf.Canvas.PdfCanvasConstants.LineCapStyle"/>
+            </param>
+            <returns>this element</returns>
+        </member>
+        <member name="M:iText.Layout.ElementPropertyContainer`1.SetUnderline(iText.Kernel.Colors.Color,System.Single,System.Single,System.Single,System.Single,System.Single,System.Int32)">
+            <summary>Sets an horizontal line that can be an underline or a strikethrough.</summary>
+            <remarks>
+            Sets an horizontal line that can be an underline or a strikethrough.
+            Actually, the line can be anywhere vertically due to position parameter.
+            Multiple call to this method will produce multiple lines.
+            <para />
+            The thickness of the line will be
+            <c>thickness + thicknessMul * fontSize</c>
+            .
+            The position of the line will be
+            <c>baseLine + yPosition + yPositionMul * fontSize</c>
+            .
+            </remarks>
+            <param name="color">
+            the color of the line or <CODE>null</CODE> to follow the
+            text color
+            </param>
+            <param name="opacity">the opacity of the line; a float between 0 and 1, where 1 stands for fully opaque color and 0 - for fully transparent
+                </param>
+            <param name="thickness">the absolute thickness of the line</param>
+            <param name="thicknessMul">the thickness multiplication factor with the font size</param>
+            <param name="yPosition">the absolute y position relative to the baseline</param>
+            <param name="yPositionMul">the position multiplication factor with the font size</param>
+            <param name="lineCapStyle">
+            the end line cap style. Allowed values are enumerated in
+            <see cref="T:iText.Kernel.Pdf.Canvas.PdfCanvasConstants.LineCapStyle"/>
+            </param>
+            <returns>this element</returns>
+        </member>
         <member name="M:iText.Layout.ElementPropertyContainer`1.SetBaseDirection(System.Nullable{iText.Layout.Properties.BaseDirection})">
             <summary>
             This attribute specifies the base direction of directionally neutral text
@@ -1650,7 +1980,18 @@
             </param>
             <returns>this Element</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Element.AbstractElement`1.SetPageNumber(System.Int32)" -->
+        <member name="M:iText.Layout.Element.AbstractElement`1.SetPageNumber(System.Int32)">
+            <summary>Explicitly sets the page number this element should be put on.</summary>
+            <remarks>
+            Explicitly sets the page number this element should be put on. The location
+            on the page will be the same as if it were added at the end of the document,
+            but it will be located on the specified page.
+            <para />
+            This method should be used very carefully in client code.
+            </remarks>
+            <param name="pageNumber">the page number of the page this element should be placed on</param>
+            <returns>this Element</returns>
+        </member>
         <member name="T:iText.Layout.Element.AreaBreak">
             <summary>
             A layout object that terminates the current content area and creates a new
@@ -2149,7 +2490,18 @@
             <param name="includeContent">whether or not to also include the contents of the cell.</param>
             <returns>a clone of this Element</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:iText.Layout.Element.Div" -->
+        <member name="T:iText.Layout.Element.Div">
+            <summary>
+            A
+            <see cref="T:iText.Layout.Element.Div"/>
+            is a container object that defines a section in a document,
+            which will have some shared layout properties. Like all
+            <see cref="T:iText.Layout.Element.BlockElement`1"/>
+            types, it will try to take up as much horizontal space as possible.
+            <para />
+            The concept is very similar to that of the div tag in HTML.
+            </summary>
+        </member>
         <member name="M:iText.Layout.Element.Div.Add(iText.Layout.Element.IBlockElement)">
             <summary>Adds any block element to the div's contents.</summary>
             <param name="element">
@@ -2720,7 +3072,15 @@
             <summary>Gets scaled height of the image.</summary>
             <returns>the current scaled height</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:iText.Layout.Element.LineSeparator" -->
+        <member name="T:iText.Layout.Element.LineSeparator">
+            <summary>
+            This is a line separator element which is basically just a horizontal line with
+            a style specified by
+            <see cref="T:iText.Kernel.Pdf.Canvas.Draw.ILineDrawer"/>
+            custom drawing interface instance.
+            This might be thought of as an HTML's &lt;hr&gt; element alternative.
+            </summary>
+        </member>
         <member name="M:iText.Layout.Element.LineSeparator.#ctor(iText.Kernel.Pdf.Canvas.Draw.ILineDrawer)">
             <summary>
             Creates a custom line separator with line style defined by custom
@@ -2877,7 +3237,24 @@
             </param>
             <returns>this list.</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Element.List.SetListSymbolAlignment(iText.Layout.Properties.ListSymbolAlignment)" -->
+        <member name="M:iText.Layout.Element.List.SetListSymbolAlignment(iText.Layout.Properties.ListSymbolAlignment)">
+            <summary>A specialized enum containing alignment properties for list symbols.</summary>
+            <remarks>
+            A specialized enum containing alignment properties for list symbols.
+            <see cref="F:iText.Layout.Properties.ListSymbolAlignment.LEFT"/>
+            means that the items will be aligned as follows:
+            9.  Item 9
+            10. Item 10
+            <para />
+            Whereas
+            <see cref="F:iText.Layout.Properties.ListSymbolAlignment.RIGHT"/>
+            means the items will be aligned as follows:
+            9. Item 9
+            10. Item 10
+            </remarks>
+            <param name="alignment">the alignment of the list symbols</param>
+            <returns>this element</returns>
+        </member>
         <member name="M:iText.Layout.Element.List.GetSymbolIndent">
             <summary>
             Gets the indent offset of the
@@ -3125,7 +3502,21 @@
             objects defined for the enveloping element.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:iText.Layout.Element.Table" -->
+        <member name="T:iText.Layout.Element.Table">
+            <summary>
+            A
+            <see cref="T:iText.Layout.Element.Table"/>
+            is a layout element that represents data in a two-dimensional
+            grid. It is filled with
+            <see cref="T:iText.Layout.Element.Cell">cells</see>
+            , ordered in rows and columns.
+            <para />
+            It is an implementation of
+            <see cref="T:iText.Layout.Element.ILargeElement"/>
+            , which means it can be flushed
+            to the canvas, in order to reclaim memory that is locked up.
+            </summary>
+        </member>
         <member name="M:iText.Layout.Element.Table.#ctor(System.Single[],System.Boolean)">
             <summary>
             Constructs a
@@ -3278,9 +3669,94 @@
             <seealso cref="M:iText.Layout.Element.Table.SetAutoLayout"/>
             <seealso cref="M:iText.Layout.Element.Table.SetFixedLayout"/>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Element.Table.#ctor(System.Int32)" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Element.Table.SetFixedLayout" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Element.Table.SetAutoLayout" -->
+        <member name="M:iText.Layout.Element.Table.#ctor(System.Int32)">
+            <summary>
+            Constructs a
+            <c>Table</c>
+            with specified number of columns.
+            The final column widths depend on selected table layout.
+            <br />
+            Since 7.0.2 table layout was introduced. Auto layout is default, except large tables.
+            For large table fixed layout set implicitly.
+            <para />
+            Since 7.1 table will have undefined column widths, that will be determined during layout.
+            In oder to set equal percent width as column width, use
+            <see cref="M:iText.Layout.Properties.UnitValue.CreatePercentArray(System.Int32)"/>
+            <para />
+            Note, the eventual columns width depends on selected layout, table width,
+            cell's width, cell's min-widths, and cell's max-widths.
+            Table layout algorithm has the same behaviour as expected for CSS table-layout property,
+            where
+            <c>columnWidths</c>
+            is &lt;colgroup&gt;'s widths.
+            For more information see
+            <see cref="M:iText.Layout.Element.Table.SetAutoLayout"/>
+            and
+            <see cref="M:iText.Layout.Element.Table.SetFixedLayout"/>
+            .
+            </summary>
+            <param name="numColumns">the number of columns, each column will have equal percent width.</param>
+            <seealso cref="M:iText.Layout.Element.Table.SetAutoLayout"/>
+            <seealso cref="M:iText.Layout.Element.Table.SetFixedLayout"/>
+        </member>
+        <member name="M:iText.Layout.Element.Table.SetFixedLayout">
+            <summary>Set fixed layout.</summary>
+            <remarks>
+            Set fixed layout. Analog of
+            <c>table-layout:fixed</c>
+            CSS property.
+            Note, the table must have width property, otherwise auto layout will be used.
+            <para />
+            Algorithm description
+            <br />
+            1. Scan columns for width property and set it. All the rest columns get undefined value.
+            Column width includes borders and paddings. Columns have set in constructor, analog of
+            <c>&lt;colgroup&gt;</c>
+            element in HTML.
+            <br />
+            2. Scan the very first row of table for width property and set it to undefined columns.
+            Cell width has lower priority in comparing with column. Cell width doesn't include borders and paddings.
+            <br />
+            2.1 If cell has colspan and all columns are undefined, each column will get equal width:
+            <c>width/colspan</c>
+            .
+            <br />
+            2.2 If some columns already have width, equal remain (original width minus existed) width will be added
+            <c>remainWidth/colspan</c>
+            to each column.
+            <br />
+            3. If sum of columns is less, than table width, there are two options:
+            <br />
+            3.1. If undefined columns still exist, they will get the rest remaining width.
+            <br />
+            3.2. Otherwise all columns will be expanded proportionally based on its width.
+            <br />
+            4. If sum of columns is greater, than table width, nothing to do.
+            </remarks>
+            <returns>this element.</returns>
+        </member>
+        <member name="M:iText.Layout.Element.Table.SetAutoLayout">
+            <summary>Set auto layout.</summary>
+            <remarks>
+            Set auto layout. Analog of
+            <c>table-layout:auto</c>
+            CSS property. <br />
+            Note, large table does not support auto layout.
+            <para />
+            Algorithm principles.
+            <br />
+            1. Column width cannot be less, than min-width of any cell in the column (calculated by layout).
+            <br />
+            2. Specified table width has higher priority, than sum of column and cell widths.
+            <br />
+            3. Percent value of cell and column width has higher priority, than point value.
+            <br />
+            4. Cell width has higher priority, than column width.
+            <br />
+            5. If column has no width, it will try to reach max-value (calculated by layout).
+            </remarks>
+            <returns>this element.</returns>
+        </member>
         <member name="M:iText.Layout.Element.Table.UseAllAvailableWidth">
             <summary>
             Set
@@ -3767,7 +4243,33 @@
             Will be removed in iText 7.2.
             </depricated>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:iText.Layout.Font.FontInfo" -->
+        <member name="T:iText.Layout.Font.FontInfo">
+            <summary>
+            Contains all font related data to create
+            <see cref="T:iText.IO.Font.FontProgram"/>
+            and
+            <see cref="T:iText.Kernel.Font.PdfFont"/>
+            .
+            <see cref="T:iText.IO.Font.FontProgramDescriptor"/>
+            fetches with
+            <see cref="T:iText.IO.Font.FontProgramDescriptorFactory"/>
+            .
+            </summary>
+            <seealso cref="M:iText.Layout.Font.FontProvider.GetPdfFont(iText.Layout.Font.FontInfo)"/>
+            <seealso cref="M:iText.Layout.Font.FontProvider.GetPdfFont(iText.Layout.Font.FontInfo,iText.Layout.Font.FontSet)">
+            Note,
+            <see cref="M:iText.Layout.Font.FontInfo.GetAlias"/>
+            and
+            <see cref="M:iText.Layout.Font.FontInfo.GetDescriptor"/>
+            do not taken into account in
+            <see cref="M:iText.Layout.Font.FontInfo.Equals(System.Object)"/>
+            ,
+            the same font with different aliases will have equal FontInfo's,
+            and therefore the same
+            <see cref="T:iText.Kernel.Font.PdfFont"/>
+            in the end document.
+            </seealso>
+        </member>
         <member name="M:iText.Layout.Font.FontInfo.GetFontName">
             <summary>
             Gets path to font, if
@@ -4006,7 +4508,17 @@
             <returns>cached or just created PdfFont on success, otherwise null.</returns>
             <seealso cref="M:iText.Layout.Font.FontProvider.GetPdfFont(iText.Layout.Font.FontInfo,iText.Layout.Font.FontSet)"/>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:iText.Layout.Font.FontSet" -->
+        <member name="T:iText.Layout.Font.FontSet">
+            <summary>Reusable font set for FontProgram related data.</summary>
+            <remarks>
+            Reusable font set for FontProgram related data.
+            Add and search fonts.
+            <para />
+            A FontSet instance could be shared for multiple threads.
+            However FontSet filling is not thread safe operation.
+            </remarks>
+            <seealso cref="T:iText.Layout.Font.FontProvider"/>
+        </member>
         <member name="M:iText.Layout.Font.FontSet.#ctor">
             <summary>
             Creates a new instance of
@@ -4029,8 +4541,55 @@
             <param name="dir">path to directory.</param>
             <returns>number of added fonts.</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Font.FontSet.AddFont(iText.IO.Font.FontProgram,System.String,System.String,iText.Layout.Font.Range)" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Font.FontSet.AddFont(iText.IO.Font.FontProgram,System.String,System.String)" -->
+        <member name="M:iText.Layout.Font.FontSet.AddFont(iText.IO.Font.FontProgram,System.String,System.String,iText.Layout.Font.Range)">
+            <summary>Add not supported for auto creating FontPrograms.</summary>
+            <remarks>
+            Add not supported for auto creating FontPrograms.
+            <para />
+            Note,
+            <see cref="M:iText.Layout.Font.FontInfo.GetAlias"/>
+            do not taken into account in
+            <see cref="M:iText.Layout.Font.FontInfo.Equals(System.Object)"/>
+            .
+            The same font with different alias will not be replaced.
+            Alias will replace original font family in font selector algorithm.
+            </remarks>
+            <param name="fontProgram">
+            
+            <see cref="T:iText.IO.Font.FontProgram"/>
+            </param>
+            <param name="encoding">
+            FontEncoding for creating
+            <see cref="T:iText.Kernel.Font.PdfFont"/>
+            </param>
+            <param name="alias">font alias.</param>
+            <param name="unicodeRange">sets the specific range of characters to be used from the font</param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontSet.AddFont(iText.IO.Font.FontProgram,System.String,System.String)">
+            <summary>Add not supported for auto creating FontPrograms.</summary>
+            <remarks>
+            Add not supported for auto creating FontPrograms.
+            <para />
+            Note,
+            <see cref="M:iText.Layout.Font.FontInfo.GetAlias"/>
+            do not taken into account in
+            <see cref="M:iText.Layout.Font.FontInfo.Equals(System.Object)"/>
+            .
+            The same font with different alias will not be replaced.
+            Alias will replace original font family in font selector algorithm.
+            </remarks>
+            <param name="fontProgram">
+            
+            <see cref="T:iText.IO.Font.FontProgram"/>
+            </param>
+            <param name="encoding">
+            FontEncoding for creating
+            <see cref="T:iText.Kernel.Font.PdfFont"/>
+            </param>
+            <param name="alias">font alias.</param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+        </member>
         <member name="M:iText.Layout.Font.FontSet.AddFont(iText.IO.Font.FontProgram,System.String)">
             <summary>Add not supported for auto creating FontPrograms.</summary>
             <param name="fontProgram">
@@ -4044,8 +4603,59 @@
             </param>
             <returns>true, if font was successfully added, otherwise false.</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Font.FontSet.AddFont(System.String,System.String,System.String,iText.Layout.Font.Range)" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Font.FontSet.AddFont(System.String,System.String,System.String)" -->
+        <member name="M:iText.Layout.Font.FontSet.AddFont(System.String,System.String,System.String,iText.Layout.Font.Range)">
+            <summary>
+            Creates
+            <see cref="T:iText.Layout.Font.FontInfo"/>
+            , fetches
+            <see cref="T:iText.IO.Font.FontProgramDescriptor"/>
+            and adds just created
+            <see cref="T:iText.Layout.Font.FontInfo"/>
+            to
+            <see cref="T:iText.Layout.Font.FontSet"/>
+            .
+            <para />
+            Note,
+            <see cref="M:iText.Layout.Font.FontInfo.GetAlias"/>
+            do not taken into account in
+            <see cref="M:iText.Layout.Font.FontInfo.Equals(System.Object)"/>
+            .
+            The same font with different alias will not be replaced.
+            Alias will replace original font family in font selector algorithm.
+            </summary>
+            <param name="fontPath">path to font data.</param>
+            <param name="encoding">preferred font encoding.</param>
+            <param name="alias">font alias, will replace original font family.</param>
+            <param name="unicodeRange">sets the specific range of characters to be used from the font</param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+            <seealso cref="T:iText.IO.Font.PdfEncodings"/>
+        </member>
+        <member name="M:iText.Layout.Font.FontSet.AddFont(System.String,System.String,System.String)">
+            <summary>
+            Creates
+            <see cref="T:iText.Layout.Font.FontInfo"/>
+            , fetches
+            <see cref="T:iText.IO.Font.FontProgramDescriptor"/>
+            and adds just created
+            <see cref="T:iText.Layout.Font.FontInfo"/>
+            to
+            <see cref="T:iText.Layout.Font.FontSet"/>
+            .
+            <para />
+            Note,
+            <see cref="M:iText.Layout.Font.FontInfo.GetAlias"/>
+            do not taken into account in
+            <see cref="M:iText.Layout.Font.FontInfo.Equals(System.Object)"/>
+            .
+            The same font with different alias will not be replaced.
+            Alias will replace original font family in font selector algorithm.
+            </summary>
+            <param name="fontPath">path to font data.</param>
+            <param name="encoding">preferred font encoding.</param>
+            <param name="alias">font alias.</param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+            <seealso cref="T:iText.IO.Font.PdfEncodings"/>
+        </member>
         <member name="M:iText.Layout.Font.FontSet.AddFont(System.String,System.String)">
             <summary>
             Creates
@@ -4063,8 +4673,59 @@
             <returns>true, if font was successfully added, otherwise false.</returns>
             <seealso cref="T:iText.IO.Font.PdfEncodings"/>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Font.FontSet.AddFont(System.Byte[],System.String,System.String,iText.Layout.Font.Range)" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Font.FontSet.AddFont(System.Byte[],System.String,System.String)" -->
+        <member name="M:iText.Layout.Font.FontSet.AddFont(System.Byte[],System.String,System.String,iText.Layout.Font.Range)">
+            <summary>
+            Creates
+            <see cref="T:iText.Layout.Font.FontInfo"/>
+            , fetches
+            <see cref="T:iText.IO.Font.FontProgramDescriptor"/>
+            and adds just created
+            <see cref="T:iText.Layout.Font.FontInfo"/>
+            to
+            <see cref="T:iText.Layout.Font.FontSet"/>
+            .
+            <para />
+            Note,
+            <see cref="M:iText.Layout.Font.FontInfo.GetAlias"/>
+            do not taken into account in
+            <see cref="M:iText.Layout.Font.FontInfo.Equals(System.Object)"/>
+            .
+            The same font with different alias will not be replaced.
+            Alias will replace original font family in font selector algorithm.
+            </summary>
+            <param name="fontData">font data.</param>
+            <param name="encoding">preferred font encoding.</param>
+            <param name="alias">font alias.</param>
+            <param name="unicodeRange">sets the specific range of characters to be used from the font</param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+            <seealso cref="T:iText.IO.Font.PdfEncodings"/>
+        </member>
+        <member name="M:iText.Layout.Font.FontSet.AddFont(System.Byte[],System.String,System.String)">
+            <summary>
+            Creates
+            <see cref="T:iText.Layout.Font.FontInfo"/>
+            , fetches
+            <see cref="T:iText.IO.Font.FontProgramDescriptor"/>
+            and adds just created
+            <see cref="T:iText.Layout.Font.FontInfo"/>
+            to
+            <see cref="T:iText.Layout.Font.FontSet"/>
+            .
+            <para />
+            Note,
+            <see cref="M:iText.Layout.Font.FontInfo.GetAlias"/>
+            do not taken into account in
+            <see cref="M:iText.Layout.Font.FontInfo.Equals(System.Object)"/>
+            .
+            The same font with different alias will not be replaced.
+            Alias will replace original font family in font selector algorithm.
+            </summary>
+            <param name="fontData">font data.</param>
+            <param name="encoding">preferred font encoding.</param>
+            <param name="alias">font alias.</param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+            <seealso cref="T:iText.IO.Font.PdfEncodings"/>
+        </member>
         <member name="M:iText.Layout.Font.FontSet.AddFont(System.Byte[],System.String)">
             <summary>
             Creates
@@ -4116,13 +4777,104 @@
             <param name="fontData">font data.</param>
             <returns>true, if font was successfully added, otherwise false.</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Font.FontSet.AddFont(iText.Layout.Font.FontInfo,System.String,iText.Layout.Font.Range)" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Font.FontSet.AddFont(iText.Layout.Font.FontInfo,System.String)" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Font.FontSet.AddFont(iText.Layout.Font.FontInfo)" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Font.FontSet.Contains(System.String)" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Font.FontSet.Get(System.String)" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Font.FontSet.GetFonts" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Font.FontSet.GetFonts(iText.Layout.Font.FontSet)" -->
+        <member name="M:iText.Layout.Font.FontSet.AddFont(iText.Layout.Font.FontInfo,System.String,iText.Layout.Font.Range)">
+            <summary>
+            Adds
+            <see cref="T:iText.Layout.Font.FontInfo"/>
+            with alias. Could be used to fill temporary font set.
+            <para />
+            Note,
+            <see cref="M:iText.Layout.Font.FontInfo.GetAlias"/>
+            do not taken into account in
+            <see cref="M:iText.Layout.Font.FontInfo.Equals(System.Object)"/>
+            .
+            The same font with different alias will not be replaced.
+            Alias will replace original font family in font selector algorithm.
+            </summary>
+            <param name="fontInfo">font info.</param>
+            <param name="alias">font alias.</param>
+            <param name="unicodeRange">sets the specific range of characters to be used from the font</param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontSet.AddFont(iText.Layout.Font.FontInfo,System.String)">
+            <summary>
+            Adds
+            <see cref="T:iText.Layout.Font.FontInfo"/>
+            with alias. Could be used to fill temporary font set.
+            <para />
+            Note,
+            <see cref="M:iText.Layout.Font.FontInfo.GetAlias"/>
+            do not taken into account in
+            <see cref="M:iText.Layout.Font.FontInfo.Equals(System.Object)"/>
+            .
+            The same font with different alias will not be replaced.
+            Alias will replace original font family in font selector algorithm.
+            </summary>
+            <param name="fontInfo">font info.</param>
+            <param name="alias">font alias.</param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontSet.AddFont(iText.Layout.Font.FontInfo)">
+            <summary>
+            Adds
+            <see cref="T:iText.Layout.Font.FontInfo"/>
+            . Could be used to fill temporary font set.
+            <para />
+            Note,
+            <see cref="M:iText.Layout.Font.FontInfo.GetAlias"/>
+            do not taken into account in
+            <see cref="M:iText.Layout.Font.FontInfo.Equals(System.Object)"/>
+            .
+            The same font with different alias will not be replaced.
+            </summary>
+            <param name="fontInfo">font info.</param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontSet.Contains(System.String)">
+            <summary>Search in existed fonts for PostScript name or full font name.</summary>
+            <remarks>
+            Search in existed fonts for PostScript name or full font name.
+            <para />
+            Note, this method has O(n) complexity.
+            </remarks>
+            <param name="fontName">PostScript or full name.</param>
+            <returns>
+            true, if
+            <see cref="T:iText.Layout.Font.FontSet"/>
+            contains font with given name.
+            </returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontSet.Get(System.String)">
+            <summary>Search in existed fonts for PostScript name or full font name.</summary>
+            <remarks>
+            Search in existed fonts for PostScript name or full font name.
+            <para />
+            Note, this method has O(n) complexity.
+            </remarks>
+            <param name="fontName">PostScript or full name.</param>
+            <returns>
+            Collection of
+            <see cref="T:iText.Layout.Font.FontInfo"/>
+            from set of fonts with given PostScript or full name.
+            </returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontSet.GetFonts">
+            <summary>Gets available fonts.</summary>
+            <remarks>
+            Gets available fonts.
+            <para />
+            Note, the collection is unmodifiable.
+            </remarks>
+        </member>
+        <member name="M:iText.Layout.Font.FontSet.GetFonts(iText.Layout.Font.FontSet)">
+            <summary>Gets union of available and temporary fonts.</summary>
+            <remarks>
+            Gets union of available and temporary fonts.
+            <para />
+            Note, the collection is unmodifiable.
+            </remarks>
+            <param name="tempFonts"/>
+        </member>
         <member name="M:iText.Layout.Font.FontSet.IsEmpty">
             <summary>
             Returns
@@ -4211,10 +4963,15 @@
         </member>
         <member name="T:iText.Layout.Hyphenation.ByteVector">
             <summary>
-            <p>This class implements a simple byte vector with access to the
-            underlying array.</p>
-            <p>This work was authored by Carlos Villegas (cav@uniscope.co.jp).</p>
+            This class implements a simple byte vector with access to the
+            underlying array.
             </summary>
+            <remarks>
+            This class implements a simple byte vector with access to the
+            underlying array.
+            <para />
+            This work was authored by Carlos Villegas (cav@uniscope.co.jp).
+            </remarks>
         </member>
         <member name="F:iText.Layout.Hyphenation.ByteVector.DEFAULT_BLOCK_SIZE">
             <summary>Capacity increment size</summary>
@@ -4282,10 +5039,15 @@
         </member>
         <member name="T:iText.Layout.Hyphenation.CharVector">
             <summary>
-            <p>This class implements a simple char vector with access to the
-            underlying array.</p>
-            <p>This work was authored by Carlos Villegas (cav@uniscope.co.jp).</p>
+            This class implements a simple char vector with access to the
+            underlying array.
             </summary>
+            <remarks>
+            This class implements a simple char vector with access to the
+            underlying array.
+            <para />
+            This work was authored by Carlos Villegas (cav@uniscope.co.jp).
+            </remarks>
         </member>
         <member name="F:iText.Layout.Hyphenation.CharVector.DEFAULT_BLOCK_SIZE">
             <summary>Capacity increment size</summary>
@@ -4378,7 +5140,14 @@
             
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:iText.Layout.Hyphenation.Hyphenation" -->
+        <member name="T:iText.Layout.Hyphenation.Hyphenation">
+            <summary>This class represents a hyphenated word.</summary>
+            <remarks>
+            This class represents a hyphenated word.
+            <para />
+            This work was authored by Carlos Villegas (cav@uniscope.co.jp).
+            </remarks>
+        </member>
         <member name="F:iText.Layout.Hyphenation.Hyphenation.len">
             <summary>number of hyphenation points in word</summary>
         </member>
@@ -4478,14 +5247,27 @@
             <summary>A hyphenation exception.</summary>
             <remarks>
             A hyphenation exception.
-            <p>This work was authored by Carlos Villegas (cav@uniscope.co.jp).</p>
+            <para />
+            This work was authored by Carlos Villegas (cav@uniscope.co.jp).
             </remarks>
         </member>
         <member name="M:iText.Layout.Hyphenation.HyphenationException.#ctor(System.String)">
             <summary>Construct a hyphenation exception.</summary>
             <param name="msg">a message string</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:iText.Layout.Hyphenation.HyphenationTree" -->
+        <member name="T:iText.Layout.Hyphenation.HyphenationTree">
+            <summary>
+            This tree structure stores the hyphenation patterns in an efficient
+            way for fast lookup.
+            </summary>
+            <remarks>
+            This tree structure stores the hyphenation patterns in an efficient
+            way for fast lookup. It provides the provides the method to
+            hyphenate a word.
+            <para />
+            This work was authored by Carlos Villegas (cav@uniscope.co.jp).
+            </remarks>
+        </member>
         <member name="F:iText.Layout.Hyphenation.HyphenationTree.vspace">
             <summary>value space: stores the interletter values</summary>
         </member>
@@ -4560,7 +5342,38 @@
             <param name="k">an integer</param>
             <returns>a byte array</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Hyphenation.HyphenationTree.SearchPatterns(System.Char[],System.Int32,System.Byte[])" -->
+        <member name="M:iText.Layout.Hyphenation.HyphenationTree.SearchPatterns(System.Char[],System.Int32,System.Byte[])">
+            <summary>
+            Search for all possible partial matches of word starting
+            at index an update interletter values.
+            </summary>
+            <remarks>
+            Search for all possible partial matches of word starting
+            at index an update interletter values. In other words, it
+            does something like:
+            <para />
+            <code>
+            for(i=0; i&lt;patterns.length; i++) {
+            if ( word.substring(index).startsWidth(patterns[i]) )
+            update_interletter_values(patterns[i]);
+            }
+            </code>
+            <para />
+            But it is done in an efficient way since the patterns are
+            stored in a ternary tree. In fact, this is the whole purpose
+            of having the tree: doing this search without having to test
+            every single pattern. The number of patterns for languages
+            such as English range from 4000 to 10000. Thus, doing thousands
+            of string comparisons for each word to hyphenate would be
+            really slow without the tree. The tradeoff is memory, but
+            using a ternary tree instead of a trie, almost halves the
+            the memory used by Lout or TeX. It's also faster than using
+            a hash table
+            </remarks>
+            <param name="word">null terminated word to match</param>
+            <param name="index">start index from word</param>
+            <param name="il">interletter values array to update</param>
+        </member>
         <member name="M:iText.Layout.Hyphenation.HyphenationTree.Hyphenate(System.String,System.Int32,System.Int32)">
             <summary>Hyphenate word and return a Hyphenation object.</summary>
             <param name="word">the word to be hyphenated</param>
@@ -4648,7 +5461,7 @@
             </param>
         </member>
         <member name="T:iText.Layout.Hyphenation.HyphenationTreeCache">
-            <summary><p>This is a cache for HyphenationTree instances.</p></summary>
+            <summary>This is a cache for HyphenationTree instances.</summary>
         </member>
         <member name="F:iText.Layout.Hyphenation.HyphenationTreeCache.hyphenTrees">
             <summary>Contains the cached hyphenation trees</summary>
@@ -4706,7 +5519,15 @@
             <param name="key">the key (ex. "de_CH" or "en")</param>
             <returns>true if the hyphenation tree is unavailable</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:iText.Layout.Hyphenation.Hyphenator" -->
+        <member name="T:iText.Layout.Hyphenation.Hyphenator">
+            <summary>This class is the main entry point to the hyphenation package.</summary>
+            <remarks>
+            This class is the main entry point to the hyphenation package.
+            You can use only the static methods or create an instance.
+            <para />
+            This work was authored by Carlos Villegas (cav@uniscope.co.jp).
+            </remarks>
+        </member>
         <member name="F:iText.Layout.Hyphenation.Hyphenator.log">
             <summary>Logging instance.</summary>
         </member>
@@ -4799,10 +5620,15 @@
         </member>
         <member name="T:iText.Layout.Hyphenation.IPatternConsumer">
             <summary>
-            <p>This interface is used to connect the XML pattern file parser to
-            the hyphenation tree.</p>
-            <p>This work was authored by Carlos Villegas (cav@uniscope.co.jp).</p>
+            This interface is used to connect the XML pattern file parser to
+            the hyphenation tree.
             </summary>
+            <remarks>
+            This interface is used to connect the XML pattern file parser to
+            the hyphenation tree.
+            <para />
+            This work was authored by Carlos Villegas (cav@uniscope.co.jp).
+            </remarks>
         </member>
         <member name="M:iText.Layout.Hyphenation.IPatternConsumer.AddClass(System.String)">
             <summary>Add a character class.</summary>
@@ -4835,13 +5661,7 @@
             digit characters.
             </param>
         </member>
-        <member name="T:iText.Layout.Hyphenation.PatternParser">
-            <summary>
-            <p>A SAX document handler to read and parse hyphenation patterns
-            from a XML file.</p>
-            <p>This work was authored by Carlos Villegas (cav@uniscope.co.jp).</p>
-            </summary>
-        </member>
+        <!-- Badly formed XML comment ignored for member "T:iText.Layout.Hyphenation.PatternParser" -->
         <member name="M:iText.Layout.Hyphenation.PatternParser.#ctor">
             <summary>Construct a pattern parser.</summary>
             <exception cref="T:iText.Layout.Hyphenation.HyphenationException">if a hyphenation exception is raised</exception>
@@ -4870,7 +5690,50 @@
         <member name="M:iText.Layout.Hyphenation.PatternParser.GetExternalClasses">
             <exception cref="!:Org.Xml.Sax.SAXException">if not caught</exception>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:iText.Layout.Hyphenation.TernaryTree" -->
+        <member name="T:iText.Layout.Hyphenation.TernaryTree">
+            <summary><h2>Ternary Search Tree.</h2></summary>
+            <remarks>
+            <h2>Ternary Search Tree.</h2>
+            <para />
+            A ternary search tree is a hybrid between a binary tree and
+            a digital search tree (trie). Keys are limited to strings.
+            A data value of type char is stored in each leaf node.
+            It can be used as an index (or pointer) to the data.
+            Branches that only contain one key are compressed to one node
+            by storing a pointer to the trailer substring of the key.
+            This class is intended to serve as base class or helper class
+            to implement Dictionary collections or the like. Ternary trees
+            have some nice properties as the following: the tree can be
+            traversed in sorted order, partial matches (wildcard) can be
+            implemented, retrieval of all keys within a given distance
+            from the target, etc. The storage requirements are higher than
+            a binary tree but a lot less than a trie. Performance is
+            comparable with a hash table, sometimes it outperforms a hash
+            function (most of the time can determine a miss faster than a hash).
+            <para />
+            The main purpose of this java port is to serve as a base for
+            implementing TeX's hyphenation algorithm (see The TeXBook,
+            appendix H). Each language requires from 5000 to 15000 hyphenation
+            patterns which will be keys in this tree. The strings patterns
+            are usually small (from 2 to 5 characters), but each char in the
+            tree is stored in a node. Thus memory usage is the main concern.
+            We will sacrify 'elegance' to keep memory requirements to the
+            minimum. Using java's char type as pointer (yes, I know pointer
+            it is a forbidden word in java) we can keep the size of the node
+            to be just 8 bytes (3 pointers and the data char). This gives
+            room for about 65000 nodes. In my tests the english patterns
+            took 7694 nodes and the german patterns 10055 nodes,
+            so I think we are safe.
+            <para />
+            All said, this is a map with strings as keys and char as value.
+            Pretty limited!. It can be extended to a general map by
+            using the string representation of an object and using the
+            char value as an index to an array that contains the object
+            values.
+            <para />
+            This work was authored by Carlos Villegas (cav@uniscope.co.jp).
+            </remarks>
+        </member>
         <member name="F:iText.Layout.Hyphenation.TernaryTree.lo">
             <summary>
             Pointer to low branch and to rest of the key when it is
@@ -4928,8 +5791,12 @@
             <param name="start">offset into key array</param>
             <param name="val">a value</param>
         </member>
-        <member name="M:iText.Layout.Hyphenation.TernaryTree.Insert(System.Char,System.Char[],System.Int32,System.Char)">
+        <member name="M:iText.Layout.Hyphenation.TernaryTree.Insert(iText.Layout.Hyphenation.TernaryTree.TreeInsertionParams)">
             <summary>The actual insertion function, recursive version.</summary>
+            <remarks>
+            The actual insertion function, recursive version.
+            PLEASE NOTE that the implementation has been adapted to consume less stack memory
+            </remarks>
         </member>
         <member name="M:iText.Layout.Hyphenation.TernaryTree.Strcmp(System.Char[],System.Int32,System.Char[],System.Int32)">
             <summary>Compares 2 null terminated char arrays</summary>
@@ -6067,6 +6934,18 @@
             <summary>Gets the value to be used as the basis for the leading calculation.</summary>
             <returns>a calculation value</returns>
         </member>
+        <member name="F:iText.Layout.Properties.ListNumberingType.ZAPF_DINGBATS_1">
+            <summary>Zapfdingbats font characters in range [172; 181]</summary>
+        </member>
+        <member name="F:iText.Layout.Properties.ListNumberingType.ZAPF_DINGBATS_2">
+            <summary>Zapfdingbats font characters in range [182; 191]</summary>
+        </member>
+        <member name="F:iText.Layout.Properties.ListNumberingType.ZAPF_DINGBATS_3">
+            <summary>Zapfdingbats font characters in range [192; 201]</summary>
+        </member>
+        <member name="F:iText.Layout.Properties.ListNumberingType.ZAPF_DINGBATS_4">
+            <summary>Zapfdingbats font characters in range [202; 221]</summary>
+        </member>
         <member name="T:iText.Layout.Properties.ListSymbolAlignment">
             <summary>A specialized enum containing alignment properties for list symbols.</summary>
         </member>
@@ -7119,16 +7998,14 @@
             <remarks>
             This class is used to identify standard structure role type based only on it's name for the sake of applying
             standard structure attributes.
-            <p>
+            <para />
             These types mostly resemble structure type levels in the pdf 1.7 specification, however they are not exact.
             In pdf 2.0 some of these types are not even present and moreover, specific roles with the same name might belong
             to different type levels depending on context (which consists of kids, parents and their types).
-            </p>
-            <p>
+            <para />
             So, these types are mostly useful for the internal itext usage and are not backed by any spec. They are designed for
             the most part to return the value the most suitable and handy for the purposes of accessibility properties applying.
-            </p>
-            <p>
+            <para />
             Here are the main reasons to leave these types as is for now, even after introducing of PDF 2.0:
             <ul>
             <li>Standard structure types for pdf 1.7 and 2.0 are very alike. There are some differences, like new/removed roles
@@ -7138,7 +8015,6 @@
             </ul>
             In general, the correct way to handle role types would be to have separate classes for every namespace that define type
             and apply attributes. However I believe, that for now it is not feasible at the moment to implement this approach.
-            </p>
             The right time to improve and replace this class might be when new roles and attributes (specific to the different standard structure namespaces)
             will be more widely used in the auto tagging mechanism by default, and also when may be there will be more known
             practical examples of utilizing standard structure attributes.
@@ -7186,8 +8062,40 @@
             that will be rendered by this object
             </param>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:iText.Layout.Renderer.BlockFormattingContextUtil" -->
-        <!-- Badly formed XML comment ignored for member "M:iText.Layout.Renderer.BlockFormattingContextUtil.IsRendererCreateBfc(iText.Layout.Renderer.IRenderer)" -->
+        <member name="T:iText.Layout.Renderer.BlockFormattingContextUtil">
+            <summary>
+            This class helps to identify whether we are dealing with a renderer that creates
+            a new "Block formatting context" in terms of CSS.
+            </summary>
+            <remarks>
+            This class helps to identify whether we are dealing with a renderer that creates
+            a new "Block formatting context" in terms of CSS. Such renderers adhere to
+            specific rules of floating elements and margins collapse handling.
+            <para />
+            See
+            <a href="https://www.w3.org/TR/CSS21/visuren.html#block-formatting">https://www.w3.org/TR/CSS21/visuren.html#block-formatting</a>
+            and
+            <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context">https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context</a>
+            for more info.
+            </remarks>
+        </member>
+        <member name="M:iText.Layout.Renderer.BlockFormattingContextUtil.IsRendererCreateBfc(iText.Layout.Renderer.IRenderer)">
+            <summary>Defines whether a renderer creates a new "Block formatting context" in terms of CSS.</summary>
+            <remarks>
+            Defines whether a renderer creates a new "Block formatting context" in terms of CSS.
+            <para />
+            See
+            <see cref="T:iText.Layout.Renderer.BlockFormattingContextUtil"/>
+            class description for more info.
+            </remarks>
+            <param name="renderer">
+            an
+            <see cref="T:iText.Layout.Renderer.IRenderer"/>
+            to be checked.
+            </param>
+            <returns>true if given renderer creates a new "Block formatting context" in terms of CSS, false otherwise.
+                </returns>
+        </member>
         <member name="M:iText.Layout.Renderer.BlockRenderer.CreateRotationTransformInsideOccupiedArea">
             <summary>
             This method creates
@@ -7581,7 +8489,6 @@
         </member>
         <member name="M:iText.Layout.Renderer.ListRenderer.CorrectListSplitting(iText.Layout.Renderer.IRenderer,iText.Layout.Renderer.IRenderer,iText.Layout.Renderer.IRenderer,iText.Layout.Layout.LayoutArea)">
             <summary>
-            <p>
             Corrects split and overflow renderers when
             <see cref="F:iText.Layout.Properties.Property.FORCED_PLACEMENT"/>
             is applied.
@@ -7595,15 +8502,13 @@
             which was the cause of
             <see cref="F:iText.Layout.Layout.LayoutResult.NOTHING"/>
             , including this child.
-            </p>
-            <p>
+            <para />
             Notice that we do not expect
             <see cref="F:iText.Layout.Properties.Property.FORCED_PLACEMENT"/>
             to be applied
             if we can render the first item renderer and strongly recommend not to set
             <see cref="F:iText.Layout.Properties.Property.FORCED_PLACEMENT"/>
             manually.
-            </p>
             </summary>
             <param name="splitRenderer">
             the
@@ -7970,6 +8875,10 @@
             <see cref="T:iText.Layout.Renderer.TextRenderer"/>
             has been created.
             </returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.TypographyUtils.IsPdfCalligraphAvailable">
+            <summary>Checks if layout module can access pdfCalligraph</summary>
+            <returns><code>true</code> if layout can access pdfCalligraph and <code>false</code> otherwise</returns>
         </member>
         <member name="M:iText.Layout.Renderer.TypographyUtils.FindMethod(System.String,System.String,System.Type[])">
             <exception cref="T:System.MissingMethodException"/>

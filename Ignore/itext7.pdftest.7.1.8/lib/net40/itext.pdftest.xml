@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>itext.pdftest</name>
+    </assembly>
+    <members>
+        <member name="T:iText.Test.ExtendedITextTest">
+            <summary>
+            This class is used for testing when logger output should be tested as well.
+            By default any logger output that is not expected, i.e. marked with <see cref="T:iText.Test.Attributes.LogMessageAttribute"/>
+            will result in crash.
+            </summary>
+        </member>
+        <member name="M:iText.Test.ExtendedITextTest.BeforeTestMethodAction">
+            <summary>
+            This method is called before each test method is executed
+            </summary>
+        </member>
+        <member name="M:iText.Test.ExtendedITextTest.AfterTestMethodAction">
+            <summary>
+            This method is called after each test method is executed
+            </summary>
+        </member>
+        <member name="T:iText.Test.ITextTest">
+            <summary>
+            This is a generic class for testing. Subclassing it, or its subclasses is considered a good practice of
+            creating your own tests.
+            </summary>
+        </member>
+        <member name="M:iText.Test.ITextTest.CreateDestinationFolder(System.String)">
+            <summary>
+            Creates a folder with a given path, including all necessary nonexistent parent directories.     * 
+            If a folder is already present, no action is performed.     * 
+            </summary>
+            <param name="path">the path of the folder to create</param>
+        </member>
+        <member name="M:iText.Test.ITextTest.CreateOrClearDestinationFolder(System.String)">
+            <summary>
+            Creates a directory with given path if it does not exist and clears the contents
+            of the directory in case it exists.
+            </summary>
+            <param name="path">the path of the directory to be created/cleared</param>
+        </member>
+        <member name="M:iText.Test.ITextTest.DeleteDirectory(System.String)">
+            <summary>
+            Removes the directory with given path along with its content including all the subdirectories.
+            </summary>
+            <param name="path">the path of the directory to be removed</param>
+        </member>
+        <member name="M:iText.Test.RunnerSearchConfig.AddPackageToRunnerSearchPath(System.String)">
+            <summary>
+            Add namespace to search path which is checked for wrapped sample classes. 
+            </summary>
+            <param name="fullName">full name of namespace to be checked.</param>
+            <returns>this RunnerSearchConfig</returns>
+        </member>
+        <member name="M:iText.Test.RunnerSearchConfig.AddClassToRunnerSearchPath(System.String)">
+            <summary>
+            Add class to runner. 
+            </summary>
+            <param name="fullName">full name of class to be checked.</param>
+            <returns>this RunnerSearchConfig</returns>
+        </member>
+        <member name="M:iText.Test.RunnerSearchConfig.IgnorePackageOrClass(System.String)">
+            <summary>
+            Add namespace or class to ignore list. Items from this list won't be checked for wrapped sample classes. 
+            </summary>
+            <param name="name">full or partial name of the namespace or class to be omitted by this runner.
+            <returns>this RunnerSearchConfig</returns>
+                            E.g. "Highlevel.Appendix" or "iText.Highlevel.Appendix.TableProperties".</param>
+            <returns>this RunnerSearchConfig</returns>
+        </member>
+        <member name="T:iText.Test.Runners.RetryOnFailureAttribute">
+            <summary>
+             This class is used for flaky test retry after failure. 
+            Current implementation: we use specified retryCount = 3
+            </summary>
+        </member>
+        <member name="M:iText.Test.WrappedSamplesRunner.RunSamples">
+            <exception cref="T:System.Exception"/>
+        </member>
+        <member name="M:iText.Test.WrappedSamplesRunner.ComparePdf(System.String,System.String,System.String)">
+            <summary>Compares two PDF files using iText's CompareTool.</summary>
+            <param name="outPath">The path to the working folder where comparison results and temp files will be created</param>
+            <param name="dest">The PDF that resulted from the test</param>
+            <param name="cmp">The reference PDF</param>
+            <exception cref="T:System.Exception">If there is a problem opening the compare files</exception>
+        </member>
+        <member name="M:iText.Test.WrappedSamplesRunner.GetDest">
+            <summary>Gets the path to the resulting PDF from the sample class;</summary>
+            <returns>a path to a resulting PDF</returns>
+        </member>
+        <member name="M:iText.Test.WrappedSamplesRunner.GetStringField(System.Type,System.String)">
+            <summary>
+            Returns a string value that is stored as a static variable
+            inside an example class.
+            </summary>
+            <param name="name">the name of the variable</param>
+            <returns>the value of the variable</returns>
+        </member>
+        <member name="M:iText.Test.WrappedSamplesRunner.AddError(System.String)">
+            <summary>Helper method to construct error messages.</summary>
+            <param name="error">part of an error message.</param>
+        </member>
+        <member name="M:iText.Test.WrappedSamplesRunner.RunMain">
+            <exception cref="T:System.MissingMethodException"/>
+            <exception cref="T:System.MemberAccessException"/>
+            <exception cref="T:System.Reflection.TargetInvocationException"/>
+        </member>
+    </members>
+</doc>

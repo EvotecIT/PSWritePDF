@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+    <Relationship Type="http://schemas.microsoft.com/packaging/2010/07/manifest" Target="/itext7.font-asian.nuspec" Id="Rb1530799e88e4408" />
+    <Relationship Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="/package/services/metadata/core-properties/cc615427c8f142708565c9f448304c6d.psmdcp" Id="Re7efa37da84642f5" />
+</Relationships>

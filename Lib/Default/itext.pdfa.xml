@@ -4,7 +4,16 @@
         <name>itext.pdfa</name>
     </assembly>
     <members>
-        <!-- Badly formed XML comment ignored for member "T:iText.Pdfa.Checker.PdfA1Checker" -->
+        <member name="T:iText.Pdfa.Checker.PdfA1Checker">
+            <summary>
+            PdfA1Checker defines the requirements of the PDF/A-1 standard and contains
+            method implementations from the abstract
+            <see cref="T:iText.Pdfa.Checker.PdfAChecker"/>
+            class.
+            <para />
+            The specification implemented by this class is ISO 19005-1
+            </summary>
+        </member>
         <member name="M:iText.Pdfa.Checker.PdfA1Checker.#ctor(iText.Kernel.Pdf.PdfAConformanceLevel)">
             <summary>Creates a PdfA1Checker with the required conformance level</summary>
             <param name="conformanceLevel">
@@ -12,7 +21,16 @@
             <code>b</code>
             </param>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:iText.Pdfa.Checker.PdfA2Checker" -->
+        <member name="T:iText.Pdfa.Checker.PdfA2Checker">
+            <summary>
+            PdfA2Checker defines the requirements of the PDF/A-2 standard and contains a
+            number of methods that override the implementations of its superclass
+            <see cref="T:iText.Pdfa.Checker.PdfA1Checker"/>
+            .
+            <para />
+            The specification implemented by this class is ISO 19005-2
+            </summary>
+        </member>
         <member name="M:iText.Pdfa.Checker.PdfA2Checker.#ctor(iText.Kernel.Pdf.PdfAConformanceLevel)">
             <summary>Creates a PdfA2Checker with the required conformance level</summary>
             <param name="conformanceLevel">

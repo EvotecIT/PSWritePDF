@@ -2,7 +2,7 @@
     param(
         [ScriptBlock] $ListItems,
         [nullable[float]] $Indent,
-        [string] $Symbol
+        [ValidateSet('bullet', 'hyphen')][string] $Symbol = 'hyphen'
     )
 
     $Output = & $ListItems
@@ -15,7 +15,7 @@
     [PSCustomObject] @{
         Type     = 'List'
         Settings = @{
-            Items = $Items
+            Items  = $Items
             Indent = $Indent
             Symbol = $Symbol
         }

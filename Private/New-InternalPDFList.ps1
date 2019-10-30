@@ -6,14 +6,19 @@
 
     $List = [iText.Layout.Element.List]::new()
     if ($null -ne $Settings.Indent) {
-        $List.SetSymbolIndent($Settings.Indent)
+        $null = $List.SetSymbolIndent($Settings.Indent)
     }
     if ($Settings.Symbol) {
-        $List.SetListSymbol($Settings.Symbol)
-        #$List.SetListSymbol
+        if ($Settings.Symbol -eq 'hyphen') {
+            # Default
+        } elseif ($Settings.Symbol -eq 'bullet') {
+            $Symbol = [regex]::Unescape("\u2022")
+            $null = $List.SetListSymbol($Symbol)
+        }
+
     }
     foreach ($_ in $Settings.Items) {
-        $List.Add([iText.Layout.Element.ListItem]::new($_.Text))
+        $null = $List.Add([iText.Layout.Element.ListItem]::new($_.Text))
     }
-    $Script:Document.Add($List)
+    $null = $Script:Document.Add($List)
 }
