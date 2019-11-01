@@ -1,4 +1,5 @@
 ﻿function New-InternalPDFText {
+    [CmdletBinding()]
     param(
         #[iText.Layout.Document] $Document,
         [System.Collections.IDictionary] $Settings

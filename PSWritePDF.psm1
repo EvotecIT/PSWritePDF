@@ -7,14 +7,7 @@ if ($PSEdition -eq 'Core') {
 } else {
     $Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\Default\*.dll -ErrorAction SilentlyContinue )
 }
-#Dot source the files
-Foreach ($Import in @($Public + $Private)) {
-    Try {
-        . $Import.Fullname
-    } Catch {
-        Write-Error -Message "Failed to import function $($import.Fullname): $_"
-    }
-}
+
 Foreach ($Import in @($Assembly)) {
     try {
         Add-Type -Path $Import.Fullname -ErrorAction Stop
@@ -22,6 +15,15 @@ Foreach ($Import in @($Assembly)) {
         Write-Error -Message "Message: $($_.Exception.Message)"
         Write-Error -Message "StackTrace: $($_.Exception.StackTrace)"
         Write-Error -Message "LoaderExceptions: $($_.Exception.LoaderExceptions)"
+    }
+}
+
+#Dot source the files
+Foreach ($Import in @($Public + $Private)) {
+    Try {
+        . $Import.Fullname
+    } Catch {
+        Write-Error -Message "Failed to import function $($import.Fullname): $_"
     }
 }
 
