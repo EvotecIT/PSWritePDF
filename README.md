@@ -1,1 +1,30 @@
+<p align="center">
+  <a href="https://www.powershellgallery.com/packages/PSWritePDF"><img src="https://img.shields.io/powershellgallery/v/PSWritePDF.svg"></a>
+  <a href="https://www.powershellgallery.com/packages/PSWritePDF"><img src="https://img.shields.io/powershellgallery/vpre/PSWritePDF.svg?label=powershell%20gallery%20preview&colorB=yellow"></a>
+  <a href="https://github.com/EvotecIT/PSWritePDF"><img src="https://img.shields.io/github/license/EvotecIT/PSWritePDF.svg"></a>
+</p>
+
+<p align="center">
+  <a href="https://www.powershellgallery.com/packages/PSWritePDF"><img src="https://img.shields.io/powershellgallery/p/PSWritePDF.svg"></a>
+  <a href="https://github.com/EvotecIT/PSWritePDF"><img src="https://img.shields.io/github/languages/top/evotecit/PSWritePDF.svg"></a>
+  <a href="https://github.com/EvotecIT/PSWritePDF"><img src="https://img.shields.io/github/languages/code-size/evotecit/PSWritePDF.svg"></a>
+  <a href="https://github.com/EvotecIT/PSWritePDF"><img src="https://img.shields.io/powershellgallery/dt/PSWritePDF.svg"></a>
+</p>
+
+<p align="center">
+  <a href="https://twitter.com/PrzemyslawKlys"><img src="https://img.shields.io/twitter/follow/PrzemyslawKlys.svg?label=Twitter%20%40PrzemyslawKlys&style=social"></a>
+  <a href="https://evotec.xyz/hub"><img src="https://img.shields.io/badge/Blog-evotec.xyz-2A6496.svg"></a>
+  <a href="https://www.linkedin.com/in/pklys"><img src="https://img.shields.io/badge/LinkedIn-pklys-0077B5.svg?logo=LinkedIn"></a>
+</p>
+
 # PSWritePDF
+
+
+## 3rd Party Notices
+
+This PowerShell Module uses [iText 7 Community for .NET](https://github.com/itext/itext7-dotnet) therefore the license needs to be kept the same as iText (or at least I think so).
+
+Recommended read:
+
+- [How do I make sure my software complies with AGPL: How can I use iText for free?](https://itextpdf.com/en/blog/technical-notes/how-do-i-make-sure-my-software-complies-agpl-how-can-i-use-itext-free)
+- [Can I bundle iText with my non-commercial software?](https://itextpdf.com/en/resources/books/best-itext-questions-stack-overflow/can-i-bundle-itext-my-non-commercial-software)
