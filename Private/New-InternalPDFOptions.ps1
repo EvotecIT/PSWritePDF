@@ -1,6 +1,7 @@
 ﻿function New-InternalPDFOptions {
+    [CmdletBinding()]
     param(
-        $Settings
+        [System.Collections.IDictionary] $Settings
     )
     if ($Settings.Margins) {
         if ($Settings.Margins.Left) {

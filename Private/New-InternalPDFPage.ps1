@@ -1,4 +1,5 @@
 ﻿function New-InternalPDFPage {
+    [CmdletBinding()]
     param(
         [System.Collections.IDictionary] $Settings
     )

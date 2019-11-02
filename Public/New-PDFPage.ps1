@@ -1,5 +1,6 @@
 ﻿
 function New-PDFPage {
+    [CmdletBinding()]
     param(
         [ScriptBlock] $PageContent,
         [nullable[float]] $MarginLeft,

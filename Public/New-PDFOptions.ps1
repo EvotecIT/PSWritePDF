@@ -1,4 +1,5 @@
 ﻿function New-PDFOptions {
+    [CmdletBinding()]
     param(
         [nullable[float]] $MarginLeft,
         [nullable[float]] $MarginRight,

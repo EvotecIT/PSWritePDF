@@ -18,7 +18,7 @@
     CompatiblePSEditions = 'Desktop', 'Core'
 
     # ID used to uniquely identify this module
-    GUID = '36daf17f-e455-48a6-92ae-9ddce76401a7'
+    GUID = 'e80eb4be-a06a-4acb-b719-1d784bdb5043'
 
     # Author of this module
     Author = 'Przemyslaw Klys'

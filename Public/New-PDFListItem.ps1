@@ -1,4 +1,5 @@
 ﻿function New-PDFListItem {
+    [CmdletBinding()]
     param(
         [string] $Text
     )

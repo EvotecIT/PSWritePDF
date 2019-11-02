@@ -1,4 +1,5 @@
 ﻿function New-PDFList {
+    [CmdletBinding()]
     param(
         [ScriptBlock] $ListItems,
         [nullable[float]] $Indent,
