@@ -19,12 +19,12 @@
 
 # PSWritePDF
 
-
 ## 3rd Party Notices
 
-This PowerShell Module uses [iText 7 Community for .NET](https://github.com/itext/itext7-dotnet) therefore the license needs to be kept the same as iText (or at least I think so).
+This PowerShell Module uses [iText 7 Community for .NET](https://github.com/itext/itext7-dotnet) therefore the license needs to be kept the same as iText (or at least I think so). If it isn't so I would be more than happy to release my **PowerShell** code as **MIT license**. I don't intend to modify **iText7** codebase, just using it's **API**. As I'm not an expert on licensing I'm attaching some of articles I found that may make this license terms clearer.
 
 Recommended read:
 
 - [How do I make sure my software complies with AGPL: How can I use iText for free?](https://itextpdf.com/en/blog/technical-notes/how-do-i-make-sure-my-software-complies-agpl-how-can-i-use-itext-free)
 - [Can I bundle iText with my non-commercial software?](https://itextpdf.com/en/resources/books/best-itext-questions-stack-overflow/can-i-bundle-itext-my-non-commercial-software)
+- [AGPLv3 source redistribution: when does it apply to my code for a server-side Java app using an AGPL-licensed library?](https://opensource.stackexchange.com/questions/5003/agplv3-source-redistribution-when-does-it-apply-to-my-code-for-a-server-side-ja)

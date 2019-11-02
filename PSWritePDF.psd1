@@ -30,7 +30,7 @@
     Copyright = '(c) 2011-2019 Przemyslaw Klys. All rights reserved.'
 
     # Description of the functionality provided by this module
-    Description = 'Little project to create Excel files without Microsoft Excel being installed.'
+    Description = 'Little project to create, read, modify, split, merge PDF files.'
 
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion = '5.1'
@@ -100,13 +100,13 @@
             Tags = 'PDF', 'macOS', 'linux', 'windows'
 
             # A URL to the license for this module.
-            # LicenseUri = ''
+            LicenseUri = 'https://github.com/EvotecIT/PSWritePDF/blob/master/LICENSE'
 
             # A URL to the main website for this project.
             ProjectUri = 'https://github.com/EvotecIT/PSWritePDF'
 
             # A URL to an icon representing this module.
-            # IconUri = ''
+            IconUri = 'https://evotec.xyz/wp-content/uploads/2019/11/PSWritePDF.png'
 
             # ReleaseNotes of this module
             # ReleaseNotes = ''

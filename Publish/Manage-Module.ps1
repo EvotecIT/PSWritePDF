@@ -25,10 +25,9 @@ $Configuration = @{
             # Supported PSEditions
             CompatiblePSEditions = @('Desktop', 'Core')
             # ID used to uniquely identify this module
-           # GUID                 = '82232c6a-27f1-435d-a496-929f7221334b'
+            GUID                 = '19fcb43c-d8c5-44a9-84e4-bccf29765490'
             # Version number of this module.
             ModuleVersion        = '0.0.1'
-            # ID used to uniquely identify this module
             # Author of this module
             Author               = 'Przemyslaw Klys'
             # Company or vendor of this module
@@ -36,13 +35,15 @@ $Configuration = @{
             # Copyright statement for this module
             Copyright            = '(c) 2011-2019 Przemyslaw Klys. All rights reserved.'
             # Description of the functionality provided by this module
-            Description          = 'Little project to create Excel files without Microsoft Excel being installed.'
+            Description          = 'Little project to create, read, modify, split, merge PDF files.'
             # Tags applied to this module. These help with module discovery in online galleries.
             Tags                 = @('PDF', 'macOS', 'linux', 'windows')
             # A URL to the main website for this project.
             ProjectUri           = 'https://github.com/EvotecIT/PSWritePDF'
 
-            # IconUri              = 'https://evotec.xyz/wp-content/uploads/2018/10/PSWriteExcel.png'
+            LicenseUri           = 'https://github.com/EvotecIT/PSWritePDF/blob/master/LICENSE'
+
+            IconUri              = 'https://evotec.xyz/wp-content/uploads/2019/11/PSWritePDF.png'
 
             #RequiredModules      = @(
             #    @{ ModuleName = 'PSSharedGoods'; ModuleVersion = "0.0.76"; Guid = 'ee272aa8-baaa-4edf-9f45-b6d6f7d844fe' }
