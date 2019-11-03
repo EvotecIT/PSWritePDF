@@ -10,15 +10,3 @@ $Script:PDFPageSizeValidation = {
     )
     $_ -in $Array
 }
-
-# Validation for Fonts
-$Script:PDFFont = {
-    ([iText.IO.Font.Constants.StandardFonts] | Get-Member -static -MemberType Property).Name
-}
-$Script:PDFFontValidation = {
-    $Array = @(
-        (& $Script:PDFFont)
-        ''
-    )
-    $_ -in $Array
-}

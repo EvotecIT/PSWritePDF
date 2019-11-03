@@ -13,6 +13,10 @@
 
         [alias('Open')][switch] $Show
     )
+    $Script:PDFStart = @{
+        Start = $true
+    }
+
     New-InternalPDF -FilePath $FilePath
     $FirstPage = New-PDFPage -MarginTop $MarginTop -MarginBottom $MarginBottom -MarginLeft $MarginLeft -MarginRight $MarginRight -PageSize $PageSize -Rotate:$Rotate.IsPresent
     [Array] $Output = @(
@@ -24,7 +28,10 @@
             New-InternalPDFPage -Settings $Element.Settings
         }
         if ($Element.Type -eq 'Text') {
-            New-InternalPDFText -Settings $Element.Settings
+            $Paragraph = New-InternalPDFText -Settings $Element.Settings
+            foreach ($P in $Paragraph) {
+                $null = $Script:Document.Add($P)
+            }
         }
         if ($Element.Type -eq 'List') {
             New-InternalPDFList -Settings $Element.Settings
@@ -39,12 +46,12 @@
     }
 
     $Script:PDF.Close();
-
     if ($Show) {
         if (Test-Path -LiteralPath $FilePath) {
             Invoke-Item -LiteralPath $FilePath
         }
     }
+    $Script:PDFStart['Start'] = $false
 }
 
 Register-ArgumentCompleter -CommandName New-PDF -ParameterName PageSize -ScriptBlock $Script:PDFPageSize

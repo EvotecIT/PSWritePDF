@@ -141,7 +141,7 @@ $Configuration = @{
         BuildModule        = @{
             EnableDesktop = $true
             EnableCore    = $false
-            Merge         = $true
+            Merge         = $false
         }
         BuildDocumentation = $false
         PublishModule      = @{

@@ -69,9 +69,10 @@
     # NestedModules = @()
 
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport = 'Convert-PDFToText', 'Merge-PDF', 'New-PDF', 'New-PDFList', 
-    'New-PDFListItem', 'New-PDFOptions', 'New-PDFPage', 'New-PDFText', 
-    'Split-PDF'
+    FunctionsToExport = 'Convert-PDFToText', 'Get-PDFConstantAction', 'Get-PDFConstantColor', 
+    'Get-PDFConstantFont', 'Get-PDFConstantVersion', 'Merge-PDF', 'New-PDF', 
+    'New-PDFList', 'New-PDFListItem', 'New-PDFOptions', 'New-PDFPage', 
+    'New-PDFTable', 'New-PDFText', 'Split-PDF'
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport = @()
