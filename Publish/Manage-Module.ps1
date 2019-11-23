@@ -35,9 +35,9 @@ $Configuration = @{
 
             IconUri              = 'https://evotec.xyz/wp-content/uploads/2019/11/PSWritePDF.png'
 
-            #RequiredModules      = @(
-            #    @{ ModuleName = 'PSSharedGoods'; ModuleVersion = "0.0.76"; Guid = 'ee272aa8-baaa-4edf-9f45-b6d6f7d844fe' }
-            #)
+            RequiredModules      = @(
+                @{ ModuleName = 'PSSharedGoods'; ModuleVersion = "0.0.107"; Guid = 'ee272aa8-baaa-4edf-9f45-b6d6f7d844fe' }
+            )
         }
     }
     Options     = @{
