@@ -1,14 +1,14 @@
 ﻿Import-Module .\PSWritePDF.psd1 -Force
 
-<#
-$DataTable = @(
+
+$DataTable1 = @(
     [PSCustomObject] @{ Test = 'Name'; Test2 = 'Name2'; Test3 = 'Name3' }
     [PSCustomObject] @{ Test = 'Name'; Test2 = 'Name2'; Test3 = 'Name3' }
     [PSCustomObject] @{ Test = 'Name'; Test2 = 'Name2'; Test3 = 'Name3' }
     [PSCustomObject] @{ Test = 'Name'; Test2 = 'Name2'; Test3 = 'Name3' }
 )
-#>
-$DataTable = @(
+
+$DataTable2 = @(
     [ordered] @{ Test = 'Name'; Test2 = 'Name2'; Test3 = 'Name3' }
     [ordered] @{ Test = 'Name'; Test2 = 'Name2'; Test3 = 'Name3' }
     [ordered] @{ Test = 'Name'; Test2 = 'Name2'; Test3 = 'Name3' }

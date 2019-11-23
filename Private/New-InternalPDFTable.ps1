@@ -5,9 +5,13 @@
     )
 
     if ($DataTable[0] -is [System.Collections.IDictionary]) {
-        [Array] $ColumnNames = $DataTable[0].Keys
+        [Array] $ColumnNames = 'Name', 'Value' # $DataTable[0].Keys
+        [Array] $TemporaryTable = foreach ($_ in $DataTable2) {
+            $_.GetEnumerator() | Select-Object Name, Value
+        }
     } else {
         [Array] $ColumnNames = $DataTable[0].PSObject.Properties.Name
+        [Array] $TemporaryTable = $DataTable
     }
 
     [iText.layout.element.Table] $Table = [iText.Layout.Element.Table]::new($ColumnNames.Count)
@@ -26,7 +30,7 @@
         [iText.Layout.Element.Cell] $Cell = [iText.Layout.Element.Cell]::new().Add($Paragraph)
         $null = $Table.AddCell($Cell)
     }
-    foreach ($_ in $DataTable) {
+    foreach ($_ in $TemporaryTable) {
         foreach ($Column in $ColumnNames) {
             $Splat = @{
                 Text = $_.$Column
