@@ -4,19 +4,9 @@ Import-Module "C:\Support\GitHub\PSPublishModule\PSPublishModule.psm1" -Force
 $Configuration = @{
     Information = @{
         ModuleName           = 'PSWritePDF'
-
         DirectoryProjects    = 'C:\Support\GitHub'
-        #DirectoryModules  = "C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules"
-        DirectoryModules     = "$Env:USERPROFILE\Documents\WindowsPowerShell\Modules"
-        DirectoryModulesCore = "$Env:USERPROFILE\Documents\PowerShell\Modules"
-
-        FunctionsToExport    = 'Public'
-        AliasesToExport      = 'Public'
-
         LibrariesCore        = 'Lib\Core'
         LibrariesDefault     = 'Lib\Default'
-        #FoldersToCopy     = 'Templates', 'Bin', 'Lib', 'Images'
-
         Manifest             = @{
             # Script module or binary module file associated with this manifest.
             RootModule           = 'PSWritePDF.psm1'
@@ -27,7 +17,7 @@ $Configuration = @{
             # ID used to uniquely identify this module
             GUID                 = '19fcb43c-d8c5-44a9-84e4-bccf29765490'
             # Version number of this module.
-            ModuleVersion        = '0.0.1'
+            ModuleVersion        = '0.0.2'
             # Author of this module
             Author               = 'Przemyslaw Klys'
             # Company or vendor of this module
@@ -52,10 +42,10 @@ $Configuration = @{
     }
     Options     = @{
         Merge             = @{
-            Sort           = 'ASC'
+            Sort           = 'None'
             FormatCodePSM1 = @{
                 Enabled           = $true
-                RemoveComments    = $true
+                RemoveComments    = $false
                 FormatterSettings = @{
                     IncludeRules = @(
                         'PSPlaceOpenBrace',
@@ -98,10 +88,10 @@ $Configuration = @{
                             CheckSeparator  = $true
                         }
 
-                        #PSAlignAssignmentStatement = @{
-                        #    Enable         = $true
-                        #    CheckHashtable = $true
-                        #}
+                        PSAlignAssignmentStatement = @{
+                            Enable         = $true
+                            CheckHashtable = $true
+                        }
 
                         PSUseCorrectCasing         = @{
                             Enable = $true
@@ -112,6 +102,9 @@ $Configuration = @{
             FormatCodePSD1 = @{
                 Enabled        = $true
                 RemoveComments = $false
+            }
+            Integrate      = @{
+                ApprovedModules = @('PSSharedGoods', 'PSWriteColor', 'Connectimo', 'PSUnifi', 'PSWebToolbox', 'PSMyPassword')
             }
         }
         Standard          = @{
@@ -132,6 +125,12 @@ $Configuration = @{
             ApiKey   = 'C:\Support\Important\PowerShellGalleryAPI.txt'
             FromFile = $true
         }
+        GitHub            = @{
+            ApiKey   = 'C:\Support\Important\GithubAPI.txt'
+            FromFile = $true
+            UserName = 'EvotecIT'
+            #RepositoryName = 'PSWriteHTML'
+        }
         Documentation     = @{
             Path       = 'Docs'
             PathReadme = 'Docs\Readme.md'
@@ -139,15 +138,17 @@ $Configuration = @{
     }
     Steps       = @{
         BuildModule        = @{
-            EnableDesktop = $true
-            EnableCore    = $false
-            Merge         = $false
+            Enable       = $true
+            Merge        = $true
+            MergeMissing = $true
+            Releases     = $true
         }
         BuildDocumentation = $false
         PublishModule      = @{
             Enabled      = $false
             Prerelease   = ''
             RequireForce = $false
+            GitHub       = $false
         }
     }
 }
