@@ -24,11 +24,13 @@
         & $PDFContent
     )
     foreach ($Element in $Output) {
+        $Splat = $Element.Settings
+        Remove-EmptyValues -Hashtable $Splat
         if ($Element.Type -eq 'Page') {
             New-InternalPDFPage -Settings $Element.Settings
         }
         if ($Element.Type -eq 'Text') {
-            $Paragraph = New-InternalPDFText -Settings $Element.Settings
+            $Paragraph = New-InternalPDFText @Splat
             foreach ($P in $Paragraph) {
                 $null = $Script:Document.Add($P)
             }
@@ -42,7 +44,10 @@
         if ($Element.Type -eq 'Options') {
             New-InternalPDFOptions -Settings $Element.Settings
         }
-
+        if ($Element.Type -eq 'Table') {
+            $Table = New-InteralPDFTable @Splat
+            $null = $Script:Document.Add($Table)
+        }
     }
 
     $Script:PDF.Close();
