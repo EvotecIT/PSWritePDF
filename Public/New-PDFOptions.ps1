@@ -4,20 +4,20 @@
         [nullable[float]] $MarginLeft,
         [nullable[float]] $MarginRight,
         [nullable[float]] $MarginTop,
-        [nullable[float]] $MarginBottom,
-        [ValidateScript( { & $Script:PDFPageSizeValidation } )][string] $PageSize
+        [nullable[float]] $MarginBottom
+        #[ValidateScript( { & $Script:PDFPageSizeValidation } )][string] $PageSize
     )
 
     [PSCustomObject] @{
         Type     = 'Options'
         Settings = @{
             Margins  = @{
-                Left   = $MarginLeft
-                Right  = $MarginRight
-                Top    = $MarginTop
-                Bottom = $MarginBottom
+                MarginLeft   = $MarginLeft
+                MarginRight  = $MarginRight
+                MarginTop    = $MarginTop
+                MarginBottom = $MarginBottom
             }
-            PageSize = $PageSize
+            #PageSize = $PageSize
         }
     }
 }

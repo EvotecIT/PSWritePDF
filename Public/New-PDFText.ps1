@@ -7,12 +7,19 @@
         [ValidateScript( { & $Script:PDFColorValidation } )][string[]] $FontColor,
         [bool[]] $FontBold
     )
-    $Splat = @{
-        Text      = $Text
-        Font      = $Font
-        #FontFamily = $FontFamily
-        FontColor = $FontColor
-        FontBold  = $FontBold
+    $Splat = @{ }
+    if ($Text) {
+        $Splat['Text'] = $Text
+    }
+    if ($Font) {
+        $Splat['Font'] = $Font
+    }
+    #FontFamily = $FontFamily
+    if ($FontColor) {
+        $Splat['FontColor'] = $FontColor
+    }
+    if ($FontBold) {
+        $Splat['FontBold'] = $FontBold
     }
 
     if ($null -ne $Script:PDFStart -and $Script:PDFStart['Start']) {

@@ -4,7 +4,7 @@ $Script:PDFVersion = {
 }
 $Script:PDFVersionValidation = {
     $Array = @(
-        (& $Script:PDFFont)
+        (& $Script:PDFVersion)
         ''
     )
     $_ -in $Array

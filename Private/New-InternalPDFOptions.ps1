@@ -1,20 +1,28 @@
 ﻿function New-InternalPDFOptions {
     [CmdletBinding()]
     param(
-        [System.Collections.IDictionary] $Settings
+        [nullable[float]] $MarginLeft,
+        [nullable[float]] $MarginRight,
+        [nullable[float]] $MarginTop,
+        [nullable[float]] $MarginBottom
     )
-    if ($Settings.Margins) {
-        if ($Settings.Margins.Left) {
-            $Script:Document.SetLeftMargin($Settings.Margins.Left)
+
+    if ($Script:Document) {
+        if ($MarginLeft) {
+            $Script:Document.SetLeftMargin($MarginLeft)
         }
-        if ($Settings.Margins.Right) {
-            $Script:Document.SetRightMargin($Settings.Margins.Right)
+        if ($MarginRight) {
+            $Script:Document.SetRightMargin($MarginRight)
         }
-        if ($Settings.Margins.Top) {
-            $Script:Document.SetTopMargin($Settings.Margins.Top)
+        if ($MarginTop) {
+            $Script:Document.SetTopMargin($MarginTop)
         }
-        if ($Settings.Margins.Bottom) {
-            $Script:Document.SetBottomMargin($Settings.Margins.Bottom)
+        if ($MarginBottom) {
+            $Script:Document.SetBottomMargin($MarginBottom)
         }
     }
+
+    #if ($Settings.PageSize) {
+    #   $Script:Document.GetPdfDocument().SetDefaultPageSize([iText.Kernel.Geom.PageSize]::($Settings.PageSize))
+    # }
 }

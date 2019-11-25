@@ -1,28 +1,30 @@
 ﻿function New-InternalPDFPage {
     [CmdletBinding()]
     param(
-        [System.Collections.IDictionary] $Settings
+        [string] $PageSize,
+        [switch] $Rotate
     )
 
-    if ($Settings.PageSize -or $Settings.Rotate) {
-        if ($Settings.PageSize) {
-            $PageSize = [iText.Kernel.Geom.PageSize]::($Settings.PageSize)
+
+    if ($PageSize -or $Rotate) {
+        if ($PageSize) {
+            $Page = [iText.Kernel.Geom.PageSize]::($PageSize)
         }
-        if ($Settings.Rotate) {
+        if ($Rotate) {
             if ($PageSize) {
-                $PageSize = $PageSize.Rotate()
+                $Page = $Page.Rotate()
             } else {
-                $PageSize = [iText.Kernel.Geom.PageSize]::A4
-                $PageSize = $PageSize.Rotate()
+                $Page = [iText.Kernel.Geom.PageSize]::A4
+                $Page = $Page.Rotate()
             }
         }
     }
     if ($PageSize) {
-        $null = $Script:PDF.AddNewPage($PageSize)
+        $null = $Script:PDF.AddNewPage($Page)
     } else {
         $null = $Script:PDF.AddNewPage()
     }
-
-
     $Script:Document = [iText.Layout.Document]::new($Script:PDF)
 }
+
+Register-ArgumentCompleter -CommandName New-InternalPDFPage -ParameterName PageSize -ScriptBlock $Script:PDFPageSize

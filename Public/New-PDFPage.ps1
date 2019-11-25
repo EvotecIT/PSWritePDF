@@ -1,5 +1,4 @@
-﻿
-function New-PDFPage {
+﻿function New-PDFPage {
     [CmdletBinding()]
     param(
         [ScriptBlock] $PageContent,
@@ -10,21 +9,25 @@ function New-PDFPage {
         [ValidateScript( { & $Script:PDFPageSizeValidation } )][string] $PageSize,
         [switch] $Rotate
     )
-
-    $Page = [PSCustomObject] @{
-        Type     = 'Page'
-        Settings = @{
-            Margins  = @{
-                Left   = $MarginLeft
-                Right  = $MarginRight
-                Top    = $MarginTop
-                Bottom = $MarginBottom
+    if ($null -ne $Script:PDFStart -and $Script:PDFStart['Start']) {
+        $Page = [PSCustomObject] @{
+            Type     = 'Page'
+            Settings = @{
+                Margins     = @{
+                    Left   = $MarginLeft
+                    Right  = $MarginRight
+                    Top    = $MarginTop
+                    Bottom = $MarginBottom
+                }
+                PageSize    = $PageSize
+                Rotate      = $Rotate.IsPresent
+                PageContent = if ($PageContent) { & $PageContent } else { $null }
             }
-            PageSize = $PageSize
-            Rotate   = $Rotate.IsPresent
         }
+        $Page
+    } else {
+        # New-InternalPDFPage -PageSize $PageSize -Rotate:$Rotate.IsPresent
     }
-    $Page
 }
 
 Register-ArgumentCompleter -CommandName New-PDFPage -ParameterName PageSize -ScriptBlock $Script:PDFPageSize
