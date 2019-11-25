@@ -2,9 +2,9 @@
     [CmdletBinding()]
     param(
         [string] $FilePath,
-        [string] $Version,
-        [ValidateScript( { & $Script:PDFPageSizeValidation } )][string] $PageSize,
-        [switch] $Rotate
+        [string] $Version #,
+      #  [ValidateScript( { & $Script:PDFPageSizeValidation } )][string] $PageSize,
+     #   [switch] $Rotate
     )
 
     if ($Version) {

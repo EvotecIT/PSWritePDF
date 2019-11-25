@@ -8,8 +8,10 @@
         Remove-EmptyValues -Hashtable $Splat
         if ($Element.Type -eq 'Page') {
             if (-not $Script:PDFStart.FirstPageUsed) {
-                $Area = New-PDFArea -PageSize $Element.Settings.PageSize -Rotate:$Element.Settings.Rotate -AreaType ([iText.Layout.Properties.AreaBreakType]::LAST_PAGE)
-                Add-PDFDocumentContent -Object $Area
+                #$Area = New-PDFArea -PageSize $Element.Settings.PageSize -Rotate:$Element.Settings.Rotate -AreaType ([iText.Layout.Properties.AreaBreakType]::LAST_PAGE)
+                New-InternalPDFPage -PageSize $Element.Settings.PageSize -Rotate:$Element.Settings.Rotate
+
+                #Add-PDFDocumentContent -Object $Area
                 $Script:PDFStart.FirstPageUsed = $true
             } else {
                 $Area = New-PDFArea -PageSize $Element.Settings.PageSize -Rotate:$Element.Settings.Rotate

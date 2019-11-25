@@ -14,6 +14,8 @@
 
         [alias('Open')][switch] $Show
     )
+    # The types needs filling in for the workaround below. DONT FORGET!
+    $Script:Types = 'Text', 'List', 'Paragraph', 'Table', 'Image'
     $Script:PDFStart = @{
         Start            = $true
         FilePath         = $FilePath
@@ -26,28 +28,35 @@
             Rotate       = $Rotate.IsPresent
         }
         FirstPageUsed    = $false
+        UsedTypes        = [System.Collections.Generic.List[string]]::new()
     }
     if ($PDFContent) {
         [Array] $Elements = @(
-            #$FirstPage
             [Array] $Content = & $PDFContent
-            #if ($Content[0].Type -eq 'Page') {
-            #$Content | Select-Object -Skip 1
-            #$PageSize = $Content[0].Settings.PageSize
-            #$Rotate = $Content[0].Settings.Rotate
-            #     $Script:PDFStart.SkipFirstPage = $true
-            #}
-            if ($Content.Type -notcontains 'Page') {
-                New-PDFPage -PageSize $PageSize -Rotate:$Rotate
+            # This is workaround to support multiple scenarios:
+            # New-PDF { New-PDFPage, New-PDFPage }
+            # New-PDF { }
+            # New-PDF { New-PDFText, New-PDFPage }
+            # This is there to make sure we allow for New-PDF to allow control for -Rotate/PageSize to either whole document or to text/tables
+            # and other types until New-PDFPage is given
+            # It's ugly but seems to wrok
+            foreach ($_ in $Content) {
+                if ($_.Type -in $Script:Types) {
+                    $Script:PDFStart.UsedTypes.Add($_.Type)
+                } elseif ($_.Type -eq 'Page') {
+                    if ($Script:PDFStart.UsedTypes.Count -ne 0) {
+                        New-PDFPage -PageSize $PageSize -Rotate:$Rotate
+                    }
+                    break
+                }
             }
             $Content
-
         )
-        $Script:PDF = New-InternalPDF -FilePath $FilePath -Version $Version -PageSize $PageSize -Rotate:$Rotate
+        $Script:PDF = New-InternalPDF -FilePath $FilePath -Version $Version #-PageSize $PageSize -Rotate:$Rotate
     } else {
         $Script:PDFStart['Start'] = $false
         # if there's no scriptblock that means we're using standard way of working with PDF
-        $Script:PDF = New-InternalPDF -FilePath $FilePath -Version $Version -PageSize $PageSize -Rotate:$Rotate
+        $Script:PDF = New-InternalPDF -FilePath $FilePath -Version $Version #-PageSize $PageSize -Rotate:$Rotate
         return $Script:PDF
     }
 
@@ -64,7 +73,8 @@
             Invoke-Item -LiteralPath $FilePath
         }
     }
-    $Script:PDFStart['Start'] = $false
+    $Script:PDFStart = $null
+    #$Script:PDFStart['Start'] = $false
 }
 
 Register-ArgumentCompleter -CommandName New-PDF -ParameterName PageSize -ScriptBlock $Script:PDFPageSize

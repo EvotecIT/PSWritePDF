@@ -5,21 +5,17 @@
         [switch] $Rotate
     )
 
-
     if ($PageSize -or $Rotate) {
         if ($PageSize) {
             $Page = [iText.Kernel.Geom.PageSize]::($PageSize)
+        } else {
+            $Page = [iText.Kernel.Geom.PageSize]::Default
         }
         if ($Rotate) {
-            if ($PageSize) {
-                $Page = $Page.Rotate()
-            } else {
-                $Page = [iText.Kernel.Geom.PageSize]::A4
-                $Page = $Page.Rotate()
-            }
+            $Page = $Page.Rotate()
         }
     }
-    if ($PageSize) {
+    if ($Page) {
         $null = $Script:PDF.AddNewPage($Page)
     } else {
         $null = $Script:PDF.AddNewPage()
