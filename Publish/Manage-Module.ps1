@@ -25,7 +25,7 @@ $Configuration = @{
             # Copyright statement for this module
             Copyright            = '(c) 2011-2019 Przemyslaw Klys. All rights reserved.'
             # Description of the functionality provided by this module
-            Description          = 'Little project to create, read, modify, split, merge PDF files.'
+            Description          = 'Little project to create, read, modify, split, merge PDF files on Windows, Linux and Mac.'
             # Tags applied to this module. These help with module discovery in online galleries.
             Tags                 = @('PDF', 'macOS', 'linux', 'windows')
             # A URL to the main website for this project.

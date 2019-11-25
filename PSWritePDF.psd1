@@ -30,7 +30,7 @@
     Copyright            = '(c) 2011-2019 Przemyslaw Klys. All rights reserved.'
 
     # Description of the functionality provided by this module
-    Description          = 'Little project to create, read, modify, split, merge PDF files.'
+    Description          = 'Little project to create, read, modify, split, merge PDF files on Windows, Linux and Mac.'
 
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion    = '5.1'
