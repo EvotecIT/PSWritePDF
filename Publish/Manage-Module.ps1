@@ -3,11 +3,11 @@ Import-Module "C:\Support\GitHub\PSPublishModule\PSPublishModule.psm1" -Force
 
 $Configuration = @{
     Information = @{
-        ModuleName           = 'PSWritePDF'
-        DirectoryProjects    = 'C:\Support\GitHub'
-        LibrariesCore        = 'Lib\Core'
-        LibrariesDefault     = 'Lib\Default'
-        Manifest             = @{
+        ModuleName        = 'PSWritePDF'
+        DirectoryProjects = 'C:\Support\GitHub'
+        LibrariesCore     = 'Lib\Core'
+        LibrariesDefault  = 'Lib\Default'
+        Manifest          = @{
             # Script module or binary module file associated with this manifest.
             RootModule           = 'PSWritePDF.psm1'
             # Minimum version of the Windows PowerShell engine required by this module
@@ -17,7 +17,7 @@ $Configuration = @{
             # ID used to uniquely identify this module
             GUID                 = '19fcb43c-d8c5-44a9-84e4-bccf29765490'
             # Version number of this module.
-            ModuleVersion        = '0.0.2'
+            ModuleVersion        = '0.0.3'
             # Author of this module
             Author               = 'Przemyslaw Klys'
             # Company or vendor of this module
@@ -138,10 +138,12 @@ $Configuration = @{
     }
     Steps       = @{
         BuildModule        = @{
-            Enable       = $true
-            Merge        = $true
-            MergeMissing = $true
-            Releases     = $true
+            Enable              = $true
+            DeleteBefore        = $true
+            LibrarySeparateFile = $true
+            Merge               = $true
+            MergeMissing        = $true
+            Releases            = $true
         }
         BuildDocumentation = $false
         PublishModule      = @{
