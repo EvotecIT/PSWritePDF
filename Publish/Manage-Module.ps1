@@ -8,8 +8,6 @@ $Configuration = @{
         LibrariesCore     = 'Lib\Core'
         LibrariesDefault  = 'Lib\Default'
         Manifest          = @{
-            # Script module or binary module file associated with this manifest.
-            RootModule           = 'PSWritePDF.psm1'
             # Minimum version of the Windows PowerShell engine required by this module
             PowerShellVersion    = '5.1'
             # Supported PSEditions

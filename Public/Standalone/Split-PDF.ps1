@@ -12,9 +12,10 @@
     }
 
     if ($FilePath -and (Test-Path -LiteralPath $FilePath)) {
+        $ResolvedPath = Resolve-Path -LiteralPath $FilePath
         if ($OutputFolder -and (Test-Path -LiteralPath $OutputFolder)) {
             try {
-                $PDFFile = [iText.Kernel.Pdf.PdfReader]::new($FilePath)
+                $PDFFile = [iText.Kernel.Pdf.PdfReader]::new($ResolvedPath)
                 $Document = [iText.Kernel.Pdf.PdfDocument]::new($PDFFile)
                 $Splitter = [CustomSplitter]::new($Document, $OutputFolder, $OutputName)
                 $List = $Splitter.SplitByPageCount($SplitCount)

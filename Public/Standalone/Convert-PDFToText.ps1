@@ -18,14 +18,24 @@
         $PagesCount = $SourcePDF.GetNumberOfPages()
         if ($Page.Count -eq 0) {
             for ($Count = 1; $Count -le $PagesCount; $Count++) {
-                $ExtractedPage = $SourcePDF.GetPage($Count)
-                [iText.Kernel.Pdf.Canvas.Parser.PdfTextExtractor]::GetTextFromPage($ExtractedPage, $ExtractionStrategy)
+                try {
+                    $ExtractedPage = $SourcePDF.GetPage($Count)
+                    [iText.Kernel.Pdf.Canvas.Parser.PdfTextExtractor]::GetTextFromPage($ExtractedPage, $ExtractionStrategy)
+                } catch {
+                    $ErrorMessage = $_.Exception.Message
+                    Write-Warning "Convert-PDFToText - Processing document $ResolvedPath failed with error: $ErrorMessage"
+                }
             }
         } else {
             foreach ($Count in $Page) {
                 if ($Count -le $PagesCount -and $Count -gt 0) {
-                    $ExtractedPage = $SourcePDF.GetPage($Count)
-                    [iText.Kernel.Pdf.Canvas.Parser.PdfTextExtractor]::GetTextFromPage($ExtractedPage, $ExtractionStrategy)
+                    try {
+                        $ExtractedPage = $SourcePDF.GetPage($Count)
+                        [iText.Kernel.Pdf.Canvas.Parser.PdfTextExtractor]::GetTextFromPage($ExtractedPage, $ExtractionStrategy)
+                    } catch {
+                        $ErrorMessage = $_.Exception.Message
+                        Write-Warning "Convert-PDFToText - Processing document $ResolvedPath failed with error: $ErrorMessage"
+                    }
                 } else {
                     Write-Warning "Convert-PDFToText - File $ResolvedPath doesn't contain page number $Count. Skipping."
                 }

@@ -19,7 +19,6 @@
 
 # PSWritePDF
 
-
 ## 3rd Party Notices
 
 This PowerShell Module uses [iText 7 Community for .NET](https://github.com/itext/itext7-dotnet) therefore the license needs to be kept the same as iText (or at least I think so). If it isn't so I would be more than happy to release my **PowerShell** code as **MIT license**. I don't intend to modify **iText7** codebase, just using it's **API**. As I'm not an expert on licensing I'm attaching some of articles I found that may make this license terms clearer.
@@ -38,3 +37,16 @@ Other software used:
 All that additional software is required to work with iText and so it's part of this package.
 
 ## Installing / Updating
+
+```powershell
+Install-Module PSWritePDF -Force
+```
+
+## Changelog
+
+- 0.0.4 - 29.11.2019
+  - Convert-PDFToText - Fix for resolving paths properly
+  - Split-PDF - fix for resolving paths properly
+  - Merge-PDF - fix for resolving paths properly
+- 0.0.3 - 29.11.2019
+  - Fix for loading module from PowerShellGallery
