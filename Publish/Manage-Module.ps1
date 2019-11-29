@@ -17,7 +17,7 @@ $Configuration = @{
             # ID used to uniquely identify this module
             GUID                 = '19fcb43c-d8c5-44a9-84e4-bccf29765490'
             # Version number of this module.
-            ModuleVersion        = '0.0.3'
+            ModuleVersion        = '0.0.4'
             # Author of this module
             Author               = 'Przemyslaw Klys'
             # Company or vendor of this module

@@ -5,9 +5,15 @@
         [int[]] $Page
     )
     if ($FilePath -and (Test-Path -LiteralPath $FilePath)) {
-        $Source = [iText.Kernel.Pdf.PdfReader]::new($FilePath)
-        [iText.Kernel.Pdf.PdfDocument] $SourcePDF = [iText.Kernel.Pdf.PdfDocument]::new($Source);
-        [iText.Kernel.Pdf.Canvas.Parser.Listener.LocationTextExtractionStrategy] $ExtractionStrategy = [iText.Kernel.Pdf.Canvas.Parser.Listener.LocationTextExtractionStrategy]::new()
+        $ResolvedPath = Resolve-Path -LiteralPath $FilePath
+        $Source = [iText.Kernel.Pdf.PdfReader]::new($ResolvedPath)
+        try {
+            [iText.Kernel.Pdf.PdfDocument] $SourcePDF = [iText.Kernel.Pdf.PdfDocument]::new($Source);
+            [iText.Kernel.Pdf.Canvas.Parser.Listener.LocationTextExtractionStrategy] $ExtractionStrategy = [iText.Kernel.Pdf.Canvas.Parser.Listener.LocationTextExtractionStrategy]::new()
+        } catch {
+            $ErrorMessage = $_.Exception.Message
+            Write-Warning "Convert-PDFToText - Processing document $ResolvedPath failed with error: $ErrorMessage"
+        }
 
         $PagesCount = $SourcePDF.GetNumberOfPages()
         if ($Page.Count -eq 0) {
@@ -21,7 +27,7 @@
                     $ExtractedPage = $SourcePDF.GetPage($Count)
                     [iText.Kernel.Pdf.Canvas.Parser.PdfTextExtractor]::GetTextFromPage($ExtractedPage, $ExtractionStrategy)
                 } else {
-                    Write-Warning "Convert-PDFToText - File $FilePath doesn't contain page number $Count. Skipping."
+                    Write-Warning "Convert-PDFToText - File $ResolvedPath doesn't contain page number $Count. Skipping."
                 }
             }
         }
