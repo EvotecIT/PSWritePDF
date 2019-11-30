@@ -14,9 +14,14 @@ $Script:PDFPageSizeValidation = {
 function Get-PDFConstantPageSize {
     [CmdletBinding()]
     param(
-        [ValidateScript( { & $Script:PDFPageSizeValidation } )][string] $PageSize
+        [ValidateScript( { & $Script:PDFPageSizeValidation } )][string] $PageSize,
+        [switch] $All
     )
-    return [iText.Kernel.Geom.PageSize]::$PageSize
+    if (-not $All) {
+        return [iText.Kernel.Geom.PageSize]::$PageSize
+    } else {
+        return & $Script:PDFPageSize
+    }
 }
 
 Register-ArgumentCompleter -CommandName Get-PDFConstantPageSize  -ParameterName Version -ScriptBlock $Script:PDFPageSize
