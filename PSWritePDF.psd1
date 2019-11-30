@@ -69,11 +69,7 @@
     # NestedModules = @()
 
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport    = 'New-PDF', 'New-PDFArea', 'New-PDFDocument', 'New-PDFInfo', 'New-PDFList', 
-    'New-PDFListItem', 'New-PDFOptions', 'New-PDFPage', 'New-PDFTable', 
-    'New-PDFText', 'Get-PDFConstantAction', 'Get-PDFConstantColor', 
-    'Get-PDFConstantFont', 'Get-PDFConstantPageSize', 
-    'Get-PDFConstantVersion', 'Convert-PDFToText', 'Merge-PDF', 'Split-PDF'
+    FunctionsToExport    = '*'
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport      = @()
@@ -82,7 +78,7 @@
     # VariablesToExport = @()
 
     # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-    AliasesToExport      = @()
+    AliasesToExport      = '*'
 
     # DSC resources to export from this module
     # DscResourcesToExport = @()
