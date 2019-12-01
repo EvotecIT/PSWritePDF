@@ -1,7 +1,7 @@
 ﻿Describe 'New-PDF' {
     New-Item -Path $PSScriptRoot -Force -ItemType Directory -Name 'Output'
     It 'New-PDF with default size should be A4 without rotation' {
-        $FilePath = "$PSScriptRoot\Output\PDF1.pdf"
+        $FilePath = [IO.Path]::Combine("$PSScriptRoot", "Output", "PDF1.pdf")
         New-PDF {
             New-PDFText -Text 'Hello ', 'World' -Font HELVETICA, TIMES_ITALIC -FontColor GRAY, BLUE -FontBold $true, $false, $true
         } -FilePath $FilePath
@@ -17,7 +17,7 @@
 
     }
     It 'New-PDF with A4 and rotation should be created with proper size and rotation' {
-        $FilePath = "$PSScriptRoot\Output\PDF2.pdf"
+        $FilePath = [IO.Path]::Combine("$PSScriptRoot", "Output", "PDF2.pdf")
         New-PDF  -MarginLeft 120 -MarginRight 20 -MarginTop 20 -MarginBottom 20 -PageSize A5 -Rotate {
             New-PDFText -Text 'Test ', 'Me', 'Oooh' -FontColor BLUE, YELLOW, RED
             New-PDFList -Indent 3 {
@@ -37,7 +37,7 @@
         $Details.PagesNumber | Should -Be 1
     }
     It 'New-PDF with 4 pages. 1st A4 with rotation, 2nd A5 without rotation, 3rd A4 without rotation, 4th B2 with rotation' {
-        $FilePath = "$PSScriptRoot\Output\PDF3.pdf"
+        $FilePath = [IO.Path]::Combine("$PSScriptRoot", "Output", "PDF3.pdf")
         New-PDF {
             New-PDFPage -PageSize A4 -Rotate {
                 New-PDFText -Text 'Hello ', 'World' -Font HELVETICA, TIMES_ITALIC -FontColor GRAY, BLUE -FontBold $true, $false, $true
@@ -76,7 +76,7 @@
         $Details.PagesNumber | Should -Be 4
     }
     It 'New-PDF with 2 pages. A4 and A5 rotated' {
-        $FilePath = "$PSScriptRoot\Output\PDF4.pdf"
+        $FilePath = [IO.Path]::Combine("$PSScriptRoot", "Output", "PDF4.pdf")
         New-PDF -PageSize A5 {
             New-PDFText -Text 'Hello ', 'World' -Font HELVETICA, TIMES_ITALIC -FontColor GRAY, BLUE -FontBold $true, $false, $true
 
@@ -100,7 +100,8 @@
     }
 
     # cleanup
-    $Files = Get-ChildItem -LiteralPath "$PSScriptRoot\Output" -File
+    $FolderPath = [IO.Path]::Combine("$PSScriptRoot", "Output")
+    $Files = Get-ChildItem -LiteralPath $FolderPath -File
     foreach ($_ in $Files) {
         Remove-Item -LiteralPath $_.FullName -ErrorAction SilentlyContinue
     }
