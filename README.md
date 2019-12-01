@@ -1,4 +1,5 @@
 <p align="center">
+  <a href="https://dev.azure.com/evotecpl/PSWritePDF/_build/latest?definitionId=3"><img src="https://dev.azure.com/evotecpl/PSWritePDF/_apis/build/status/EvotecIT.PSWritePDF"></a>
   <a href="https://www.powershellgallery.com/packages/PSWritePDF"><img src="https://img.shields.io/powershellgallery/v/PSWritePDF.svg"></a>
   <a href="https://www.powershellgallery.com/packages/PSWritePDF"><img src="https://img.shields.io/powershellgallery/vpre/PSWritePDF.svg?label=powershell%20gallery%20preview&colorB=yellow"></a>
   <a href="https://github.com/EvotecIT/PSWritePDF"><img src="https://img.shields.io/github/license/EvotecIT/PSWritePDF.svg"></a>
@@ -43,6 +44,11 @@ Install-Module PSWritePDF -Force
 ```
 
 ## Changelog
+
+- 0.0.5 - Unreleased
+  - Get-PDFDetails
+  - Close-PDF
+  - Get-PDF
 
 - 0.0.4 - 29.11.2019
   - Convert-PDFToText - Fix for resolving paths properly
