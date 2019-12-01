@@ -27,6 +27,7 @@
             PageSize     = $PageSize
             Rotate       = $Rotate.IsPresent
         }
+        FirstPageFound   = $false
         FirstPageUsed    = $false
         UsedTypes        = [System.Collections.Generic.List[string]]::new()
     }
@@ -46,9 +47,14 @@
                 } elseif ($_.Type -eq 'Page') {
                     if ($Script:PDFStart.UsedTypes.Count -ne 0) {
                         New-PDFPage -PageSize $PageSize -Rotate:$Rotate
+                        $Script:PDFStart.FirstPageFound = $true
                     }
                     break
                 }
+            }
+            if (-not $Script:PDFStart.FirstPageFound -and $Script:PDFStart.UsedTypes.Count -ne 0) {
+                New-PDFPage -PageSize $PageSize -Rotate:$Rotate
+                $Script:PDFStart.FirstPageFound = $true
             }
             $Content
         )
