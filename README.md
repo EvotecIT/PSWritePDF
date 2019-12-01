@@ -33,7 +33,7 @@ Recommended read:
 Other software used:
 
 - Bouncy Castle [MIT license](https://www.bouncycastle.org/licence.html)
-- Common License [Appache License 2.0](https://github.com/net-commons/common-logging/blob/master/license.txt)
+- Common License [Apache License 2.0](https://github.com/net-commons/common-logging/blob/master/license.txt)
 
 All that additional software is required to work with iText and so it's part of this package.
 
