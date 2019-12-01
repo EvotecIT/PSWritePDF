@@ -19,27 +19,17 @@
             Pages       = [ordered] @{ }
         }
         for ($a = 1; $a -le $Output.PagesNumber; $a++) {
+            $Height = $Document.GetPage($a).GetPageSizeWithRotation().GetHeight()
+            $Width = $Document.GetPage($a).GetPageSizeWithRotation().GetWidth()
+            $NamedSize = Get-PDFNamedPageSize -Height $Height -Width $Width
             $Output['Pages']["$a"] = [PSCustomObject] @{
-                Height   = $Document.GetPage($a).GetPageSizeWithRotation().GetHeight()
-                Width    = $Document.GetPage($a).GetPageSizeWithRotation().GetWidth()
+                Height   = $Height
+                Width    = $Width
                 Rotation = $Document.GetPage($a).GetRotation()
+                Size     = $NamedSize.PageSize
+                Rotated  = $NamedSize.Rotated
             }
         }
         [PSCustomObject] $Output
-    }
-}
-
-function Get-PageSize {
-    param(
-        [int] $Height,
-        [int] $Width
-    )
-
-    if ($Height -eq 595 -and $Width -eq 842) {
-        return @{ 'PageSize' = 'A4'; Rotated = $true }
-    } elseif ($Height -eq 842 -and $Width -eq 595) {
-        return @{ 'PageSize' = 'A4'; Rotated = $false }
-    } elseif ($Height -eq 595 -and $Width -eq 420) {
-        return @{ 'PageSize' = 'A5'; Roated = $false }
     }
 }
