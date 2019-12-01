@@ -46,9 +46,10 @@ Install-Module PSWritePDF -Force
 ## Changelog
 
 - 0.0.5 - Unreleased
-  - Get-PDFDetails
-  - Close-PDF
-  - Get-PDF
+  - Additional commands
+    - Get-PDF
+    - Get-PDFDetails
+    - Close-PDF
 
 - 0.0.4 - 29.11.2019
   - Convert-PDFToText - Fix for resolving paths properly

@@ -1,6 +1,5 @@
-﻿Import-Module .\PSWritePDF.psd1 -Force
-
-Describe 'New-PDF' {
+﻿Describe 'New-PDF' {
+    New-Item -Path $PSScriptRoot -Force -ItemType Directory -Name 'Output'
     It 'New-PDF with default size should be A4 without rotation' {
         $FilePath = "$PSScriptRoot\Output\PDF1.pdf"
         New-PDF {
