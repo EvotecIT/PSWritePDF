@@ -10,8 +10,10 @@ foreach ($_ in $RequiredModules) {
         Write-Warning "$ModuleName - Downloading $_ from PSGallery"
         Install-Module -Name $_ -Repository PSGallery -Force -SkipPublisherCheck
     }
+    Write-Warning "Importing module $_"
     Import-Module $_ -Force
 }
+
 Import-Module $PSScriptRoot\PSWritePDF.psd1 -Force -Verbose
 
 $result = Invoke-Pester -Script $PSScriptRoot\Tests -Verbose -EnableExit

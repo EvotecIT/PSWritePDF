@@ -3,6 +3,7 @@ $Public = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction Silentl
 $Private = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue -Recurse )
 
 $AssemblyFolders = Get-ChildItem -Path $PSScriptRoot\Lib -Directory
+
 if ($AssemblyFolders.BaseName -contains 'Standard') {
     $Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\Standard\*.dll -ErrorAction SilentlyContinue )
 } else {
@@ -15,15 +16,15 @@ if ($AssemblyFolders.BaseName -contains 'Standard') {
 Foreach ($Import in @($Assembly)) {
     try {
         Add-Type -Path $Import.Fullname -ErrorAction Stop
-        Write-Verbose $Import.Fullname
     } catch [System.Reflection.ReflectionTypeLoadException] {
         Write-Error -Message "Message: $($_.Exception.Message)"
         Write-Error -Message "StackTrace: $($_.Exception.StackTrace)"
         Write-Error -Message "LoaderExceptions: $($_.Exception.LoaderExceptions)"
+    } catch {
+        Write-Error -Message "Message: $($_.Exception.Message)"
+        Write-Error -Message "StackTrace: $($_.Exception.StackTrace)"
+        Write-Error -Message "LoaderExceptions: $($_.Exception.LoaderExceptions)"
     }
-    Write-Warning -Message "Message: $($_.Exception.Message)"
-    Write-Warning -Message "StackTrace: $($_.Exception.StackTrace)"
-    Write-Warning -Message "LoaderExceptions: $($_.Exception.LoaderExceptions)"
 }
 
 #Dot source the files
