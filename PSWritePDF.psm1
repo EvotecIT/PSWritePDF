@@ -1,13 +1,17 @@
 ﻿#Get public and private function definition files.
 $Public = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue -Recurse )
 $Private = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue -Recurse )
-if ($PSEdition -eq 'Core') {
-    $Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\Core\*.dll -ErrorAction SilentlyContinue )
-    #$Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\Core\*.NetCORE.dll -ErrorAction SilentlyContinue )
-} else {
-    $Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\Default\*.dll -ErrorAction SilentlyContinue )
-}
 
+$AssemblyFolders = Get-ChildItem -Path $PSScriptRoot\Lib -Directory
+if ($AssemblyFolders.BaseName -contains 'Standard') {
+    $Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\Standard\*.dll -ErrorAction SilentlyContinue )
+} else {
+    if ($PSEdition -eq 'Core') {
+        $Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\Core\*.dll -ErrorAction SilentlyContinue )
+    } else {
+        $Assembly = @( Get-ChildItem -Path $PSScriptRoot\Lib\Default\*.dll -ErrorAction SilentlyContinue )
+    }
+}
 Foreach ($Import in @($Assembly)) {
     try {
         Add-Type -Path $Import.Fullname -ErrorAction Stop

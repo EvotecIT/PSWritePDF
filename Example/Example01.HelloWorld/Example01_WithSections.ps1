@@ -19,7 +19,7 @@ New-PDF {
             New-PDFListItem -Text '2nd'
         }
     }
-} -FilePath "$PSScriptRoot\Example01_WithSections.pdf" # -Show
+} -FilePath "$PSScriptRoot\Example01_WithSections.pdf"  -Show
 
 $Document = Get-PDF -FilePath "$PSScriptRoot\Example01_WithSections.pdf"
 $Details = Get-PDFDetails -Document $Document

@@ -6,7 +6,7 @@ New-PDF  -MarginLeft 520 { #520 -MarginRight 20 -MarginTop 20 -MarginBottom 20 -
         New-PDFListItem -Text 'Test'
         New-PDFListItem -Text '2nd'
     }
-} -FilePath "$PSScriptRoot\Example01_MoreOptions.pdf" #-Show
+} -FilePath "$PSScriptRoot\Example01_MoreOptions.pdf" -Show
 
 $Document = Get-PDF -FilePath "$PSScriptRoot\Example01_MoreOptions.pdf"
 $Details = Get-PDFDetails -Document $Document
