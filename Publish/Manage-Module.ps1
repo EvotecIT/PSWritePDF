@@ -15,7 +15,7 @@ $Configuration = @{
             # ID used to uniquely identify this module
             GUID                 = '19fcb43c-d8c5-44a9-84e4-bccf29765490'
             # Version number of this module.
-            ModuleVersion        = '0.0.4'
+            ModuleVersion        = '0.0.5'
             # Author of this module
             Author               = 'Przemyslaw Klys'
             # Company or vendor of this module
@@ -34,7 +34,7 @@ $Configuration = @{
             IconUri              = 'https://evotec.xyz/wp-content/uploads/2019/11/PSWritePDF.png'
 
             RequiredModules      = @(
-                @{ ModuleName = 'PSSharedGoods'; ModuleVersion = "0.0.107"; Guid = 'ee272aa8-baaa-4edf-9f45-b6d6f7d844fe' }
+                @{ ModuleName = 'PSSharedGoods'; ModuleVersion = "0.0.111"; Guid = 'ee272aa8-baaa-4edf-9f45-b6d6f7d844fe' }
             )
         }
     }
