@@ -46,14 +46,14 @@
                     $Script:PDFStart.UsedTypes.Add($_.Type)
                 } elseif ($_.Type -eq 'Page') {
                     if ($Script:PDFStart.UsedTypes.Count -ne 0) {
-                        New-PDFPage -PageSize $PageSize -Rotate:$Rotate
+                        New-PDFPage -PageSize $PageSize -Rotate:$Rotate -MarginLeft $MarginLeft -MarginTop $MarginTop -MarginBottom $MarginBottom -MarginRight $MarginRight
                         $Script:PDFStart.FirstPageFound = $true
                     }
                     break
                 }
             }
             if (-not $Script:PDFStart.FirstPageFound -and $Script:PDFStart.UsedTypes.Count -ne 0) {
-                New-PDFPage -PageSize $PageSize -Rotate:$Rotate
+                New-PDFPage -PageSize $PageSize -Rotate:$Rotate -MarginLeft $MarginLeft -MarginTop $MarginTop -MarginBottom $MarginBottom -MarginRight $MarginRight
                 $Script:PDFStart.FirstPageFound = $true
             }
             $Content
@@ -67,9 +67,8 @@
     }
 
     $Script:PDFStart['Start'] = $true
-    [iText.Layout.Document] $Script:Document = New-PDFDocument -PDF $Script:PDF
-    #$Script:Document
-    New-InternalPDFOptions -MarginLeft $MarginLeft -MarginRight $MarginRight -MarginTop $MarginTop -MarginBottom $MarginBottom
+    #[iText.Layout.Document] $Script:Document = New-PDFDocument -PDF $Script:PDF
+    #New-InternalPDFOptions -MarginLeft $MarginLeft -MarginRight $MarginRight -MarginTop $MarginTop -MarginBottom $MarginBottom
 
     Initialize-PDF -Elements $Elements
     if ($Script:Document) {

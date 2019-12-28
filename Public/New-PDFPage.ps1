@@ -14,10 +14,10 @@
             Type     = 'Page'
             Settings = @{
                 Margins     = @{
-                    Left   = $MarginLeft
-                    Right  = $MarginRight
-                    Top    = $MarginTop
-                    Bottom = $MarginBottom
+                    MarginLeft   = $MarginLeft
+                    MarginRight  = $MarginRight
+                    MarginTop    = $MarginTop
+                    MarginBottom = $MarginBottom
                 }
                 PageSize    = $PageSize
                 Rotate      = $Rotate.IsPresent

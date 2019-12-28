@@ -20,6 +20,14 @@
         if ($MarginBottom) {
             $Script:Document.SetBottomMargin($MarginBottom)
         }
+    } else {
+        # If Document doesn't exists it means we're using New-PDFOptions before New-PDFPage
+        # We update DocumentSettings and use it just in case New-PDFPage doesn't have those values used.
+        # Workaround, ugly but don't see a better way
+        $Script:PDFStart['DocumentSettings']['MarginTop'] = $MarginTop
+        $Script:PDFStart['DocumentSettings']['MarginBottom'] = $MarginBottom
+        $Script:PDFStart['DocumentSettings']['MarginLeft'] = $MarginLeft
+        $Script:PDFStart['DocumentSettings']['MarginRight'] = $MarginRight
     }
 
     #if ($Settings.PageSize) {

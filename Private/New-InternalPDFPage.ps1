@@ -2,7 +2,11 @@
     [CmdletBinding()]
     param(
         [string] $PageSize,
-        [switch] $Rotate
+        [switch] $Rotate,
+        [nullable[float]] $MarginLeft,
+        [nullable[float]] $MarginRight,
+        [nullable[float]] $MarginTop,
+        [nullable[float]] $MarginBottom
     )
 
     if ($PageSize -or $Rotate) {
@@ -21,6 +25,21 @@
         $null = $Script:PDF.AddNewPage()
     }
     $Script:Document = [iText.Layout.Document]::new($Script:PDF)
+
+    if ($Script:Document) {
+        if ($MarginLeft) {
+            $Script:Document.SetLeftMargin($MarginLeft)
+        }
+        if ($MarginRight) {
+            $Script:Document.SetRightMargin($MarginRight)
+        }
+        if ($MarginTop) {
+            $Script:Document.SetTopMargin($MarginTop)
+        }
+        if ($MarginBottom) {
+            $Script:Document.SetBottomMargin($MarginBottom)
+        }
+    }
 }
 
 Register-ArgumentCompleter -CommandName New-InternalPDFPage -ParameterName PageSize -ScriptBlock $Script:PDFPageSize
