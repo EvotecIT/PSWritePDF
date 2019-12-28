@@ -67,12 +67,13 @@
     }
 
     $Script:PDFStart['Start'] = $true
-    $Script:Document = New-PDFDocument -PDF $Script:PDF
+    [iText.Layout.Document] $Script:Document = New-PDFDocument -PDF $Script:PDF
+    #$Script:Document
     New-InternalPDFOptions -MarginLeft $MarginLeft -MarginRight $MarginRight -MarginTop $MarginTop -MarginBottom $MarginBottom
 
     Initialize-PDF -Elements $Elements
-    if ($Script:PDF) {
-        $Script:PDF.Close();
+    if ($Script:Document) {
+        $Script:Document.Close();
     }
     if ($Show) {
         if (Test-Path -LiteralPath $FilePath) {
