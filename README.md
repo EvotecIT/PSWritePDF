@@ -45,12 +45,13 @@ Install-Module PSWritePDF -Force
 
 ## Changelog
 
-- 0.0.5 - Unreleased
+- 0.0.5 - 28.12.2019
   - Fixes for Margins support in multiple scenarios
   - Additional commands
     - Get-PDF
     - Get-PDFDetails
     - Close-PDF
+  - Updated iText to 7.1.9
 
 - 0.0.4 - 29.11.2019
   - Convert-PDFToText - Fix for resolving paths properly
