@@ -12,7 +12,7 @@ foreach ($_ in $RequiredModules) {
     }
     Import-Module $_ -Force
 }
-Import-Module $PSScriptRoot\PSWritePDF.psd1 -Force
+Import-Module $PSScriptRoot\PSWritePDF.psd1 -Force -Verbose
 
 $result = Invoke-Pester -Script $PSScriptRoot\Tests -Verbose -EnableExit
 

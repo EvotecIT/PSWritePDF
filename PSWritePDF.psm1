@@ -15,15 +15,15 @@ if ($AssemblyFolders.BaseName -contains 'Standard') {
 Foreach ($Import in @($Assembly)) {
     try {
         Add-Type -Path $Import.Fullname -ErrorAction Stop
+        Write-Verbose $Import.Fullname
     } catch [System.Reflection.ReflectionTypeLoadException] {
         Write-Error -Message "Message: $($_.Exception.Message)"
         Write-Error -Message "StackTrace: $($_.Exception.StackTrace)"
         Write-Error -Message "LoaderExceptions: $($_.Exception.LoaderExceptions)"
-    } catch {
-        Write-Error -Message "Message: $($_.Exception.Message)"
-        Write-Error -Message "StackTrace: $($_.Exception.StackTrace)"
-        Write-Error -Message "LoaderExceptions: $($_.Exception.LoaderExceptions)"
     }
+    Write-Warning -Message "Message: $($_.Exception.Message)"
+    Write-Warning -Message "StackTrace: $($_.Exception.StackTrace)"
+    Write-Warning -Message "LoaderExceptions: $($_.Exception.LoaderExceptions)"
 }
 
 #Dot source the files
