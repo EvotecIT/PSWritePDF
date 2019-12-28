@@ -46,6 +46,7 @@ Install-Module PSWritePDF -Force
 ## Changelog
 
 - 0.0.5 - Unreleased
+  - Fixes for Margins support in multiple scenarios
   - Additional commands
     - Get-PDF
     - Get-PDFDetails
