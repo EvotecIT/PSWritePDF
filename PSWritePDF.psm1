@@ -19,6 +19,10 @@ Foreach ($Import in @($Assembly)) {
         Write-Error -Message "Message: $($_.Exception.Message)"
         Write-Error -Message "StackTrace: $($_.Exception.StackTrace)"
         Write-Error -Message "LoaderExceptions: $($_.Exception.LoaderExceptions)"
+    } catch {
+        Write-Error -Message "Message: $($_.Exception.Message)"
+        Write-Error -Message "StackTrace: $($_.Exception.StackTrace)"
+        Write-Error -Message "LoaderExceptions: $($_.Exception.LoaderExceptions)"
     }
 }
 
