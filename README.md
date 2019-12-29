@@ -20,6 +20,13 @@
 
 # PSWritePDF
 
+**PSWritePDF is** by no means a finished product. Like with most of my modules, I build some concept that matches view on how I would like it to look, and in the next months, I will probably update its functionality to match my expectations. Since PSWritePDF is based on **iText 7** it should be possible with some work to get all that functionality into **PowerShell**. That means that this module has excellent possibilities when it comes to potential use cases.
+
+For now, I've divided the module functionality into two categories:
+
+- [x] Standalone functions such as Split-PDF, Merge-PDF or Convert-PDFtoText
+- [x] Bundled functions working like PSWriteHTML where they are not supposed to be used separately mainly to create PDF files (for now)
+
 ## 3rd Party Notices
 
 This PowerShell Module uses [iText 7 Community for .NET](https://github.com/itext/itext7-dotnet) therefore the license needs to be kept the same as iText (or at least I think so). If it isn't so I would be more than happy to release my **PowerShell** code as **MIT license**. I don't intend to modify **iText7** codebase, just using it's **API**. As I'm not an expert on licensing I'm attaching some of articles I found that may make this license terms clearer.
@@ -45,17 +52,22 @@ Install-Module PSWritePDF -Force
 
 ## Changelog
 
+- 0.0.6 - Unreleased
+  - Fixes
+    - [x] Added missing `[CmdletBinding()]`
+
 - 0.0.5 - 28.12.2019
-  - Fixes for Margins support in multiple scenarios
+  - Fixes
+    - [x] Margins support in multiple scenarios
   - Additional commands
-    - Get-PDF
-    - Get-PDFDetails
-    - Close-PDF
+    - [x] Get-PDF
+    - [x] Get-PDFDetails
+    - [x] Close-PDF
   - Updated iText to 7.1.9
 
 - 0.0.4 - 29.11.2019
-  - Convert-PDFToText - Fix for resolving paths properly
-  - Split-PDF - fix for resolving paths properly
-  - Merge-PDF - fix for resolving paths properly
+  - [x] Convert-PDFToText - Fix for resolving paths properly
+  - [x] Split-PDF - fix for resolving paths properly
+  - [x] Merge-PDF - fix for resolving paths properly
 - 0.0.3 - 29.11.2019
   - Fix for loading module from PowerShellGallery
