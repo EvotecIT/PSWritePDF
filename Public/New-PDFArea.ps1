@@ -1,4 +1,5 @@
 ﻿function New-PDFArea {
+    [CmdletBinding()]
     param(
         [iText.Layout.Properties.AreaBreakType] $AreaType = [iText.Layout.Properties.AreaBreakType]::NEXT_AREA,
         [string] $PageSize,
