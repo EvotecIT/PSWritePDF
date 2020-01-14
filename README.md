@@ -9,7 +9,7 @@
   <a href="https://www.powershellgallery.com/packages/PSWritePDF"><img src="https://img.shields.io/powershellgallery/p/PSWritePDF.svg"></a>
   <a href="https://github.com/EvotecIT/PSWritePDF"><img src="https://img.shields.io/github/languages/top/evotecit/PSWritePDF.svg"></a>
   <a href="https://github.com/EvotecIT/PSWritePDF"><img src="https://img.shields.io/github/languages/code-size/evotecit/PSWritePDF.svg"></a>
-  <a href="https://github.com/EvotecIT/PSWritePDF"><img src="https://img.shields.io/powershellgallery/dt/PSWritePDF.svg"></a>
+  <a href="https://www.powershellgallery.com/packages/PSWritePDF"><img src="https://img.shields.io/powershellgallery/dt/PSWritePDF.svg"></a>
 </p>
 
 <p align="center">
@@ -52,11 +52,12 @@ Install-Module PSWritePDF -Force
 
 ## Changelog
 
-- 0.0.6 - Unreleased
+- 0.0.6 - 2020.01.14
   - Fixes
     - [x] Added missing `[CmdletBinding()]`
+    - [x] Fixes New-PDF crash if no FilePath is given (#3)
 
-- 0.0.5 - 28.12.2019
+- 0.0.5 - 2019.12.28
   - Fixes
     - [x] Margins support in multiple scenarios
   - Additional commands
@@ -65,9 +66,9 @@ Install-Module PSWritePDF -Force
     - [x] Close-PDF
   - Updated iText to 7.1.9
 
-- 0.0.4 - 29.11.2019
+- 0.0.4 - 2019.11.29
   - [x] Convert-PDFToText - Fix for resolving paths properly
   - [x] Split-PDF - fix for resolving paths properly
   - [x] Merge-PDF - fix for resolving paths properly
-- 0.0.3 - 29.11.2019
+- 0.0.3 - 2019.11.29
   - Fix for loading module from PowerShellGallery
