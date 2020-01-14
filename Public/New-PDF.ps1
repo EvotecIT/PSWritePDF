@@ -2,7 +2,7 @@
     [CmdletBinding()]
     param(
         [scriptblock] $PDFContent,
-        [string] $FilePath,
+        [Parameter(Mandatory)][string] $FilePath,
         [string] $Version,
 
         [nullable[float]] $MarginLeft,
