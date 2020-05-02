@@ -52,6 +52,12 @@ Install-Module PSWritePDF -Force
 
 ## Changelog
 
+- 0.0.7 - 2020.05.02
+  - Fixes
+    - [x] Fix for UNC paths [#4](https://github.com/EvotecIT/PSWritePDF/issues/4) - tnx sporkabob
+    - [x] Fix for `Split-PDF` not closing source file
+    - [x] Fix for `Convert-PDFToText` not closing source file
+
 - 0.0.6 - 2020.01.14
   - Fixes
     - [x] Added missing `[CmdletBinding()]`
