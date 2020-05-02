@@ -12,7 +12,7 @@
     }
 
     if ($FilePath -and (Test-Path -LiteralPath $FilePath)) {
-        $ResolvedPath = Resolve-Path -LiteralPath $FilePath
+        $ResolvedPath = Convert-Path -LiteralPath $FilePath
         if ($OutputFolder -and (Test-Path -LiteralPath $OutputFolder)) {
             try {
                 $PDFFile = [iText.Kernel.Pdf.PdfReader]::new($ResolvedPath)
@@ -25,6 +25,12 @@
             } catch {
                 $ErrorMessage = $_.Exception.Message
                 Write-Warning "Split-PDF - Error has occured: $ErrorMessage"
+            }
+            try {
+                $PDFFile.Close()
+            } catch {
+                $ErrorMessage = $_.Exception.Message
+                Write-Warning "Split-PDF - Closing document $FilePath failed with error: $ErrorMessage"
             }
         } else {
             Write-Warning "Split-PDF - Destination folder $OutputFolder doesn't exists. Terminating."

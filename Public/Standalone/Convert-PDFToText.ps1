@@ -5,7 +5,7 @@
         [int[]] $Page
     )
     if ($FilePath -and (Test-Path -LiteralPath $FilePath)) {
-        $ResolvedPath = Resolve-Path -LiteralPath $FilePath
+        $ResolvedPath = Convert-Path -LiteralPath $FilePath
         $Source = [iText.Kernel.Pdf.PdfReader]::new($ResolvedPath)
         try {
             [iText.Kernel.Pdf.PdfDocument] $SourcePDF = [iText.Kernel.Pdf.PdfDocument]::new($Source);
@@ -41,7 +41,12 @@
                 }
             }
         }
-
+        try {
+            $SourcePDF.Close()
+        } catch {
+            $ErrorMessage = $_.Exception.Message
+            Write-Warning "Convert-PDFToText - Closing document $FilePath failed with error: $ErrorMessage"
+        }
     } else {
         Write-Warning "Convert-PDFToText - Path $FilePath doesn't exists. Terminating."
     }

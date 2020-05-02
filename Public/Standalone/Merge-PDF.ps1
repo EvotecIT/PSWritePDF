@@ -16,7 +16,7 @@
         }
         foreach ($File in $InputFile) {
             if ($File -and (Test-Path -LiteralPath $File)) {
-                $ResolvedFile = Resolve-Path -LiteralPath $File
+                $ResolvedFile = Convert-Path -LiteralPath $File
                 try {
                     $Source = [iText.Kernel.Pdf.PdfReader]::new($ResolvedFile)
                     [iText.Kernel.Pdf.PdfDocument] $SourcePDF = [iText.Kernel.Pdf.PdfDocument]::new($Source);
