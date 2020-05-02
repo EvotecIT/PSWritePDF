@@ -15,7 +15,7 @@ $Configuration = @{
             # ID used to uniquely identify this module
             GUID                 = '19fcb43c-d8c5-44a9-84e4-bccf29765490'
             # Version number of this module.
-            ModuleVersion        = '0.0.5'
+            ModuleVersion        = '0.0.7'
             # Author of this module
             Author               = 'Przemyslaw Klys'
             # Company or vendor of this module
@@ -135,20 +135,27 @@ $Configuration = @{
         }
     }
     Steps       = @{
-        BuildModule        = @{
+        BuildModule        = @{  # requires Enable to be on to process all of that
             Enable              = $true
             DeleteBefore        = $true
-            LibrarySeparateFile = $true
             Merge               = $true
             MergeMissing        = $true
             Releases            = $true
+            LibrarySeparateFile = $true
+            ReleasesUnpacked    = $false
+            RefreshPSD1Only     = $false
         }
         BuildDocumentation = $false
-        PublishModule      = @{
-            Enabled      = $false
+        ImportModules      = @{
+            Self            = $true
+            RequiredModules = $false
+            Verbose         = $false
+        }
+        PublishModule      = @{  # requires Enable to be on to process all of that
+            Enabled      = $true
             Prerelease   = ''
             RequireForce = $false
-            GitHub       = $false
+            GitHub       = $true
         }
     }
 }
