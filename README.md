@@ -27,6 +27,10 @@ For now, I've divided the module functionality into two categories:
 - [x] Standalone functions such as Split-PDF, Merge-PDF or Convert-PDFtoText
 - [x] Bundled functions working like PSWriteHTML where they are not supposed to be used separately mainly to create PDF files (for now)
 
+To find out more read following blog posts:
+
+- [x] [Merging, splitting and creating PDF files with PowerShell](https://evotec.xyz/merging-splitting-and-creating-pdf-files-with-powershell/)
+
 ## 3rd Party Notices
 
 This PowerShell Module uses [iText 7 Community for .NET](https://github.com/itext/itext7-dotnet) therefore the license needs to be kept the same as iText (or at least I think so). If it isn't so I would be more than happy to release my **PowerShell** code as **MIT license**. I don't intend to modify **iText7** codebase, just using it's **API**. As I'm not an expert on licensing I'm attaching some of articles I found that may make this license terms clearer.
