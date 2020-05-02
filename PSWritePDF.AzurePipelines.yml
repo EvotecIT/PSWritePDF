@@ -26,7 +26,7 @@
 
   - job: Build_PSCore_MacOS1013
     pool:
-      vmImage: xcode9-macos10.13
+      vmImage: macOS-latest
     steps:
       - script: |
           brew update
