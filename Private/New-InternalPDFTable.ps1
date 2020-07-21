@@ -6,7 +6,7 @@
 
     if ($DataTable[0] -is [System.Collections.IDictionary]) {
         [Array] $ColumnNames = 'Name', 'Value' # $DataTable[0].Keys
-        [Array] $TemporaryTable = foreach ($_ in $DataTable2) {
+        [Array] $TemporaryTable = foreach ($_ in $DataTable) {
             $_.GetEnumerator() | Select-Object Name, Value
         }
     } else {
