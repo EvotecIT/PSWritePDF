@@ -59,7 +59,7 @@ Install-Module PSWritePDF -Force
 - 0.0.8 - 2020.7.21
   - Fixes
     - [x] Silly mistake for processing hasthables - tnx Greyland99 [#7](https://github.com/EvotecIT/PSWritePDF/issues/7)
-  - [x] Updates
+  - Updates
     - [x] Module (psm1/ps1/psd1) and all it's DLL's are now signed. Hopefully it won't break anything
 
 - 0.0.7 - 2020.05.02
