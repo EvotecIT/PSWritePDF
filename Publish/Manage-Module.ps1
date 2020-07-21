@@ -15,13 +15,13 @@ $Configuration = @{
             # ID used to uniquely identify this module
             GUID                 = '19fcb43c-d8c5-44a9-84e4-bccf29765490'
             # Version number of this module.
-            ModuleVersion        = '0.0.7'
+            ModuleVersion        = '0.0.8'
             # Author of this module
             Author               = 'Przemyslaw Klys'
             # Company or vendor of this module
             CompanyName          = 'Evotec'
             # Copyright statement for this module
-            Copyright            = '(c) 2011-2019 Przemyslaw Klys. All rights reserved.'
+            Copyright            = "(c) 2011 - $((Get-Date).Year) Przemyslaw Klys @ Evotec. All rights reserved."
             # Description of the functionality provided by this module
             Description          = 'Little project to create, read, modify, split, merge PDF files on Windows, Linux and Mac.'
             # Tags applied to this module. These help with module discovery in online galleries.
@@ -34,7 +34,7 @@ $Configuration = @{
             IconUri              = 'https://evotec.xyz/wp-content/uploads/2019/11/PSWritePDF.png'
 
             RequiredModules      = @(
-                @{ ModuleName = 'PSSharedGoods'; ModuleVersion = "0.0.111"; Guid = 'ee272aa8-baaa-4edf-9f45-b6d6f7d844fe' }
+                @{ ModuleName = 'PSSharedGoods'; ModuleVersion = "Latest"; Guid = 'ee272aa8-baaa-4edf-9f45-b6d6f7d844fe' }
             )
         }
     }
@@ -140,6 +140,7 @@ $Configuration = @{
             DeleteBefore        = $true
             Merge               = $true
             MergeMissing        = $true
+            SignMerged          = $true
             Releases            = $true
             LibrarySeparateFile = $true
             ReleasesUnpacked    = $false
@@ -152,10 +153,10 @@ $Configuration = @{
             Verbose         = $false
         }
         PublishModule      = @{  # requires Enable to be on to process all of that
-            Enabled      = $true
+            Enabled      = $false
             Prerelease   = ''
             RequireForce = $false
-            GitHub       = $true
+            GitHub       = $false
         }
     }
 }
