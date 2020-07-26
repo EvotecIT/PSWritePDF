@@ -17,8 +17,7 @@ class TextWithFontExtractionStategy : iText.Kernel.Pdf.Canvas.Parser.Listener.IT
     [string] $lastFont
     [single] $lastFontSize
 
-
-    RenderText([iText.Kernel.Pdf.Canvas.Parser.Data.TextRenderInfo] $renderInfo) {
+    RenderText([iText.Kernel.Pdf.Canvas.Parser.Data.TexitRenderInfo] $renderInfo) {
         [string] $curFont = $renderInfo.GetFont().PostscriptFontName;
         #//Check if faux bold is used
         if ($renderInfo.GetTextRenderMode() -eq [int][TextRenderMode]::FillThenStrokeText) {
@@ -59,5 +58,11 @@ class TextWithFontExtractionStategy : iText.Kernel.Pdf.Canvas.Parser.Listener.IT
             $this.result.Append("</span>");
         }
         return $this.result.ToString();
+    }
+    [System.Collections.Generic.ICollection[iText.Kernel.Pdf.Canvas.Parser.EventType]] GetSupportedEvents() {
+        return $null
+    }
+    [void] EventOccurred([iText.Kernel.Pdf.Canvas.Parser.Data.IEventData] $data, [iText.Kernel.Pdf.Canvas.Parser.EventType] $type) {
+        return
     }
 }
