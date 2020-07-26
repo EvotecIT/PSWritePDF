@@ -17,7 +17,7 @@ class TextWithFontExtractionStategy : iText.Kernel.Pdf.Canvas.Parser.Listener.IT
     [string] $lastFont
     [single] $lastFontSize
 
-    RenderText([iText.Kernel.Pdf.Canvas.Parser.Data.TexitRenderInfo] $renderInfo) {
+    RenderText([iText.Kernel.Pdf.Canvas.Parser.Data.TextRenderInfo] $renderInfo) {
         [string] $curFont = $renderInfo.GetFont().PostscriptFontName;
         #//Check if faux bold is used
         if ($renderInfo.GetTextRenderMode() -eq [int][TextRenderMode]::FillThenStrokeText) {
