@@ -56,6 +56,8 @@ Install-Module PSWritePDF -Force
 
 ## Changelog
 
+- 0.0.9 - 2020.8.1
+  - [x] Something weird happend and things stopped working on last release for whatever reason
 - 0.0.8 - 2020.7.21
   - Fixes
     - [x] Silly mistake for processing hasthables - tnx Greyland99 [#7](https://github.com/EvotecIT/PSWritePDF/issues/7)
