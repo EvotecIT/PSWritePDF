@@ -1,21 +1,46 @@
-﻿$PSVersionTable.PSVersion
-
-$ModuleName = (Get-ChildItem $PSScriptRoot\*.psd1).BaseName
+﻿$ModuleName = (Get-ChildItem $PSScriptRoot\*.psd1).BaseName
+$PrimaryModule = Get-ChildItem -Path $PSScriptRoot -Filter '*.psd1' -Recurse -ErrorAction SilentlyContinue -Depth 1
+if (-not $PrimaryModule) {
+    throw "Path $PSScriptRoot doesn't contain PSD1 files. Failing tests."
+}
+if ($PrimaryModule.Count -ne 1) {
+    throw 'More than one PSD1 files detected. Failing tests.'
+}
+$PSDInformation = Import-PowerShellDataFile -Path $PrimaryModule.FullName
 $RequiredModules = @(
     'Pester'
-    'PSSharedGoods'
+    'PSWriteColor'
+    $PSDInformation.RequiredModules
 )
-foreach ($_ in $RequiredModules) {
-    if ($null -eq (Get-Module -ListAvailable $_)) {
-        Write-Warning "$ModuleName - Downloading $_ from PSGallery"
-        Install-Module -Name $_ -Repository PSGallery -Force -SkipPublisherCheck
+foreach ($Module in $RequiredModules) {
+    if ($Module -is [System.Collections.IDictionary]) {
+        $Exists = Get-Module -ListAvailable $Module.ModuleName
+        if (-not $Exists) {
+            Write-Warning "$ModuleName - Downloading $($Module.ModuleName) from PSGallery"
+            Install-Module -Name $Module.ModuleName -Force -SkipPublisherCheck
+        }
+    } else {
+        $Exists = Get-Module -ListAvailable $Module
+        if (-not $Exists) {
+            Install-Module -Name $Module -Force -SkipPublisherCheck
+        }
     }
-    Write-Warning "Importing module $_"
-    Import-Module $_ -Force
 }
 
-Import-Module $PSScriptRoot\PSWritePDF.psd1 -Force -Verbose
+Write-Color 'ModuleName: ', $ModuleName, ' Version: ', $PSDInformation.ModuleVersion -Color Yellow, Green, Yellow, Green -LinesBefore 2
+Write-Color 'PowerShell Version: ', $PSVersionTable.PSVersion -Color Yellow, Green
+Write-Color 'PowerShell Edition: ', $PSVersionTable.PSEdition -Color Yellow, Green
+Write-Color 'Required modules: ' -Color Yellow
+foreach ($Module in $PSDInformation.RequiredModules) {
+    if ($Module -is [System.Collections.IDictionary]) {
+        Write-Color '   [>] ', $Module.ModuleName, ' Version: ', $Module.ModuleVersion -Color Yellow, Green, Yellow, Green
+    } else {
+        Write-Color '   [>] ', $Module -Color Yellow, Green
+    }
+}
+Write-Color
 
+Import-Module $PSScriptRoot\*.psd1 -Force
 $result = Invoke-Pester -Script $PSScriptRoot\Tests -Verbose -EnableExit
 
 if ($result.FailedCount -gt 0) {
