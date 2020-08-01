@@ -1,5 +1,5 @@
 ﻿Clear-Host
-Import-Module "C:\Support\GitHub\PSPublishModule\PSPublishModule.psm1" -Force
+Import-Module 'C:\Support\GitHub\PSPublishModule\PSPublishModule.psm1' -Force
 
 $Configuration = @{
     Information = @{
@@ -15,7 +15,7 @@ $Configuration = @{
             # ID used to uniquely identify this module
             GUID                 = '19fcb43c-d8c5-44a9-84e4-bccf29765490'
             # Version number of this module.
-            ModuleVersion        = '0.0.8'
+            ModuleVersion        = '0.0.X'
             # Author of this module
             Author               = 'Przemyslaw Klys'
             # Company or vendor of this module
@@ -34,7 +34,7 @@ $Configuration = @{
             IconUri              = 'https://evotec.xyz/wp-content/uploads/2019/11/PSWritePDF.png'
 
             RequiredModules      = @(
-                @{ ModuleName = 'PSSharedGoods'; ModuleVersion = "Latest"; Guid = 'ee272aa8-baaa-4edf-9f45-b6d6f7d844fe' }
+                @{ ModuleName = 'PSSharedGoods'; ModuleVersion = 'Latest'; Guid = 'ee272aa8-baaa-4edf-9f45-b6d6f7d844fe' }
             )
         }
     }
@@ -153,10 +153,10 @@ $Configuration = @{
             Verbose         = $false
         }
         PublishModule      = @{  # requires Enable to be on to process all of that
-            Enabled      = $true
+            Enabled      = $false
             Prerelease   = ''
             RequireForce = $false
-            GitHub       = $true
+            GitHub       = $false
         }
     }
 }
