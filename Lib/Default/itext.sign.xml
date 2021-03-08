@@ -405,15 +405,15 @@
         </member>
         <member name="M:iText.Signatures.CrlClientOnline.#ctor(System.String[])">
             <summary>Creates a CrlClientOnline instance using one or more URLs.</summary>
-            <param name="crls"/>
+            <param name="crls">the CRLs as Strings</param>
         </member>
         <member name="M:iText.Signatures.CrlClientOnline.#ctor(System.Uri[])">
             <summary>Creates a CrlClientOnline instance using one or more URLs.</summary>
-            <param name="crls"/>
+            <param name="crls">the CRLs as URLs</param>
         </member>
         <member name="M:iText.Signatures.CrlClientOnline.#ctor(Org.BouncyCastle.X509.X509Certificate[])">
             <summary>Creates a CrlClientOnline instance using a certificate chain.</summary>
-            <param name="chain"/>
+            <param name="chain">a certificate chain</param>
         </member>
         <member name="M:iText.Signatures.CrlClientOnline.GetEncoded(Org.BouncyCastle.X509.X509Certificate,System.String)">
             <summary>Fetches the CRL bytes from an URL.</summary>
@@ -846,7 +846,7 @@
         </member>
         <member name="M:iText.Signatures.LtvVerifier.SetVerifyRootCertificate(System.Boolean)">
             <summary>Set the verifyRootCertificate to false if you can't verify the root certificate.</summary>
-            <param name="verifyRootCertificate"/>
+            <param name="verifyRootCertificate">false if you can't verify the root certificate, otherwise true</param>
         </member>
         <member name="M:iText.Signatures.LtvVerifier.SetEventCountingMetaInfo(iText.Kernel.Counter.Event.IMetaInfo)">
             <summary>
@@ -860,10 +860,24 @@
         </member>
         <member name="M:iText.Signatures.LtvVerifier.Verify(System.Collections.Generic.IList{iText.Signatures.VerificationOK})">
             <summary>Verifies all the document-level timestamps and all the signatures in the document.</summary>
-            <param name="result"/>
+            <param name="result">
+            a list of
+            <see cref="T:iText.Signatures.VerificationOK"/>
+            objects
+            </param>
+            <returns>
+            a list of all
+            <see cref="T:iText.Signatures.VerificationOK"/>
+            objects after verification
+            </returns>
         </member>
         <member name="M:iText.Signatures.LtvVerifier.VerifySignature">
             <summary>Verifies a document level timestamp.</summary>
+            <returns>
+            a list of
+            <see cref="T:iText.Signatures.VerificationOK"/>
+            objects
+            </returns>
         </member>
         <member name="M:iText.Signatures.LtvVerifier.VerifyChain(Org.BouncyCastle.X509.X509Certificate[])">
             <summary>
@@ -1552,8 +1566,14 @@
             <returns>the timestamp token or null</returns>
         </member>
         <member name="M:iText.Signatures.PdfPKCS7.GetTimeStampDate">
-            <summary>Gets the timestamp date</summary>
-            <returns>a date</returns>
+            <summary>Gets the timestamp date.</summary>
+            <remarks>
+            Gets the timestamp date.
+            In case the signed document doesn't contain timestamp,
+            <see cref="F:iText.Signatures.TimestampConstants.UNDEFINED_TIMESTAMP_DATE"/>
+            will be returned.
+            </remarks>
+            <returns>the timestamp date</returns>
         </member>
         <member name="M:iText.Signatures.PdfPKCS7.GetFilterSubtype">
             <summary>Returns the filter subtype.</summary>
@@ -2057,7 +2077,7 @@
             <see cref="T:iText.Signatures.PdfSignatureApp"/>
             dictionary.
             </summary>
-            <param name="name"/>
+            <param name="name">the signature creator's name to be set</param>
         </member>
         <member name="M:iText.Signatures.PdfSignatureBuildProperties.GetPdfSignatureAppProperty">
             <summary>
@@ -2483,7 +2503,7 @@
         </member>
         <member name="M:iText.Signatures.PdfSigner.GetUnderlyingSource">
             <summary>Returns the underlying source.</summary>
-            <returns>The underlying source</returns>
+            <returns>the underlying source</returns>
         </member>
         <member name="M:iText.Signatures.PdfSigner.AddDocMDP(iText.Signatures.PdfSignature)">
             <summary>Adds keys to the signature dictionary that define the certification level and the permissions.</summary>
@@ -2500,7 +2520,11 @@
             This method is only used for signatures that lock fields.
             </remarks>
             <param name="crypto">the signature dictionary</param>
-            <param name="fieldLock"/>
+            <param name="fieldLock">
+            the
+            <see cref="T:iText.Forms.PdfSigFieldLock"/>
+            instance specified the field lock to be set
+            </param>
         </member>
         <member name="M:iText.Signatures.PdfSigner.GetWidgetRectangle(iText.Kernel.Pdf.Annot.PdfWidgetAnnotation)">
             <summary>Get the rectangle associated to the provided widget.</summary>
@@ -2837,6 +2861,13 @@
              </summary>
              <param name="cert"></param>
              <returns></returns>
+        </member>
+        <member name="F:iText.Signatures.TimestampConstants.UNDEFINED_TIMESTAMP_DATE">
+            <summary>The timestamp which is returned in case the signed document doesn't contain timestamp.</summary>
+            <remarks>
+            The timestamp which is returned in case the signed document doesn't contain timestamp.
+            The constant's value is different in Java and .NET.
+            </remarks>
         </member>
         <member name="T:iText.Signatures.TSAClientBouncyCastle">
             <summary>

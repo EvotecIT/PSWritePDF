@@ -1298,6 +1298,14 @@
         <member name="F:iText.Barcodes.BarcodeMSI.BARS_PER_CHARACTER">
             <summary>The number of individual bars either drawn or not drawn per character of the <c>code</c></summary>
         </member>
+        <member name="F:iText.Barcodes.BarcodeMSI.BARS_FOR_START">
+            <summary>The number of individual bars either drawn or not drawn for the start character in the BarcodeMSI.
+                </summary>
+        </member>
+        <member name="F:iText.Barcodes.BarcodeMSI.BARS_FOR_STOP">
+            <summary>The number of individual bars either drawn or not drawn for the stop character in the BarcodeMSI.
+                </summary>
+        </member>
         <member name="M:iText.Barcodes.BarcodeMSI.#ctor(iText.Kernel.Pdf.PdfDocument)">
             <summary>Creates a new BarcodeMSI.</summary>
             <remarks>

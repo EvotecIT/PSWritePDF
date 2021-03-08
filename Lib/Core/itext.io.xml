@@ -1254,21 +1254,28 @@
         <member name="M:iText.IO.Codec.TIFFDirectory.IsBigEndian">
             <summary>
             Returns a boolean indicating whether the byte order used in the
-            the TIFF file is big-endian (i.e. whether the byte order is from
+            TIFF file is big-endian (i.e. whether the byte order is from
             the most significant to the least significant)
             </summary>
+            <returns>
+            
+            <see langword="true"/>
+            if the byte order used in the TIFF file is big-endian
+            </returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFDirectory.GetIFDOffset">
-            <summary>
-            Returns the offset of the IFD corresponding to this
-            <c>TIFFDirectory</c>.
-            </summary>
+            <summary>Returns the offset of the IFD corresponding to this <c>TIFFDirectory</c>.</summary>
+            <returns>the offset of the IFD corresponding to this <c>TIFFDirectory</c>.</returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFDirectory.GetNextIFDOffset">
             <summary>
             Returns the offset of the next IFD after the IFD corresponding to this
             <c>TIFFDirectory</c>.
             </summary>
+            <returns>
+            the offset of the next IFD after the IFD corresponding to this
+            <c>TIFFDirectory</c>.
+            </returns>
         </member>
         <member name="T:iText.IO.Codec.TIFFFaxDecoder">
             <summary>Class that can decode TIFF files.</summary>
@@ -1433,10 +1440,10 @@
             </tr>
             </table>
             </remarks>
-            <param name="tag">The tag</param>
-            <param name="type"/>
-            <param name="count"/>
-            <param name="data"/>
+            <param name="tag">the tag number</param>
+            <param name="type">the tag type</param>
+            <param name="count">the number of data items present in the field</param>
+            <param name="data">the field data</param>
         </member>
         <member name="M:iText.IO.Codec.TIFFField.GetTag">
             <summary>Returns the tag number</summary>
@@ -1494,6 +1501,7 @@
             <para /> A ClassCastException will be thrown if the field is not
             of type TIFF_SSHORT.
             </remarks>
+            <returns>TIFF_SSHORT data as an array of shorts (signed 16-bit integers).</returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFField.GetAsInts">
             <summary>
@@ -1506,6 +1514,7 @@
             <para /> A ClassCastException will be thrown if the field is not
             of type TIFF_SLONG.
             </remarks>
+            <returns>TIFF_SLONG data as an array of ints (signed 32-bit integers).</returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFField.GetAsLongs">
             <summary>
@@ -1518,6 +1527,7 @@
             <para /> A ClassCastException will be thrown if the field is not
             of type TIFF_LONG.
             </remarks>
+            <returns>TIFF_LONG data as an array of longs (signed 64-bit integers).</returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFField.GetAsFloats">
             <summary>Returns TIFF_FLOAT data as an array of floats.</summary>
@@ -1526,6 +1536,7 @@
             <para /> A ClassCastException will be thrown if the field is not
             of type TIFF_FLOAT.
             </remarks>
+            <returns>TIFF_FLOAT data as an array of floats.</returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFField.GetAsDoubles">
             <summary>Returns TIFF_DOUBLE data as an array of doubles.</summary>
@@ -1534,6 +1545,7 @@
             <para /> A ClassCastException will be thrown if the field is not
             of type TIFF_DOUBLE.
             </remarks>
+            <returns>TIFF_DOUBLE data as an array of doubles.</returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFField.GetAsStrings">
             <summary>Returns TIFF_ASCII data as an array of strings.</summary>
@@ -1542,6 +1554,7 @@
             <para /> A ClassCastException will be thrown if the field is not
             of type TIFF_ASCII.
             </remarks>
+            <returns>TIFF_ASCII data as an array of strings.</returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFField.GetAsSRationals">
             <summary>Returns TIFF_SRATIONAL data as an array of 2-element arrays of ints.</summary>
@@ -1550,6 +1563,7 @@
             <para /> A ClassCastException will be thrown if the field is not
             of type TIFF_SRATIONAL.
             </remarks>
+            <returns>TIFF_SRATIONAL data as an array of 2-element arrays of ints.</returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFField.GetAsRationals">
             <summary>Returns TIFF_RATIONAL data as an array of 2-element arrays of longs.</summary>
@@ -1558,6 +1572,7 @@
             <para /> A ClassCastException will be thrown if the field is not
             of type TIFF_RATTIONAL.
             </remarks>
+            <returns>TIFF_RATIONAL data as an array of 2-element arrays of longs.</returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFField.GetAsInt(System.Int32)">
             <summary>
@@ -1576,6 +1591,10 @@
             TIFF_SSHORT, or TIFF_SLONG.
             </remarks>
             <param name="index">The index</param>
+            <returns>
+            data in TIFF_BYTE, TIFF_SBYTE, TIFF_UNDEFINED, TIFF_SHORT, TIFF_SSHORT,
+            or TIFF_SLONG format as an int.
+            </returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFField.GetAsLong(System.Int32)">
             <summary>
@@ -1594,25 +1613,30 @@
             TIFF_SSHORT, TIFF_SLONG, or TIFF_LONG.
             </remarks>
             <param name="index">The index</param>
+            <returns>
+            data in TIFF_BYTE, TIFF_SBYTE, TIFF_UNDEFINED, TIFF_SHORT, TIFF_SSHORT, TIFF_SLONG,
+            or TIFF_LONG format as a long.
+            </returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFField.GetAsFloat(System.Int32)">
             <summary>Returns data in any numerical format as a float.</summary>
             <remarks>
-            Returns data in any numerical format as a float.  Data in
+            Returns data in any numerical format as a float. Data in
             TIFF_SRATIONAL or TIFF_RATIONAL format are evaluated by
             dividing the numerator into the denominator using
             double-precision arithmetic and then truncating to single
-            precision.  Data in TIFF_SLONG, TIFF_LONG, or TIFF_DOUBLE
+            precision. Data in TIFF_SLONG, TIFF_LONG, or TIFF_DOUBLE
             format may suffer from truncation.
             <para /> A ClassCastException will be thrown if the field is
             of type TIFF_UNDEFINED or TIFF_ASCII.
             </remarks>
             <param name="index">The index</param>
+            <returns>data in any numerical format as a float.</returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFField.GetAsDouble(System.Int32)">
-            <summary>Returns data in any numerical format as a float.</summary>
+            <summary>Returns data in any numerical format as a double.</summary>
             <remarks>
-            Returns data in any numerical format as a float.  Data in
+            Returns data in any numerical format as a double. Data in
             TIFF_SRATIONAL or TIFF_RATIONAL format are evaluated by
             dividing the numerator into the denominator using
             double-precision arithmetic.
@@ -1620,6 +1644,7 @@
             type TIFF_UNDEFINED or TIFF_ASCII.
             </remarks>
             <param name="index">The index</param>
+            <returns>data in any numerical format as a double.</returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFField.GetAsString(System.Int32)">
             <summary>Returns a TIFF_ASCII data item as a String.</summary>
@@ -1629,6 +1654,7 @@
             of type TIFF_ASCII.
             </remarks>
             <param name="index">The index</param>
+            <returns>a TIFF_ASCII data item as a String.</returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFField.GetAsSRational(System.Int32)">
             <summary>
@@ -1642,6 +1668,7 @@
             of type TIFF_SRATIONAL.
             </remarks>
             <param name="index">The index</param>
+            <returns>a TIFF_SRATIONAL data item as a two-element array of ints.</returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFField.GetAsRational(System.Int32)">
             <summary>
@@ -1655,6 +1682,7 @@
             of type TIFF_RATIONAL.
             </remarks>
             <param name="index">The index</param>
+            <returns>a TIFF_RATIONAL data item as a two-element array of ints</returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFField.CompareTo(iText.IO.Codec.TIFFField)">
             <summary>
@@ -1673,30 +1701,35 @@
         </member>
         <member name="M:iText.IO.Codec.TIFFLZWDecoder.Decode(System.Byte[],System.Byte[],System.Int32)">
             <summary>Method to decode LZW compressed data.</summary>
-            <param name="data">The compressed data.</param>
-            <param name="uncompData">Array to return the uncompressed data in.</param>
-            <param name="h">The number of rows the compressed data contains.</param>
+            <param name="data">The compressed data</param>
+            <param name="uncompData">Array to return the uncompressed data in</param>
+            <param name="h">The number of rows the compressed data contains</param>
+            <returns>The decoded data</returns>
         </member>
         <member name="M:iText.IO.Codec.TIFFLZWDecoder.InitializeStringTable">
             <summary>Initialize the string table.</summary>
         </member>
         <member name="M:iText.IO.Codec.TIFFLZWDecoder.WriteString(System.Byte[])">
             <summary>Write out the string just uncompressed.</summary>
-            <param name="str"/>
+            <param name="str">the byte string for uncompressed write out</param>
         </member>
         <member name="M:iText.IO.Codec.TIFFLZWDecoder.AddStringToTable(System.Byte[],System.Byte)">
             <summary>Add a new string to the string table.</summary>
-            <param name="oldString"/>
-            <param name="newString"/>
+            <param name="oldString">
+            the byte string at the end of which the new string
+            will be written and which will be added to the string table
+            </param>
+            <param name="newString">the byte to be written to the end of the old string</param>
         </member>
         <member name="M:iText.IO.Codec.TIFFLZWDecoder.AddStringToTable(System.Byte[])">
             <summary>Add a new string to the string table.</summary>
-            <param name="str"/>
+            <param name="str">the byte string which will be added to the string table</param>
         </member>
         <member name="M:iText.IO.Codec.TIFFLZWDecoder.ComposeString(System.Byte[],System.Byte)">
             <summary>Append <c>newString</c> to the end of <c>oldString</c>.</summary>
-            <param name="oldString"/>
-            <param name="newString"/>
+            <param name="oldString">the byte string at the end of which the new string will be written</param>
+            <param name="newString">the byte to be written to the end of the old string</param>
+            <returns>the byte string which is the sum of the new string and the old string</returns>
         </member>
         <member name="T:iText.IO.Codec.TiffWriter">
             <summary>Exports images as TIFF.</summary>
@@ -1781,20 +1814,23 @@
             <summary>List items for the linked list that builds the new CID font.</summary>
         </member>
         <member name="M:iText.IO.Font.CFFFont.Item.Increment(System.Int32[])">
-            <summary>remember the current offset and increment by item's size in bytes.</summary>
+            <summary>Remember the current offset and increment by item's size in bytes.</summary>
+            <param name="currentOffset">increment offset by item's size</param>
         </member>
         <member name="M:iText.IO.Font.CFFFont.Item.Emit(System.Byte[])">
             <summary>Emit the byte stream for this item.</summary>
+            <param name="buffer">byte array</param>
         </member>
         <member name="M:iText.IO.Font.CFFFont.Item.Xref">
             <summary>Fix up cross references to this item (applies only to markers).</summary>
         </member>
         <member name="M:iText.IO.Font.CFFFont.OffsetItem.Set(System.Int32)">
-            <summary>set the value of an offset item that was initially unknown.</summary>
+            <summary>Set the value of an offset item that was initially unknown.</summary>
             <remarks>
-            set the value of an offset item that was initially unknown.
+            Set the value of an offset item that was initially unknown.
             It will be fixed up latex by a call to xref on some marker.
             </remarks>
+            <param name="offset">offset to set</param>
         </member>
         <member name="T:iText.IO.Font.CFFFont.RangeItem">
             <summary>A range item.</summary>
@@ -1866,7 +1902,8 @@
             a PDF restriction) and to subset the CharStrings glyph
             description.
             </remarks>
-            <param name="fontName"/>
+            <param name="fontName">name of the font</param>
+            <returns>byte array represents the CID font</returns>
         </member>
         <member name="F:iText.IO.Font.CFFFont.buf">
             <summary>A random Access File or an array</summary>
@@ -1999,7 +2036,7 @@
             <returns>The calculated Bias</returns>
         </member>
         <member name="M:iText.IO.Font.CFFFontSubset.BuildNewCharString(System.Int32)">
-            <summary>Function uses BuildNewIndex to create the new index of the subset charstrings</summary>
+            <summary>Function uses BuildNewIndex to create the new index of the subset charstrings.</summary>
             <param name="FontIndex">the font</param>
         </member>
         <member name="M:iText.IO.Font.CFFFontSubset.BuildNewLGSubrs(System.Int32)">
@@ -2050,9 +2087,9 @@
             <param name="end">the end point of the subr</param>
             <param name="GBias">the bias of the Global Subrs</param>
             <param name="LBias">the bias of the Local Subrs</param>
-            <param name="hSubr">the Map for the lSubrs</param>
-            <param name="lSubr">the list for the lSubrs</param>
-            <param name="LSubrsOffsets"/>
+            <param name="hSubr">the subroutines used as set</param>
+            <param name="lSubr">the subroutines used as list</param>
+            <param name="LSubrsOffsets">the offsets array of the subroutines</param>
         </member>
         <member name="M:iText.IO.Font.CFFFontSubset.HandelStack">
             <summary>
@@ -2266,9 +2303,11 @@
             <author>psoares</author>
         </member>
         <member name="M:iText.IO.Font.Cmap.CMapByteCid.DecodeSequence(System.Byte[],System.Int32,System.Int32)">
-            <param name="cidBytes"/>
-            <param name="offset"/>
-            <param name="length"/>
+            <summary>Decode byte sequence.</summary>
+            <param name="cidBytes">byteCodeBytes</param>
+            <param name="offset">number of bytes to skip before starting to return chars from the sequence</param>
+            <param name="length">number of bytes to process</param>
+            <returns>string that contains decoded representation of the given sequence</returns>
         </member>
         <member name="T:iText.IO.Font.Cmap.CMapCidByte">
             <author>psoares</author>
@@ -2278,6 +2317,11 @@
             Returns a list containing sequential pairs of code space beginning and endings:
             (begincodespacerange1, endcodespacerange1, begincodespacerange2, endcodespacerange1, ...)
             </summary>
+            <returns>
+            list of
+            <c>byte[]</c>
+            that contain code space ranges
+            </returns>
         </member>
         <member name="T:iText.IO.Font.Cmap.CMapCidUni">
             <author>psoares</author>
@@ -2670,6 +2714,7 @@
         </member>
         <member name="M:iText.IO.Font.FontEncoding.CreateFontSpecificEncoding">
             <summary>This encoding will base on font encoding (FontSpecific encoding in Type 1 terminology)</summary>
+            <returns>created font specific encoding</returns>
         </member>
         <member name="M:iText.IO.Font.FontEncoding.GetUnicode(System.Int32)">
             <summary>Gets unicode value for corresponding font's char code.</summary>
@@ -2806,7 +2851,7 @@
             <para />
             <see cref="T:iText.IO.Font.Constants.FontMacStyleFlags"/>
             </remarks>
-            <param name="macStyle"/>
+            <param name="macStyle">macStyle flag</param>
         </member>
         <member name="F:iText.IO.Font.FontProgram.encodingScheme">
             <summary>The font's encoding name.</summary>
@@ -3519,16 +3564,22 @@
             </remarks>
             <returns>a <c>HashMap</c> representing this map</returns>
         </member>
-        <member name="M:iText.IO.Font.Otf.ContextualSubstRule.GetContextLength">
-            <returns>length of the context glyph sequence defined by this rule.</returns>
-        </member>
-        <member name="M:iText.IO.Font.Otf.ContextualSubstRule.GetSubstLookupRecords">
+        <member name="M:iText.IO.Font.Otf.ContextualPositionRule.GetPosLookupRecords">
+            <summary>Retrieves the position lookup records.</summary>
+            <remarks>
+            Retrieves the position lookup records. Each record specifies a position in the context glyph
+            sequence and a LookupListIndex to the position lookup that is applied at that position.
+            </remarks>
             <returns>
-            an array of <c>SubstLookupRecord</c>. Each record specifies a position in the context glyph
-            sequence and a LookupListIndex to the substitution lookup that is applied at that position.
+            an array of
+            <see cref="T:iText.IO.Font.Otf.PosLookupRecord"/>.
             </returns>
         </member>
-        <member name="M:iText.IO.Font.Otf.ContextualSubstRule.IsGlyphMatchesInput(System.Int32,System.Int32)">
+        <member name="M:iText.IO.Font.Otf.ContextualRule.GetContextLength">
+            <summary>Gets the length of the context glyph sequence defined by this rule</summary>
+            <returns>length of the context</returns>
+        </member>
+        <member name="M:iText.IO.Font.Otf.ContextualRule.IsGlyphMatchesInput(System.Int32,System.Int32)">
             <summary>Checks if glyph line element matches element from input sequence of the rule.</summary>
             <remarks>
             Checks if glyph line element matches element from input sequence of the rule.
@@ -3536,52 +3587,93 @@
             NOTE: rules do not contain the first element of the input sequence, the first element is defined by rule
             position in substitution table. Therefore atIdx shall not be 0.
             </remarks>
-            <param name="glyphId"/>
-            <param name="atIdx">index in the rule sequence. Shall be: 0 &lt; atIdx &lt; ContextualSubstRule.getContextLength().
-                </param>
+            <param name="glyphId">glyph code id</param>
+            <param name="atIdx">
+            index in the rule sequence. Shall be: 0 &lt; atIdx &lt;
+            <see cref="M:iText.IO.Font.Otf.ContextualRule.GetContextLength"/>
+            </param>
+            <returns>
+            
+            <see langword="true"/>
+            if glyph matches element
+            </returns>
         </member>
-        <member name="M:iText.IO.Font.Otf.ContextualSubstRule.GetLookaheadContextLength">
-            <returns>length of the lookahead context glyph sequence defined by this rule.</returns>
+        <member name="M:iText.IO.Font.Otf.ContextualRule.GetLookaheadContextLength">
+            <summary>Gets the length of the lookahead context glyph sequence defined by this rule</summary>
+            <returns>length of the lookahead context</returns>
         </member>
-        <member name="M:iText.IO.Font.Otf.ContextualSubstRule.GetBacktrackContextLength">
-            <returns>length of the backtrack context glyph sequence defined by this rule.</returns>
+        <member name="M:iText.IO.Font.Otf.ContextualRule.GetBacktrackContextLength">
+            <summary>Gets the length of the backtrack context glyph sequence defined by this rule</summary>
+            <returns>length of the backtrack context</returns>
         </member>
-        <member name="M:iText.IO.Font.Otf.ContextualSubstRule.IsGlyphMatchesLookahead(System.Int32,System.Int32)">
+        <member name="M:iText.IO.Font.Otf.ContextualRule.IsGlyphMatchesLookahead(System.Int32,System.Int32)">
             <summary>Checks if glyph line element matches element from lookahead sequence of the rule.</summary>
-            <param name="glyphId"/>
-            <param name="atIdx">index in rule sequence. Shall be: 0 &lt;= atIdx &lt; ContextualSubstRule.getLookaheadContextLength().
-                </param>
+            <param name="glyphId">glyph code id</param>
+            <param name="atIdx">
+            index in rule sequence. Shall be: 0 &lt;= atIdx &lt;
+            <see cref="M:iText.IO.Font.Otf.ContextualRule.GetLookaheadContextLength"/>
+            </param>
+            <returns>
+            
+            <see langword="true"/>
+            if glyph matches element from lookahead sequence
+            </returns>
         </member>
-        <member name="M:iText.IO.Font.Otf.ContextualSubstRule.IsGlyphMatchesBacktrack(System.Int32,System.Int32)">
+        <member name="M:iText.IO.Font.Otf.ContextualRule.IsGlyphMatchesBacktrack(System.Int32,System.Int32)">
             <summary>Checks if glyph line element matches element from backtrack sequence of the rule.</summary>
-            <param name="glyphId"/>
-            <param name="atIdx">index in rule sequence. Shall be: 0 &lt;= atIdx &lt; ContextualSubstRule.getBacktrackContextLength().
-                </param>
+            <param name="glyphId">glyph code id</param>
+            <param name="atIdx">
+            index in rule sequence. Shall be: 0 &lt;= atIdx &lt;
+            <see cref="M:iText.IO.Font.Otf.ContextualRule.GetBacktrackContextLength"/>
+            </param>
+            <returns>
+            
+            <see langword="true"/>
+            if glyph matches element from backtrack sequence
+            </returns>
         </member>
-        <member name="M:iText.IO.Font.Otf.ContextualSubTable.GetMatchingContextRule(iText.IO.Font.Otf.GlyphLine)">
+        <member name="M:iText.IO.Font.Otf.ContextualSubstRule.GetSubstLookupRecords">
+            <summary>Retrieves the substitution lookup records.</summary>
+            <remarks>
+            Retrieves the substitution lookup records. Each record specifies a position in the context glyph
+            sequence and a LookupListIndex to the substitution lookup that is applied at that position.
+            </remarks>
+            <returns>
+            an array of
+            <see cref="T:iText.IO.Font.Otf.SubstLookupRecord"/>.
+            </returns>
+        </member>
+        <member name="M:iText.IO.Font.Otf.ContextualTable`1.GetMatchingContextRule(iText.IO.Font.Otf.GlyphLine)">
             <summary>Gets a most preferable context rule that matches the line at current position.</summary>
             <remarks>
-            Gets a most preferable context rule that matches the line at current position. If no matching context rule is found,
-            it returns null.
+            Gets a most preferable context rule that matches the line at current position. If no matching context rule is
+            found, it returns <c>null</c>.
             <br /><br />
-            NOTE: if matching context rule is found, the <c>GlyphLine.start</c> and <c>GlyphLine.end</c> will be
-            changed in such way, that they will point at start and end of the matching context glyph sequence inside the glyph line.
+            NOTE: if matching context rule is found, the <c>GlyphLine.start</c> and <c>GlyphLine.end</c>
+            will be changed in such way that they will point at start and end of the matching context glyph sequence
+            inside the glyph line.
             </remarks>
             <param name="line">a line, which is to be checked if it matches some context.</param>
             <returns>matching context rule or null, if none was found.</returns>
         </member>
-        <member name="M:iText.IO.Font.Otf.ContextualSubTable.GetSetOfRulesForStartGlyph(System.Int32)">
+        <member name="M:iText.IO.Font.Otf.ContextualTable`1.GetSetOfRulesForStartGlyph(System.Int32)">
             <summary>Gets a set of rules, which start with given glyph id.</summary>
-            <param name="startId">id of the first glyph in the sequence.</param>
-        </member>
-        <member name="M:iText.IO.Font.Otf.ContextualSubTable.CheckIfContextMatch(iText.IO.Font.Otf.GlyphLine,iText.IO.Font.Otf.ContextualSubstRule)">
-            <summary>Checks if given glyph line at the given position matches given rule.</summary>
+            <param name="startId">id of the first glyph in the sequence</param>
             <returns>
-            either index which corresponds to the last glyph of the matching context inside the glyph line if context matches,
-            or -1 if context doesn't match.
+            a list of
+            <see cref="T:iText.IO.Font.Otf.ContextualSubstRule"/>
+            instances. The list will be empty if there are no rules
+            that start with a given glyph id
             </returns>
-            <param name="line"/>
-            <param name="rule"/>
+        </member>
+        <member name="M:iText.IO.Font.Otf.ContextualTable`1.CheckIfContextMatch(iText.IO.Font.Otf.GlyphLine,`0)">
+            <summary>Checks if given glyph line matches given rule.</summary>
+            <param name="line">glyph line to be checked</param>
+            <param name="rule">rule to be compared with a given glyph line</param>
+            <returns>
+            either index which corresponds to the last glyph of the matching context inside the glyph line
+            if context matches, or -1 if context doesn't match
+            </returns>
         </member>
         <member name="T:iText.IO.Font.Otf.FeatureRecord">
             <author>psoares</author>
@@ -3742,6 +3834,9 @@
             </remarks>
             <author><a href="mailto:paawak@gmail.com">Palash Ray</a></author>
         </member>
+        <member name="T:iText.IO.Font.Otf.GposLookupType1">
+            <summary>Lookup Type 1: Single Adjustment Positioning Subtable</summary>
+        </member>
         <member name="T:iText.IO.Font.Otf.GposLookupType2">
             <summary>
             Lookup Type 2:
@@ -3764,6 +3859,12 @@
             <summary>
             Lookup Type 6:
             MarkToMark Attachment Positioning Subtable
+            </summary>
+        </member>
+        <member name="T:iText.IO.Font.Otf.GposLookupType7">
+            <summary>
+            Lookup Type 7:
+            Contextual Positioning Subtables
             </summary>
         </member>
         <member name="T:iText.IO.Font.Otf.GsubLookupType1">
@@ -3794,6 +3895,17 @@
         <member name="T:iText.IO.Font.Otf.GsubLookupType6">
             <summary>LookupType 6: Chaining Contextual Substitution Subtable</summary>
         </member>
+        <member name="T:iText.IO.Font.Otf.LanguageTags">
+            <summary>Constants corresponding to language tags in the OTF specification.</summary>
+            <remarks>
+            Constants corresponding to language tags in the OTF specification.
+            Extracted from the specification, as published by Microsoft
+            <a href="https://docs.microsoft.com/en-us/typography/opentype/spec/languagetags">here</a>.
+            Note that tags in OTF always consist of exactly 4 bytes. Shorter
+            identifiers are padded with spaces as necessary.
+            </remarks>
+            <author><a href="mailto:matthias.valvekens@itextpdf.com">Matthias Valvekens</a></author>
+        </member>
         <member name="T:iText.IO.Font.Otf.Lookuptype5.SubTableLookup5Format1">
             <summary>Contextual Substitution Subtable: Simple context glyph substitution</summary>
         </member>
@@ -3805,14 +3917,16 @@
         </member>
         <member name="M:iText.IO.Font.Otf.Lookuptype6.SubTableLookup6.CheckIfLookaheadContextMatch(iText.IO.Font.Otf.GlyphLine,iText.IO.Font.Otf.ContextualSubstRule,System.Int32)">
             <summary>Checks if given glyph line at the given position matches given rule.</summary>
-            <param name="line"/>
-            <param name="rule"/>
-            <param name="startIdx"/>
+            <param name="line">glyph line to be checked</param>
+            <param name="rule">rule to be compared with a given line</param>
+            <param name="startIdx">glyph line position</param>
+            <returns>true if given glyph line at the given position matches given rule</returns>
         </member>
         <member name="M:iText.IO.Font.Otf.Lookuptype6.SubTableLookup6.CheckIfBacktrackContextMatch(iText.IO.Font.Otf.GlyphLine,iText.IO.Font.Otf.ContextualSubstRule)">
             <summary>Checks if given glyph line at the given position matches given rule.</summary>
-            <param name="line"/>
-            <param name="rule"/>
+            <param name="line">glyph line to be checked</param>
+            <param name="rule">rule to be compared with a given line</param>
+            <returns>true if given glyph line matches given rule</returns>
         </member>
         <member name="T:iText.IO.Font.Otf.Lookuptype6.SubTableLookup6Format1">
             <summary>Chaining Contextual Substitution Subtable: Simple Chaining Context Glyph Substitution</summary>
@@ -4055,6 +4169,7 @@
             The offset from the start of the file to the table directory.
             It is 0 for TTF and may vary for TTC depending on the chosen font.
             </remarks>
+            <returns>directory Offset</returns>
         </member>
         <member name="M:iText.IO.Font.TrueTypeFont.GetCodePagesSupported">
             <summary>Gets the code pages supported by the font.</summary>
@@ -4199,6 +4314,40 @@
             By default limits size to kDefaultMaxSize.
             </remarks>
         </member>
+        <member name="M:iText.IO.Image.BmpImageData.#ctor(System.Uri,System.Boolean)">
+            <summary>
+            Creates instance of
+            <see cref="T:iText.IO.Image.BmpImageData"/>
+            </summary>
+            <param name="url">url of the image</param>
+            <param name="noHeader">indicates that the source image does not have a header</param>
+        </member>
+        <member name="M:iText.IO.Image.BmpImageData.#ctor(System.Uri,System.Boolean,System.Int32)">
+            <summary>
+            Creates instance of
+            <see cref="T:iText.IO.Image.BmpImageData"/>
+            </summary>
+            <param name="url">url of the image</param>
+            <param name="noHeader">indicates that the source image does not have a header</param>
+            <param name="size">the size of the image (length of the byte array)</param>
+        </member>
+        <member name="M:iText.IO.Image.BmpImageData.#ctor(System.Byte[],System.Boolean)">
+            <summary>
+            Creates instance of
+            <see cref="T:iText.IO.Image.BmpImageData"/>
+            </summary>
+            <param name="bytes">contents of the image</param>
+            <param name="noHeader">indicates that the source image does not have a header</param>
+        </member>
+        <member name="M:iText.IO.Image.BmpImageData.#ctor(System.Byte[],System.Boolean,System.Int32)">
+            <summary>
+            Creates instance of
+            <see cref="T:iText.IO.Image.BmpImageData"/>
+            </summary>
+            <param name="bytes">contents of the image</param>
+            <param name="noHeader">indicates that the source image does not have a header</param>
+            <param name="size">the size of the image (length of the byte array)</param>
+        </member>
         <member name="M:iText.IO.Image.BmpImageData.GetSize">
             <returns>size of the image</returns>
         </member>
@@ -4256,6 +4405,13 @@
         </member>
         <member name="F:iText.IO.Image.ImageData.serialId">
             <summary>a static that is used for attributing a unique id to each image.</summary>
+        </member>
+        <member name="F:iText.IO.Image.ImageData.colorSpace">
+            <summary>is the number of components used to encode colorspace, not actual colorspace.</summary>
+        </member>
+        <member name="M:iText.IO.Image.ImageData.GetColorSpace">
+            <summary>Gets the number of components used to encode colorspace, not actual colorspace.</summary>
+            <returns>the number of components used to encode colorspace</returns>
         </member>
         <member name="M:iText.IO.Image.ImageData.CanImageBeInline">
             <summary>Checks if image can be inline</summary>
@@ -4326,11 +4482,23 @@
             <param name="transparency">array containing transparency information</param>
             <returns>created ImageData object.</returns>
         </member>
+        <member name="M:iText.IO.Image.ImageDataFactory.CreateBmp(System.Uri,System.Boolean)">
+            <summary>Get a bitmap ImageData instance from the specified url.</summary>
+            <param name="url">location of the image.</param>
+            <param name="noHeader">Whether the image contains a header.</param>
+            <returns>created ImageData</returns>
+        </member>
         <member name="M:iText.IO.Image.ImageDataFactory.CreateBmp(System.Uri,System.Boolean,System.Int32)">
             <summary>Get a bitmap ImageData instance from the specified url.</summary>
             <param name="url">location of the image.</param>
             <param name="noHeader">Whether the image contains a header.</param>
             <param name="size">size of the image</param>
+            <returns>created ImageData</returns>
+        </member>
+        <member name="M:iText.IO.Image.ImageDataFactory.CreateBmp(System.Byte[],System.Boolean)">
+            <summary>Get a bitmap ImageData instance from the provided bytes.</summary>
+            <param name="bytes">array containing the raw image data</param>
+            <param name="noHeader">Whether the image contains a header</param>
             <returns>created ImageData.</returns>
         </member>
         <member name="M:iText.IO.Image.ImageDataFactory.CreateBmp(System.Byte[],System.Boolean,System.Int32)">
@@ -4338,7 +4506,7 @@
             <param name="bytes">array containing the raw image data</param>
             <param name="noHeader">Whether the image contains a header.</param>
             <param name="size">size of the image</param>
-            <returns>created ImageData.</returns>
+            <returns>created ImageData</returns>
         </member>
         <member name="M:iText.IO.Image.ImageDataFactory.CreateGif(System.Byte[])">
             <summary>Return a GifImage object.</summary>
@@ -4349,59 +4517,130 @@
         <member name="M:iText.IO.Image.ImageDataFactory.CreateGifFrame(System.Uri,System.Int32)">
             <summary>Returns a specified frame of the gif image</summary>
             <param name="url">url of gif image</param>
-            <param name="frame">number of frame to be returned</param>
+            <param name="frame">number of frame to be returned, 1-based</param>
             <returns>GifImageData instance.</returns>
         </member>
         <member name="M:iText.IO.Image.ImageDataFactory.CreateGifFrame(System.Byte[],System.Int32)">
             <summary>Returns a specified frame of the gif image</summary>
             <param name="bytes">byte array of gif image</param>
-            <param name="frame">number of frame to be returned</param>
-            <returns>GifImageData instance.</returns>
+            <param name="frame">number of frame to be returned, 1-based</param>
+            <returns>GifImageData instance</returns>
         </member>
         <member name="M:iText.IO.Image.ImageDataFactory.CreateGifFrames(System.Byte[],System.Int32[])">
-            <summary>Returns <CODE>List</CODE> of gif image frames</summary>
+            <summary>Returns <c>List</c> of gif image frames</summary>
             <param name="bytes">byte array of gif image</param>
-            <param name="frameNumbers">array of frame numbers of gif image</param>
-            <returns>All frames of gif image.</returns>
+            <param name="frameNumbers">array of frame numbers of gif image, 1-based</param>
+            <returns>all frames of gif image</returns>
         </member>
         <member name="M:iText.IO.Image.ImageDataFactory.CreateGifFrames(System.Uri,System.Int32[])">
-            <summary>Returns <CODE>List</CODE> of gif image frames</summary>
+            <summary>Returns <c>List</c> of gif image frames</summary>
             <param name="url">url of gif image</param>
-            <param name="frameNumbers">array of frame numbers of gif image</param>
-            <returns>All frames of gif image.</returns>
+            <param name="frameNumbers">array of frame numbers of gif image, 1-based</param>
+            <returns>all frames of gif image</returns>
         </member>
         <member name="M:iText.IO.Image.ImageDataFactory.CreateGifFrames(System.Byte[])">
-            <summary>Returns <CODE>List</CODE> of gif image frames</summary>
+            <summary>Returns <c>List</c> of gif image frames</summary>
             <param name="bytes">byte array of gif image</param>
             <returns>all frames of gif image</returns>
         </member>
         <member name="M:iText.IO.Image.ImageDataFactory.CreateGifFrames(System.Uri)">
-            <summary>Returns <CODE>List</CODE> of gif image frames</summary>
+            <summary>Returns <c>List</c> of gif image frames</summary>
             <param name="url">url of gif image</param>
             <returns>all frames of gif image</returns>
         </member>
         <member name="M:iText.IO.Image.ImageDataFactory.CreateJpeg(System.Uri)">
-            <summary>Create a ImageData instance from a Jpeg image url</summary>
-            <param name="url"/>
-            <returns/>
+            <summary>
+            Create an
+            <see cref="T:iText.IO.Image.ImageData"/>
+            instance from a Jpeg image url
+            </summary>
+            <param name="url">URL</param>
+            <returns>the created JPEG image</returns>
         </member>
         <member name="M:iText.IO.Image.ImageDataFactory.IsSupportedType(System.Byte[])">
-            <summary>Checks if the type of image (based on first 8 bytes) is supported by factory.
+            <summary>Checks if the type of image (based on first 8 bytes) is supported by factory.</summary>
+            <remarks>
+            Checks if the type of image (based on first 8 bytes) is supported by factory.
             <br />
-            <br />
-            <b>Note:</b>if this method returns <code>true</code> it doesn't means that <see cref="M:iText.IO.Image.ImageDataFactory.Create(System.Byte[])"/> won't throw exception
-            </summary>
+            <b>Note:</b> if this method returns
+            <see langword="true"/>
+            it doesn't means that
+            <see cref="M:iText.IO.Image.ImageDataFactory.Create(System.Byte[])"/>
+            won't throw exception
+            </remarks>
             <param name="source">image raw bytes</param>
-            <returns><code>true</code> if first eight bytes are recognised by factory as valid image type and <code>false</code> otherwise</returns>
+            <returns>
+            
+            <see langword="true"/>
+            if first eight bytes are recognised by factory as valid image type and
+            <see langword="false"/>
+            otherwise
+            </returns>
         </member>
         <member name="M:iText.IO.Image.ImageDataFactory.IsSupportedType(System.Uri)">
-            <summary>Checks if the type of image (based on first 8 bytes) is supported by factory.
+            <summary>Checks if the type of image (based on first 8 bytes) is supported by factory.</summary>
+            <remarks>
+            Checks if the type of image (based on first 8 bytes) is supported by factory.
             <br />
+            <b>Note:</b> if this method returns
+            <see langword="true"/>
+            it doesn't means that
+            <see cref="M:iText.IO.Image.ImageDataFactory.Create(System.Byte[])"/>
+            won't throw exception
+            </remarks>
+            <param name="source">image URL</param>
+            <returns>
+            
+            <see langword="true"/>
+            if first eight bytes are recognised by factory as valid image type and
+            <see langword="false"/>
+            otherwise
+            </returns>
+        </member>
+        <member name="M:iText.IO.Image.ImageDataFactory.IsSupportedType(iText.IO.Image.ImageType)">
+            <summary>Checks if the type of image is supported by factory.</summary>
+            <remarks>
+            Checks if the type of image is supported by factory.
             <br />
-            <b>Note:</b>if this method returns <code>true</code> it doesn't means that <see cref="M:iText.IO.Image.ImageDataFactory.Create(System.Byte[])"/> won't throw exception
-            </summary>
-            <param name="source">image raw bytes</param>
-            <returns><code>true</code> if first eight bytes are recognised by factory as valid image type and <code>false</code> otherwise</returns>
+            <b>Note:</b> if this method returns
+            <see langword="true"/>
+            it doesn't means that
+            <see cref="M:iText.IO.Image.ImageDataFactory.Create(System.Byte[])"/>
+            won't throw exception
+            </remarks>
+            <param name="imageType">image type</param>
+            <returns>
+            
+            <see langword="true"/>
+            if image type is supported and
+            <see langword="false"/>
+            otherwise
+            </returns>
+        </member>
+        <member name="T:iText.IO.Image.ImageTypeDetector">
+            <summary>Helper class that detects image type by magic bytes</summary>
+        </member>
+        <member name="M:iText.IO.Image.ImageTypeDetector.DetectImageType(System.Byte[])">
+            <summary>Detect image type by magic bytes given the byte array source</summary>
+            <param name="source">image bytes</param>
+            <returns>
+            detected image type, see
+            <see cref="T:iText.IO.Image.ImageType"/>
+            . Returns
+            <see cref="F:iText.IO.Image.ImageType.NONE"/>
+            if image type is unknown
+            </returns>
+        </member>
+        <member name="M:iText.IO.Image.ImageTypeDetector.DetectImageType(System.Uri)">
+            <summary>Detect image type by magic bytes given the source URL</summary>
+            <param name="source">image URL</param>
+            <returns>
+            detected image type, see
+            <see cref="T:iText.IO.Image.ImageType"/>
+            . Returns
+            <see cref="F:iText.IO.Image.ImageType.NONE"/>
+            if image type is unknown
+            </returns>
         </member>
         <member name="M:iText.IO.Image.Jbig2ImageData.GetNumberOfPages(System.Byte[])">
             <summary>Gets the number of pages in a JBIG2 image.</summary>
@@ -4576,7 +4815,7 @@
         </member>
         <member name="M:iText.IO.Image.RawImageHelper.UpdateRawImageParameters(iText.IO.Image.RawImageData,System.Int32,System.Int32,System.Int32,System.Int32,System.Byte[])">
             <summary>Update original image with Raw Image parameters.</summary>
-            <param name="image"/>
+            <param name="image">to update its parameters with Raw Image parameters.</param>
             <param name="width">the exact width of the image</param>
             <param name="height">the exact height of the image</param>
             <param name="components">1,3 or 4 for GrayScale, RGB and CMYK</param>
@@ -4648,11 +4887,15 @@
         </member>
         <member name="M:iText.IO.IOException.GetMessageParams">
             <summary>Gets additional params for Exception message.</summary>
+            <returns>params for exception message.</returns>
         </member>
         <member name="M:iText.IO.IOException.SetMessageParams(System.Object[])">
             <summary>Sets additional params for Exception message.</summary>
             <param name="messageParams">additional params.</param>
             <returns>object itself.</returns>
+        </member>
+        <member name="T:iText.IO.IoExceptionMessage">
+            <summary>Class containing constants to be used in exceptions in the IO module.</summary>
         </member>
         <member name="T:iText.IO.LogMessageConstant">
             <summary>Class containing constants to be used in logging.</summary>
@@ -4910,14 +5153,17 @@
             <summary>Resolve escape symbols or hexadecimal symbols.</summary>
             <remarks>
             Resolve escape symbols or hexadecimal symbols.
-            <br />
+            <para />
             NOTE Due to PdfReference 1.7 part 3.2.3 String value contain ASCII characters,
             so we can convert it directly to byte array.
             </remarks>
-            <param name="content"/>
-            <param name="from"/>
-            <param name="to"/>
-            <param name="hexWriting"/>
+            <param name="content">string bytes to be decoded</param>
+            <param name="from">given start index</param>
+            <param name="to">given end index</param>
+            <param name="hexWriting">
+            true if given string is hex-encoded, e.g. '&lt;69546578…&gt;'.
+            False otherwise, e.g. '((iText( some version)…)'
+            </param>
             <returns>
             byte[] for decrypting or for creating
             <see cref="T:System.String"/>.
@@ -4931,8 +5177,11 @@
             NOTE Due to PdfReference 1.7 part 3.2.3 String value contain ASCII characters,
             so we can convert it directly to byte array.
             </remarks>
-            <param name="content"/>
-            <param name="hexWriting"/>
+            <param name="content">string bytes to be decoded</param>
+            <param name="hexWriting">
+            true if given string is hex-encoded, e.g. '&lt;69546578…&gt;'.
+            False otherwise, e.g. '((iText( some version)…)'
+            </param>
             <returns>
             byte[] for decrypting or for creating
             <see cref="T:System.String"/>.
@@ -4989,8 +5238,12 @@
             The same as calling
             <see cref="M:iText.IO.Source.PdfTokenizer.ReadLineSegment(iText.IO.Source.ByteBuffer,System.Boolean)">readLineSegment(input, true)</see>.
             </remarks>
-            <param name="buffer">@see ByteBuffer</param>
-            <returns>boolean</returns>
+            <param name="buffer">
+            a
+            <see cref="T:iText.IO.Source.ByteBuffer"/>
+            to which the result of reading will be saved
+            </param>
+            <returns>true, if something was read or if the end of the input stream is not reached</returns>
         </member>
         <member name="M:iText.IO.Source.PdfTokenizer.ReadLineSegment(iText.IO.Source.ByteBuffer,System.Boolean)">
             <summary>Reads data into the provided byte[].</summary>
@@ -5002,13 +5255,17 @@
             <see cref="M:iText.IO.Source.PdfTokenizer.IsWhitespace(System.Int32,System.Boolean)">isWhiteSpace(int, boolean)</see>
             for a list of whitespace characters.
             </remarks>
-            <param name="buffer">@see ByteBuffer</param>
+            <param name="buffer">
+            a
+            <see cref="T:iText.IO.Source.ByteBuffer"/>
+            to which the result of reading will be saved
+            </param>
             <param name="isNullWhitespace">
             boolean to indicate whether '0' is whitespace or not.
             If in doubt, use true or overloaded method
             <see cref="M:iText.IO.Source.PdfTokenizer.ReadLineSegment(iText.IO.Source.ByteBuffer)">readLineSegment(input)</see>
             </param>
-            <returns>boolean</returns>
+            <returns>true, if something was read or if the end of the input stream is not reached</returns>
         </member>
         <member name="M:iText.IO.Source.PdfTokenizer.CheckObjectStart(iText.IO.Source.PdfTokenizer)">
             <summary>Check whether line starts with object declaration.</summary>
@@ -5586,6 +5843,18 @@
             in .NET Standard enviroments that doesn't support System.Runtime.Loader
             </remarks>
         </member>
+        <member name="M:iText.IO.Util.CliCommandUtil.IsVersionCommandExecutable(System.String,System.String)">
+            <summary>
+            Checks if the command, passed as parameter, is executable and the output version text contains
+            expected text
+            </summary>
+            <param name="command">a string command to execute</param>
+            <param name="versionText">an expected version text line</param>
+            <returns>
+            boolean result of checking: true - the required command is executable and the output version
+            text is correct
+            </returns>
+        </member>
         <member name="T:iText.IO.Util.DateTimeUtil">
             <summary>
             This file is a helper class for internal usage only.
@@ -5677,6 +5946,48 @@
             </summary>
             <param name="deflated">the input data bytes</param>
             <param name="inflated">the buffer for the uncompressed data</param>
+        </member>
+        <member name="F:iText.IO.Util.GhostscriptHelper.GHOSTSCRIPT_ENVIRONMENT_VARIABLE">
+            <summary>The name of the environment variable with the command to execute Ghostscript operations.</summary>
+        </member>
+        <member name="M:iText.IO.Util.GhostscriptHelper.GetCliExecutionCommand">
+            <summary>Returns a command that is used to run the utility.</summary>
+            <remarks>
+            Returns a command that is used to run the utility.
+            This command doesn't contain command parameters. Parameters are added on specific
+            methods invocation.
+            </remarks>
+            <returns>a string command</returns>
+        </member>
+        <member name="M:iText.IO.Util.GhostscriptHelper.RunGhostScriptImageGeneration(System.String,System.String,System.String)">
+            <summary>Runs ghostscript to create images of pdfs.</summary>
+            <param name="pdf">Path to the pdf file.</param>
+            <param name="outDir">Path to the output directory</param>
+            <param name="image">Path to the generated image</param>
+        </member>
+        <member name="M:iText.IO.Util.GhostscriptHelper.RunGhostScriptImageGeneration(System.String,System.String,System.String,System.String)">
+            <summary>Runs ghostscript to create images of specified pages of pdfs.</summary>
+            <param name="pdf">Path to the pdf file.</param>
+            <param name="outDir">Path to the output directory</param>
+            <param name="image">Path to the generated image</param>
+            <param name="pageList">
+            String with numbers of the required pages to extract as image. Should be formatted as string with
+            numbers, separated by commas, without whitespaces. Can be null, if it is required to extract
+            all pages as images.
+            </param>
+        </member>
+        <member name="T:iText.IO.Util.GhostscriptHelper.GhostscriptExecutionException">
+            <summary>
+            Exceptions thrown when errors occur during generation and comparison of images obtained on the basis of pdf
+            files.
+            </summary>
+        </member>
+        <member name="M:iText.IO.Util.GhostscriptHelper.GhostscriptExecutionException.#ctor(System.String)">
+            <summary>
+            Creates a new
+            <see cref="T:iText.IO.Util.GhostscriptHelper.GhostscriptExecutionException"/>.
+            </summary>
+            <param name="msg">the detail message.</param>
         </member>
         <member name="T:iText.IO.Util.HashCode">
             <summary>
@@ -5799,6 +6110,102 @@
         </member>
         <member name="F:iText.IO.Util.IanaEncodings.map">
             The object that maps IANA to Java encodings. 
+        </member>
+        <member name="F:iText.IO.Util.ImageHandlerUtil.GHOSTSCRIPT_ENVIRONMENT_VARIABLE">
+            <summary>The name of the environment variable with the command to execute Ghostscript operations.</summary>
+        </member>
+        <member name="F:iText.IO.Util.ImageHandlerUtil.MAGICK_COMPARE_ENVIRONMENT_VARIABLE">
+            <summary>The name of the environment variable with the command to execute ImageMagic comparison operations.
+                </summary>
+        </member>
+        <member name="M:iText.IO.Util.ImageHandlerUtil.RunGhostScriptImageGeneration(System.String,System.String,System.String)">
+            <summary>Runs ghostscript to create images of pdfs.</summary>
+            <param name="pdf">Path to the pdf file.</param>
+            <param name="outDir">Path to the output directory</param>
+            <param name="image">Path to the generated image</param>
+        </member>
+        <member name="M:iText.IO.Util.ImageHandlerUtil.RunGhostScriptImageGeneration(System.String,System.String,System.String,System.String)">
+            <summary>Runs ghostscript to create images of specified pages of pdfs.</summary>
+            <param name="pdf">Path to the pdf file.</param>
+            <param name="outDir">Path to the output directory</param>
+            <param name="image">Path to the generated image</param>
+            <param name="pageNumber">
+            Number of the required page of pdf to extract as image. Can be null,
+            if it is required to extract all pages as images
+            </param>
+        </member>
+        <member name="M:iText.IO.Util.ImageHandlerUtil.RunImageMagickImageCompare(System.String,System.String,System.String)">
+            <summary>Runs imageMagick to visually compare images and generate difference output.</summary>
+            <param name="outImageFilePath">Path to the output image file</param>
+            <param name="cmpImageFilePath">Path to the cmp image file</param>
+            <param name="diffImageName">Path to the difference output image file</param>
+            <returns>boolean result of comparing: true - images are visually equal</returns>
+        </member>
+        <member name="M:iText.IO.Util.ImageHandlerUtil.RunImageMagickImageCompare(System.String,System.String,System.String,System.String)">
+            <summary>Runs imageMagick to visually compare images with the specified fuzziness value and generate difference output.
+                </summary>
+            <param name="outImageFilePath">Path to the output image file</param>
+            <param name="cmpImageFilePath">Path to the cmp image file</param>
+            <param name="diffImageName">Path to the difference output image file</param>
+            <param name="fuzzValue">fuzziness value to compare images. Can be null, if it is not required to use fuzziness
+                </param>
+            <returns>boolean result of comparing: true - images are visually equal</returns>
+        </member>
+        <member name="M:iText.IO.Util.ImageHandlerUtil.IsVersionCommandExecutable(System.String)">
+            <summary>
+            Checks if the specified by input parameter tool's system variable is correctly specified
+            and the specified tool can be executed.
+            </summary>
+            <param name="keyWord">the keyword specifying the tool (GhostScript or ImageMagick)</param>
+            <returns>
+            boolean result of checking: true - System variable is correctly specified
+            and the specified tool can be executed
+            </returns>
+        </member>
+        <member name="T:iText.IO.Util.ImageHandlerUtil.ImageHandlerExecutionException">
+            <summary>
+            Exceptions thrown when errors occur during generation and comparison of images obtained on the basis of pdf
+            files.
+            </summary>
+        </member>
+        <member name="M:iText.IO.Util.ImageHandlerUtil.ImageHandlerExecutionException.#ctor(iText.IO.Util.ImageHandlerUtil,System.String)">
+            <summary>
+            Creates a new
+            <see cref="T:iText.IO.Util.ImageHandlerUtil.ImageHandlerExecutionException"/>.
+            </summary>
+            <param name="msg">the detail message.</param>
+        </member>
+        <member name="F:iText.IO.Util.ImageMagickHelper.MAGICK_COMPARE_ENVIRONMENT_VARIABLE">
+            <summary>The name of the environment variable with the command to execute ImageMagic comparison operations.
+                </summary>
+        </member>
+        <member name="M:iText.IO.Util.ImageMagickHelper.GetCliExecutionCommand">
+            <summary>Returns a command that is used to run the utility.</summary>
+            <remarks>
+            Returns a command that is used to run the utility.
+            This command doesn't contain command parameters. Parameters are added on specific
+            methods invocation.
+            </remarks>
+            <returns>a string command</returns>
+        </member>
+        <member name="M:iText.IO.Util.ImageMagickHelper.RunImageMagickImageCompare(System.String,System.String,System.String)">
+            <summary>Runs imageMagick to visually compare images and generate difference output.</summary>
+            <param name="outImageFilePath">Path to the output image file</param>
+            <param name="cmpImageFilePath">Path to the cmp image file</param>
+            <param name="diffImageName">Path to the difference output image file</param>
+            <returns>boolean result of comparing: true - images are visually equal</returns>
+        </member>
+        <member name="M:iText.IO.Util.ImageMagickHelper.RunImageMagickImageCompare(System.String,System.String,System.String,System.String)">
+            <summary>Runs imageMagick to visually compare images with the specified fuzziness value and generate difference output.
+                </summary>
+            <param name="outImageFilePath">Path to the output image file</param>
+            <param name="cmpImageFilePath">Path to the cmp image file</param>
+            <param name="diffImageName">Path to the difference output image file</param>
+            <param name="fuzzValue">
+            String fuzziness value to compare images. Should be formatted as string with integer
+            or decimal number. Can be null, if it is not required to use fuzziness
+            </param>
+            <returns>boolean result of comparing: true - images are visually equal</returns>
         </member>
         <member name="T:iText.IO.Util.IntHashtable">
             <summary>A hash map that uses primitive ints for the key rather than objects.</summary>
@@ -6322,9 +6729,9 @@
             <returns>the codepoint value</returns>
         </member>
         <member name="M:iText.IO.Util.TextUtil.ConvertFromUtf32(System.Int32)">
-            <summary>Converts a UTF32 code point value to a String with the corresponding character(s).</summary>
+            <summary>Converts a UTF32 code point value to a char array with the corresponding character(s).</summary>
             <param name="codePoint">a Unicode value</param>
-            <returns>the corresponding characters in a String</returns>
+            <returns>the corresponding char array</returns>
         </member>
         <member name="M:iText.IO.Util.TextUtil.ConvertFromUtf32(System.Int32[],System.Int32,System.Int32)">
             <summary>
@@ -6743,6 +7150,13 @@
             </summary>
             <param name="filename">a given filename</param>
             <returns>a uri string</returns>
+        </member>
+        <member name="M:iText.IO.Util.UrlUtil.GetNormalizedFileUriString(System.String)">
+            <summary>
+            This method gets normalized uri string from a file.
+            </summary>
+            <param name="filename">a given filename</param>
+            <returns>a normalized uri string</returns>
         </member>
         <member name="T:System.util.zlib.ZDeflaterOutputStream">
             <summary>

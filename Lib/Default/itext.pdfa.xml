@@ -27,6 +27,22 @@
             <c>b</c>
             </param>
         </member>
+        <member name="M:iText.Pdfa.Checker.PdfA1Checker.GetMaxRealValue">
+            <summary>Retrieve maximum allowed real value.</summary>
+            <returns>maximum allowed real number</returns>
+        </member>
+        <member name="M:iText.Pdfa.Checker.PdfA1Checker.GetMaxIntegerValue">
+            <summary>Retrieve maximal allowed integer value.</summary>
+            <returns>maximal allowed integer number</returns>
+        </member>
+        <member name="M:iText.Pdfa.Checker.PdfA1Checker.GetMinIntegerValue">
+            <summary>Retrieve minimal allowed integer value.</summary>
+            <returns>minimal allowed integer number</returns>
+        </member>
+        <member name="M:iText.Pdfa.Checker.PdfA1Checker.GetMaxNameLength">
+            <summary>Retrieve maximum allowed length of the name object.</summary>
+            <returns>maximum allowed length of the name</returns>
+        </member>
         <member name="T:iText.Pdfa.Checker.PdfA2Checker">
             <summary>
             PdfA2Checker defines the requirements of the PDF/A-2 standard and contains a
@@ -175,6 +191,26 @@
             </summary>
             <returns>the defined conformance level for this document.</returns>
         </member>
+        <member name="M:iText.Pdfa.Checker.PdfAChecker.IsFullCheckMode">
+            <summary>In full check mode all objects will be tested for ISO conformance.</summary>
+            <remarks>
+            In full check mode all objects will be tested for ISO conformance. If full check mode is
+            switched off objects which were not modified might be skipped to speed up the validation
+            of the document
+            </remarks>
+            <returns>true if full check mode is switched on</returns>
+            <seealso cref="M:iText.Kernel.Pdf.PdfObject.IsModified"/>
+        </member>
+        <member name="M:iText.Pdfa.Checker.PdfAChecker.SetFullCheckMode(System.Boolean)">
+            <summary>In full check mode all objects will be tested for ISO conformance.</summary>
+            <remarks>
+            In full check mode all objects will be tested for ISO conformance. If full check mode is
+            switched off objects which were not modified might be skipped to speed up the validation
+            of the document
+            </remarks>
+            <param name="fullCheckMode">is a new value for full check mode switcher</param>
+            <seealso cref="M:iText.Kernel.Pdf.PdfObject.IsModified"/>
+        </member>
         <member name="M:iText.Pdfa.Checker.PdfAChecker.ObjectIsChecked(iText.Kernel.Pdf.PdfObject)">
             <summary>
             Remembers which objects have already been checked, in order to avoid
@@ -316,6 +352,61 @@
             </param>
             <param name="contentStream">stream containing checked font</param>
         </member>
+        <member name="M:iText.Pdfa.Checker.PdfAChecker.CheckXrefTable(iText.Kernel.Pdf.PdfXrefTable)">
+            <summary>Verify the conformity of the cross-reference table.</summary>
+            <param name="xrefTable">is the Xref table</param>
+        </member>
+        <member name="M:iText.Pdfa.Checker.PdfAChecker.CheckContentStream(iText.Kernel.Pdf.PdfStream)">
+            <summary>Attest content stream conformance with appropriate specification.</summary>
+            <remarks>
+            Attest content stream conformance with appropriate specification.
+            Throws PdfAConformanceException if any discrepancy was found
+            </remarks>
+            <param name="contentStream">is a content stream to validate</param>
+        </member>
+        <member name="M:iText.Pdfa.Checker.PdfAChecker.CheckContentStreamObject(iText.Kernel.Pdf.PdfObject)">
+            <summary>
+            Verify the conformity of the operand of content stream with appropriate
+            specification.
+            </summary>
+            <remarks>
+            Verify the conformity of the operand of content stream with appropriate
+            specification. Throws PdfAConformanceException if any discrepancy was found
+            </remarks>
+            <param name="object">is an operand of content stream to validate</param>
+        </member>
+        <member name="M:iText.Pdfa.Checker.PdfAChecker.GetMaxNumberOfIndirectObjects">
+            <summary>Retrieve maximum allowed number of indirect objects in conforming document.</summary>
+            <returns>maximum allowed number of indirect objects</returns>
+        </member>
+        <member name="M:iText.Pdfa.Checker.PdfAChecker.IsContainsTransparencyGroup(iText.Kernel.Pdf.PdfDictionary)">
+            <summary>Checks whether the specified dictionary has a transparency group.</summary>
+            <param name="dictionary">
+            the
+            <see cref="T:iText.Kernel.Pdf.PdfDictionary"/>
+            to check
+            </param>
+            <returns>
+            true if and only if the specified dictionary has a
+            <see cref="F:iText.Kernel.Pdf.PdfName.Group"/>
+            key and its value is
+            a dictionary with
+            <see cref="F:iText.Kernel.Pdf.PdfName.Transparency"/>
+            subtype
+            </returns>
+        </member>
+        <member name="M:iText.Pdfa.Checker.PdfAChecker.CheckResourcesOfAppearanceStreams(iText.Kernel.Pdf.PdfDictionary)">
+            <summary>Checks resources of the appearance streams.</summary>
+            <param name="appearanceStreamsDict">the dictionary with appearance streams to check.</param>
+        </member>
+        <member name="M:iText.Pdfa.Checker.PdfAChecker.CheckAppearanceStream(iText.Kernel.Pdf.PdfStream)">
+            <summary>Check single annotation appearance stream.</summary>
+            <param name="appearanceStream">
+            the
+            <see cref="T:iText.Kernel.Pdf.PdfStream"/>
+            to check
+            </param>
+        </member>
         <member name="T:iText.Pdfa.PdfAConformanceException">
             <summary>Exception that is thrown when the PDF Document doesn't adhere to the PDF/A specification.</summary>
         </member>
@@ -416,6 +507,9 @@
             a
             <see cref="T:iText.Kernel.Pdf.PdfAConformanceLevel"/>
             </returns>
+        </member>
+        <member name="T:iText.Pdfa.PdfALogMessageConstant">
+            <summary>Class containing constants to be used in logging.</summary>
         </member>
         <member name="T:iText.Pdfa.PdfAXMPUtil">
             <summary>Utilities to construct an XMP for a PDF/A file.</summary>

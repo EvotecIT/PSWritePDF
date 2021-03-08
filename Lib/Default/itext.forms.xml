@@ -4,6 +4,76 @@
         <name>itext.forms</name>
     </assembly>
     <members>
+        <member name="F:iText.Forms.Fields.Borders.AbstractFormBorder.FORM_UNDERLINE">
+            <summary>The form underline border.</summary>
+            <seealso cref="T:iText.Forms.Fields.Borders.UnderlineBorder"/>
+        </member>
+        <member name="F:iText.Forms.Fields.Borders.AbstractFormBorder.FORM_BEVELED">
+            <summary>The form beveled border.</summary>
+            <seealso cref="T:iText.Forms.Fields.Borders.BeveledBorder"/>
+        </member>
+        <member name="F:iText.Forms.Fields.Borders.AbstractFormBorder.FORM_INSET">
+            <summary>The form inset border.</summary>
+            <seealso cref="T:iText.Forms.Fields.Borders.InsetBorder"/>
+        </member>
+        <member name="M:iText.Forms.Fields.Borders.BeveledBorder.Draw(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side,System.Single,System.Single)">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Forms.Fields.Borders.BeveledBorder.DrawCellBorder(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side)">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Forms.Fields.Borders.BeveledBorder.GetBorderType">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="T:iText.Forms.Fields.Borders.FormBorderFactory">
+            <summary>
+            A factory for creating
+            <see cref="T:iText.Forms.Fields.Borders.AbstractFormBorder"/>
+            implementations.
+            </summary>
+        </member>
+        <member name="M:iText.Forms.Fields.Borders.FormBorderFactory.GetBorder(iText.Kernel.Pdf.PdfDictionary,System.Single,iText.Kernel.Colors.Color,iText.Kernel.Colors.Color)">
+            <summary>
+            Returns
+            <see cref="T:iText.Layout.Borders.Border"/>
+            for specific borderStyle.
+            </summary>
+            <param name="borderStyle">border style dictionary. ISO 32000-1 12.5.4</param>
+            <param name="borderWidth">width of the border</param>
+            <param name="borderColor">color of the border</param>
+            <param name="backgroundColor">element background color. This param used for drawing beveled border type</param>
+            <returns>
+            
+            <see cref="T:iText.Layout.Borders.Border"/>
+            implementation or
+            <see langword="null"/>
+            </returns>
+        </member>
+        <member name="M:iText.Forms.Fields.Borders.InsetBorder.Draw(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side,System.Single,System.Single)">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Forms.Fields.Borders.InsetBorder.DrawCellBorder(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side)">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Forms.Fields.Borders.InsetBorder.GetBorderType">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Forms.Fields.Borders.UnderlineBorder.Draw(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side,System.Single,System.Single)">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Forms.Fields.Borders.UnderlineBorder.DrawCellBorder(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side)">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Forms.Fields.Borders.UnderlineBorder.GetBorderType">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="T:iText.Forms.Fields.FormFieldValueNonTrimmingTextRenderer">
+            <summary>Custom implementation for rendering form field values.</summary>
+            <remarks>
+            Custom implementation for rendering form field values. It makes sure that text value
+            trimming strategy matches Acrobat's behavior
+            </remarks>
+        </member>
         <member name="T:iText.Forms.Fields.PdfButtonFormField">
             <summary>An interactive control on the screen that raises events and/or can retain data.</summary>
         </member>
@@ -163,10 +233,23 @@
             <see cref="T:iText.Forms.Fields.PdfChoiceFormField"/>
             </returns>
         </member>
+        <member name="M:iText.Forms.Fields.PdfChoiceFormField.SetListSelected(System.String[],System.Boolean)">
+            <summary>Highlights the options and generates field appearance if needed..</summary>
+            <remarks>
+            Highlights the options and generates field appearance if needed.. If this method is used for Combo box, the first value in input array
+            will be the field value
+            </remarks>
+            <param name="optionValues">Array of options to be highlighted</param>
+            <param name="generateAppearance">if false, appearance won't be regenerated</param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Fields.PdfChoiceFormField"/>
+            </returns>
+        </member>
         <member name="M:iText.Forms.Fields.PdfChoiceFormField.SetListSelected(System.Int32[])">
             <summary>Highlights the options.</summary>
             <remarks>
-            Highlights the options. Is this method is used for Combo box, the first value in input array
+            Highlights the options. If this method is used for Combo box, the first value in input array
             will be the field value
             </remarks>
             <param name="optionNumbers">The option numbers</param>
@@ -1533,10 +1616,9 @@
             <returns>the field</returns>
         </member>
         <member name="M:iText.Forms.Fields.PdfFormField.SetValue(System.String,System.Boolean)">
-            <summary>Sets a value to the field and generating field appearance if needed.</summary>
+            <summary>Sets a value to the field and generates field appearance if needed.</summary>
             <param name="value">of the field</param>
-            <param name="generateAppearance">set this flat to false if you want to keep the appearance of the field generated before
-                </param>
+            <param name="generateAppearance">if false, appearance won't be regenerated</param>
             <returns>the field</returns>
         </member>
         <member name="M:iText.Forms.Fields.PdfFormField.SetValue(System.String,iText.Kernel.Font.PdfFont,System.Single)">
@@ -2100,6 +2182,40 @@
             <summary>Sets zero font size which will be interpreted as auto-size according to ISO 32000-1, 12.7.3.3.</summary>
             <returns>the edited field</returns>
         </member>
+        <member name="M:iText.Forms.Fields.PdfFormField.Put(iText.Kernel.Pdf.PdfName,iText.Kernel.Pdf.PdfObject)">
+            <summary>
+            Inserts the value into the
+            <see cref="T:iText.Kernel.Pdf.PdfDictionary"/>
+            of this field and associates it with the specified key.
+            </summary>
+            <remarks>
+            Inserts the value into the
+            <see cref="T:iText.Kernel.Pdf.PdfDictionary"/>
+            of this field and associates it with the specified key.
+            If the key is already present in this field dictionary,
+            this method will override the old value with the specified one.
+            </remarks>
+            <param name="key">key to insert or to override</param>
+            <param name="value">the value to associate with the specified key</param>
+            <returns>
+            this
+            <see cref="T:iText.Forms.Fields.PdfFormField"/>
+            instance
+            </returns>
+        </member>
+        <member name="M:iText.Forms.Fields.PdfFormField.Remove(iText.Kernel.Pdf.PdfName)">
+            <summary>
+            Removes the specified key from the
+            <see cref="T:iText.Kernel.Pdf.PdfDictionary"/>
+            of this field.
+            </summary>
+            <param name="key">key to be removed</param>
+            <returns>
+            this
+            <see cref="T:iText.Forms.Fields.PdfFormField"/>
+            instance
+            </returns>
+        </member>
         <member name="M:iText.Forms.Fields.PdfFormField.Release">
             <summary>Releases underlying pdf object and other pdf entities used by wrapper.</summary>
             <remarks>
@@ -2153,7 +2269,7 @@
             <param name="value">The initial value</param>
             <param name="appearance">The appearance</param>
         </member>
-        <member name="M:iText.Forms.Fields.PdfFormField.DrawChoiceAppearance(iText.Kernel.Geom.Rectangle,System.Single,System.String,iText.Kernel.Pdf.Xobject.PdfFormXObject)">
+        <member name="M:iText.Forms.Fields.PdfFormField.DrawChoiceAppearance(iText.Kernel.Geom.Rectangle,System.Single,System.String,iText.Kernel.Pdf.Xobject.PdfFormXObject,System.Int32)">
             <summary>Draws the visual appearance of Choice box in a form field.</summary>
             <param name="rect">The location on the page for the list field</param>
             <param name="value">The initial value</param>
@@ -2210,38 +2326,25 @@
             <param name="onStateName">name that corresponds to the "On" state of the checkbox</param>
             <param name="checkType">
             the type that determines how the checkbox will look like. Allowed values are
-            <value>TYPE_CHECK</value>
+            <see cref="F:iText.Forms.Fields.PdfFormField.TYPE_CHECK"/>
             ,
-            <value>TYPE_CIRCLE</value>
+            <see cref="F:iText.Forms.Fields.PdfFormField.TYPE_CIRCLE"/>
             ,
-            <value>TYPE_CROSS</value>
+            <see cref="F:iText.Forms.Fields.PdfFormField.TYPE_CROSS"/>
             ,
-            <value>TYPE_DIAMOND</value>
+            <see cref="F:iText.Forms.Fields.PdfFormField.TYPE_DIAMOND"/>
             ,
-            <value>TYPE_SQUARE</value>
+            <see cref="F:iText.Forms.Fields.PdfFormField.TYPE_SQUARE"/>
             ,
-            <value>TYPE_STAR</value>
+            <see cref="F:iText.Forms.Fields.PdfFormField.TYPE_STAR"/>
             </param>
         </member>
         <member name="M:iText.Forms.Fields.PdfFormField.DrawPdfA1CheckAppearance(System.Single,System.Single,System.String,System.Int32)">
+            <summary>Draws PDF/A-1 compliant check appearance.</summary>
             <param name="width">width of the checkbox</param>
             <param name="height">height of the checkbox</param>
             <param name="selectedValue">the selected value of the checkbox which determines the appearance of the checkbox
                 </param>
-            <param name="checkType">
-            the type that determines how the checkbox will look like. Allowed values are
-            <value>TYPE_CHECK</value>
-            ,
-            <value>TYPE_CIRCLE</value>
-            ,
-            <value>TYPE_CROSS</value>
-            ,
-            <value>TYPE_DIAMOND</value>
-            ,
-            <value>TYPE_SQUARE</value>
-            ,
-            <value>TYPE_STAR</value>
-            </param>
         </member>
         <member name="M:iText.Forms.Fields.PdfFormField.DrawPushButtonAppearance(System.Single,System.Single,System.String,iText.Kernel.Font.PdfFont,System.Single)">
             <summary>Draws the appearance for a push button.</summary>
@@ -3751,6 +3854,11 @@
             ,
             <see cref="F:iText.Kernel.Pdf.PdfName.Named"/>.
             </remarks>
+            <returns>
+            
+            <see cref="T:iText.Kernel.Pdf.PdfName"/>
+            type of inner action element
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.ActionObject.SetType(iText.Kernel.Pdf.PdfName)">
             <summary>Sets the type of inner action element.</summary>
@@ -3766,6 +3874,15 @@
             ,
             <see cref="F:iText.Kernel.Pdf.PdfName.Named"/>.
             </remarks>
+            <param name="type">
+            
+            <see cref="T:iText.Kernel.Pdf.PdfName"/>
+            type of inner action object
+            </param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.ActionObject"/>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.ActionObject.GetUri">
             <summary>Gets the string value of URI elements.</summary>
@@ -3773,33 +3890,67 @@
             Gets the string value of URI elements. Corresponds to Name, required attribute of URI element.
             For more details see paragraph 6.5.30 in Xfdf specification.
             </remarks>
+            <returns>
+            
+            <see cref="T:iText.Kernel.Pdf.PdfString"/>
+            value of URI element
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.ActionObject.SetUri(iText.Kernel.Pdf.PdfString)">
-            <summary>Sets the string value of URI elements.</summary>
+            <summary>Sets the string value of URI element.</summary>
             <remarks>
-            Sets the string value of URI elements. Corresponds to Name, required attribute of URI element.
+            Sets the string value of URI element. Corresponds to Name, required attribute of URI element.
             For more details see paragraph 6.5.30 in Xfdf specification.
             </remarks>
+            <param name="uri">
+            
+            <see cref="T:iText.Kernel.Pdf.PdfString"/>
+            value to be set to URI element
+            </param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.ActionObject"/>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.ActionObject.IsMap">
             <summary>Gets IsMap, optional attribute of URI element.</summary>
             <remarks>Gets IsMap, optional attribute of URI element. For more details see paragraph 6.5.30 in Xfdf specification.
                 </remarks>
+            <returns>boolean indicating if URI element is a map</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.ActionObject.SetMap(System.Boolean)">
             <summary>Sets IsMap, optional attribute of URI element.</summary>
             <remarks>Sets IsMap, optional attribute of URI element. For more details see paragraph 6.5.30 in Xfdf specification.
                 </remarks>
+            <param name="map">boolean indicating if URI element is a map</param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.ActionObject"/>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.ActionObject.GetNameAction">
             <summary>Gets the value of Name, required attribute of Named element.</summary>
             <remarks>Gets the value of Name, required attribute of Named element. For more details see paragraph 6.5.24 in Xfdf specification.
                 </remarks>
+            <returns>
+            
+            <see cref="T:iText.Kernel.Pdf.PdfName"/>
+            value of Name attribute of a named action element
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.ActionObject.SetNameAction(iText.Kernel.Pdf.PdfName)">
             <summary>Sets the value of Name, required attribute of Named element.</summary>
             <remarks>Sets the value of Name, required attribute of Named element. For more details see paragraph 6.5.24 in Xfdf specification.
                 </remarks>
+            <param name="nameAction">
+            
+            <see cref="T:iText.Kernel.Pdf.PdfName"/>
+            value to be set to Name attribute of a named action element
+            </param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.ActionObject"/>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.ActionObject.GetFileOriginalName">
             <summary>Gets the string value of OriginalName, required attribute of File inner element of GoToR or Launch element.
@@ -3809,6 +3960,11 @@
             Corresponds to F key in go-to action or launch dictionaries.
             For more details see paragraphs 6.5.11, 6.5.23 in Xfdf specification.
             </remarks>
+            <returns>
+            
+            <see cref="T:System.String"/>
+            value of OriginalName attribute of current action object
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.ActionObject.SetFileOriginalName(System.String)">
             <summary>Sets the string value of OriginalName, required attribute of File inner element of GoToR or Launch element.
@@ -3818,16 +3974,32 @@
             Corresponds to F key in go-to action or launch dictionaries.
             For more details see paragraphs 6.5.11, 6.5.23 in Xfdf specification.
             </remarks>
+            <param name="fileOriginalName">
+            
+            <see cref="T:System.String"/>
+            value of OriginalName attribute of action object
+            </param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.ActionObject"/>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.ActionObject.IsNewWindow">
-            <summary>Sets the boolean value of NewWindow, optional attribute of Launch element.</summary>
-            <remarks>Sets the boolean value of NewWindow, optional attribute of Launch element. For more details see paragraph 6.5.23 in Xfdf specification.
-                </remarks>
-        </member>
-        <member name="M:iText.Forms.Xfdf.ActionObject.SetNewWindow(System.Boolean)">
             <summary>Gets the boolean value of NewWindow, optional attribute of Launch element.</summary>
             <remarks>Gets the boolean value of NewWindow, optional attribute of Launch element. For more details see paragraph 6.5.23 in Xfdf specification.
                 </remarks>
+            <returns>boolean indicating if current Launch action element should be opened in a new window</returns>
+        </member>
+        <member name="M:iText.Forms.Xfdf.ActionObject.SetNewWindow(System.Boolean)">
+            <summary>Sets the boolean value of NewWindow, optional attribute of Launch element.</summary>
+            <remarks>Sets the boolean value of NewWindow, optional attribute of Launch element. For more details see paragraph 6.5.23 in Xfdf specification.
+                </remarks>
+            <param name="newWindow">boolean indicating if current Launch action element should be opened in a new window
+                </param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.ActionObject"/>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.ActionObject.GetDestination">
             <summary>Gets Dest, inner element of link, GoTo, and GoToR elements.</summary>
@@ -3836,6 +4008,11 @@
             Corresponds to Dest key in link annotation dictionary.
             For more details see paragraph 6.5.10 in Xfdf specification.
             </remarks>
+            <returns>
+            
+            <see cref="T:iText.Forms.Xfdf.DestObject"/>
+            destination attribute of current action element
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.ActionObject.SetDestination(iText.Forms.Xfdf.DestObject)">
             <summary>Sets Dest, inner element of link, GoTo, and GoToR elements.</summary>
@@ -3844,6 +4021,15 @@
             Corresponds to Dest key in link annotation dictionary.
             For more details see paragraph 6.5.10 in Xfdf specification.
             </remarks>
+            <param name="destination">
+            
+            <see cref="T:iText.Forms.Xfdf.DestObject"/>
+            destination attribute of the action element
+            </param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.ActionObject"/>
+            </returns>
         </member>
         <member name="T:iText.Forms.Xfdf.AnnotObject">
             <summary>Represents annotation, a child element of annots tag in Xfdf document structure.</summary>
@@ -4023,6 +4209,11 @@
             ,
             <see cref="F:iText.Forms.Xfdf.XfdfConstants.UNDERLINE"/>.
             </remarks>
+            <returns>
+            
+            <see cref="T:System.String"/>
+            value of the type of annotation
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.SetName(System.String)">
             <summary>Sets the string value of the type of annotation.</summary>
@@ -4060,9 +4251,26 @@
             ,
             <see cref="F:iText.Forms.Xfdf.XfdfConstants.UNDERLINE"/>.
             </remarks>
+            <param name="name">
+            
+            <see cref="T:System.String"/>
+            value of the type of annotation
+            </param>
+            <returns>
+            
+            <see cref="T:iText.Forms.Xfdf.AnnotObject">annotation object</see>
+            with set name
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.GetAttributes">
             <summary>Gets a list of all attributes of the annotation.</summary>
+            <returns>
+            
+            <see cref="!:System.Collections.IList&lt;E&gt;">list</see>
+            containing all
+            <see cref="T:iText.Forms.Xfdf.AttributeObject">attribute objects</see>
+            of the annotation
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.GetAttribute(System.String)">
             <summary>Finds the attribute by name in attributes list.</summary>
@@ -4084,15 +4292,35 @@
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.GetPopup">
             <summary>Gets the popup annotation, an inner element of the annotation element.</summary>
+            <returns>
+            
+            <see cref="T:iText.Forms.Xfdf.AnnotObject"/>
+            representing the inner popup annotation
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.SetPopup(iText.Forms.Xfdf.AnnotObject)">
             <summary>Sets the popup annotation, an inner element of the annotation element.</summary>
+            <param name="popup">
+            
+            <see cref="T:iText.Forms.Xfdf.AnnotObject">annotation object</see>
+            representing inner popup annotation
+            </param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.AnnotObject">annotation object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.IsHasPopup">
-            <summary>Gets the boolean, indicating if annotation has inner popup element.</summary>
+            <summary>Gets the boolean, indicating if annotation has an inner popup element.</summary>
+            <returns>true if annotation has an inner popup element, false otherwise</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.SetHasPopup(System.Boolean)">
             <summary>Sets the boolean, indicating if annotation has inner popup element.</summary>
+            <param name="hasPopup">a boolean indicating if annotation has inner popup element</param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.AnnotObject">annotation object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.GetContents">
             <summary>Gets the string value of contents tag in Xfdf document structure.</summary>
@@ -4104,9 +4332,23 @@
             Content model: a string or a rich text string.
             For more details see paragraph 6.5.4 in Xfdf document specification.
             </remarks>
+            <returns>
+            
+            <see cref="T:iText.Kernel.Pdf.PdfString"/>
+            value of inner contents element of current annotation object
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.SetContents(iText.Kernel.Pdf.PdfString)">
             <summary>Sets the string value of contents tag in Xfdf document structure.</summary>
+            <param name="contents">
+            
+            <see cref="T:iText.Kernel.Pdf.PdfString">string</see>
+            value of inner contents element
+            </param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.AnnotObject">annotation object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.GetContentsRichText">
             <summary>Gets the string value of contents-richtext tag in Xfdf document structure.</summary>
@@ -4118,9 +4360,23 @@
             Content model: text string.
             For more details see paragraph 6.5.5 in Xfdf document specification.
             </remarks>
+            <returns>
+            
+            <see cref="T:iText.Kernel.Pdf.PdfString"/>
+            value of inner contents-richtext element of current annotation object
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.SetContentsRichText(iText.Kernel.Pdf.PdfString)">
-            <summary>Gets the string value of contents-richtext tag in xfdf document structure.</summary>
+            <summary>Sets the string value of contents-richtext tag in xfdf document structure.</summary>
+            <param name="contentsRichRext">
+            
+            <see cref="T:iText.Kernel.Pdf.PdfString">rich text string</see>
+            value of inner contents-richtext element
+            </param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.AnnotObject">annotation object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.GetAction">
             <summary>Gets Action element, a child of OnActivation element of the link annotation.</summary>
@@ -4128,6 +4384,11 @@
             Gets Action element, a child of OnActivation element of the link annotation.
             Corresponds to the A key in the link annotation dictionary.
             </remarks>
+            <returns>
+            inner
+            <see cref="T:iText.Forms.Xfdf.ActionObject">action object</see>
+            of annotation object
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.SetAction(iText.Forms.Xfdf.ActionObject)">
             <summary>Sets Action element, a child of OnActivation element of the link annotation.</summary>
@@ -4135,6 +4396,15 @@
             Sets Action element, a child of OnActivation element of the link annotation.
             Corresponds to the A key in the link annotation dictionary.
             </remarks>
+            <param name="action">
+            
+            <see cref="T:iText.Forms.Xfdf.ActionObject">action object</see>
+            , an inner element of annotation object
+            </param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.AnnotObject">annotation object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.AddAttribute(iText.Forms.Xfdf.AttributeObject)">
             <summary>
@@ -4151,9 +4421,17 @@
             <summary>Adds new attribute by given name and value.</summary>
             <remarks>Adds new attribute by given name and value. If required attribute is present, value of the attribute can't be null.
                 </remarks>
-            <param name="name"/>
-            <param name="valueObject"/>
-            <param name="required"/>
+            <param name="name">
+            
+            <see cref="T:System.String"/>
+            attribute name
+            </param>
+            <param name="valueObject">
+            
+            <see cref="T:iText.Kernel.Pdf.PdfObject"/>
+            attribute value
+            </param>
+            <param name="required">boolean indicating if the attribute is required</param>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.AddFdfAttributes(System.Int32)">
             <summary>Adds page, required attribute of every annotation.</summary>
@@ -4164,6 +4442,11 @@
             Gets Dest element, a child element of link, GoTo, GoToR elements.
             Corresponds to the Dest key in link annotation dictionary.
             </remarks>
+            <returns>
+            inner
+            <see cref="T:iText.Forms.Xfdf.DestObject">destination object</see>
+            of annotation object
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.SetDestination(iText.Forms.Xfdf.DestObject)">
             <summary>Sets Dest element, a child element of link, GoTo, GoToR elements.</summary>
@@ -4171,6 +4454,15 @@
             Sets Dest element, a child element of link, GoTo, GoToR elements.
             Corresponds to the Dest key in link annotation dictionary.
             </remarks>
+            <param name="destination">
+            
+            <see cref="T:iText.Forms.Xfdf.DestObject">destination object</see>
+            , an inner element of annotation object
+            </param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.AnnotObject">annotation object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.GetAppearance">
             <summary>Gets the string value of the appearance element, a child element of stamp element.</summary>
@@ -4180,6 +4472,11 @@
             Content model: Base64 encoded string.
             For more details see paragraph 6.5.1 in Xfdf document specification.
             </remarks>
+            <returns>
+            
+            <see cref="T:System.String"/>
+            value of inner appearance element
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.SetAppearance(System.String)">
             <summary>Gets the string value of the appearance element,  a child element of stamp element.</summary>
@@ -4188,6 +4485,15 @@
             Corresponds to the AP key in the annotation dictionary.
             Content model: Base64 encoded string.
             </remarks>
+            <param name="appearance">
+            
+            <see cref="T:System.String"/>
+            value of inner appearance element of annotation object
+            </param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.AnnotObject">annotation object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.GetDefaultAppearance">
             <summary>Gets the string value of the defaultappearance element, a child of the caret and freetext elements.
@@ -4198,6 +4504,11 @@
             Content model: text string.
             For more details see paragraph 6.5.7 in Xfdf document specification.
             </remarks>
+            <returns>
+            
+            <see cref="T:System.String"/>
+            value of inner deafultappearance element
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.SetDefaultAppearance(System.String)">
             <summary>Sets the string value of the defaultappearance element, a child of the caret and freetext elements.
@@ -4207,6 +4518,15 @@
             Corresponds to the DA key in the free text annotation dictionary.
             Content model: text string.
             </remarks>
+            <param name="defaultAppearance">
+            
+            <see cref="T:System.String"/>
+            value of inner defaultappearance element of annotation object
+            </param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.AnnotObject">annotation object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.GetDefaultStyle">
             <summary>Gets the string value of the defaultstyle element, a child of the freetext element.</summary>
@@ -4216,6 +4536,11 @@
             Content model : a text string.
             For more details see paragraph 6.5.9 in Xfdf document specification.
             </remarks>
+            <returns>
+            
+            <see cref="T:System.String"/>
+            value of inner defaultstyle element
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.SetDefaultStyle(System.String)">
             <summary>Sets the string value of the defaultstyle element, a child of the freetext element.</summary>
@@ -4224,6 +4549,15 @@
             Corresponds to the DS key in the free text annotation dictionary.
             Content model : a text string.
             </remarks>
+            <param name="defaultStyle">
+            
+            <see cref="T:System.String"/>
+            value of inner defaultstyle element of annotation object
+            </param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.AnnotObject">annotation object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.GetBorderStyleAlt">
             <summary>Gets the BorderStyleAlt element, a child of the link element.</summary>
@@ -4232,6 +4566,10 @@
             Corresponds to the Border key in the common annotation dictionary.
             For more details see paragraph 6.5.3 in Xfdf document specification.
             </remarks>
+            <returns>
+            inner
+            <see cref="T:iText.Forms.Xfdf.BorderStyleAltObject">BorderStyleAlt object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.SetBorderStyleAlt(iText.Forms.Xfdf.BorderStyleAltObject)">
             <summary>Sets the BorderStyleAlt element, a child of the link element.</summary>
@@ -4239,6 +4577,14 @@
             Sets the BorderStyleAlt element, a child of the link element.
             Corresponds to the Border key in the common annotation dictionary.
             </remarks>
+            <param name="borderStyleAlt">
+            inner
+            <see cref="T:iText.Forms.Xfdf.BorderStyleAltObject">BorderStyleAlt object</see>
+            </param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.AnnotObject">annotation object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.GetVertices">
             <summary>Gets the string, containing vertices element, a child of the polygon and polyline elements.</summary>
@@ -4247,6 +4593,11 @@
             Corresponds to the Vertices key in the polygon or polyline annotation dictionary.
             For more details see paragraph 6.5.31 in Xfdf document specification.
             </remarks>
+            <returns>
+            
+            <see cref="T:System.String"/>
+            value of inner vertices element
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.SetVertices(System.String)">
             <summary>Sets the string, containing vertices element, a child of the polygon and polyline elements.</summary>
@@ -4254,6 +4605,15 @@
             Sets the string, containing vertices element, a child of the polygon and polyline elements.
             Corresponds to the Vertices key in the polygon or polyline annotation dictionary.
             </remarks>
+            <param name="vertices">
+            
+            <see cref="T:System.String"/>
+            value of inner vertices element
+            </param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.AnnotObject">annotation object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.GetRef">
             <summary>
@@ -4265,6 +4625,11 @@
             <see cref="T:iText.Kernel.Pdf.Annot.PdfAnnotation"/>
             . Used for attaching popups in case of reading data from pdf file.
             </remarks>
+            <returns>
+            an
+            <see cref="T:iText.Kernel.Pdf.PdfIndirectReference"/>
+            of the source annotation object.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotObject.SetRef(iText.Kernel.Pdf.PdfIndirectReference)">
             <summary>
@@ -4276,6 +4641,16 @@
             <see cref="T:iText.Kernel.Pdf.Annot.PdfAnnotation"/>
             . Used for attaching popups in case of reading data from pdf file.
             </remarks>
+            <param name="ref">
+            
+            <see cref="T:iText.Kernel.Pdf.PdfIndirectReference"/>
+            of the source annotation object.
+            </param>
+            <returns>
+            this
+            <see cref="T:iText.Forms.Xfdf.AnnotObject"/>
+            instance.
+            </returns>
         </member>
         <member name="T:iText.Forms.Xfdf.AnnotsObject">
             <summary>Represent annots tag in xfdf document structure.</summary>
@@ -4291,8 +4666,18 @@
         <member name="F:iText.Forms.Xfdf.AnnotsObject.annotsList">
             <summary>Represents a list of children annotations.</summary>
         </member>
+        <member name="M:iText.Forms.Xfdf.AnnotsObject.#ctor">
+            <summary>Creates an instance with the empty list of children annotations.</summary>
+        </member>
         <member name="M:iText.Forms.Xfdf.AnnotsObject.GetAnnotsList">
-            <summary>Gets a list of children annotations.</summary>
+            <summary>Gets children annotations.</summary>
+            <returns>
+            a
+            <see cref="!:System.Collections.IList&lt;E&gt;"/>
+            of
+            <see cref="T:iText.Forms.Xfdf.AnnotObject"/>
+            each representing a child annotation of this annots tag.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AnnotsObject.AddAnnot(iText.Forms.Xfdf.AnnotObject)">
             <summary>
@@ -4305,6 +4690,11 @@
             <see cref="T:iText.Forms.Xfdf.AnnotObject"/>
             containing info about pdf document annotation.
             </param>
+            <returns>
+            this
+            <see cref="T:iText.Forms.Xfdf.AnnotsObject"/>
+            instance.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AttributeNotFoundException.#ctor(System.String)">
             <summary>The exception thrown when the attribute with given name is not found in the object attributes list.
@@ -4312,13 +4702,20 @@
             <param name="attribute">the name of missing attribute.</param>
         </member>
         <member name="T:iText.Forms.Xfdf.AttributeObject">
-            <summary>Represents the attribute of any xfdf element.</summary>
+            <summary>Represents the attribute of any XFDF element.</summary>
+        </member>
+        <member name="M:iText.Forms.Xfdf.AttributeObject.#ctor(System.String,System.String)">
+            <summary>Creates an instance with given attribute name and value.</summary>
+            <param name="name">the name of the attribute, constrained by XML attributes specification.</param>
+            <param name="value">the value of the attribute, constrained by XML attributes specification.</param>
         </member>
         <member name="M:iText.Forms.Xfdf.AttributeObject.GetName">
-            <summary>Returns a string containing attribute name.</summary>
+            <summary>Returns attribute name.</summary>
+            <returns>a string representation of attribute name, case-sensitive as per XML specification.</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.AttributeObject.GetValue">
-            <summary>Returns a string representation of attribute value.</summary>
+            <summary>Returns attribute value.</summary>
+            <returns>a string representation of attribute value.</returns>
         </member>
         <member name="T:iText.Forms.Xfdf.BorderStyleAltObject">
             <summary>Represents the BorderStyleAlt element, a child of the link element.</summary>
@@ -4363,53 +4760,78 @@
         <member name="F:iText.Forms.Xfdf.BorderStyleAltObject.content">
             <summary>Encoded border style string.</summary>
         </member>
+        <member name="M:iText.Forms.Xfdf.BorderStyleAltObject.#ctor(System.Single,System.Single,System.Single)">
+            <summary>Creates an instance that encapsulates BorderStyleAlt XFDF element data.</summary>
+            <param name="hCornerRadius">a float value specifying the horizontal corner radius of the rectangular border.
+                </param>
+            <param name="vCornerRadius">a float value specifying the vertical corner radius of the rectangular border.
+                </param>
+            <param name="width">a float value specifying the width of the rectangular border.</param>
+        </member>
         <member name="M:iText.Forms.Xfdf.BorderStyleAltObject.GetHCornerRadius">
-            <summary>Gets a float value specifying the horizontal corner radius of the rectangular border.</summary>
+            <summary>Gets the horizontal corner radius of the rectangular border.</summary>
             <remarks>
-            Gets a float value specifying the horizontal corner radius of the rectangular border.
+            Gets the horizontal corner radius of the rectangular border.
             Corresponds to array index 0 in the Border key in the common annotation dictionary.
             </remarks>
+            <returns>a float value specifying the horizontal corner radius.</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.BorderStyleAltObject.GetVCornerRadius">
-            <summary>Gets a float value specifying the vertical corner radius of the rectangular border.</summary>
+            <summary>Gets the vertical corner radius of the rectangular border.</summary>
             <remarks>
-            Gets a float value specifying the vertical corner radius of the rectangular border.
+            Gets the vertical corner radius of the rectangular border.
             Corresponds to array index 1 in the Border key in the common annotation dictionary.
             </remarks>
+            <returns>a float value specifying the vertical corner radius.</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.BorderStyleAltObject.GetWidth">
-            <summary>Gets a float value specifying the width of the rectangular border.</summary>
+            <summary>Gets the width of the rectangular border.</summary>
             <remarks>
-            Gets a float value specifying the width of the rectangular border.
+            Gets the width of the rectangular border.
             Corresponds to array index 2 in the Border key in the common annotation dictionary.
             </remarks>
+            <returns>a float value specifying the width of the border.</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.BorderStyleAltObject.GetDashPattern">
-            <summary>Gets a array of numbers specifying the pattern of dashes and gaps of the border.</summary>
+            <summary>Gets the dash pattern of the border.</summary>
             <remarks>
-            Gets a array of numbers specifying the pattern of dashes and gaps of the border.
+            Gets the dash pattern of the border.
             Corresponds to array index 3 in the Border key in the common annotation dictionary.
             </remarks>
+            <returns>an array of numbers specifying the pattern of dashes and gaps of the border.</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.BorderStyleAltObject.SetDashPattern(System.Single[])">
-            <summary>Sets a array of numbers specifying the pattern of dashes and gaps of the border.</summary>
+            <summary>Sets the dash pattern of the border.</summary>
             <remarks>
-            Sets a array of numbers specifying the pattern of dashes and gaps of the border.
+            Sets the dash pattern of the border.
             Corresponds to array index 3 in the Border key in the common annotation dictionary.
             </remarks>
+            <param name="dashPattern">an array of numbers specifying the pattern of dashes and gaps of the border.</param>
+            <returns>
+            this
+            <see cref="T:iText.Forms.Xfdf.BorderStyleAltObject"/>
+            instance.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.BorderStyleAltObject.GetContent">
-            <summary>Gets an encoded border style string.</summary>
+            <summary>Gets border style.</summary>
+            <returns>an encoded border style as string.</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.BorderStyleAltObject.SetContent(System.String)">
-            <summary>Sets an encoded border style string.</summary>
+            <summary>Sets border style.</summary>
+            <param name="content">an encoded border style as string.</param>
+            <returns>
+            this
+            <see cref="T:iText.Forms.Xfdf.BorderStyleAltObject"/>
+            instance.
+            </returns>
         </member>
         <member name="T:iText.Forms.Xfdf.DestObject">
             <summary>Represents Dest element, a child of the link, GoTo, and GoToR elements.</summary>
             <remarks>
             Represents Dest element, a child of the link, GoTo, and GoToR elements.
             Corresponds to the Dest key in the link annotations dictionary.
-            For more details see paragraph 6.5.10 in Xfdf document specification.
+            For more details see paragraph 6.5.10 in XFDF document specification.
             Content model: ( Named | XYZ | Fit | FitH | FitV | FitR | FitB | FitBH | FitBV )
             </remarks>
         </member>
@@ -4418,7 +4840,7 @@
             <remarks>
             Represents Name attribute of Named element, a child of Dest element.
             Allows a destination to be referred to indirectly by means of a name object or a byte string.
-            For more details see paragraph 6.5.25 in Xfdf document specification.
+            For more details see paragraph 6.5.25 in XFDF document specification.
             </remarks>
         </member>
         <member name="F:iText.Forms.Xfdf.DestObject.xyz">
@@ -4427,7 +4849,7 @@
             Represents the XYZ element, a child of the Dest element.
             Corresponds to the XYZ key in the destination syntax.
             Required attributes: Page, Left, Bottom, Right, Top.
-            For more details see paragraph 6.5.32 in Xfdf document specification.
+            For more details see paragraph 6.5.32 in XFDF document specification.
             </remarks>
         </member>
         <member name="F:iText.Forms.Xfdf.DestObject.fit">
@@ -4436,7 +4858,7 @@
             Represents the Fit element, a child of the Dest element.
             Corresponds to the Fit key in the destination syntax.
             Required attributes: Page.
-            For more details see paragraph 6.5.13 in Xfdf document specification.
+            For more details see paragraph 6.5.13 in XFDF document specification.
             </remarks>
         </member>
         <member name="F:iText.Forms.Xfdf.DestObject.fitH">
@@ -4445,7 +4867,7 @@
             Represents the FitH element, a child of the Dest element.
             Corresponds to the FitH key in the destination syntax.
             Required attributes: Page, Top.
-            For more details see paragraph 6.5.17 in Xfdf document specification.
+            For more details see paragraph 6.5.17 in XFDF document specification.
             </remarks>
         </member>
         <member name="F:iText.Forms.Xfdf.DestObject.fitV">
@@ -4454,7 +4876,7 @@
             Represents the FitV element, a child of the Dest element.
             Corresponds to the FitV key in the destination syntax.
             Required attributes: Page, Left.
-            For more details see paragraph 6.5.19 in Xfdf document specification.
+            For more details see paragraph 6.5.19 in XFDF document specification.
             </remarks>
         </member>
         <member name="F:iText.Forms.Xfdf.DestObject.fitR">
@@ -4463,7 +4885,7 @@
             Represents the FitR element, a child of the Dest element.
             Corresponds to the FitR key in the destination syntax.
             Required attributes: Page, Left, Bottom, Right, Top.
-            For more details see paragraph 6.5.18 in Xfdf document specification.
+            For more details see paragraph 6.5.18 in XFDF document specification.
             </remarks>
         </member>
         <member name="F:iText.Forms.Xfdf.DestObject.fitB">
@@ -4472,7 +4894,7 @@
             Represents the FitB element, a child of the Dest element.
             Corresponds to the FitB key in the destination syntax.
             Required attributes: Page.
-            For more details see paragraph 6.5.14 in Xfdf document specification.
+            For more details see paragraph 6.5.14 in XFDF document specification.
             </remarks>
         </member>
         <member name="F:iText.Forms.Xfdf.DestObject.fitBH">
@@ -4481,7 +4903,7 @@
             Represents the FitBH element, a child of the Dest element.
             Corresponds to the FitBH key in the destination syntax.
             Required attributes: Page, Top.
-            For more details see paragraph 6.5.15 in Xfdf document specification.
+            For more details see paragraph 6.5.15 in XFDF document specification.
             </remarks>
         </member>
         <member name="F:iText.Forms.Xfdf.DestObject.fitBV">
@@ -4490,23 +4912,30 @@
             Represents the FitBV element, a child of the Dest element.
             Corresponds to the FitBV key in the destination syntax.
             Required attributes: Page, Left.
-            For more details see paragraph 6.5.16 in Xfdf document specification.
+            For more details see paragraph 6.5.16 in XFDF document specification.
             </remarks>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.GetName">
-            <summary>Gets string value of the Name attribute of Named element, a child of Dest element.</summary>
+            <summary>Gets the Name attribute of Named element, a child of Dest element.</summary>
             <remarks>
-            Gets string value of the Name attribute of Named element, a child of Dest element.
+            Gets the Name attribute of Named element, a child of Dest element.
             Allows a destination to be referred to indirectly by means of a name object or a byte string.
-            For more details see paragraph 6.5.25 in Xfdf document specification.
+            For more details see paragraph 6.5.25 in XFDF document specification.
             </remarks>
+            <returns>string value of the Name attribute.</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.SetName(System.String)">
-            <summary>Sets string value of the Name attribute of Named element, a child of Dest element.</summary>
+            <summary>Sets the Name attribute of Named element, a child of Dest element.</summary>
             <remarks>
-            Sets string value of the Name attribute of Named element, a child of Dest element.
+            Sets the Name attribute of Named element, a child of Dest element.
             Allows a destination to be referred to indirectly by means of a name object or a byte string.
             </remarks>
+            <param name="name">string value of the Name attribute.</param>
+            <returns>
+            this
+            <see cref="T:iText.Forms.Xfdf.DestObject"/>
+            instance.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.GetXyz">
             <summary>Gets the XYZ element, a child of the Dest element.</summary>
@@ -4514,8 +4943,13 @@
             Gets the XYZ element, a child of the Dest element.
             Corresponds to the XYZ key in the destination syntax.
             Required attributes: Page, Left, Bottom, Right, Top.
-            For more details see paragraph 6.5.32 in Xfdf document specification.
+            For more details see paragraph 6.5.32 in XFDF document specification.
             </remarks>
+            <returns>
+            a
+            <see cref="T:iText.Forms.Xfdf.FitObject"/>
+            that represents XYZ of Dest element.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.SetXyz(iText.Forms.Xfdf.FitObject)">
             <summary>Sets the XYZ element, a child of the Dest element.</summary>
@@ -4524,6 +4958,16 @@
             Corresponds to the XYZ key in the destination syntax.
             Required attributes: Page, Left, Bottom, Right, Top.
             </remarks>
+            <param name="xyz">
+            a
+            <see cref="T:iText.Forms.Xfdf.FitObject"/>
+            that represents XYZ of Dest element.
+            </param>
+            <returns>
+            this
+            <see cref="T:iText.Forms.Xfdf.DestObject"/>
+            instance.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.GetFit">
             <summary>Gets the Fit element, a child of the Dest element.</summary>
@@ -4531,8 +4975,13 @@
             Gets the Fit element, a child of the Dest element.
             Corresponds to the Fit key in the destination syntax.
             Required attributes: Page.
-            For more details see paragraph 6.5.13 in Xfdf document specification.
+            For more details see paragraph 6.5.13 in XFDF document specification.
             </remarks>
+            <returns>
+            a
+            <see cref="T:iText.Forms.Xfdf.FitObject"/>
+            that represents Fit of Dest element.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.SetFit(iText.Forms.Xfdf.FitObject)">
             <summary>Sets the Fit element, a child of the Dest element.</summary>
@@ -4541,6 +4990,16 @@
             Corresponds to the Fit key in the destination syntax.
             Required attributes: Page.
             </remarks>
+            <param name="fit">
+            a
+            <see cref="T:iText.Forms.Xfdf.FitObject"/>
+            that represents Fit of Dest element.
+            </param>
+            <returns>
+            this
+            <see cref="T:iText.Forms.Xfdf.DestObject"/>
+            instance.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.GetFitH">
             <summary>Gets the FitH element, a child of the Dest element.</summary>
@@ -4548,8 +5007,13 @@
             Gets the FitH element, a child of the Dest element.
             Corresponds to the FitH key in the destination syntax.
             Required attributes: Page, Top.
-            For more details see paragraph 6.5.17 in Xfdf document specification.
+            For more details see paragraph 6.5.17 in XFDF document specification.
             </remarks>
+            <returns>
+            a
+            <see cref="T:iText.Forms.Xfdf.FitObject"/>
+            that represents FitH of Dest element.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.SetFitH(iText.Forms.Xfdf.FitObject)">
             <summary>Sets the FitH element, a child of the Dest element.</summary>
@@ -4558,6 +5022,16 @@
             Corresponds to the FitH key in the destination syntax.
             Required attributes: Page, Top.
             </remarks>
+            <param name="fitH">
+            a
+            <see cref="T:iText.Forms.Xfdf.FitObject"/>
+            that represents FitH of Dest element.
+            </param>
+            <returns>
+            this
+            <see cref="T:iText.Forms.Xfdf.DestObject"/>
+            instance.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.GetFitV">
             <summary>Gets the FitV element, a child of the Dest element.</summary>
@@ -4565,8 +5039,13 @@
             Gets the FitV element, a child of the Dest element.
             Corresponds to the FitV key in the destination syntax.
             Required attributes: Page, Left.
-            For more details see paragraph 6.5.19 in Xfdf document specification.
+            For more details see paragraph 6.5.19 in XFDF document specification.
             </remarks>
+            <returns>
+            a
+            <see cref="T:iText.Forms.Xfdf.FitObject"/>
+            that represents FitV of Dest element.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.SetFitV(iText.Forms.Xfdf.FitObject)">
             <summary>Sets the FitV element, a child of the Dest element.</summary>
@@ -4575,6 +5054,16 @@
             Corresponds to the FitV key in the destination syntax.
             Required attributes: Page, Left.
             </remarks>
+            <param name="fitV">
+            a
+            <see cref="T:iText.Forms.Xfdf.FitObject"/>
+            that represents FitV of Dest element.
+            </param>
+            <returns>
+            this
+            <see cref="T:iText.Forms.Xfdf.DestObject"/>
+            instance.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.GetFitR">
             <summary>Gets the FitR element, a child of the Dest element.</summary>
@@ -4582,8 +5071,13 @@
             Gets the FitR element, a child of the Dest element.
             Corresponds to the FitR key in the destination syntax.
             Required attributes: Page, Left, Bottom, Right, Top.
-            For more details see paragraph 6.5.18 in Xfdf document specification.
+            For more details see paragraph 6.5.18 in XFDF document specification.
             </remarks>
+            <returns>
+            a
+            <see cref="T:iText.Forms.Xfdf.FitObject"/>
+            that represents FitR of Dest element.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.SetFitR(iText.Forms.Xfdf.FitObject)">
             <summary>Sets the FitR element, a child of the Dest element.</summary>
@@ -4592,6 +5086,16 @@
             Corresponds to the FitR key in the destination syntax.
             Required attributes: Page, Left, Bottom, Right, Top.
             </remarks>
+            <param name="fitR">
+            a
+            <see cref="T:iText.Forms.Xfdf.FitObject"/>
+            that represents FitR of Dest element.
+            </param>
+            <returns>
+            this
+            <see cref="T:iText.Forms.Xfdf.DestObject"/>
+            instance.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.GetFitB">
             <summary>Sets the FitB element, a child of the Dest element.</summary>
@@ -4599,8 +5103,13 @@
             Sets the FitB element, a child of the Dest element.
             Corresponds to the FitB key in the destination syntax.
             Required attributes: Page.
-            For more details see paragraph 6.5.14 in Xfdf document specification.
+            For more details see paragraph 6.5.14 in XFDF document specification.
             </remarks>
+            <returns>
+            a
+            <see cref="T:iText.Forms.Xfdf.FitObject"/>
+            that represents FitB of Dest element.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.SetFitB(iText.Forms.Xfdf.FitObject)">
             <summary>Gets the FitB element, a child of the Dest element.</summary>
@@ -4608,7 +5117,18 @@
             Gets the FitB element, a child of the Dest element.
             Corresponds to the FitB key in the destination syntax.
             Required attributes: Page.
+            For more details see paragraph 6.5.14 in XFDF document specification.
             </remarks>
+            <param name="fitB">
+            a
+            <see cref="T:iText.Forms.Xfdf.FitObject"/>
+            that represents FitB of Dest element.
+            </param>
+            <returns>
+            this
+            <see cref="T:iText.Forms.Xfdf.DestObject"/>
+            instance.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.GetFitBH">
             <summary>Sets the FitBH element, a child of the Dest element.</summary>
@@ -4616,8 +5136,13 @@
             Sets the FitBH element, a child of the Dest element.
             Corresponds to the FitBH key in the destination syntax.
             Required attributes: Page, Top.
-            For more details see paragraph 6.5.15 in Xfdf document specification.
+            For more details see paragraph 6.5.15 in XFDF document specification.
             </remarks>
+            <returns>
+            a
+            <see cref="T:iText.Forms.Xfdf.FitObject"/>
+            that represents FitBH of Dest element.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.SetFitBH(iText.Forms.Xfdf.FitObject)">
             <summary>Gets the FitBH element, a child of the Dest element.</summary>
@@ -4626,6 +5151,16 @@
             Corresponds to the FitBH key in the destination syntax.
             Required attributes: Page, Top.
             </remarks>
+            <param name="fitBH">
+            a
+            <see cref="T:iText.Forms.Xfdf.FitObject"/>
+            that represents FitBH of Dest element.
+            </param>
+            <returns>
+            this
+            <see cref="T:iText.Forms.Xfdf.DestObject"/>
+            instance.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.GetFitBV">
             <summary>Sets the FitBV element, a child of the Dest element.</summary>
@@ -4633,8 +5168,13 @@
             Sets the FitBV element, a child of the Dest element.
             Corresponds to the FitBV key in the destination syntax.
             Required attributes: Page, Left.
-            For more details see paragraph 6.5.16 in Xfdf document specification.
+            For more details see paragraph 6.5.16 in XFDF document specification.
             </remarks>
+            <returns>
+            a
+            <see cref="T:iText.Forms.Xfdf.FitObject"/>
+            that represents FitBV of Dest element.
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.DestObject.SetFitBV(iText.Forms.Xfdf.FitObject)">
             <summary>Sets the FitBV element, a child of the Dest element.</summary>
@@ -4643,6 +5183,16 @@
             Corresponds to the FitBV key in the destination syntax.
             Required attributes: Page, Left.
             </remarks>
+            <param name="fitBV">
+            a
+            <see cref="T:iText.Forms.Xfdf.FitObject"/>
+            that represents FitBV of Dest element.
+            </param>
+            <returns>
+            this
+            <see cref="T:iText.Forms.Xfdf.DestObject"/>
+            instance.
+            </returns>
         </member>
         <member name="T:iText.Forms.Xfdf.ElementContentEncodingFormat">
             <summary>Represents encoding attribute of data or resource elements (children of fileattachment and sound elements).
@@ -4651,14 +5201,23 @@
         <member name="T:iText.Forms.Xfdf.Encoding">
             <summary>To be removed in 7.2</summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:iText.Forms.Xfdf.FieldObject" -->
+        <member name="T:iText.Forms.Xfdf.FieldObject">
+            <summary>Represents the field element, a child of the fields and field elements.</summary>
+            <remarks>
+            Represents the field element, a child of the fields and field elements.
+            The field element corresponds to a form field.
+            Content model: ( field* | value* | ( value? &amp; value-richtext? )).
+            Required attributes: name.
+            For more details see paragraph 6.3.2 in XFDF document specification.
+            </remarks>
+        </member>
         <member name="F:iText.Forms.Xfdf.FieldObject.name">
             <summary>Represents the name attribute of the field element.</summary>
             <remarks>
             Represents the name attribute of the field element.
             Corresponds to the T key in the field dictionary.
             In a hierarchical form field, the name is the partial field name.
-            For more details see paragraph 6.3.2.2 in Xfdf document specification.
+            For more details see paragraph 6.3.2.2 in XFDF document specification.
             </remarks>
         </member>
         <member name="F:iText.Forms.Xfdf.FieldObject.value">
@@ -4671,7 +5230,7 @@
             vary depending on the field type.
             Corresponds to the V key in the FDF field dictionary.
             Content model: text string.
-            For more details see paragraph 6.3.3 in Xfdf document specification.
+            For more details see paragraph 6.3.3 in XFDF document specification.
             </remarks>
         </member>
         <member name="F:iText.Forms.Xfdf.FieldObject.richTextValue">
@@ -4685,7 +5244,7 @@
             Corresponds to the RV key in the variable text field dictionary.
             Content model: text strign or rich text string.
             Attributes: none.
-            For more details see paragraph 6.3.4 in Xfdf document specification.
+            For more details see paragraph 6.3.4 in XFDF document specification.
             </remarks>
         </member>
         <member name="F:iText.Forms.Xfdf.FieldObject.containsRichText">
@@ -4700,8 +5259,13 @@
             Gets the string value of the name attribute of the field element.
             Corresponds to the T key in the field dictionary.
             In a hierarchical form field, the name is the partial field name.
-            For more details see paragraph 6.3.2.2 in Xfdf document specification.
+            For more details see paragraph 6.3.2.2 in XFDF document specification.
             </remarks>
+            <returns>
+            
+            <see cref="T:System.String"/>
+            value of field name attribute
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FieldObject.SetName(System.String)">
             <summary>Sets the string value of the name attribute of the field element.</summary>
@@ -4710,66 +5274,104 @@
             Corresponds to the T key in the field dictionary.
             In a hierarchical form field, the name is the partial field name.
             </remarks>
+            <param name="name">
+            
+            <see cref="T:System.String"/>
+            value of field name attribute
+            </param>
         </member>
         <member name="M:iText.Forms.Xfdf.FieldObject.GetValue">
             <summary>
-            Gets the string representation of the value element, a child of the field element and contains the field's value, whose format may
-            vary depending on the field type.
+            Gets the string representation of the value element, a child of the field element and contains the field's value,
+            whose format may vary depending on the field type.
             </summary>
             <remarks>
-            Gets the string representation of the value element, a child of the field element and contains the field's value, whose format may
-            vary depending on the field type.
+            Gets the string representation of the value element, a child of the field element and contains the field's value,
+            whose format may vary depending on the field type.
             Corresponds to the V key in the FDF field dictionary.
-            For more details see paragraph 6.3.3 in Xfdf document specification.
+            For more details see paragraph 6.3.3 in XFDF document specification.
             </remarks>
+            <returns>
+            
+            <see cref="T:System.String"/>
+            representation of inner value element of the field
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FieldObject.SetValue(System.String)">
             <summary>
-            Sets the string representation of the value element, a child of the field element and contains the field's value, whose format may
-            vary depending on the field type.
+            Sets the string representation of the value element, a child of the field element and contains the field's value,
+            whose format may vary depending on the field type.
             </summary>
             <remarks>
-            Sets the string representation of the value element, a child of the field element and contains the field's value, whose format may
-            vary depending on the field type.
+            Sets the string representation of the value element, a child of the field element and contains the field's value,
+            whose format may vary depending on the field type.
             Corresponds to the V key in the FDF field dictionary.
             </remarks>
+            <param name="value">
+            
+            <see cref="T:System.String"/>
+            representation of inner value element of the field
+            </param>
         </member>
         <member name="M:iText.Forms.Xfdf.FieldObject.GetRichTextValue">
             <summary>
-            Gets the string representation of the value-richtext element, a child of the field element and contains the field's value formatted as a
-            rich text string.
+            Gets the string representation of the value-richtext element, a child of the field element and contains the
+            field's value formatted as a rich text string.
             </summary>
             <remarks>
-            Gets the string representation of the value-richtext element, a child of the field element and contains the field's value formatted as a
-            rich text string.
+            Gets the string representation of the value-richtext element, a child of the field element and contains the
+            field's value formatted as a rich text string.
             Corresponds to the RV key in the variable text field dictionary.
             Content model: text strign or rich text string.
-            For more details see paragraph 6.3.4 in Xfdf document specification.
+            For more details see paragraph 6.3.4 in XFDF document specification.
             </remarks>
+            <returns>
+            
+            <see cref="T:System.String"/>
+            representation of inner value-richtext element of the field
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FieldObject.SetRichTextValue(System.String)">
             <summary>
-            Sets the string representation of the value-richtext element, a child of the field element and contains the field's value formatted as a
-            rich text string.
+            Sets the string representation of the value-richtext element, a child of the field element and contains the
+            field's value formatted as a rich text string.
             </summary>
             <remarks>
-            Sets the string representation of the value-richtext element, a child of the field element and contains the field's value formatted as a
-            rich text string.
+            Sets the string representation of the value-richtext element, a child of the field element and contains the
+            field's value formatted as a rich text string.
             Corresponds to the RV key in the variable text field dictionary.
-            Content model: text strign or rich text string.
+            Content model: text string or rich text string.
             </remarks>
+            <param name="richTextValue">
+            
+            <see cref="T:System.String"/>
+            representation of inner value-richtext element of the field
+            </param>
         </member>
         <member name="M:iText.Forms.Xfdf.FieldObject.IsContainsRichText">
             <summary>Gets a boolean indicating if a value-richtext element is present inside the field.</summary>
+            <returns>true if a value-richtext element is present inside the field, false otherwise</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FieldObject.SetContainsRichText(System.Boolean)">
             <summary>Sets a boolean indicating if a value-richtext element is present inside the field.</summary>
+            <param name="containsRichText">a boolean indicating if a value-richtext element is present inside the field
+                </param>
         </member>
         <member name="M:iText.Forms.Xfdf.FieldObject.GetParent">
             <summary>Gets a parent field of current field.</summary>
+            <returns>
+            parent
+            <see cref="T:iText.Forms.Xfdf.FieldObject">field object</see>
+            of the current field
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FieldObject.SetParent(iText.Forms.Xfdf.FieldObject)">
             <summary>Sets a parent field of current field.</summary>
+            <param name="parent">
+            
+            <see cref="T:iText.Forms.Xfdf.FieldObject">field object</see>
+            that is a parent of the current field
+            </param>
         </member>
         <member name="T:iText.Forms.Xfdf.FieldsObject">
             <summary>Represents the fields element, a child of the xfdf element and is the container for form field elements.
@@ -4786,10 +5388,20 @@
         </member>
         <member name="M:iText.Forms.Xfdf.FieldsObject.GetFieldList">
             <summary>Gets a list of children fields</summary>
+            <returns>
+            
+            <see cref="!:System.Collections.IList&lt;E&gt;"/>
+            containing all children
+            <see cref="T:iText.Forms.Xfdf.FieldObject">field objects</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FieldsObject.AddField(iText.Forms.Xfdf.FieldObject)">
             <summary>Adds a new field to the list.</summary>
             <param name="field">FieldObject containing the info about the form field.</param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.FieldsObject">fields object</see>
+            </returns>
         </member>
         <member name="T:iText.Forms.Xfdf.FitObject">
             <summary>Represent Fit, a child of the Dest element.</summary>
@@ -4832,30 +5444,59 @@
             Gets the PdfObject representing the page displayed by current Fit element.
             Attribute of Fit, FitB, FitBH, FitBV, FitH, FitR, FitV, XYZ elements.
             </remarks>
+            <returns>
+            
+            <see cref="T:iText.Kernel.Pdf.PdfObject">page</see>
+            of the current Fit element
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FitObject.GetTop">
             <summary>Gets a float vertical coordinate positioned at the top edge of the window.</summary>
+            <returns>top vertical coordinate</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FitObject.SetTop(System.Single)">
             <summary>Sets a float vertical coordinate positioned at the top edge of the window.</summary>
+            <param name="top">vertical coordinate value</param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.FitObject">fit object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FitObject.GetLeft">
             <summary>Gets a float horizontal coordinate positioned at the left edge of the window.</summary>
+            <returns>left horizontal coordinate</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FitObject.SetLeft(System.Single)">
             <summary>Sets a float horizontal coordinate positioned at the left edge of the window.</summary>
+            <param name="left">horizontal coordinate value</param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.FitObject">fit object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FitObject.GetBottom">
             <summary>Gets a float vertical coordinate positioned at the bottom edge of the window.</summary>
+            <returns>bottom vertical coordinate</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FitObject.SetBottom(System.Single)">
             <summary>Sets a float vertical coordinate positioned at the bottom edge of the window.</summary>
+            <param name="bottom">vertical coordinate value</param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.FitObject">fit object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FitObject.GetRight">
             <summary>Gets a float horizontal coordinate positioned at the right edge of the window.</summary>
+            <returns>right horizontal coordinate</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FitObject.SetRight(System.Single)">
             <summary>Sets a float horizontal coordinate positioned at the right edge of the window.</summary>
+            <param name="right">horizontal coordinate</param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.FitObject">fit object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FitObject.GetZoom">
             <summary>Gets a float representing the zoom ratio.</summary>
@@ -4863,6 +5504,7 @@
             Gets a float representing the zoom ratio.
             Attribute of XYZ object.
             </remarks>
+            <returns>zoom ratio value</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FitObject.SetZoom(System.Single)">
             <summary>Sets a float representing the zoom ratio.</summary>
@@ -4870,6 +5512,11 @@
             Sets a float representing the zoom ratio.
             Attribute of XYZ object.
             </remarks>
+            <param name="zoom">ratio value</param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.FitObject">fit object</see>
+            </returns>
         </member>
         <member name="T:iText.Forms.Xfdf.FObject">
             <summary>Represents f element, child of the xfdf element.</summary>
@@ -4887,9 +5534,15 @@
         </member>
         <member name="M:iText.Forms.Xfdf.FObject.GetHref">
             <summary>Gets the name of the source or target file.</summary>
+            <returns>the name of the source or target file</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.FObject.SetHref(System.String)">
             <summary>Sets the name of the source or target file.</summary>
+            <param name="href">the name of the source or target file</param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.FObject">f object</see>
+            </returns>
         </member>
         <member name="T:iText.Forms.Xfdf.IdsObject">
             <summary>Represents ids element, child of the xfdf element.</summary>
@@ -4940,6 +5593,7 @@
             This value does not change when the file is incrementally updated.
             The value shall be a hexadecimal number.
             </remarks>
+            <returns>the permanent identifier value</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.IdsObject.SetOriginal(System.String)">
             <summary>
@@ -4953,6 +5607,11 @@
             The value shall be a hexadecimal number.
             A common value for this is an MD5 checksum.
             </remarks>
+            <param name="original">the permanent identifier value</param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.IdsObject">ids object</see>
+            </returns>
         </member>
         <member name="M:iText.Forms.Xfdf.IdsObject.GetModified">
             <summary>
@@ -4966,6 +5625,7 @@
             on the file's contents at the time it was last updated.
             The value shall be a hexadecimal number.
             </remarks>
+            <returns>the unique identifier value</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.IdsObject.SetModified(System.String)">
             <summary>
@@ -4980,6 +5640,11 @@
             The value shall be a hexadecimal number.
             A common value for this is an MD5 checksum.
             </remarks>
+            <param name="modified">the unique identifier value</param>
+            <returns>
+            current
+            <see cref="T:iText.Forms.Xfdf.IdsObject">ids object</see>
+            </returns>
         </member>
         <member name="T:iText.Forms.Xfdf.Mode">
             <summary>Represents the mode attribute of data and resource elements.</summary>
@@ -4989,7 +5654,13 @@
             </remarks>
         </member>
         <member name="T:iText.Forms.Xfdf.XfdfConstants">
-            <summary>Class containing constants to be used in xfdf processing.</summary>
+            <summary>Class containing constants to be used in XFDF processing.</summary>
+        </member>
+        <member name="F:iText.Forms.Xfdf.XfdfException.ATTRIBUTE_NAME_OR_VALUE_MISSING">
+            <summary>Message in case one tries to add attribute with null name or value</summary>
+        </member>
+        <member name="F:iText.Forms.Xfdf.XfdfException.PAGE_IS_MISSING">
+            <summary>Message in case one tries to add annotation without indicating the page it belongs to</summary>
         </member>
         <member name="M:iText.Forms.Xfdf.XfdfFileUtils.CreateNewXfdfDocument">
             <summary>Creates a new xml-styled document for writing xfdf info.</summary>
@@ -5004,7 +5675,15 @@
             <param name="document"> the document to save info to.</param>
             <param name=" outputStream"> the stream containing xfdf info.</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:iText.Forms.Xfdf.XfdfObject" -->
+        <member name="T:iText.Forms.Xfdf.XfdfObject">
+            <summary>Represents xfdf element, the top level element in an xfdf document.</summary>
+            <remarks>
+            Represents xfdf element, the top level element in an xfdf document.
+            For more details see paragraph 6.2.1 in Xfdf document specification.
+            Content model: ( f? &amp; ids? &amp; fields? &amp; annots? )
+            Attributes: xml:space, xmlns.
+            </remarks>
+        </member>
         <member name="F:iText.Forms.Xfdf.XfdfObject.f">
             <summary>Represents f element, child of the xfdf element.</summary>
             <remarks>
@@ -5035,13 +5714,15 @@
             Gets the f element, child of the xfdf element.
             Corresponds to the F key in the file dictionary.
             </remarks>
+            <returns>the f element</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.XfdfObject.SetF(iText.Forms.Xfdf.FObject)">
-            <summary>Sets the f element, child of the xfdf element.</summary>
+            <summary>Sets f element, child of the xfdf element.</summary>
             <remarks>
-            Sets the f element, child of the xfdf element.
+            Sets f element, child of the xfdf element.
             Corresponds to the F key in the file dictionary.
             </remarks>
+            <param name="f">element</param>
         </member>
         <member name="M:iText.Forms.Xfdf.XfdfObject.GetIds">
             <summary>Gets the ids element, child of the xfdf element.</summary>
@@ -5049,21 +5730,24 @@
             Gets the ids element, child of the xfdf element.
             Corresponds to the ID key in the file dictionary.
             </remarks>
+            <returns>the ids element</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.XfdfObject.SetIds(iText.Forms.Xfdf.IdsObject)">
-            <summary>Sets the ids element, child of the xfdf element.</summary>
+            <summary>Sets ids element, child of the xfdf element.</summary>
             <remarks>
-            Sets the ids element, child of the xfdf element.
+            Sets ids element, child of the xfdf element.
             Corresponds to the ID key in the file dictionary.
             </remarks>
+            <param name="ids">element</param>
         </member>
         <member name="M:iText.Forms.Xfdf.XfdfObject.GetFields">
             <summary>Gets the fields element, a child of the xfdf element and is the container for form field elements.
                 </summary>
+            <returns>the fields element</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.XfdfObject.SetFields(iText.Forms.Xfdf.FieldsObject)">
-            <summary>Sets the fields element, a child of the xfdf element and is the container for form field elements.
-                </summary>
+            <summary>Sets fields element, a child of the xfdf element and is the container for form field elements.</summary>
+            <param name="fields">element</param>
         </member>
         <member name="M:iText.Forms.Xfdf.XfdfObject.GetAnnots">
             <summary>Gets the annots element, a child of the xfdf element and is the container for annot elements.</summary>
