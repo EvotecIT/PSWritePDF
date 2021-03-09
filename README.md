@@ -56,6 +56,11 @@ Install-Module PSWritePDF -Force
 
 ## Changelog
 
+- 0.0.11 - 2021.03.09
+  - [x] Added `Register-PDFFont` that allows adding custom fonts (see examples for usage)
+    - [x] This also allows to use unicode chars (the built-in fonts don't seem to have unicode)
+    - [x] Usage: `Register-PDFFont -FontName 'Verdana' -FontPath 'C:\Windows\fonts\verdana.ttf' -Encoding IDENTITY_H -Cached -Default`
+  - [x] Improved `New-PDFListItem` allowing same options as `New-PDFText`
 - 0.0.10 - 2020.8.3
   - [x] Fixed issue with `New-PDFText` - problem with `Remove-EmptyValue`
 - 0.0.9 - 2020.8.1
