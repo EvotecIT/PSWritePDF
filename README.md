@@ -56,6 +56,8 @@ Install-Module PSWritePDF -Force
 
 ## Changelog
 
+- 0.0.12 - 2021.03.09
+  - [x] Removed `Exit` in favor of `return`
 - 0.0.11 - 2021.03.09
   - [x] Added `Register-PDFFont` that allows adding custom fonts (see examples for usage)
     - [x] This also allows to use unicode chars (the built-in fonts don't seem to have unicode)
