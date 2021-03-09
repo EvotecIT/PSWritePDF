@@ -3,7 +3,6 @@
     param(
         [string[]] $Text,
         [ValidateScript( { & $Script:PDFFontValidationList } )][string[]] $Font,
-        #[string[]] $FontFamily,
         [ValidateScript( { & $Script:PDFColorValidation } )][string[]] $FontColor,
         [bool[]] $FontBold
     )
@@ -14,7 +13,6 @@
     if ($Font) {
         $Splat['Font'] = $Font
     }
-    #FontFamily = $FontFamily
     if ($FontColor) {
         $Splat['FontColor'] = $FontColor
     }
