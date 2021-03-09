@@ -58,7 +58,12 @@
             }
             $Content
         )
-        $Script:PDF = New-InternalPDF -FilePath $FilePath -Version $Version #-PageSize $PageSize -Rotate:$Rotate
+        if ($Elements) {
+            $Script:PDF = New-InternalPDF -FilePath $FilePath -Version $Version #-PageSize $PageSize -Rotate:$Rotate
+        } else {
+            Write-Warning "New-PDF - No content was provided. Terminating."
+            return
+        }
     } else {
         $Script:PDFStart['Start'] = $false
         # if there's no scriptblock that means we're using standard way of working with PDF

@@ -5,7 +5,9 @@
     )
     foreach ($Element in $Elements) {
         $Splat = $Element.Settings
-        Remove-EmptyValue -Hashtable $Splat
+        if ($Splat) {
+            Remove-EmptyValue -Hashtable $Splat
+        }
         if ($Element.Type -eq 'Page') {
             if (-not $Script:PDFStart.FirstPageUsed) {
                 #$Area = New-PDFArea -PageSize $Element.Settings.PageSize -Rotate:$Element.Settings.Rotate -AreaType ([iText.Layout.Properties.AreaBreakType]::LAST_PAGE)
