@@ -2,7 +2,7 @@
     [CmdletBinding()]
     param(
         [string[]] $Text,
-        [ValidateScript( { & $Script:PDFFontValidation } )][string[]] $Font,
+        [ValidateScript( { & $Script:PDFFontValidationList } )][string[]] $Font,
         #[string[]] $FontFamily,
         [ValidateScript( { & $Script:PDFColorValidation } )][string[]] $FontColor,
         [bool[]] $FontBold
@@ -53,16 +53,25 @@
         if ($Font) {
             if ($null -ne $Font[$i]) {
                 if ($Font[$i]) {
-                    $ConvertedFont = Get-PDFConstantFont -Font $Font[$i]
-                    $ApplyFont = [iText.Kernel.Font.PdfFontFactory]::CreateFont($ConvertedFont)
+                    #$ConvertedFont = Get-PDFConstantFont -Font $Font[$i]
+                    #$ApplyFont = [iText.Kernel.Font.PdfFontFactory]::CreateFont($ConvertedFont, [iText.IO.Font.PdfEncodings]::IDENTITY_H, $false)
+                    #$ApplyFont = [iText.Kernel.Font.PdfFontFactory]::CreateFont('TIMES_ROMAN', [iText.IO.Font.PdfEncodings]::IDENTITY_H, $false)
+                    #$PDFText = $PDFText.SetFont($ApplyFont)
+                    $ApplyFont = Get-InternalPDFFont -Font $Font[$i]
                     $PDFText = $PDFText.SetFont($ApplyFont)
                 }
             } else {
                 if ($DefaultColor) {
-                    $ConvertedFont = Get-PDFConstantFont -Font $DefaultFont
-                    $ApplyFont = [iText.Kernel.Font.PdfFontFactory]::CreateFont($ConvertedFont)
+                    # $ConvertedFont = Get-PDFConstantFont -Font $DefaultFont
+                    # $ApplyFont = [iText.Kernel.Font.PdfFontFactory]::CreateFont($ConvertedFont, [iText.IO.Font.PdfEncodings]::IDENTITY_H, $false)
+                    # $PDFText = $PDFText.SetFont($ApplyFont)
+                    $ApplyFont = Get-InternalPDFFont -Font $DefaultFont
                     $PDFText = $PDFText.SetFont($ApplyFont)
                 }
+            }
+        } else {
+            if ($Script:DefaultFont) {
+                $PDFText = $PDFText.SetFont($Script:DefaultFont)
             }
         }
         $null = $Paragraph.Add($PDFText)

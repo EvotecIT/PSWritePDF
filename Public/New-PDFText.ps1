@@ -2,7 +2,7 @@
     [CmdletBinding()]
     param(
         [string[]] $Text,
-        [ValidateScript( { & $Script:PDFFontValidation } )][string[]] $Font,
+        [ValidateScript( { & $Script:PDFFontValidationList } )][string[]] $Font,
         #[string[]] $FontFamily,
         [ValidateScript( { & $Script:PDFColorValidation } )][string[]] $FontColor,
         [bool[]] $FontBold
@@ -33,5 +33,5 @@
     }
 }
 
-Register-ArgumentCompleter -CommandName New-PDFText -ParameterName Font -ScriptBlock $Script:PDFFont
+Register-ArgumentCompleter -CommandName New-PDFText -ParameterName Font -ScriptBlock $Script:PDFFontList
 Register-ArgumentCompleter -CommandName New-PDFText -ParameterName FontColor -ScriptBlock $Script:PDFColor

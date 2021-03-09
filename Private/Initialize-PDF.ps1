@@ -43,7 +43,6 @@
         } elseif ($Element.Type -eq 'Text') {
             $Paragraph = New-InternalPDFText @Splat
             foreach ($P in $Paragraph) {
-                #$null = $Script:Document.Add($P)
                 Add-PDFDocumentContent -Object $P
             }
         } elseif ($Element.Type -eq 'List') {
