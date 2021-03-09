@@ -3,8 +3,8 @@
     param(
         [string] $FilePath,
         [string] $Version #,
-      #  [ValidateScript( { & $Script:PDFPageSizeValidation } )][string] $PageSize,
-     #   [switch] $Rotate
+        #  [ValidateScript( { & $Script:PDFPageSizeValidation } )][string] $PageSize,
+        #   [switch] $Rotate
     )
 
     if ($Version) {
@@ -22,10 +22,10 @@
     } catch {
         if ($_.Exception.Message -like '*The process cannot access the file*because it is being used by another process.*') {
             Write-Warning "New-InternalPDF - File $FilePath is in use. Terminating."
-            Exit
+            return
         } else {
             Write-Warning "New-InternalPDF - Terminating error: $($_.Exception.Message)"
-            Exit
+            return
         }
     }
 
@@ -33,7 +33,7 @@
         $PDF = [iText.Kernel.Pdf.PdfDocument]::new($Script:Writer)
     } else {
         Write-Warning "New-InternalPDF - Terminating as writer doesn't exists."
-        Exit
+        return
     }
     return $PDF
 }
