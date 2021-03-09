@@ -4,7 +4,7 @@
         [string[]] $Text,
         [ValidateScript( { & $Script:PDFFontValidationList } )][string[]] $Font,
         [ValidateScript( { & $Script:PDFColorValidation } )][string[]] $FontColor,
-        [bool[]] $FontBold
+        [nullable[bool][]] $FontBold
     )
     $Splat = @{ }
     if ($Text) {

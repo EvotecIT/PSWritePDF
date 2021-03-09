@@ -17,8 +17,11 @@
         }
 
     }
-    foreach ($_ in $Settings.Items) {
-        $null = $List.Add([iText.Layout.Element.ListItem]::new($_.Text))
+    foreach ($ItemSettings in $Settings.Items) {
+        $Paragraph = New-InternalPDFText @ItemSettings
+        $ListItem = [iText.Layout.Element.ListItem]::new()
+        $null = $ListItem.Add($Paragraph)
+        $null = $List.Add($ListItem)
     }
     $null = $Script:Document.Add($List)
 }

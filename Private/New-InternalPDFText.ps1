@@ -5,7 +5,7 @@
         [ValidateScript( { & $Script:PDFFontValidationList } )][string[]] $Font,
         #[string[]] $FontFamily,
         [ValidateScript( { & $Script:PDFColorValidation } )][string[]] $FontColor,
-        [bool[]] $FontBold
+        [nullable[bool][]] $FontBold
     )
 
     $Paragraph = [iText.Layout.Element.Paragraph]::new()
