@@ -60,6 +60,9 @@
         )
         if ($Elements) {
             $Script:PDF = New-InternalPDF -FilePath $FilePath -Version $Version #-PageSize $PageSize -Rotate:$Rotate
+            if (-not $Script:PDF) {
+                return
+            }
         } else {
             Write-Warning "New-PDF - No content was provided. Terminating."
             return
