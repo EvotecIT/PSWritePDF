@@ -56,6 +56,8 @@ Install-Module PSWritePDF -Force
 
 ## Changelog
 
+- 0.0.14 - 2021.03.11
+  - [x] Improved error handling
 - 0.0.13 - 2021.03.09
   - [x] Improved error handling
 - 0.0.12 - 2021.03.09
