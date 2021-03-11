@@ -8,7 +8,7 @@
     Description          = 'Little project to create, read, modify, split, merge PDF files on Windows, Linux and Mac.'
     FunctionsToExport    = @('Close-PDF', 'Get-PDF', 'Get-PDFDetails', 'New-PDF', 'New-PDFArea', 'New-PDFDocument', 'New-PDFInfo', 'New-PDFList', 'New-PDFListItem', 'New-PDFOptions', 'New-PDFPage', 'New-PDFTable', 'New-PDFText', 'Register-PDFFont', 'Get-PDFConstantAction', 'Get-PDFConstantColor', 'Get-PDFConstantFont', 'Get-PDFConstantPageSize', 'Get-PDFConstantVersion', 'Convert-PDFToText', 'Merge-PDF', 'Split-PDF')
     GUID                 = '19fcb43c-d8c5-44a9-84e4-bccf29765490'
-    ModuleVersion        = '0.0.13'
+    ModuleVersion        = '0.0.14'
     PowerShellVersion    = '5.1'
     PrivateData          = @{
         PSData = @{
