@@ -56,6 +56,8 @@ Install-Module PSWritePDF -Force
 
 ## Changelog
 
+- 0.0.15 - 2021.03.17
+  - [x] Implemented `Set-PDFForm` and `Get-PDFFormField` - added by ChrisMagnuson in [#19](https://github.com/EvotecIT/PSWritePDF/pull/19)
 - 0.0.14 - 2021.03.11
   - [x] Improved error handling
 - 0.0.13 - 2021.03.09
