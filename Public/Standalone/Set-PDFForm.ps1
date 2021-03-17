@@ -1,9 +1,9 @@
 function Set-PDFForm {
     [CmdletBinding()]
     param(
-       [string] $SourceFilePath,
-       [string] $DestinationFilePath,
-       [hashtable]$FieldNameAndValueHashTable
+        [string] $SourceFilePath,
+        [string] $DestinationFilePath,
+        [System.Collections.IDictionary]$FieldNameAndValueHashTable
     )
 
     $Script:Reader = [iText.Kernel.Pdf.PdfReader]::new($SourceFilePath)
@@ -12,8 +12,7 @@ function Set-PDFForm {
 
     $PDFAcroForm = [iText.Forms.PdfAcroForm]::getAcroForm($PDF, $true)
     foreach ($Key in $FieldNameAndValueHashTable.Keys) {
-        $PDFAcroForm.getField($Key).setValue($FieldNameAndValueHashTable[$Key])
+        $null = $PDFAcroForm.getField($Key).setValue($FieldNameAndValueHashTable[$Key])
     }
-
     $PDF.Close()
 }
