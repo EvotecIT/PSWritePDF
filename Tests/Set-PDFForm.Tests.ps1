@@ -2,6 +2,7 @@ Describe 'Set-PDFForm' -Tags "PDFForm" {
     New-Item -Path $PSScriptRoot -Force -ItemType Directory -Name 'Output'
     It 'Set-PDFForm with FieldNameAndValueHashTable' {
         $FilePath = [IO.Path]::Combine("$PSScriptRoot", "Output", "SampleAcroFormOutput.pdf")
+        $FilePathSource = [IO.Path]::Combine("$PSScriptRoot", "Input", "SampleAcroForm.pdf")
 
         $FieldNameAndValueHashTable = @{
             "Text 1" = "Text 1 input"
@@ -9,7 +10,7 @@ Describe 'Set-PDFForm' -Tags "PDFForm" {
             "Text 3" = "Text 3 input"
         }
 
-        Set-PDFForm -SourceFilePath $PSScriptRoot\Input\SampleAcroForm.pdf -DestinationFilePath $FilePath -FieldNameAndValueHashTable $FieldNameAndValueHashTable
+        Set-PDFForm -SourceFilePath $FilePathSource -DestinationFilePath $FilePath -FieldNameAndValueHashTable $FieldNameAndValueHashTable
 
         $PDF = Get-PDF -FilePath $FilePath
         $AcrobatFormFields = Get-PDFFormField -PDF $PDF
