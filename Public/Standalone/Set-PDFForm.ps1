@@ -12,7 +12,21 @@ function Set-PDFForm {
 
     $PDFAcroForm = [iText.Forms.PdfAcroForm]::getAcroForm($PDF, $true)
     foreach ($Key in $FieldNameAndValueHashTable.Keys) {
-        $null = $PDFAcroForm.getField($Key).setValue($FieldNameAndValueHashTable[$Key])
+        $FormField = $PDFAcroForm.getField($Key)
+        if ( -not $FormField) { 
+            Write-Warning "No form field with name $Key found" 
+            continue
+        }
+        
+        if ($FormField.GetType().Name -match "Button") {
+            $FormField.setValue(
+                $FormField.GetAppearanceStates()[
+                    [Int]$FieldNameAndValueHashTable[$Key]
+                ]
+            ) | Out-Null
+        } else {
+            $FormField.setValue($FieldNameAndValueHashTable[$Key]) | Out-Null
+        }
     }
     $PDF.Close()
 }
