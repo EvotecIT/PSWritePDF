@@ -3,7 +3,8 @@ function Set-PDFForm {
     param(
         [string] $SourceFilePath,
         [string] $DestinationFilePath,
-        [System.Collections.IDictionary]$FieldNameAndValueHashTable
+        [System.Collections.IDictionary]$FieldNameAndValueHashTable,
+        [Switch] $Flatten
     )
 
     $Script:Reader = [iText.Kernel.Pdf.PdfReader]::new($SourceFilePath)
@@ -28,5 +29,11 @@ function Set-PDFForm {
             $FormField.setValue($FieldNameAndValueHashTable[$Key]) | Out-Null
         }
     }
+    
+    if($Flatten)
+    {
+        $PDFAcroForm.flattenFields()
+    }
+    
     $PDF.Close()
 }
