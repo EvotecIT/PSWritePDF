@@ -1,14 +1,16 @@
 function Set-PDFForm {
    [CmdletBinding()]
     param(
-        [Parameter(Mandatory=$true)]$SourceFilePath,
-        [Parameter(Mandatory=$true)]$DestinationFilePath,
+        [Parameter(Mandatory)]$SourceFilePath,
+        [Parameter(Mandatory)]$DestinationFilePath,
         [System.Collections.IDictionary]$FieldNameAndValueHashTable,
         [Switch] $Flatten
     )
+    
+    $SourceFilePath = Convert-Path $SourceFilePath
+    $DestinationFilePath = Convert-Path $DestinationFilePath
 
-    if ((Test-Path -LiteralPath $SourceFilePath) -and (Test-Path -LiteralPath $SourceFilePath)) {
-
+    if ((Test-Path -LiteralPath $SourceFilePath) -and (Test-Path -LiteralPath (Split-Path $DestinationFilePath))){
         try{
         $Script:Reader = [iText.Kernel.Pdf.PdfReader]::new($SourceFilePath)
         $Script:Writer = [iText.Kernel.Pdf.PdfWriter]::new($DestinationFilePath)
@@ -54,7 +56,7 @@ function Set-PDFForm {
             Write-Warning "Set-PDFForm - Path $SourceFilePath doesn't exists. Terminating."
             }
 
-         if(-not (Test-Path -LiteralPath $DestinationFilePath)){
+         if(-not (Test-Path -LiteralPath (Split-Path $DestinationFilePath))){
             Write-Warning "Set-PDFForm - Path $DestinationFilePath doesn't exists. Terminating."
             }
         }
