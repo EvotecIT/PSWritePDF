@@ -60,5 +60,26 @@ function Set-PDFForm {
             Write-Warning "Set-PDFForm - Path $DestinationFilePath doesn't exists. Terminating."
             }
         }
+        
+    <#
+     .SYNOPSIS
+    Will try to fill form fields in source PDF with values from hash table.
+    Can also flatten the form to prevent changes with -flatten.
 
+    .DESCRIPTION
+    Adds a file name extension to a supplied name.
+    Takes any strings for the file name or extension.
+
+    .PARAMETER SourceFilePath
+    Specifies the to be filled in PDF Form.
+
+    .PARAMETER DestinationFilePath
+    Specifies the output filepath for the completed form.
+
+    .PARAMETER FieldNameAndValueHashTable
+    Specifies the hashtable for the feild data. Key in the hashtable needs to match the feild name in the PDF.
+
+    .PARAMETER Flatten
+    Will flatten the output PDF so form feild will no longer be able to be changed. 
+    #>
 }
