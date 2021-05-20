@@ -6,11 +6,11 @@ function Set-PDFForm {
         [System.Collections.IDictionary]$FieldNameAndValueHashTable,
         [Switch] $Flatten
     )
-    
-    $SourceFilePath = Convert-Path $SourceFilePath
-    $DestinationFilePath = Convert-Path $DestinationFilePath
 
     if ((Test-Path -LiteralPath $SourceFilePath) -and (Test-Path -LiteralPath (Split-Path -LiteralPath  $DestinationFilePath))){
+        $SourceFilePath = Convert-Path $SourceFilePath
+        $DestinationFilePath = Convert-Path $DestinationFilePath
+    
         try{
         $Script:Reader = [iText.Kernel.Pdf.PdfReader]::new($SourceFilePath)
         $Script:Writer = [iText.Kernel.Pdf.PdfWriter]::new($DestinationFilePath)
