@@ -1,15 +1,22 @@
 function Set-PDFForm {
    [CmdletBinding()]
     param(
-        [Parameter(Mandatory)]$SourceFilePath,
-        [Parameter(Mandatory)]$DestinationFilePath,
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        $SourceFilePath,
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        $DestinationFilePath,
         [System.Collections.IDictionary]$FieldNameAndValueHashTable,
         [Switch] $Flatten
     )
+    
+    $File = (Split-Path $DestinationFilePath -leaf)
+    $SourceFilePath = Convert-Path $SourceFilePath
+    $DestinationFilePath = Convert-Path (Split-Path $DestinationFilePath)
 
-    if ((Test-Path -LiteralPath $SourceFilePath) -and (Test-Path -LiteralPath (Split-Path -LiteralPath  $DestinationFilePath))){
-        $SourceFilePath = Convert-Path $SourceFilePath
-        $DestinationFilePath = Convert-Path $DestinationFilePath
+    if ((Test-Path -LiteralPath $SourceFilePath) -and (Test-Path -LiteralPath $DestinationFilePath)){
+        $DestinationFilePath = Join-Path -Path $DestinationFilePath -ChildPath $File
     
         try{
         $Script:Reader = [iText.Kernel.Pdf.PdfReader]::new($SourceFilePath)
