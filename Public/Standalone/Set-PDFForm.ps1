@@ -10,7 +10,7 @@ function Set-PDFForm {
     $SourceFilePath = Convert-Path $SourceFilePath
     $DestinationFilePath = Convert-Path $DestinationFilePath
 
-    if ((Test-Path -LiteralPath $SourceFilePath) -and (Test-Path -LiteralPath (Split-Path $DestinationFilePath))){
+    if ((Test-Path -LiteralPath $SourceFilePath) -and (Test-Path -LiteralPath (Split-Path -LiteralPath  $DestinationFilePath))){
         try{
         $Script:Reader = [iText.Kernel.Pdf.PdfReader]::new($SourceFilePath)
         $Script:Writer = [iText.Kernel.Pdf.PdfWriter]::new($DestinationFilePath)
@@ -56,7 +56,7 @@ function Set-PDFForm {
             Write-Warning "Set-PDFForm - Path $SourceFilePath doesn't exists. Terminating."
             }
 
-         if(-not (Test-Path -LiteralPath (Split-Path $DestinationFilePath))){
+         if(-not (Test-Path -LiteralPath (Split-Path -LiteralPath  $DestinationFilePath))){
             Write-Warning "Set-PDFForm - Path $DestinationFilePath doesn't exists. Terminating."
             }
         }
