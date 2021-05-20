@@ -84,9 +84,9 @@ function Set-PDFForm {
     Specifies the output filepath for the completed form.
 
     .PARAMETER FieldNameAndValueHashTable
-    Specifies the hashtable for the feild data. Key in the hashtable needs to match the feild name in the PDF.
+    Specifies the hashtable for the fields data. Key in the hashtable needs to match the feild name in the PDF.
 
     .PARAMETER Flatten
-    Will flatten the output PDF so form feild will no longer be able to be changed. 
+    Will flatten the output PDF so form fields will no longer be able to be changed. 
     #>
 }
