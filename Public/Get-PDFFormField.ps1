@@ -3,6 +3,15 @@ function Get-PDFFormField {
     param(
         [iText.Kernel.Pdf.PdfDocument]$PDF
     )
-    $PDFAcroForm = [iText.Forms.PdfAcroForm]::getAcroForm($PDF, $true)
-    $PDFAcroForm.GetFormFields()
+    try {
+        $PDFAcroForm = [iText.Forms.PdfAcroForm]::getAcroForm($PDF, $true)
+        $PDFAcroForm.GetFormFields()
+    } catch {
+        if ($PSBoundParameters.ErrorAction -eq 'Stop') {
+            Write-Error $_
+            return
+        } else {
+            Write-Warning -Message "Get-PDFFormField - There was an error reading forms or no form exists. Exception: $($_.Error.Exception)"
+        }
+    }
 }

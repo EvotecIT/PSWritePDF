@@ -56,6 +56,10 @@ Install-Module PSWritePDF -Force
 
 ## Changelog
 
+- 0.0.17 - 2021.05.23
+  - ☑ `Set-PDFForm` can now flatten forms with `Flatten` switch. Thank you markdem! in [#23](https://github.com/EvotecIT/PSWritePDF/pull/23)
+  - ☑ Improved `Set-PDFForm` by removing Out-Null and replacing it with $null which is faster
+  - ☑ Improved `Set-PDFForm` logic
 - 0.0.16 - 2021.05.06
   - ☑ Added basic support for check box style form fields - added by ChrisMagnuson in [#20](https://github.com/EvotecIT/PSWritePDF/pull/20)
 - 0.0.15 - 2021.03.17
