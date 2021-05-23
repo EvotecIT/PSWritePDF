@@ -3,7 +3,7 @@ Describe 'Set-PDFForm' -Tags "PDFForm" {
         New-Item -Path $PSScriptRoot -Force -ItemType Directory -Name 'Output'
     }
 
-    It 'Set-PDFRorm Flatten should flatten forms' {
+    It 'Set-PDForm Flatten should flatten forms' {
         $FilePath = [IO.Path]::Combine("$PSScriptRoot", "Output", "SampleAcroFormOutput.pdf")
         $FilePathSource = [IO.Path]::Combine("$PSScriptRoot", "Input", "SampleAcroForm.pdf")
 
