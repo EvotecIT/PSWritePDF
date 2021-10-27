@@ -4,7 +4,8 @@
         [Parameter(Mandatory)][string] $FilePath,
         [Parameter(Mandatory)][string] $OutputFolder,
         [string] $OutputName = 'OutputDocument',
-        [int] $SplitCount = 1
+        [int] $SplitCount = 1,
+        [switch] $SetUnethicalReading
     )
     if ($SplitCount -eq 0) {
         Write-Warning "Split-PDF - SplitCount is 0. Terminating."
@@ -16,6 +17,7 @@
         if ($OutputFolder -and (Test-Path -LiteralPath $OutputFolder)) {
             try {
                 $PDFFile = [iText.Kernel.Pdf.PdfReader]::new($ResolvedPath)
+                $PDFFile.SetUnethicalReading($SetUnethicalReading) | Out-Null
                 $Document = [iText.Kernel.Pdf.PdfDocument]::new($PDFFile)
                 $Splitter = [CustomSplitter]::new($Document, $OutputFolder, $OutputName)
                 $List = $Splitter.SplitByPageCount($SplitCount)

@@ -2,11 +2,13 @@
     [CmdletBinding()]
     param(
         [string] $FilePath,
-        [int[]] $Page
+        [int[]] $Page,
+        [switch] $SetUnethicalReading
     )
     if ($FilePath -and (Test-Path -LiteralPath $FilePath)) {
         $ResolvedPath = Convert-Path -LiteralPath $FilePath
         $Source = [iText.Kernel.Pdf.PdfReader]::new($ResolvedPath)
+        $Source.SetUnethicalReading($SetUnethicalReading) | Out-Null
         try {
             [iText.Kernel.Pdf.PdfDocument] $SourcePDF = [iText.Kernel.Pdf.PdfDocument]::new($Source);
             [iText.Kernel.Pdf.Canvas.Parser.Listener.LocationTextExtractionStrategy] $ExtractionStrategy = [iText.Kernel.Pdf.Canvas.Parser.Listener.LocationTextExtractionStrategy]::new()

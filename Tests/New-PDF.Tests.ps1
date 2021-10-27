@@ -1,5 +1,6 @@
 ﻿Describe 'New-PDF' {
     New-Item -Path $PSScriptRoot -Force -ItemType Directory -Name 'Output'
+
     It 'New-PDF with default size should be A4 without rotation' {
         $FilePath = [IO.Path]::Combine("$PSScriptRoot", "Output", "PDF1.pdf")
         New-PDF {

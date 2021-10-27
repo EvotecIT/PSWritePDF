@@ -1,8 +1,35 @@
 ﻿function Merge-PDF {
+    <#
+    .SYNOPSIS
+    This function Will try and merge PDFs into a single PDF document.
+
+    .DESCRIPTION
+    This function Will try and merge PDFs into a single PDF document.
+
+    .PARAMETER InputFile
+    This is an array of PDF files to be merged or a file list seperated by commas and quoted.
+
+    .PARAMETER OutputFile
+    Provide the full path to the file for ouptut including name of the file.
+
+    .PARAMETER SetUnethicalReading
+    Will allow reading from password protected PDFs without the password 
+    
+    CAUTION: This will potentially combine protected files with unprotected files 
+    and end with an unprotcetd file.
+    
+    .EXAMPLE
+     >Merge-PDF -InputFile "file1.pdf", "file2.pdf" -OutputFile c:\full\path\to\file.pdf
+
+    .EXAMPLE
+     >Merge-PDF -InputFile $(gci *.pdf).FullName -OutputFile c:\full\path\to\file.pdf
+
+    #>
     [CmdletBinding()]
     param(
         [string[]] $InputFile,
-        [string] $OutputFile
+        [string] $OutputFile,
+        [switch] $SetUnethicalReading
     )
 
     if ($OutputFile) {
@@ -19,6 +46,7 @@
                 $ResolvedFile = Convert-Path -LiteralPath $File
                 try {
                     $Source = [iText.Kernel.Pdf.PdfReader]::new($ResolvedFile)
+                    $Source.SetUnethicalReading($SetUnethicalReading) | Out-Null
                     [iText.Kernel.Pdf.PdfDocument] $SourcePDF = [iText.Kernel.Pdf.PdfDocument]::new($Source);
                     $null = $Merger.merge($SourcePDF, 1, $SourcePDF.getNumberOfPages())
                     $SourcePDF.close()

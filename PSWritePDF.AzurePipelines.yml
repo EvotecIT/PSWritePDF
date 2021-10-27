@@ -1,18 +1,18 @@
 ﻿jobs:
-  - job: Build_PS_Win2016
+  - job: Build_PS_Windows_Latest
     pool:
-      vmImage: vs2017-win2016
+      vmImage: windows-latest
     steps:
       - powershell: |
-          Install-Module -Name Pester -Repository PSGallery -Force -SkipPublisherCheck
+          Install-Module -Name Pester -MinimumVersion 5.3.1 -Repository PSGallery -Force -SkipPublisherCheck
           .\PSWritePDF.Tests.ps1
         displayName: "Run Pester Tests - PowerShell 5"
         # - script: |
         #       pwsh -c '.\PSWritePDF.Tests.ps1'
         #  displayName: "Run Pester Tests - PowerShell 6+"
-  - job: Build_PSCore_Ubuntu1604
+  - job: Build_PSCore_Ubuntu_Latest
     pool:
-      vmImage: ubuntu-16.04
+      vmImage: ubuntu-latest
     steps:
       - script: |
           curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
@@ -24,7 +24,7 @@
           pwsh -c '.\PSWritePDF.Tests.ps1'
         displayName: "Run Pester Tests"
 
-  - job: Build_PSCore_MacOS1013
+  - job: Build_PSCore_Mac_Latest
     pool:
       vmImage: macOS-latest
     steps:
