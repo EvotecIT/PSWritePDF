@@ -1,0 +1,92 @@
+﻿<!-- saved from url=(0014)about:internet -->
+ <!DOCTYPE html>
+ <html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"><meta content="width=device-width, initial-scale=1" name="viewport"><meta content="2021-12-20 19:22:02" name="revised"><title></title><link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" as="style" type="text/css" rel="stylesheet preload prefetch"/><script comment="jquery" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script><link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" as="style" type="text/css" rel="stylesheet preload prefetch"/><link href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css" as="style" type="text/css" rel="stylesheet preload prefetch"/><script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script><script type="text/javascript" src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script><script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.25/sorting/datetime-moment.js"></script><link href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css" as="style" type="text/css" rel="stylesheet preload prefetch"/><script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script><script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script><link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css" as="style" type="text/css" rel="stylesheet preload prefetch"/><script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script><link href="https://cdn.jsdelivr.net/gh/evotecit/cdn@0.0.12/CSS/dataTables.searchBuilder.min.css" as="style" type="text/css" rel="stylesheet preload prefetch"/><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/evotecit/cdn@0.0.12/JS/dataTables.searchBuilder.min.js"></script><style type="text/css">body {    font-family: 'Roboto Condensed', sans-serif;    font-size: 8pt;    margin: 0px;}input {    font-size: 8pt;}.main-section {    margin-top: 0px;}</style><style type="text/css">td {    height: 14px;}tfoot input {    width: 100%;    box-sizing: border-box;    padding: -3px;}thead input {    width: 100%;    box-sizing: border-box;    padding: -3px;}td::before, td.sorting_1::before {    background-color: #007bff !important;}button.dt-button {    color: blue !important;    border-radius: 5px;    line-height: 1 !important;}div.dataTables_wrapper {    margin: 5px;}</style><noscript><style type="text/css">table {
+    border-collapse: collapse;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+table td {
+    border-width: 1px;
+    padding: 4px;
+    text-align: left;
+    border-top: 1px solid #ddd;
+}
+
+table thead th {
+    text-align: center;
+    font-weight: bold;
+    padding: 4px 17px;
+    border-bottom: 1px solid #111;
+    background-color: white;
+    color: black;
+}
+
+table tfoot th {
+    text-align: center;
+    font-weight: bold;
+    padding: 4px 17px;
+    border-top: 1px solid #111;
+    background-color: white;
+    color: black;
+}
+
+table tr:nth-of-type(odd) {
+    background-color: #F6F6F5;
+}
+
+table tr:nth-of-type(even) {
+    background-color: white;
+}
+
+table td, table th {
+    border: 1px solid black;
+}</style></noscript><style type="text/css">div.dt-button-collection {    position: relative;    width: auto !important;    margin-top: 10px !important;    margin-bottom: 10px !important;}</style><style type="text/css">.overflowHidden {    overflow: hidden;    overflow-x: hidden;    overflow-y: hidden;}.flexParent {    display: flex;    justify-content: space-between;}.flexParentInvisible {    display: flex;    justify-content: space-between;}.flexElement {    flex-basis: 100%;    max-width: 100%;}.flexPanel {    flex-basis: 100%;    max-width: 100%;}.flex-grid {    display: flex;}</style></head><body><div class="main-section"><script>                $(document).ready(function() {
+                    $.fn.dataTable.moment( 'L' );
+                    
+                    
+                    
+                    //  Table code
+                    var table = $('#DT-YSmSyjMc').DataTable(
+                        {
+"dom":"ABfrtip",
+"searchFade":false,
+"scrollCollapse":false,
+"ordering":true,
+"order":[],
+"rowGroup":"",
+"info":true,
+"procesing":true,
+"select":true,
+"searching":true,
+"stateSave":true,
+"paging":true,
+"pagingType":["full_numbers"],
+"lengthMenu":[[15,25,50,100,-1],[15,25,50,100,"All"]],
+"language":{
+},
+"buttons":[{
+"extend":"copyHtml5"},{
+"extend":"excelHtml5",
+"exportOptions":{
+"format":    {
+        body: function (data, row, column, node) {
+            data = $('<p>' + data + '</p>').text(); return $.isNumeric(data.replace(',', '.')) ? data.replace(',', '.') : data;
+        }
+    }}},{
+"extend":"csvHtml5"},{
+"extend":"pdfHtml5",
+"pageSize":"A3",
+"orientation":"landscape"},{
+"extend":"pageLength"},{
+"extend":"searchBuilder",
+"config":{
+}}],
+"responsive":{
+"details":{
+"type":"inline"}}}
+                    );
+                    
+                    
+                    
+                });</script><div class="flexElement overflowHidden"><table width="100%" id="DT-YSmSyjMc" class="dataTables display compact"><thead><tr><th>Name</th><th>Id</th><th>PriorityClass</th><th>FileVersion</th><th>HandleCount</th><th>WorkingSet</th><th>PagedMemorySize</th><th>PrivateMemorySize</th><th>VirtualMemorySize</th><th>TotalProcessorTime</th><th>SI</th><th>Handles</th><th>VM</th><th>WS</th><th>PM</th><th>NPM</th><th>Path</th><th>Company</th><th>CPU</th><th>ProductVersion</th><th>Description</th><th>Product</th><th>__NounName</th><th>BasePriority</th><th>ExitCode</th><th>HasExited</th><th>ExitTime</th><th>Handle</th><th>SafeHandle</th><th>MachineName</th><th>MainWindowHandle</th><th>MainWindowTitle</th><th>MainModule</th><th>MaxWorkingSet</th><th>MinWorkingSet</th><th>Modules</th><th>NonpagedSystemMemorySize</th><th>NonpagedSystemMemorySize64</th><th>PagedMemorySize64</th><th>PagedSystemMemorySize</th><th>PagedSystemMemorySize64</th><th>PeakPagedMemorySize</th><th>PeakPagedMemorySize64</th><th>PeakWorkingSet</th><th>PeakWorkingSet64</th><th>PeakVirtualMemorySize</th><th>PeakVirtualMemorySize64</th><th>PriorityBoostEnabled</th><th>PrivateMemorySize64</th><th>PrivilegedProcessorTime</th><th>ProcessName</th><th>ProcessorAffinity</th><th>Responding</th><th>SessionId</th><th>StartInfo</th><th>StartTime</th><th>SynchronizingObject</th><th>Threads</th><th>UserProcessorTime</th><th>VirtualMemorySize64</th><th>EnableRaisingEvents</th><th>StandardInput</th><th>StandardOutput</th><th>StandardError</th><th>WorkingSet64</th><th>Site</th><th>Container</th></tr></thead><tbody><tr><td>1Password</td><td>22172</td><td></td><td></td><td>696</td><td>58740736</td><td>204013568</td><td>204013568</td><td>877096960</td><td>00:00:21.0468750</td><td>1</td><td>696</td><td>2221375188992</td><td>58740736</td><td>204013568</td><td>51112</td><td></td><td></td><td>21,046875</td><td></td><td></td><td></td><td>Process</td><td>10</td><td></td><td></td><td></td><td></td><td></td><td>.</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td>51112</td><td>51112</td><td>204013568</td><td>760632</td><td>760632</td><td>410480640</td><td>410480640</td><td>118079488</td><td>118079488</td><td>1073242112</td><td>2221571334144</td><td></td><td>204013568</td><td>00:00:06.9375000</td><td>1Password</td><td></td><td>True</td><td>1</td><td>System.Diagnostics.ProcessStartInfo</td><td>17.12.2021 18:31:28</td><td></td><td>System.Diagnostics.ProcessThreadCollection</td><td>00:00:14.1093750</td><td>2221375188992</td><td>False</td><td></td><td></td><td></td><td>58740736</td><td></td><td></td></tr><tr><td>1Password</td><td>25492</td><td></td><td></td><td>1035</td><td>287129600</td><td>82935808</td><td>82935808</td><td>873713664</td><td>00:03:34.8906250</td><td>1</td><td>1035</td><td>2225666772992</td><td>287129600</td><td>82935808</td><td>52048</td><td></td><td></td><td>214,890625</td><td></td><td></td><td></td><td>Process</td><td>8</td><td></td><td></td><td></td><td></td><td></td><td>.</td><td>7736910</td><td>Przemysław Kłys — All Items — 1Password</td><td></td><td></td><td></td><td></td><td>52048</td><td>52048</td><td>82935808</td><td>857248</td><td>857248</td><td>92622848</td><td>92622848</td><td>426487808</td><td>426487808</td><td>412024832</td><td>2229500051456</td><td></td><td>82935808</td><td>00:02:04.0781250</td><td>1Password</td><td></td><td>True</td><td>1</td><td>System.Diagnostics.ProcessStartInfo</td><td>17.12.2021 18:31:28</td><td></td><td>System.Diagnostics.ProcessThreadCollection</td><td>00:01:30.8125000</td><td>2225666772992</td><td>False</td><td></td><td></td><td></td><td>287129600</td><td></td><td></td></tr><tr><td>1Password</td><td>25852</td><td></td><td></td><td>239</td><td>30756864</td><td>12361728</td><td>12361728</td><td>348930048</td><td>00:00:01.8125000</td><td>1</td><td>239</td><td>2220847022080</td><td>30756864</td><td>12361728</td><td>14816</td><td></td><td></td><td>1,8125</td><td></td><td></td><td></td><td>Process</td><td>8</td><td></td><td></td><td></td><td></td><td></td><td>.</td><td>0</td><td></td><td></td><td></td><td></td><td></td><td>14816</td><td>14816</td><td>12361728</td><td>487800</td><td>487800</td><td>13492224</td><td>13492224</td><td>35799040</td><td>35799040</td><td>424427520</td><td>2220922519552</td><td></td><td>12361728</td><td>00:00:01.7500000</td><td>1Password</td><td></td><td>True</td><td>1</td><td>System.Diagnostics.ProcessStartInfo</td><td>17.12.2021 18:31:29</td><td></td><td>System.Diagnostics.ProcessThreadCollection</td><td>00:00:00.0625000</td><td>2220847022080</td><td>False</td><td></td><td></td><td></td><td>30756864</td><td></td><td></td></tr></tbody><tfoot><tr><th>Name</th><th>Id</th><th>PriorityClass</th><th>FileVersion</th><th>HandleCount</th><th>WorkingSet</th><th>PagedMemorySize</th><th>PrivateMemorySize</th><th>VirtualMemorySize</th><th>TotalProcessorTime</th><th>SI</th><th>Handles</th><th>VM</th><th>WS</th><th>PM</th><th>NPM</th><th>Path</th><th>Company</th><th>CPU</th><th>ProductVersion</th><th>Description</th><th>Product</th><th>__NounName</th><th>BasePriority</th><th>ExitCode</th><th>HasExited</th><th>ExitTime</th><th>Handle</th><th>SafeHandle</th><th>MachineName</th><th>MainWindowHandle</th><th>MainWindowTitle</th><th>MainModule</th><th>MaxWorkingSet</th><th>MinWorkingSet</th><th>Modules</th><th>NonpagedSystemMemorySize</th><th>NonpagedSystemMemorySize64</th><th>PagedMemorySize64</th><th>PagedSystemMemorySize</th><th>PagedSystemMemorySize64</th><th>PeakPagedMemorySize</th><th>PeakPagedMemorySize64</th><th>PeakWorkingSet</th><th>PeakWorkingSet64</th><th>PeakVirtualMemorySize</th><th>PeakVirtualMemorySize64</th><th>PriorityBoostEnabled</th><th>PrivateMemorySize64</th><th>PrivilegedProcessorTime</th><th>ProcessName</th><th>ProcessorAffinity</th><th>Responding</th><th>SessionId</th><th>StartInfo</th><th>StartTime</th><th>SynchronizingObject</th><th>Threads</th><th>UserProcessorTime</th><th>VirtualMemorySize64</th><th>EnableRaisingEvents</th><th>StandardInput</th><th>StandardOutput</th><th>StandardError</th><th>WorkingSet64</th><th>Site</th><th>Container</th></tr></tfoot></table></div></div></body></html>
