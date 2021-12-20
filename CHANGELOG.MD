@@ -2,6 +2,7 @@
 
 #### - 0.0.18
   - Added `New-PDFImage` basic functionality
+  - Added `Convert-HTMLToPDF`
 
 #### - 0.0.17 - 2021.05.23
   - ☑ `Set-PDFForm` can now flatten forms with `Flatten` switch. Thank you markdem! in [#23](https://github.com/EvotecIT/PSWritePDF/pull/23)
