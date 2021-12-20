@@ -25,7 +25,22 @@
     If true, opens the PDF after it is created.
 
     .EXAMPLE
-    An example
+    Convert-HTMLToPDF -Uri 'https://evotec.xyz/hub/scripts/pswritehtml-powershell-module/' -OutputFilePath "$PSScriptRoot\Example10-FromURL.pdf" -Open
+
+    .EXAMPLE
+    $HTMLInput = New-HTML {
+        New-HTMLText -Text 'Test 1'
+        New-HTMLTable -DataTable (Get-Process | Select-Object -First 3)
+    }
+
+    Convert-HTMLToPDF -Content $HTMLInput -OutputFilePath "$PSScriptRoot\Example10-FromHTML.pdf" -Open
+
+    .EXAMPLE
+    New-HTML {
+        New-HTMLTable -DataTable (Get-Process | Select-Object -First 3)
+    } -FilePath "$PSScriptRoot\Example10-FromFilePath.html" -Online
+
+    Convert-HTMLToPDF -FilePath "$PSScriptRoot\Example10-FromFilePath.html" -OutputFilePath "$PSScriptRoot\Example10-FromFilePath.pdf" -Open
 
     .NOTES
     General notes
