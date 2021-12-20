@@ -1,8 +1,37 @@
 ﻿function Merge-PDF {
+    <#
+    .SYNOPSIS
+    Merge PDF files into one.
+
+    .DESCRIPTION
+    Merge PDF files into one.
+
+    .PARAMETER InputFile
+    The PDF files to be merged.
+
+    .PARAMETER OutputFile
+    The output file path.
+
+    .PARAMETER IgnoreProtection
+    The switch will allow reading of PDF files that are "owner password" encrypted for protection/security (e.g. preventing copying of text, printing etc).
+    The switch doesn't allow reading of PDF files that are "user password" encrypted (i.e. you cannot open them without the password)
+
+    .EXAMPLE
+    $FilePath1 = "$PSScriptRoot\Input\OutputDocument0.pdf"
+    $FilePath2 = "$PSScriptRoot\Input\OutputDocument1.pdf"
+
+    $OutputFile = "$PSScriptRoot\Output\OutputDocument.pdf" # Shouldn't exist / will be overwritten
+
+    Merge-PDF -InputFile $FilePath1, $FilePath2 -OutputFile $OutputFile
+
+    .NOTES
+    General notes
+    #>
     [CmdletBinding()]
     param(
         [string[]] $InputFile,
-        [string] $OutputFile
+        [string] $OutputFile,
+        [switch] $IgnoreProtection
     )
 
     if ($OutputFile) {
@@ -19,6 +48,9 @@
                 $ResolvedFile = Convert-Path -LiteralPath $File
                 try {
                     $Source = [iText.Kernel.Pdf.PdfReader]::new($ResolvedFile)
+                    if ($IgnoreProtection) {
+                        $null = $Source.SetUnethicalReading($true)
+                    }
                     [iText.Kernel.Pdf.PdfDocument] $SourcePDF = [iText.Kernel.Pdf.PdfDocument]::new($Source);
                     $null = $Merger.merge($SourcePDF, 1, $SourcePDF.getNumberOfPages())
                     $SourcePDF.close()

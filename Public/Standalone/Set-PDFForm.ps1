@@ -20,6 +20,10 @@ function Set-PDFForm {
     .PARAMETER Flatten
     Will flatten the output PDF so form fields will no longer be able to be changed.
 
+    .PARAMETER IgnoreProtection
+    The switch will allow reading of PDF files that are "owner password" encrypted for protection/security (e.g. preventing copying of text, printing etc).
+    The switch doesn't allow reading of PDF files that are "user password" encrypted (i.e. you cannot open them without the password)
+
     .EXAMPLE
     $FilePath = [IO.Path]::Combine("$PSScriptRoot", "Output", "SampleAcroFormOutput.pdf")
     $FilePathSource = [IO.Path]::Combine("$PSScriptRoot", "Input", "SampleAcroForm.pdf")
@@ -47,7 +51,8 @@ function Set-PDFForm {
         [Parameter(Mandatory)][ValidateNotNullOrEmpty()] $SourceFilePath,
         [Parameter(Mandatory)][ValidateNotNullOrEmpty()] $DestinationFilePath,
         [System.Collections.IDictionary] $FieldNameAndValueHashTable,
-        [alias('FlattenFields')][Switch] $Flatten
+        [alias('FlattenFields')][Switch] $Flatten,
+        [switch] $IgnoreProtection
     )
     $SourceFilePath = Convert-Path -LiteralPath $SourceFilePath
     $DestinationFolder = Split-Path -LiteralPath $DestinationFilePath
@@ -59,6 +64,9 @@ function Set-PDFForm {
 
         try {
             $Script:Reader = [iText.Kernel.Pdf.PdfReader]::new($SourceFilePath)
+            if ($IgnoreProtection) {
+                $null = $Script:Reader.SetUnethicalReading($true)
+            }
             $Script:Writer = [iText.Kernel.Pdf.PdfWriter]::new($DestinationFilePath)
             $PDF = [iText.Kernel.Pdf.PdfDocument]::new($Script:Reader, $Script:Writer)
             $PDFAcroForm = [iText.Forms.PdfAcroForm]::getAcroForm($PDF, $true)
