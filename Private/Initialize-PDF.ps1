@@ -58,6 +58,8 @@
             $Table = New-InteralPDFTable @Splat
             #$null = $Script:Document.Add($Table)
             Add-PDFDocumentContent -Object $Table
+        } elseif ($Element.Type -eq 'Image') {
+            New-InternalPDFImage @Splat
         }
     }
 }
