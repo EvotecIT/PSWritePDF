@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Extensions.DependencyModel</name>
+    </assembly>
+    <members>
+        <member name="P:Microsoft.Extensions.DependencyModel.RuntimeAssetGroup.Runtime">
+            <summary>
+            The runtime ID associated with this group (may be empty if the group is runtime-agnostic)
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.DependencyModel.RuntimeAssetGroup.AssetPaths">
+            <summary>
+            Gets a list of asset paths provided in this runtime group
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.DependencyModel.RuntimeAssetGroup.RuntimeFiles">
+            <summary>
+            Gets a list of RuntimeFiles provided in this runtime group
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyModel.RuntimeLibrary.#ctor(System.String,System.String,System.String,System.String,System.Collections.Generic.IReadOnlyList{Microsoft.Extensions.DependencyModel.RuntimeAssetGroup},System.Collections.Generic.IReadOnlyList{Microsoft.Extensions.DependencyModel.RuntimeAssetGroup},System.Collections.Generic.IEnumerable{Microsoft.Extensions.DependencyModel.ResourceAssembly},System.Collections.Generic.IEnumerable{Microsoft.Extensions.DependencyModel.Dependency},System.Boolean,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new <see cref="T:Microsoft.Extensions.DependencyModel.RuntimeLibrary"/>.
+            </summary>
+            <param name="type">The library's type.</param>
+            <param name="name">The library's name.</param>
+            <param name="version">The library's version.</param>
+            <param name="hash">The library package's hash.</param>
+            <param name="runtimeAssemblyGroups">The library's runtime assemblies.</param>
+            <param name="nativeLibraryGroups">The library's native libraries.</param>
+            <param name="resourceAssemblies">The library's resource assemblies.</param>
+            <param name="dependencies">The library's dependencies.</param>
+            <param name="serviceable">Whether the library is serviceable.</param>
+            <param name="path">The library package's path.</param>
+            <param name="hashPath">The library package's hash path.</param>
+            <param name="runtimeStoreManifestName">The library's runtime store manifest name.</param>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="type"/> argument is null.
+            The <paramref name="name"/> argument is null.
+            The <paramref name="version"/> argument is null.
+            The <paramref name="runtimeAssemblyGroups"/> argument is null.
+            The <paramref name="nativeLibraryGroups"/> argument is null.
+            The <paramref name="resourceAssemblies"/> argument is null.
+            The <paramref name="dependencies"/> argument is null.
+            </exception>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.RequiresAssemblyFilesAttribute">
+            <summary>
+            Indicates that the specified member requires assembly files to be on disk.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.RequiresAssemblyFilesAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Diagnostics.CodeAnalysis.RequiresAssemblyFilesAttribute"/> class.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.RequiresAssemblyFilesAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Diagnostics.CodeAnalysis.RequiresAssemblyFilesAttribute"/> class.
+            </summary>
+            <param name="message">
+            A message that contains information about the need for assembly files to be on disk.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.RequiresAssemblyFilesAttribute.Message">
+            <summary>
+            Gets an optional message that contains information about the need for
+            assembly files to be on disk.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.RequiresAssemblyFilesAttribute.Url">
+            <summary>
+            Gets or sets an optional URL that contains more information about the member,
+            why it requires assembly files to be on disk, and what options a consumer has
+            to deal with it.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute">
+            <summary>
+            Suppresses reporting of a specific rule violation, allowing multiple suppressions on a
+            single code artifact.
+            </summary>
+            <remarks>
+            <see cref="T:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute"/> is different than
+            <see cref="T:System.Diagnostics.CodeAnalysis.SuppressMessageAttribute"/> in that it doesn't have a
+            <see cref="T:System.Diagnostics.ConditionalAttribute"/>. So it is always preserved in the compiled assembly.
+            </remarks>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute"/>
+            class, specifying the category of the tool and the identifier for an analysis rule.
+            </summary>
+            <param name="category">The category for the attribute.</param>
+            <param name="checkId">The identifier of the analysis rule the attribute applies to.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.Category">
+            <summary>
+            Gets the category identifying the classification of the attribute.
+            </summary>
+            <remarks>
+            The <see cref="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.Category"/> property describes the tool or tool analysis category
+            for which a message suppression attribute applies.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.CheckId">
+            <summary>
+            Gets the identifier of the analysis tool rule to be suppressed.
+            </summary>
+            <remarks>
+            Concatenated together, the <see cref="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.Category"/> and <see cref="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.CheckId"/>
+            properties form a unique check identifier.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.Scope">
+            <summary>
+            Gets or sets the scope of the code that is relevant for the attribute.
+            </summary>
+            <remarks>
+            The Scope property is an optional argument that specifies the metadata scope for which
+            the attribute is relevant.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.Target">
+            <summary>
+            Gets or sets a fully qualified path that represents the target of the attribute.
+            </summary>
+            <remarks>
+            The <see cref="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.Target"/> property is an optional argument identifying the analysis target
+            of the attribute. An example value is "System.IO.Stream.ctor():System.Void".
+            Because it is fully qualified, it can be long, particularly for targets such as parameters.
+            The analysis tool user interface should be capable of automatically formatting the parameter.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.MessageId">
+            <summary>
+            Gets or sets an optional argument expanding on exclusion criteria.
+            </summary>
+            <remarks>
+            The <see cref="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.MessageId"/> property is an optional argument that specifies additional
+            exclusion where the literal metadata target is not sufficiently precise. For example,
+            the <see cref="T:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute"/> cannot be applied within a method,
+            and it may be desirable to suppress a violation against a statement in the method that will
+            give a rule violation, but not against all statements in the method.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.Justification">
+            <summary>
+            Gets or sets the justification for suppressing the code analysis message.
+            </summary>
+        </member>
+        <member name="P:System.SR.LibraryInformationNotFound">
+            <summary>Cannot find library information for {0}</summary>
+        </member>
+        <member name="P:System.SR.LibraryLocationNotFound">
+            <summary>Cannot find compilation library location for package '{0}'</summary>
+        </member>
+        <member name="P:System.SR.NoRuntimeTarget">
+            <summary>No runtime target found</summary>
+        </member>
+        <member name="P:System.SR.NoTargetsSection">
+            <summary>Dependency file does not have 'targets' section</summary>
+        </member>
+        <member name="P:System.SR.ReferenceAssemblyNotFound">
+            <summary>Cannot find reference assembly '{0}' file for package {1}</summary>
+        </member>
+        <member name="P:System.SR.TargetNotFound">
+            <summary>Target with name {0} not found</summary>
+        </member>
+    </members>
+</doc>
