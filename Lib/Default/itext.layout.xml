@@ -10,9 +10,6 @@
         <member name="F:iText.Layout.Borders.Border.NO_BORDER">
             <summary>The null Border, i.e. the presence of such border is equivalent to the absence of the border</summary>
         </member>
-        <member name="F:iText.Layout.Borders.Border.CURV">
-            <summary>Value used by discontinuous borders during the drawing process</summary>
-        </member>
         <member name="F:iText.Layout.Borders.Border.SOLID">
             <summary>The solid border.</summary>
             <seealso cref="T:iText.Layout.Borders.SolidBorder"/>
@@ -477,16 +474,6 @@
         <member name="M:iText.Layout.Borders.DashedBorder.DrawCellBorder(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side)">
             <summary><inheritDoc/></summary>
         </member>
-        <member name="M:iText.Layout.Borders.DashedBorder.GetDotsGap(System.Double,System.Single)">
-            <summary>Adjusts the size of the gap between dots</summary>
-            <param name="distance">
-            the
-            <see cref="T:iText.Layout.Borders.Border">border</see>
-            length
-            </param>
-            <param name="initialGap">the initial size of the gap</param>
-            <returns>the adjusted size of the gap</returns>
-        </member>
         <member name="T:iText.Layout.Borders.DottedBorder">
             <summary>Draws a dotted border around the element it has been set to.</summary>
             <remarks>
@@ -526,16 +513,6 @@
         </member>
         <member name="M:iText.Layout.Borders.DottedBorder.DrawCellBorder(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side)">
             <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.Layout.Borders.DottedBorder.GetDotsGap(System.Double,System.Single)">
-            <summary>Adjusts the size of the gap between dots</summary>
-            <param name="distance">
-            the
-            <see cref="T:iText.Layout.Borders.Border">border</see>
-            length
-            </param>
-            <param name="initialGap">the initial size of the gap</param>
-            <returns>the adjusted size of the gap</returns>
         </member>
         <member name="T:iText.Layout.Borders.DoubleBorder">
             <summary>Creates a double border around the element it's set to.</summary>
@@ -954,16 +931,6 @@
         <member name="M:iText.Layout.Borders.RoundDotsBorder.Draw(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,iText.Layout.Borders.Border.Side,System.Single,System.Single)">
             <summary><inheritDoc/></summary>
         </member>
-        <member name="M:iText.Layout.Borders.RoundDotsBorder.GetDotsGap(System.Double,System.Single)">
-            <summary>Adjusts the size of the gap between dots</summary>
-            <param name="distance">
-            the
-            <see cref="T:iText.Layout.Borders.Border">border</see>
-            length
-            </param>
-            <param name="initialGap">the initial size of the gap</param>
-            <returns>the adjusted size of the gap</returns>
-        </member>
         <member name="T:iText.Layout.Borders.SolidBorder">
             <summary>Draws a solid border around the element it's set to.</summary>
         </member>
@@ -1053,35 +1020,11 @@
             <param name="pdfCanvas">the low-level content stream writer</param>
             <param name="rootArea">the maximum area that the Canvas may write upon</param>
         </member>
-        <member name="M:iText.Layout.Canvas.#ctor(iText.Kernel.Pdf.Canvas.PdfCanvas,iText.Kernel.Pdf.PdfDocument,iText.Kernel.Geom.Rectangle)">
-            <summary>
-            Creates a new Canvas to manipulate a specific document and content stream, which might be for example a page
-            or
-            <see cref="T:iText.Kernel.Pdf.Xobject.PdfFormXObject"/>
-            stream.
-            </summary>
-            <param name="pdfCanvas">the low-level content stream writer</param>
-            <param name="pdfDocument">the document that the resulting content stream will be written to</param>
-            <param name="rootArea">
-            the maximum area that the Canvas may write upon
-            To be removed in 7.2
-            </param>
-        </member>
         <member name="M:iText.Layout.Canvas.#ctor(iText.Kernel.Pdf.Canvas.PdfCanvas,iText.Kernel.Geom.Rectangle,System.Boolean)">
             <summary>Creates a new Canvas to manipulate a specific document and page.</summary>
             <param name="pdfCanvas">The low-level content stream writer</param>
             <param name="rootArea">The maximum area that the Canvas may write upon</param>
             <param name="immediateFlush">Whether to flush the canvas immediately after operations, false otherwise</param>
-        </member>
-        <member name="M:iText.Layout.Canvas.#ctor(iText.Kernel.Pdf.Canvas.PdfCanvas,iText.Kernel.Pdf.PdfDocument,iText.Kernel.Geom.Rectangle,System.Boolean)">
-            <summary>Creates a new Canvas to manipulate a specific document and page.</summary>
-            <param name="pdfCanvas">The low-level content stream writer</param>
-            <param name="pdfDocument">The document that the resulting content stream will be written to</param>
-            <param name="rootArea">The maximum area that the Canvas may write upon</param>
-            <param name="immediateFlush">
-            Whether to flush the canvas immediately after operations, false otherwise
-            To be removed in 7.2
-            </param>
         </member>
         <member name="M:iText.Layout.Canvas.#ctor(iText.Kernel.Pdf.Xobject.PdfFormXObject,iText.Kernel.Pdf.PdfDocument)">
             <summary>
@@ -1601,22 +1544,6 @@
             <param name="fontFamilyNames">defines an ordered list of preferable font families for this Element.</param>
             <returns>this Element.</returns>
         </member>
-        <member name="M:iText.Layout.ElementPropertyContainer`1.SetFont(System.String)">
-            <summary>Sets the font family of this Element.</summary>
-            <remarks>
-            Sets the font family of this Element. Note that
-            <see cref="T:iText.Layout.Font.FontProvider"/>
-            shall be set as well.
-            See
-            <see cref="M:iText.Layout.RootElement`1.SetFontProvider(iText.Layout.Font.FontProvider)"/>
-            </remarks>
-            <seealso cref="T:iText.IO.Font.Constants.StandardFontFamilies"/>
-            <param name="font">
-            a font name to fetch from
-            <see cref="T:iText.Layout.Font.FontProvider"/>
-            </param>
-            <returns>this Element.</returns>
-        </member>
         <member name="M:iText.Layout.ElementPropertyContainer`1.SetFontColor(iText.Kernel.Colors.Color)">
             <summary>Sets the font color of this Element.</summary>
             <param name="fontColor">
@@ -2001,7 +1928,7 @@
             <param name="hyphenationConfig">The hyphenation configuration</param>
             <returns>this element</returns>
         </member>
-        <member name="M:iText.Layout.ElementPropertyContainer`1.SetFontScript(System.Nullable{iText.IO.Util.UnicodeScript})">
+        <member name="M:iText.Layout.ElementPropertyContainer`1.SetFontScript(System.Nullable{iText.Commons.Utils.UnicodeScript})">
             <summary>Sets the writing system for this text element.</summary>
             <param name="script">a new script type</param>
             <returns>this Element.</returns>
@@ -2629,6 +2556,13 @@
             <see cref="T:iText.Layout.Element.AreaBreak"/>
             </param>
             <returns>this Element</returns>
+        </member>
+        <member name="T:iText.Layout.Element.IAbstractElement">
+            <summary>The interface represents abstract layout element and provides an access to its children.</summary>
+        </member>
+        <member name="M:iText.Layout.Element.IAbstractElement.GetChildren">
+            <summary>Gets the child elements of this elements.</summary>
+            <returns>a list of children</returns>
         </member>
         <member name="T:iText.Layout.Element.IElement">
             <summary>
@@ -4428,14 +4362,17 @@
             </param>
             <returns>this Text</returns>
         </member>
+        <member name="T:iText.Layout.Exceptions.LayoutExceptionMessageConstant">
+            <summary>Class that bundles all the error message templates as constants.</summary>
+        </member>
         <member name="T:iText.Layout.Font.ComplexFontSelectorStrategy">
             <summary>
             Complex FontSelectorStrategy split text based on
-            <see cref="!:iText.IO.Util.UnicodeScript?"/>.
+            <see cref="!:iText.Commons.Utils.UnicodeScript?"/>.
             </summary>
             <remarks>
             Complex FontSelectorStrategy split text based on
-            <see cref="!:iText.IO.Util.UnicodeScript?"/>.
+            <see cref="!:iText.Commons.Utils.UnicodeScript?"/>.
             If unicode script changes, a new font will be found.
             If there is no suitable font, only one notdef glyph from
             <see cref="M:iText.Layout.Font.FontSelector.BestMatch"/>
@@ -4452,9 +4389,6 @@
             <summary>Set font style</summary>
             <param name="fs">shall be 'normal', 'italic' or 'oblique'.</param>
             <returns>this element</returns>
-        </member>
-        <member name="T:iText.Layout.Font.FontFamilySplitter">
-            <summary>Split CSS 'font-family' string into list of font-families or generic-families</summary>
         </member>
         <member name="T:iText.Layout.Font.FontInfo">
             <summary>
@@ -4524,7 +4458,7 @@
             </summary>
         </member>
         <member name="M:iText.Layout.Font.FontProvider.#ctor(iText.Layout.Font.FontSet)">
-            <summary>Creates a new instance of FontProvider</summary>
+            <summary>Creates a new instance of FontProvider.</summary>
             <param name="fontSet">predefined set of fonts, could be null.</param>
         </member>
         <member name="M:iText.Layout.Font.FontProvider.#ctor">
@@ -4535,20 +4469,326 @@
             <param name="defaultFontFamily">default font family.</param>
         </member>
         <member name="M:iText.Layout.Font.FontProvider.#ctor(iText.Layout.Font.FontSet,System.String)">
-            <summary>Creates a new instance of FontProvider</summary>
+            <summary>Creates a new instance of FontProvider.</summary>
             <param name="fontSet">predefined set of fonts, could be null.</param>
             <param name="defaultFontFamily">default font family.</param>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.AddFont(iText.IO.Font.FontProgram,System.String,iText.Layout.Font.Range)">
+            <summary>
+            Add font to
+            <see cref="T:iText.Layout.Font.FontSet"/>
+            cache.
+            </summary>
+            <param name="fontProgram">
+            the font file which will be added to font cache.
+            The
+            <see cref="T:iText.IO.Font.FontProgram"/>
+            instances are normally created via
+            <see cref="T:iText.IO.Font.FontProgramFactory"/>.
+            </param>
+            <param name="encoding">
+            font encoding to create
+            <see cref="T:iText.Kernel.Font.PdfFont"/>
+            . Possible values for this
+            argument are the same as for
+            <see cref="M:iText.Kernel.Font.PdfFontFactory.CreateFont"/>
+            family of methods.
+            </param>
+            <param name="unicodeRange">sets the specific range of characters to be used from the font.</param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.AddFont(iText.IO.Font.FontProgram,System.String)">
+            <summary>
+            Add font to
+            <see cref="T:iText.Layout.Font.FontSet"/>
+            cache.
+            </summary>
+            <param name="fontProgram">
+            the font file which will be added to font cache.
+            The
+            <see cref="T:iText.IO.Font.FontProgram"/>
+            instances are normally created via
+            <see cref="T:iText.IO.Font.FontProgramFactory"/>.
+            </param>
+            <param name="encoding">
+            font encoding to create
+            <see cref="T:iText.Kernel.Font.PdfFont"/>
+            . Possible values for this
+            argument are the same as for
+            <see cref="M:iText.Kernel.Font.PdfFontFactory.CreateFont"/>
+            family of methods.
+            </param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.AddFont(iText.IO.Font.FontProgram)">
+            <summary>
+            Add font to
+            <see cref="T:iText.Layout.Font.FontSet"/>
+            cache.
+            </summary>
+            <param name="fontProgram">
+            the font file which will be added to font cache.
+            The
+            <see cref="T:iText.IO.Font.FontProgram"/>
+            instances are normally created via
+            <see cref="T:iText.IO.Font.FontProgramFactory"/>.
+            </param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.AddFont(System.String,System.String,iText.Layout.Font.Range)">
+            <summary>
+            Add font to
+            <see cref="T:iText.Layout.Font.FontSet"/>
+            cache.
+            </summary>
+            <param name="fontPath">
+            path to the font file to add. Can be a path to file or font name,
+            see
+            <see cref="M:iText.IO.Font.FontProgramFactory.CreateFont(System.String)"/>.
+            </param>
+            <param name="encoding">
+            font encoding to create
+            <see cref="T:iText.Kernel.Font.PdfFont"/>
+            . Possible values for this
+            argument are the same as for
+            <see cref="M:iText.Kernel.Font.PdfFontFactory.CreateFont"/>
+            family of methods.
+            </param>
+            <param name="unicodeRange">sets the specific range of characters to be used from the font.</param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.AddFont(System.String,System.String)">
+            <summary>
+            Add font to
+            <see cref="T:iText.Layout.Font.FontSet"/>
+            cache.
+            </summary>
+            <param name="fontPath">
+            path to the font file to add. Can be a path to file or font name,
+            see
+            <see cref="M:iText.IO.Font.FontProgramFactory.CreateFont(System.String)"/>.
+            </param>
+            <param name="encoding">
+            font encoding to create
+            <see cref="T:iText.Kernel.Font.PdfFont"/>
+            . Possible values for this
+            argument are the same as for
+            <see cref="M:iText.Kernel.Font.PdfFontFactory.CreateFont"/>
+            family of methods.
+            </param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.AddFont(System.String)">
+            <summary>
+            Add font to
+            <see cref="T:iText.Layout.Font.FontSet"/>
+            cache.
+            </summary>
+            <param name="fontPath">
+            path to the font file to add. Can be a path to file or font name,
+            see
+            <see cref="M:iText.IO.Font.FontProgramFactory.CreateFont(System.String)"/>.
+            </param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.AddFont(System.Byte[],System.String,iText.Layout.Font.Range)">
+            <summary>
+            Add font to
+            <see cref="T:iText.Layout.Font.FontSet"/>
+            cache.
+            </summary>
+            <param name="fontData">byte content of the font program file.</param>
+            <param name="encoding">
+            font encoding to create
+            <see cref="T:iText.Kernel.Font.PdfFont"/>
+            . Possible values for this
+            argument are the same as for
+            <see cref="M:iText.Kernel.Font.PdfFontFactory.CreateFont"/>
+            family of methods.
+            </param>
+            <param name="unicodeRange">sets the specific range of characters to be used from the font.</param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.AddFont(System.Byte[],System.String)">
+            <summary>
+            Add font to
+            <see cref="T:iText.Layout.Font.FontSet"/>
+            cache.
+            </summary>
+            <param name="fontData">byte content of the font program file.</param>
+            <param name="encoding">
+            font encoding to create
+            <see cref="T:iText.Kernel.Font.PdfFont"/>
+            . Possible values for this
+            argument are the same as for
+            <see cref="M:iText.Kernel.Font.PdfFontFactory.CreateFont"/>
+            family of methods.
+            </param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.AddFont(System.Byte[])">
+            <summary>
+            Add font to
+            <see cref="T:iText.Layout.Font.FontSet"/>
+            cache.
+            </summary>
+            <param name="fontData">byte content of the font program file.</param>
+            <returns>true, if font was successfully added, otherwise false.</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.AddDirectory(System.String)">
+            <summary>Add all the fonts from a directory.</summary>
+            <param name="dir">path to directory.</param>
+            <returns>number of added fonts.</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.AddSystemFonts">
+            <summary>
+            Add all fonts from system directories to
+            <see cref="T:iText.Layout.Font.FontSet"/>
+            cache.
+            </summary>
+            <returns>number of added fonts.</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.AddStandardPdfFonts">
+            <summary>
+            Add standard fonts to
+            <see cref="T:iText.Layout.Font.FontSet"/>
+            cache.
+            </summary>
+            <returns>number of added fonts.</returns>
+            <seealso cref="T:iText.IO.Font.Constants.StandardFonts"/>
         </member>
         <member name="M:iText.Layout.Font.FontProvider.GetFontSet">
             <summary>
             Gets
             <see cref="T:iText.Layout.Font.FontSet"/>.
             </summary>
-            <returns>the fontset</returns>
+            <returns>the font set</returns>
         </member>
         <member name="M:iText.Layout.Font.FontProvider.GetDefaultFontFamily">
-            <summary>Gets the default font-family</summary>
+            <summary>Gets the default font-family.</summary>
             <returns>the default font-family</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.GetDefaultEncoding(iText.IO.Font.FontProgram)">
+            <summary>Gets the default encoding for specific font.</summary>
+            <param name="fontProgram">to get default encoding</param>
+            <returns>the default encoding</returns>
+            <seealso cref="T:iText.IO.Font.PdfEncodings"/>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.GetDefaultCacheFlag">
+            <summary>The method is used to determine whether the font should be cached or not by default.</summary>
+            <remarks>
+            The method is used to determine whether the font should be cached or not by default.
+            <para />
+            NOTE: This method can be overridden to customize behaviour.
+            </remarks>
+            <returns>the default cache flag</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.GetDefaultEmbeddingFlag">
+            <summary>The method is used to determine whether the font should be embedded or not by default.</summary>
+            <remarks>
+            The method is used to determine whether the font should be embedded or not by default.
+            <para />
+            NOTE: This method can be overridden to customize behaviour.
+            </remarks>
+            <returns>the default embedding flag</returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.GetStrategy(System.String,System.Collections.Generic.IList{System.String},iText.Layout.Font.FontCharacteristics,iText.Layout.Font.FontSet)">
+            <summary>
+            Gets the
+            <see cref="T:iText.Layout.Font.FontSelectorStrategy"/>
+            to split specified text into sequences of glyphs, already tied
+            to the fonts which contain them.
+            </summary>
+            <remarks>
+            Gets the
+            <see cref="T:iText.Layout.Font.FontSelectorStrategy"/>
+            to split specified text into sequences of glyphs, already tied
+            to the fonts which contain them. The fonts can be taken from the added fonts to the font provider and
+            are chosen based on font-families list and desired font characteristics.
+            </remarks>
+            <param name="text">for splitting into sequences of glyphs.</param>
+            <param name="fontFamilies">
+            target font families to create
+            <see cref="T:iText.Layout.Font.FontSelector"/>
+            for sequences of glyphs.
+            </param>
+            <param name="fc">
+            instance of
+            <see cref="T:iText.Layout.Font.FontCharacteristics"/>
+            to create
+            <see cref="T:iText.Layout.Font.FontSelector"/>
+            for sequences of glyphs.
+            </param>
+            <param name="additionalFonts">
+            set which provides fonts additionally to the fonts added to font provider.
+            Combined set of font provider fonts and additional fonts is used when choosing
+            a single font for a sequence of glyphs. Additional fonts will only be used for the given
+            font selector strategy instance and will not be otherwise preserved in font provider.
+            </param>
+            <returns>
+            
+            <see cref="T:iText.Layout.Font.FontSelectorStrategy"/>
+            instance.
+            </returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.GetStrategy(System.String,System.Collections.Generic.IList{System.String},iText.Layout.Font.FontCharacteristics)">
+            <summary>
+            Gets the
+            <see cref="T:iText.Layout.Font.FontSelectorStrategy"/>
+            to split specified text into sequences of glyphs, already tied
+            to the fonts which contain them.
+            </summary>
+            <remarks>
+            Gets the
+            <see cref="T:iText.Layout.Font.FontSelectorStrategy"/>
+            to split specified text into sequences of glyphs, already tied
+            to the fonts which contain them. The fonts can be taken from the added fonts to the font provider and
+            are chosen based on font-families list and desired font characteristics.
+            </remarks>
+            <param name="text">for splitting into sequences of glyphs.</param>
+            <param name="fontFamilies">
+            target font families to create
+            <see cref="T:iText.Layout.Font.FontSelector"/>
+            for sequences of glyphs.
+            </param>
+            <param name="fc">
+            instance of
+            <see cref="T:iText.Layout.Font.FontCharacteristics"/>
+            to create
+            <see cref="T:iText.Layout.Font.FontSelector"/>
+            for sequences of glyphs.
+            </param>
+            <returns>
+            
+            <see cref="T:iText.Layout.Font.FontSelectorStrategy"/>
+            instance.
+            </returns>
+        </member>
+        <member name="M:iText.Layout.Font.FontProvider.GetStrategy(System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Gets the
+            <see cref="T:iText.Layout.Font.FontSelectorStrategy"/>
+            to split specified text into sequences of glyphs, already tied
+            to the fonts which contain them.
+            </summary>
+            <remarks>
+            Gets the
+            <see cref="T:iText.Layout.Font.FontSelectorStrategy"/>
+            to split specified text into sequences of glyphs, already tied
+            to the fonts which contain them. The fonts can be taken from the added fonts to the font provider and
+            are chosen based on font-families list and desired font characteristics.
+            </remarks>
+            <param name="text">for splitting into sequences of glyphs.</param>
+            <param name="fontFamilies">
+            target font families to create
+            <see cref="T:iText.Layout.Font.FontSelector"/>
+            for sequences of glyphs.
+            </param>
+            <returns>
+            
+            <see cref="T:iText.Layout.Font.FontSelectorStrategy"/>
+            instance.
+            </returns>
         </member>
         <member name="M:iText.Layout.Font.FontProvider.GetFontSelector(System.Collections.Generic.IList{System.String},iText.Layout.Font.FontCharacteristics)">
             <summary>
@@ -4556,7 +4796,7 @@
             <see cref="T:iText.Layout.Font.FontSelector"/>
             or get from cache.
             </summary>
-            <param name="fontFamilies">target font families</param>
+            <param name="fontFamilies">target font families.</param>
             <param name="fc">
             instance of
             <see cref="T:iText.Layout.Font.FontCharacteristics"/>.
@@ -4574,12 +4814,19 @@
             <see cref="T:iText.Layout.Font.FontSelector"/>
             or get from cache.
             </summary>
-            <param name="fontFamilies">target font families</param>
+            <param name="fontFamilies">target font families.</param>
             <param name="fc">
             instance of
             <see cref="T:iText.Layout.Font.FontCharacteristics"/>.
             </param>
-            <param name="additionalFonts">set of additional fonts.</param>
+            <param name="additionalFonts">
+            set which provides fonts additionally to the fonts added to font provider.
+            Combined set of font provider fonts and additional fonts is used when choosing
+            a single font for
+            <see cref="T:iText.Layout.Font.FontSelector"/>
+            . Additional fonts will only be used for the given
+            font selector strategy instance and will not be otherwise preserved in font provider.
+            </param>
             <returns>
             an instance of
             <see cref="T:iText.Layout.Font.FontSelector"/>.
@@ -4600,7 +4847,7 @@
             <see cref="T:iText.Layout.Font.FontSelector"/>.
             </remarks>
             <param name="fonts">Set of all available fonts in current context.</param>
-            <param name="fontFamilies">target font families</param>
+            <param name="fontFamilies">target font families.</param>
             <param name="fc">
             instance of
             <see cref="T:iText.Layout.Font.FontCharacteristics"/>.
@@ -4650,8 +4897,8 @@
             </summary>
             <remarks>
             Resets
-            <see cref="F:iText.Layout.Font.FontProvider.pdfFonts">PdfFont cache</see>
-            . After calling that method
+            <see cref="F:iText.Layout.Font.FontProvider.pdfFonts">PdfFont cache</see>.
+            After calling that method
             <see cref="T:iText.Layout.Font.FontProvider"/>
             can be reused with another
             <see cref="T:iText.Kernel.Pdf.PdfDocument"/>
@@ -5172,12 +5419,20 @@
         </member>
         <member name="T:iText.Layout.Font.Range">
             <summary>
-            Ordered range for
-            <see cref="M:iText.Layout.Font.FontInfo.GetFontUnicodeRange"/>.
+            Class represents ordered list of
+            <see cref="T:iText.Layout.Font.Range.SubRange"/>.
             </summary>
             <remarks>
-            Ordered range for
-            <see cref="M:iText.Layout.Font.FontInfo.GetFontUnicodeRange"/>.
+            Class represents ordered list of
+            <see cref="T:iText.Layout.Font.Range.SubRange"/>.
+            This class is used in
+            <see cref="T:iText.Layout.Font.FontInfo"/>
+            as internal field and in one of the overloads of
+            the
+            <see cref="M:iText.Layout.Font.FontProvider.AddFont(System.String,System.String,iText.Layout.Font.Range)"/>
+            method as range
+            of characters to be used in font.
+            <para />
             To create a custom Range instance
             <see cref="T:iText.Layout.Font.RangeBuilder"/>
             shall be used.
@@ -5246,6 +5501,18 @@
             <summary>Add range with a single char.</summary>
             <param name="ch">a single char</param>
             <returns>this RangeBuilder</returns>
+        </member>
+        <member name="M:iText.Layout.Font.RangeBuilder.Create">
+            <summary>
+            Creates a
+            <see cref="T:iText.Layout.Font.Range"/>
+            instance based on added ranges.
+            </summary>
+            <returns>
+            the
+            <see cref="T:iText.Layout.Font.Range"/>
+            instance based on added ranges
+            </returns>
         </member>
         <member name="T:iText.Layout.Hyphenation.ByteVector">
             <summary>
@@ -6381,12 +6648,57 @@
         <member name="F:iText.Layout.Layout.LayoutContext.area">
             <summary>
             The
-            <see cref="T:iText.Layout.Layout.LayoutArea">area</see>
-            the content to be placed on.
+            <see cref="T:iText.Layout.Layout.LayoutArea"/>
+            for the content to be placed on.
+            </summary>
+        </member>
+        <member name="F:iText.Layout.Layout.LayoutContext.marginsCollapseInfo">
+            <summary>The info about margins collapsing.</summary>
+        </member>
+        <member name="F:iText.Layout.Layout.LayoutContext.floatRendererAreas">
+            <summary>
+            The list of
+            <see cref="T:iText.Kernel.Geom.Rectangle"/>
+            objects.
             </summary>
         </member>
         <member name="F:iText.Layout.Layout.LayoutContext.clippedHeight">
             <summary>Indicates whether the height is clipped or not.</summary>
+        </member>
+        <member name="M:iText.Layout.Layout.LayoutContext.#ctor(iText.Layout.Layout.LayoutArea)">
+            <summary>Creates the layout context.</summary>
+            <param name="area">for the content to be placed on</param>
+        </member>
+        <member name="M:iText.Layout.Layout.LayoutContext.#ctor(iText.Layout.Layout.LayoutArea,iText.Layout.Margincollapse.MarginsCollapseInfo)">
+            <summary>Creates the layout context.</summary>
+            <param name="area">for the content to be placed on</param>
+            <param name="marginsCollapseInfo">the info about margins collapsing</param>
+        </member>
+        <member name="M:iText.Layout.Layout.LayoutContext.#ctor(iText.Layout.Layout.LayoutArea,iText.Layout.Margincollapse.MarginsCollapseInfo,System.Collections.Generic.IList{iText.Kernel.Geom.Rectangle})">
+            <summary>Creates the layout context.</summary>
+            <param name="area">for the content to be placed on</param>
+            <param name="marginsCollapseInfo">the info about margins collapsing</param>
+            <param name="floatedRendererAreas">
+            list of
+            <see cref="T:iText.Kernel.Geom.Rectangle"/>
+            objects
+            </param>
+        </member>
+        <member name="M:iText.Layout.Layout.LayoutContext.#ctor(iText.Layout.Layout.LayoutArea,System.Boolean)">
+            <summary>Creates the layout context.</summary>
+            <param name="area">for the content to be placed on</param>
+            <param name="clippedHeight">indicates whether the height is clipped or not</param>
+        </member>
+        <member name="M:iText.Layout.Layout.LayoutContext.#ctor(iText.Layout.Layout.LayoutArea,iText.Layout.Margincollapse.MarginsCollapseInfo,System.Collections.Generic.IList{iText.Kernel.Geom.Rectangle},System.Boolean)">
+            <summary>Creates the layout context.</summary>
+            <param name="area">for the content to be placed on</param>
+            <param name="marginsCollapseInfo">the info about margins collapsing</param>
+            <param name="floatedRendererAreas">
+            list of
+            <see cref="T:iText.Kernel.Geom.Rectangle"/>
+            objects
+            </param>
+            <param name="clippedHeight">indicates whether the height is clipped or not</param>
         </member>
         <member name="M:iText.Layout.Layout.LayoutContext.GetArea">
             <summary>
@@ -6395,6 +6707,22 @@
             the content to be placed on.
             </summary>
             <returns>the area for content layouting.</returns>
+        </member>
+        <member name="M:iText.Layout.Layout.LayoutContext.GetMarginsCollapseInfo">
+            <summary>Gets info about margins collapsing.</summary>
+            <returns>the info about margins collapsing</returns>
+        </member>
+        <member name="M:iText.Layout.Layout.LayoutContext.GetFloatRendererAreas">
+            <summary>
+            Gets list of
+            <see cref="T:iText.Kernel.Geom.Rectangle"/>
+            objects.
+            </summary>
+            <returns>
+            list of
+            <see cref="T:iText.Kernel.Geom.Rectangle"/>
+            objects
+            </returns>
         </member>
         <member name="M:iText.Layout.Layout.LayoutContext.IsClippedHeight">
             <summary>Indicates whether the layout area's height is clipped or not.</summary>
@@ -6505,6 +6833,13 @@
             <see cref="M:iText.Layout.Renderer.IRenderer.Layout(iText.Layout.Layout.LayoutContext)">layouting</see>.
             This renderer will be used to draw the overflowed part of content.
             </remarks>
+        </member>
+        <member name="F:iText.Layout.Layout.LayoutResult.areaBreak">
+            <summary>
+            The
+            <see cref="T:iText.Layout.Element.AreaBreak"/>
+            that will be rendered by this object.
+            </summary>
         </member>
         <member name="F:iText.Layout.Layout.LayoutResult.causeOfNothing">
             <summary>
@@ -6626,6 +6961,15 @@
             </summary>
             <param name="overflowRenderer">the renderer to draw the overflowed part of the content</param>
         </member>
+        <member name="M:iText.Layout.Layout.LayoutResult.GetAreaBreak">
+            <summary>Gets areaBreak value.</summary>
+            <returns>the areaBreak value</returns>
+        </member>
+        <member name="M:iText.Layout.Layout.LayoutResult.SetAreaBreak(iText.Layout.Element.AreaBreak)">
+            <summary>Sets areaBreak value.</summary>
+            <param name="areaBreak">the areaBreak value</param>
+            <returns>the areaBreak value</returns>
+        </member>
         <member name="M:iText.Layout.Layout.LayoutResult.GetCauseOfNothing">
             <summary>
             Gets the first renderer to produce
@@ -6646,6 +6990,21 @@
             Represents the context for content of a line
             <see cref="M:iText.Layout.Renderer.IRenderer.Layout(iText.Layout.Layout.LayoutContext)">layouting</see>.
             </summary>
+        </member>
+        <member name="M:iText.Layout.Layout.LineLayoutContext.#ctor(iText.Layout.Layout.LayoutArea,iText.Layout.Margincollapse.MarginsCollapseInfo,System.Collections.Generic.IList{iText.Kernel.Geom.Rectangle},System.Boolean)">
+            <summary>Creates the context for content of a line.</summary>
+            <param name="area">for the content to be placed on</param>
+            <param name="marginsCollapseInfo">the info about margins collapsing</param>
+            <param name="floatedRendererAreas">
+            list of
+            <see cref="T:iText.Kernel.Geom.Rectangle"/>
+            objects
+            </param>
+            <param name="clippedHeight">indicates whether the height is clipped or not</param>
+        </member>
+        <member name="M:iText.Layout.Layout.LineLayoutContext.#ctor(iText.Layout.Layout.LayoutContext)">
+            <summary>Creates the context for content of a line.</summary>
+            <param name="layoutContext">the context for content layouting</param>
         </member>
         <member name="M:iText.Layout.Layout.LineLayoutContext.IsFloatOverflowedToNextPageWithNothing">
             <summary>
@@ -6745,17 +7104,21 @@
             <returns>whether split was forced by new line or not</returns>
         </member>
         <member name="M:iText.Layout.Layout.LineLayoutResult.SetSplitForcedByNewline(System.Boolean)">
-            <summary>
-            Sets
-            <see cref="M:iText.Layout.Layout.LineLayoutResult.SetSplitForcedByNewline(System.Boolean)"/>
-            </summary>
+            <summary>Sets a flat that split was forced by new line symbol in rendered text.</summary>
             <param name="isSplitForcedByNewline">indicates that split was forced by new line symbol in rendered text.</param>
             <returns>
             
             <see cref="T:iText.Layout.Layout.LineLayoutResult">this layout result</see>
             the setting was applied on.
             </returns>
-            <seealso cref="M:iText.Layout.Layout.LineLayoutResult.SetSplitForcedByNewline(System.Boolean)"/>
+        </member>
+        <member name="M:iText.Layout.Layout.LineLayoutResult.GetFloatsOverflowedToNextPage">
+            <summary>Gets the list of floats overflowed to next page.</summary>
+            <returns>list of floats overflowed to next page</returns>
+        </member>
+        <member name="M:iText.Layout.Layout.LineLayoutResult.SetFloatsOverflowedToNextPage(System.Collections.Generic.IList{iText.Layout.Renderer.IRenderer})">
+            <summary>Sets the list of floats overflowed to next page.</summary>
+            <param name="floatsOverflowedToNextPage">the floats overflowed to next page</param>
         </member>
         <member name="T:iText.Layout.Layout.MinMaxWidthLayoutResult">
             <summary>
@@ -6763,11 +7126,62 @@
             <see cref="M:iText.Layout.Renderer.IRenderer.Layout(iText.Layout.Layout.LayoutContext)">layouting</see>.
             </summary>
         </member>
+        <member name="F:iText.Layout.Layout.MinMaxWidthLayoutResult.minMaxWidth">
+            <summary>
+            The
+            <see cref="T:iText.Layout.Minmaxwidth.MinMaxWidth"/>
+            value of min and max width.
+            </summary>
+        </member>
+        <member name="M:iText.Layout.Layout.MinMaxWidthLayoutResult.#ctor(System.Int32,iText.Layout.Layout.LayoutArea,iText.Layout.Renderer.IRenderer,iText.Layout.Renderer.IRenderer)">
+            <summary>Creates min and max width.</summary>
+            <param name="status">the status which indicates the content</param>
+            <param name="occupiedArea">the area occupied by the content</param>
+            <param name="splitRenderer">the renderer to draw the splitted part of the content</param>
+            <param name="overflowRenderer">the renderer to draw the overflowed part of the content</param>
+        </member>
+        <member name="M:iText.Layout.Layout.MinMaxWidthLayoutResult.#ctor(System.Int32,iText.Layout.Layout.LayoutArea,iText.Layout.Renderer.IRenderer,iText.Layout.Renderer.IRenderer,iText.Layout.Renderer.IRenderer)">
+            <summary>Creates min and max width.</summary>
+            <param name="status">the status which indicates the content</param>
+            <param name="occupiedArea">the area occupied by the content</param>
+            <param name="splitRenderer">the renderer to draw the splitted part of the content</param>
+            <param name="overflowRenderer">the renderer to draw the overflowed part of the content</param>
+            <param name="cause">
+            the first renderer to produce
+            <see cref="F:iText.Layout.Layout.LayoutResult.NOTHING"/>
+            </param>
+        </member>
+        <member name="M:iText.Layout.Layout.MinMaxWidthLayoutResult.GetMinMaxWidth">
+            <summary>Gets min and max width.</summary>
+            <returns>min and max width</returns>
+        </member>
+        <member name="M:iText.Layout.Layout.MinMaxWidthLayoutResult.SetMinMaxWidth(iText.Layout.Minmaxwidth.MinMaxWidth)">
+            <summary>Sets min and max width.</summary>
+            <param name="minMaxWidth">min and max width</param>
+            <returns>min and max width</returns>
+        </member>
+        <member name="T:iText.Layout.Layout.PositionedLayoutContext">
+            <summary>Represents the result of positioning for layout context.</summary>
+        </member>
+        <member name="M:iText.Layout.Layout.PositionedLayoutContext.#ctor(iText.Layout.Layout.LayoutArea,iText.Layout.Layout.LayoutArea)">
+            <summary>Creates position for layout context.</summary>
+            <param name="area">for the content to be placed on</param>
+            <param name="parentOccupiedArea">the parent content to be placed on</param>
+        </member>
+        <member name="M:iText.Layout.Layout.PositionedLayoutContext.GetParentOccupiedArea">
+            <summary>Gets the value of the parent occupied area.</summary>
+            <returns>the parent occupied area</returns>
+        </member>
+        <member name="T:iText.Layout.Layout.RootLayoutArea">
+            <summary>Represents the root layout area.</summary>
+        </member>
         <member name="F:iText.Layout.Layout.RootLayoutArea.emptyArea">
             <summary>Indicates whether the area already has some placed content or not.</summary>
         </member>
         <member name="M:iText.Layout.Layout.RootLayoutArea.#ctor(System.Int32,iText.Kernel.Geom.Rectangle)">
-            <summary><inheritDoc/></summary>
+            <summary>Creates the root layout area.</summary>
+            <param name="pageNumber">the value number of page</param>
+            <param name="bBox">the bounding box</param>
         </member>
         <member name="M:iText.Layout.Layout.RootLayoutArea.IsEmptyArea">
             <summary>Indicates whether the area already has some placed content or not.</summary>
@@ -7014,6 +7428,9 @@
             </remarks>
             <returns>min width of the leftmost unbreakable part of the TextRenderer#line after layout.</returns>
         </member>
+        <member name="T:iText.Layout.Logs.LayoutLogMessageConstant">
+            <summary>Class containing constants to be used in layout.</summary>
+        </member>
         <member name="M:iText.Layout.Margincollapse.MarginsCollapse.Clone">
             <summary>
             Creates a "deep copy" of this MarginsCollapse, meaning the object returned by this method will be independent
@@ -7163,6 +7580,14 @@
             that results in zero derivative
             </returns>
         </member>
+        <member name="T:iText.Layout.Properties.AlignmentPropertyValue">
+            <summary>
+            A specialized enum containing potential property values for
+            <see cref="F:iText.Layout.Properties.Property.ALIGN_ITEMS"/>
+            and
+            <see cref="F:iText.Layout.Properties.Property.ALIGN_SELF"/>.
+            </summary>
+        </member>
         <member name="T:iText.Layout.Properties.AreaBreakType">
             <summary>
             The possible values for the type of break
@@ -7276,20 +7701,6 @@
         <member name="T:iText.Layout.Properties.BackgroundBox">
             <summary>Enum with boxes that can be used as a value in background-clip and background-origin properties.</summary>
         </member>
-        <member name="F:iText.Layout.Properties.BackgroundImage.repeatX">
-            <summary>
-            Whether the background-repeat value is not
-            <see cref="!:BackgroundRepeatValue.NO_REPEAT"/>
-            for X axis.
-            </summary>
-        </member>
-        <member name="F:iText.Layout.Properties.BackgroundImage.repeatY">
-            <summary>
-            Whether the background-repeat value is not
-            <see cref="!:BackgroundRepeatValue.NO_REPEAT"/>
-            for Y axis.
-            </summary>
-        </member>
         <member name="M:iText.Layout.Properties.BackgroundImage.#ctor(iText.Layout.Properties.BackgroundImage)">
             <summary>
             Creates a copy of passed
@@ -7300,165 +7711,6 @@
             
             <see cref="T:iText.Layout.Properties.BackgroundImage"/>
             for cloning
-            </param>
-        </member>
-        <member name="M:iText.Layout.Properties.BackgroundImage.#ctor(iText.Kernel.Pdf.Xobject.PdfImageXObject,iText.Layout.Properties.BackgroundRepeat,iText.Layout.Properties.BlendMode)">
-            <summary>
-            Creates a new
-            <see cref="T:iText.Layout.Properties.BackgroundImage"/>
-            instance.
-            </summary>
-            <param name="image">
-            background image property.
-            <see cref="T:iText.Kernel.Pdf.Xobject.PdfImageXObject"/>
-            instance.
-            </param>
-            <param name="repeat">
-            background repeat property.
-            <see cref="T:iText.Layout.Properties.BackgroundRepeat"/>
-            instance.
-            </param>
-            <param name="blendMode">
-            the image's blend mode.
-            <see cref="T:iText.Layout.Properties.BlendMode"/>
-            instance.
-            </param>
-        </member>
-        <member name="M:iText.Layout.Properties.BackgroundImage.#ctor(iText.Kernel.Pdf.Xobject.PdfFormXObject,iText.Layout.Properties.BackgroundRepeat,iText.Layout.Properties.BlendMode)">
-            <summary>
-            Creates a new
-            <see cref="T:iText.Layout.Properties.BackgroundImage"/>
-            instance.
-            </summary>
-            <param name="image">
-            background image property.
-            <see cref="T:iText.Kernel.Pdf.Xobject.PdfFormXObject"/>
-            instance.
-            </param>
-            <param name="repeat">
-            background repeat property.
-            <see cref="T:iText.Layout.Properties.BackgroundRepeat"/>
-            instance.
-            </param>
-            <param name="blendMode">
-            the image's blend mode.
-            <see cref="T:iText.Layout.Properties.BlendMode"/>
-            instance.
-            </param>
-        </member>
-        <member name="M:iText.Layout.Properties.BackgroundImage.#ctor(iText.Kernel.Pdf.Xobject.PdfImageXObject,iText.Layout.Properties.BackgroundRepeat)">
-            <summary>
-            Creates a new
-            <see cref="T:iText.Layout.Properties.BackgroundImage"/>
-            instance.
-            </summary>
-            <param name="image">
-            background-image property.
-            <see cref="T:iText.Kernel.Pdf.Xobject.PdfImageXObject"/>
-            instance.
-            </param>
-            <param name="repeat">
-            background-repeat property.
-            <see cref="T:iText.Layout.Properties.BackgroundRepeat"/>
-            instance.
-            </param>
-        </member>
-        <member name="M:iText.Layout.Properties.BackgroundImage.#ctor(iText.Kernel.Pdf.Xobject.PdfFormXObject,iText.Layout.Properties.BackgroundRepeat)">
-            <summary>
-            Creates a new
-            <see cref="T:iText.Layout.Properties.BackgroundImage"/>
-            instance.
-            </summary>
-            <param name="image">
-            background-image property.
-            <see cref="T:iText.Kernel.Pdf.Xobject.PdfFormXObject"/>
-            instance.
-            </param>
-            <param name="repeat">
-            background-repeat property.
-            <see cref="T:iText.Layout.Properties.BackgroundRepeat"/>
-            instance.
-            </param>
-        </member>
-        <member name="M:iText.Layout.Properties.BackgroundImage.#ctor(iText.Kernel.Pdf.Xobject.PdfImageXObject)">
-            <summary>
-            Creates a new
-            <see cref="T:iText.Layout.Properties.BackgroundImage"/>
-            instance.
-            </summary>
-            <param name="image">
-            background-image property.
-            <see cref="T:iText.Kernel.Pdf.Xobject.PdfImageXObject"/>
-            instance.
-            </param>
-        </member>
-        <member name="M:iText.Layout.Properties.BackgroundImage.#ctor(iText.Kernel.Pdf.Xobject.PdfFormXObject)">
-            <summary>
-            Creates a new
-            <see cref="T:iText.Layout.Properties.BackgroundImage"/>
-            instance.
-            </summary>
-            <param name="image">
-            background-image property.
-            <see cref="T:iText.Kernel.Pdf.Xobject.PdfFormXObject"/>
-            instance.
-            </param>
-        </member>
-        <member name="M:iText.Layout.Properties.BackgroundImage.#ctor(iText.Kernel.Pdf.Xobject.PdfImageXObject,System.Boolean,System.Boolean)">
-            <summary>
-            Creates a new
-            <see cref="T:iText.Layout.Properties.BackgroundImage"/>
-            instance.
-            </summary>
-            <param name="image">
-            background-image property.
-            <see cref="T:iText.Kernel.Pdf.Xobject.PdfImageXObject"/>
-            instance.
-            </param>
-            <param name="repeatX">defines whether background is repeated in x dimension.</param>
-            <param name="repeatY">defines whether background is repeated in y dimension.</param>
-        </member>
-        <member name="M:iText.Layout.Properties.BackgroundImage.#ctor(iText.Kernel.Pdf.Xobject.PdfFormXObject,System.Boolean,System.Boolean)">
-            <summary>
-            Creates a new
-            <see cref="T:iText.Layout.Properties.BackgroundImage"/>
-            instance.
-            </summary>
-            <param name="image">
-            background-image property.
-            <see cref="T:iText.Kernel.Pdf.Xobject.PdfFormXObject"/>
-            instance.
-            </param>
-            <param name="repeatX">defines whether background is repeated in x dimension.</param>
-            <param name="repeatY">defines whether background is repeated in y dimension.</param>
-        </member>
-        <member name="M:iText.Layout.Properties.BackgroundImage.#ctor(iText.Kernel.Colors.Gradients.AbstractLinearGradientBuilder)">
-            <summary>
-            Creates a new
-            <see cref="T:iText.Layout.Properties.BackgroundImage"/>
-            instance with linear gradient.
-            </summary>
-            <param name="linearGradientBuilder">
-            the linear gradient builder representing the background image.
-            <see cref="T:iText.Kernel.Colors.Gradients.AbstractLinearGradientBuilder"/>
-            instance.
-            </param>
-        </member>
-        <member name="M:iText.Layout.Properties.BackgroundImage.#ctor(iText.Kernel.Colors.Gradients.AbstractLinearGradientBuilder,iText.Layout.Properties.BlendMode)">
-            <summary>
-            Creates a new
-            <see cref="T:iText.Layout.Properties.BackgroundImage"/>
-            instance with linear gradient and custom blending mode.
-            </summary>
-            <param name="linearGradientBuilder">
-            the linear gradient builder representing the background image.
-            <see cref="T:iText.Kernel.Colors.Gradients.AbstractLinearGradientBuilder"/>
-            instance.
-            </param>
-            <param name="blendMode">
-            the image's blend mode.
-            <see cref="T:iText.Layout.Properties.BlendMode"/>
-            instance.
             </param>
         </member>
         <member name="M:iText.Layout.Properties.BackgroundImage.#ctor(iText.Kernel.Pdf.Xobject.PdfXObject,iText.Layout.Properties.BackgroundRepeat,iText.Layout.Properties.BackgroundPosition,iText.Layout.Properties.BackgroundSize,iText.Kernel.Colors.Gradients.AbstractLinearGradientBuilder,iText.Layout.Properties.BlendMode,iText.Layout.Properties.BackgroundBox,iText.Layout.Properties.BackgroundBox)">
@@ -7528,14 +7780,6 @@
             <returns>the initial image width</returns>
         </member>
         <member name="M:iText.Layout.Properties.BackgroundImage.GetImageHeight">
-            <summary>Gets initial image height.</summary>
-            <returns>the initial image height</returns>
-        </member>
-        <member name="M:iText.Layout.Properties.BackgroundImage.GetWidth">
-            <summary>Gets initial image width.</summary>
-            <returns>the initial image width</returns>
-        </member>
-        <member name="M:iText.Layout.Properties.BackgroundImage.GetHeight">
             <summary>Gets initial image height.</summary>
             <returns>the initial image height</returns>
         </member>
@@ -8145,6 +8389,12 @@
             <see cref="F:iText.Layout.Properties.Property.CLEAR"/>.
             </summary>
         </member>
+        <member name="T:iText.Layout.Properties.FlexWrapPropertyValue">
+            <summary>
+            A specialized enum containing potential property values for
+            <see cref="F:iText.Layout.Properties.Property.FLEX_WRAP"/>.
+            </summary>
+        </member>
         <member name="T:iText.Layout.Properties.FloatPropertyValue">
             <summary>
             A specialized enum containing potential property values for
@@ -8197,6 +8447,12 @@
             <see cref="T:iText.Layout.Element.IElement"/>
             representing symbol.
             </returns>
+        </member>
+        <member name="T:iText.Layout.Properties.JustifyContent">
+            <summary>
+            A enum containing potential property values for
+            <see cref="F:iText.Layout.Properties.Property.JUSTIFY_CONTENT"/>.
+            </summary>
         </member>
         <member name="T:iText.Layout.Properties.Leading">
             <summary>
@@ -9325,6 +9581,19 @@
             </remarks>
             <returns>border box of a renderer</returns>
         </member>
+        <member name="M:iText.Layout.Renderer.AbstractRenderer.ApplyMarginsBordersPaddings(iText.Kernel.Geom.Rectangle,System.Boolean)">
+            <summary>Applies margins, borders and paddings of the renderer on the given rectangle.</summary>
+            <param name="rect">a rectangle margins, borders and paddings will be applied on.</param>
+            <param name="reverse">
+            indicates whether margins, borders and paddings will be applied
+            inside (in case of false) or outside (in case of true) the rectangle.
+            </param>
+            <returns>
+            a
+            <see cref="T:iText.Kernel.Geom.Rectangle">border box</see>
+            of the renderer
+            </returns>
+        </member>
         <member name="M:iText.Layout.Renderer.AbstractRenderer.ApplyMargins(iText.Kernel.Geom.Rectangle,System.Boolean)">
             <summary>Applies margins of the renderer on the given rectangle</summary>
             <param name="rect">a rectangle margins will be applied on.</param>
@@ -9369,6 +9638,27 @@
             of the renderer
             </returns>
             <seealso cref="M:iText.Layout.Renderer.AbstractRenderer.GetPaddings"/>
+        </member>
+        <member name="M:iText.Layout.Renderer.AbstractRenderer.ReplaceOwnProperty``1(System.Int32,``0)">
+            <summary>Replaces given property own value with the given value.</summary>
+            <param name="property">the property to be replaced</param>
+            <param name="replacementValue">the value with which property will be replaced</param>
+            <typeparam name="T">the type associated with the property</typeparam>
+            <returns>previous property value</returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.AbstractRenderer.ReturnBackOwnProperty``1(System.Int32,``0)">
+            <summary>Returns back own value of the given property.</summary>
+            <param name="property">the property to be returned back</param>
+            <param name="prevValue">the value which will be returned back</param>
+            <typeparam name="T">the type associated with the property</typeparam>
+        </member>
+        <member name="M:iText.Layout.Renderer.AbstractRenderer.HasAspectRatio">
+            <summary>Checks if this renderer has intrinsic aspect ratio.</summary>
+            <returns>true, if aspect ratio is defined for this renderer, false otherwise</returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.AbstractRenderer.GetAspectRatio">
+            <summary>Gets intrinsic aspect ratio for this renderer.</summary>
+            <returns>aspect ratio, if it is defined for this renderer, null otherwise</returns>
         </member>
         <member name="M:iText.Layout.Renderer.AbstractRenderer.RetrieveWidth(System.Single)">
             <summary>Retrieves element's fixed content box width, if it's set.</summary>
@@ -9593,6 +9883,13 @@
             <summary>Retrieve the direct parent's absolute height property</summary>
             <returns>the direct parent's absolute height property value if it exists, null otherwise</returns>
         </member>
+        <member name="M:iText.Layout.Renderer.AbstractRenderer.GetMinMaxWidth">
+            <summary>Calculates min and max width values for current renderer.</summary>
+            <returns>
+            instance of
+            <see cref="T:iText.Layout.Minmaxwidth.MinMaxWidth"/>
+            </returns>
+        </member>
         <member name="M:iText.Layout.Renderer.AbstractRenderer.IsPositioned">
             <summary>Indicates whether the renderer's position is fixed or not.</summary>
             <returns>
@@ -9677,6 +9974,10 @@
             </param>
             <returns>false if property value either null, or point, otherwise true.</returns>
         </member>
+        <member name="M:iText.Layout.Renderer.AbstractRenderer.GetPdfDocument">
+            <summary>Gets pdf document from root renderers.</summary>
+            <returns>PdfDocument, or null if there are no document</returns>
+        </member>
         <member name="M:iText.Layout.Renderer.AbstractRenderer.GetPropertyAsUnitValue(iText.Layout.Renderer.IRenderer,System.Int32)">
             <summary>Returns the property of the renderer as a UnitValue if it exists and is a UnitValue, null otherwise
                 </summary>
@@ -9755,6 +10056,148 @@
             <see cref="T:iText.Kernel.Geom.AffineTransform"/>
             that transforms the content and places it inside occupied area.
             </returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.AbstractRenderer.AddChildRenderer(iText.Layout.Renderer.IRenderer)">
+            <summary>
+            Add the specified
+            <see cref="T:iText.Layout.Renderer.IRenderer">renderer</see>
+            to the end of children list and update its
+            parent link to
+            <c>this</c>.
+            </summary>
+            <param name="child">
+            the
+            <see cref="T:iText.Layout.Renderer.IRenderer">child renderer</see>
+            to be add
+            </param>
+        </member>
+        <member name="M:iText.Layout.Renderer.AbstractRenderer.AddAllChildRenderers(System.Collections.Generic.IList{iText.Layout.Renderer.IRenderer})">
+            <summary>
+            Add the specified collection of
+            <see cref="T:iText.Layout.Renderer.IRenderer">renderers</see>
+            to the end of children list and
+            update their parent links to
+            <c>this</c>.
+            </summary>
+            <param name="children">
+            the collection of
+            <see cref="T:iText.Layout.Renderer.IRenderer">child renderers</see>
+            to be add
+            </param>
+        </member>
+        <member name="M:iText.Layout.Renderer.AbstractRenderer.AddAllChildRenderers(System.Int32,System.Collections.Generic.IList{iText.Layout.Renderer.IRenderer})">
+            <summary>
+            Inserts the specified collection of
+            <see cref="T:iText.Layout.Renderer.IRenderer">renderers</see>
+            at the specified space of
+            children list and update their parent links to
+            <c>this</c>.
+            </summary>
+            <param name="index">index at which to insert the first element from the specified collection</param>
+            <param name="children">
+            the collection of
+            <see cref="T:iText.Layout.Renderer.IRenderer">child renderers</see>
+            to be add
+            </param>
+        </member>
+        <member name="M:iText.Layout.Renderer.AbstractRenderer.SetChildRenderers(System.Collections.Generic.IList{iText.Layout.Renderer.IRenderer})">
+            <summary>
+            Set the specified collection of
+            <see cref="T:iText.Layout.Renderer.IRenderer">renderers</see>
+            as the children for
+            <c>this</c>
+            element.
+            </summary>
+            <remarks>
+            Set the specified collection of
+            <see cref="T:iText.Layout.Renderer.IRenderer">renderers</see>
+            as the children for
+            <c>this</c>
+            element. That meant that the old collection would be cleaned, all parent links in old
+            children to
+            <c>this</c>
+            would be erased (i.e. set to
+            <see langword="null"/>
+            ) and then the specified
+            list of children would be added similar to
+            <see cref="!:AddAllChildRenderers(System.Collections.Generic.IList&lt;E&gt;)"/>.
+            </remarks>
+            <param name="children">
+            the collection of children
+            <see cref="T:iText.Layout.Renderer.IRenderer">renderers</see>
+            to be set
+            </param>
+        </member>
+        <member name="M:iText.Layout.Renderer.AbstractRenderer.RemoveChildRenderer(System.Int32)">
+            <summary>
+            Remove the child
+            <see cref="T:iText.Layout.Renderer.IRenderer">renderer</see>
+            at the specified place.
+            </summary>
+            <remarks>
+            Remove the child
+            <see cref="T:iText.Layout.Renderer.IRenderer">renderer</see>
+            at the specified place. If the removed renderer has
+            the parent link set to
+            <c>this</c>
+            and it would not present in the children list after
+            removal, then the parent link of the removed renderer would be erased (i.e. set to
+            <see langword="null"/>.
+            </remarks>
+            <param name="index">the index of the renderer to be removed</param>
+            <returns>the removed renderer</returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.AbstractRenderer.RemoveAllChildRenderers(System.Collections.Generic.ICollection{iText.Layout.Renderer.IRenderer})">
+            <summary>
+            Remove the children
+            <see cref="T:iText.Layout.Renderer.IRenderer">renderers</see>
+            which are contains in the specified collection.
+            </summary>
+            <remarks>
+            Remove the children
+            <see cref="T:iText.Layout.Renderer.IRenderer">renderers</see>
+            which are contains in the specified collection.
+            If some of the removed renderers has the parent link set to
+            <c>this</c>
+            , then
+            the parent link of the removed renderer would be erased (i.e. set to
+            <see langword="null"/>.
+            </remarks>
+            <param name="children">the collections of renderers to be removed from children list</param>
+            <returns>
+            
+            <see langword="true"/>
+            if the children list has been changed
+            </returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.AbstractRenderer.SetChildRenderer(System.Int32,iText.Layout.Renderer.IRenderer)">
+            <summary>
+            Update the child
+            <see cref="T:iText.Layout.Renderer.IRenderer">renderer</see>
+            at the specified place with the specified one.
+            </summary>
+            <remarks>
+            Update the child
+            <see cref="T:iText.Layout.Renderer.IRenderer">renderer</see>
+            at the specified place with the specified one.
+            If the removed renderer has the parent link set to
+            <c>this</c>
+            , then it would be erased
+            (i.e. set to
+            <see langword="null"/>
+            ).
+            </remarks>
+            <param name="index">the index of the renderer to be updated</param>
+            <param name="child">the renderer to be set</param>
+            <returns>the removed renderer</returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.AbstractRenderer.SetThisAsParent(System.Collections.Generic.ICollection{iText.Layout.Renderer.IRenderer})">
+            <summary>
+            Sets current
+            <see cref="T:iText.Layout.Renderer.AbstractRenderer"/>
+            as parent to renderers in specified collection.
+            </summary>
+            <param name="children">the collection of renderers to set the parent renderer on</param>
         </member>
         <member name="T:iText.Layout.Renderer.AccessibleAttributesApplier">
             <summary>
@@ -9968,6 +10411,9 @@
             <returns>true if given renderer creates a new "Block formatting context" in terms of CSS, false otherwise.
                 </returns>
         </member>
+        <member name="M:iText.Layout.Renderer.BlockRenderer.Layout(iText.Layout.Layout.LayoutContext)">
+            <summary><inheritDoc/></summary>
+        </member>
         <member name="M:iText.Layout.Renderer.BlockRenderer.CreateRotationTransformInsideOccupiedArea">
             <summary>
             This method creates
@@ -9987,6 +10433,9 @@
             <see cref="T:iText.Kernel.Geom.AffineTransform"/>
             that rotates the content and places it inside occupied area.
             </returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.BlockRenderer.GetMinMaxWidth">
+            <summary><inheritDoc/></summary>
         </member>
         <member name="M:iText.Layout.Renderer.CanvasRenderer.#ctor(iText.Layout.Canvas)">
             <summary>Creates a CanvasRenderer from its corresponding layout object.</summary>
@@ -10052,19 +10501,46 @@
             <summary><inheritDoc/></summary>
         </member>
         <member name="M:iText.Layout.Renderer.CellRenderer.GetNextRenderer">
-            <summary><inheritDoc/></summary>
+            <summary>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.BlockRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            </summary>
+            <remarks>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.BlockRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            <para />
+            If a renderer overflows to the next area, iText uses this method to create a renderer
+            for the overflow part. So if one wants to extend
+            <see cref="T:iText.Layout.Renderer.CellRenderer"/>
+            , one should override
+            this method: otherwise the default method will be used and thus the default rather than the custom
+            renderer will be created.
+            </remarks>
+            <returns>new renderer instance</returns>
         </member>
         <member name="F:iText.Layout.Renderer.CollapsedTableBorders.topBorderCollapseWith">
             <summary>
-            The list of the cells' borders which should be collapsed
-            with the first border of this TableRenderer instance, to be drawn on the area.
+            Horizontal borders to be collapsed with
+            the first-on-the-area row's cell top borders of this TableRenderer instance.
             </summary>
         </member>
         <member name="F:iText.Layout.Renderer.CollapsedTableBorders.bottomBorderCollapseWith">
             <summary>
-            The list of the cells' borders which should be collapsed
-            with the last border of this TableRenderer instance, to be drawn on the area.
+            Horizontal borders to be collapsed with
+            the last-on-the-area row's cell bottom borders of this TableRenderer instance.
             </summary>
+        </member>
+        <member name="F:iText.Layout.Renderer.CollapsedTableBorders.verticalBottomBorderCollapseWith">
+            <summary>
+            Vertical borders to be collapsed with
+            the last-on-the-area row's cell bottom borders of this TableRenderer instance.
+            </summary>
+        </member>
+        <member name="M:iText.Layout.Renderer.CollapsedTableBorders.GetVerticalBordersCrossingTopHorizontalBorder">
+            <summary>Gets vertical borders which cross the top horizontal border.</summary>
+            <returns>vertical borders which cross the top horizontal border</returns>
         </member>
         <member name="M:iText.Layout.Renderer.CollapsedTableBorders.GetCollapsedBorder(iText.Layout.Borders.Border,iText.Layout.Borders.Border)">
             <summary>Returns the collapsed border.</summary>
@@ -10076,6 +10552,62 @@
             <param name="tableBorder">table border</param>
             <returns>the collapsed border</returns>
         </member>
+        <member name="M:iText.Layout.Renderer.CollapsedTableBorders.GetCrossingBorders(System.Int32,System.Int32)">
+            <summary>
+            Returns the
+            <see cref="T:iText.Layout.Borders.Border"/>
+            instances, which intersect in the specified point.
+            </summary>
+            <remarks>
+            Returns the
+            <see cref="T:iText.Layout.Borders.Border"/>
+            instances, which intersect in the specified point.
+            <para />
+            The order of the borders: first the left one, then the top, the right and the bottom ones.
+            </remarks>
+            <param name="horizontalIndex">index of horizontal border</param>
+            <param name="verticalIndex">index of vertical border</param>
+            <returns>
+            a list of
+            <see cref="T:iText.Layout.Borders.Border"/>
+            instances, which intersect in the specified point
+            </returns>
+        </member>
+        <member name="T:iText.Layout.Renderer.CollapsedTableBorders.BorderComparator">
+            <summary>
+            A comparison function to compare two
+            <see cref="T:iText.Layout.Borders.Border"/>
+            instances.
+            </summary>
+        </member>
+        <member name="M:iText.Layout.Renderer.CollapsedTableBorders.GetWidestBorderWidth(iText.Layout.Borders.Border[])">
+            <summary>Gets the width of the widest border in the specified list.</summary>
+            <param name="borders">the borders which widths should be considered</param>
+            <returns>the width of the widest border in the specified list</returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.CollapsedTableBorders.IsBorderWider(iText.Layout.Borders.Border,iText.Layout.Borders.Border)">
+            <summary>Compares borders and defines whether this border is wider than the other.</summary>
+            <remarks>
+            Compares borders and defines whether this border is wider than the other.
+            <para />
+            Note that by default the comparison will be strict, e.g. if this border
+            is of the same width as the other border, then false will be returned.
+            </remarks>
+            <param name="thisBorder">this border</param>
+            <param name="otherBorder">the other border to be compared with</param>
+            <returns>whether this border is wider than the other</returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.CollapsedTableBorders.IsBorderWider(iText.Layout.Borders.Border,iText.Layout.Borders.Border,System.Boolean)">
+            <summary>Compares borders and defines whether this border is wider than the other.</summary>
+            <param name="thisBorder">this border</param>
+            <param name="otherBorder">the other border to be compared with</param>
+            <param name="strict">
+            if true, then in case this border is of the same width as the other border,
+            true will be returned. If false, it will be checked whether the width
+            of this border is strictly greater than the other border's width
+            </param>
+            <returns>whether this border is wider than the other</returns>
+        </member>
         <member name="M:iText.Layout.Renderer.DivRenderer.#ctor(iText.Layout.Element.Div)">
             <summary>Creates a DivRenderer from its corresponding layout object.</summary>
             <param name="modelElement">
@@ -10085,7 +10617,24 @@
             </param>
         </member>
         <member name="M:iText.Layout.Renderer.DivRenderer.GetNextRenderer">
-            <summary><inheritDoc/></summary>
+            <summary>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.BlockRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            </summary>
+            <remarks>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.BlockRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            <para />
+            If a renderer overflows to the next area, iText uses this method to create a renderer
+            for the overflow part. So if one wants to extend
+            <see cref="T:iText.Layout.Renderer.DivRenderer"/>
+            , one should override
+            this method: otherwise the default method will be used and thus the default rather than the custom
+            renderer will be created.
+            </remarks>
+            <returns>new renderer instance</returns>
         </member>
         <member name="M:iText.Layout.Renderer.DocumentRenderer.GetTargetCounterHandler">
             <summary>Get handler for target-counters.</summary>
@@ -10107,12 +10656,112 @@
             </summary>
             <returns>relayout renderer.</returns>
         </member>
+        <member name="M:iText.Layout.Renderer.DocumentRenderer.AddNewPage(iText.Kernel.Geom.PageSize)">
+            <summary>Adds new page with defined page size to PDF document.</summary>
+            <param name="customPageSize">the size of new page, can be null</param>
+            <returns>the page size of created page</returns>
+        </member>
         <member name="M:iText.Layout.Renderer.DocumentRenderer.EnsureDocumentHasNPages(System.Int32,iText.Kernel.Geom.PageSize)">
-            <summary>Adds some pages so that the overall number is at least n.</summary>
+            <summary>Ensures that PDF document has n pages.</summary>
             <remarks>
-            Adds some pages so that the overall number is at least n.
-            Returns the page size of the n'th page.
+            Ensures that PDF document has n pages. If document has fewer pages,
+            adds new pages by calling
+            <see cref="M:iText.Layout.Renderer.DocumentRenderer.AddNewPage(iText.Kernel.Geom.PageSize)"/>
+            method.
             </remarks>
+            <param name="n">the expected number of pages if document</param>
+            <param name="customPageSize">the size of created pages, can be null</param>
+            <returns>the page size of the last created page, or null if no page was created</returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.FlexContainerRenderer.#ctor(iText.Layout.Element.Div)">
+            <summary>Creates a FlexContainerRenderer from its corresponding layout object.</summary>
+            <param name="modelElement">
+            the
+            <see cref="T:iText.Layout.Element.Div"/>
+            which this object should manage
+            </param>
+        </member>
+        <member name="M:iText.Layout.Renderer.FlexContainerRenderer.GetNextRenderer">
+            <summary>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.FlexContainerRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            </summary>
+            <remarks>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.FlexContainerRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            <para />
+            If a renderer overflows to the next area, iText uses this method to create a renderer
+            for the overflow part. So if one wants to extend
+            <see cref="T:iText.Layout.Renderer.FlexContainerRenderer"/>
+            , one should override
+            this method: otherwise the default method will be used and thus the default rather than the custom
+            renderer will be created.
+            </remarks>
+            <returns>new renderer instance</returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.FlexContainerRenderer.Layout(iText.Layout.Layout.LayoutContext)">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Layout.Renderer.FlexContainerRenderer.GetMinMaxWidth">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Layout.Renderer.FlexContainerRenderer.CreateSplitAndOverflowRenderers(System.Int32,System.Int32,iText.Layout.Layout.LayoutResult,System.Collections.Generic.IDictionary{System.Int32,iText.Layout.Renderer.IRenderer},System.Collections.Generic.IList{iText.Layout.Renderer.IRenderer})">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Layout.Renderer.FlexContainerRenderer.RecalculateOccupiedAreaAfterChildLayout(iText.Kernel.Geom.Rectangle,System.Nullable{System.Single})">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Layout.Renderer.FlexContainerRenderer.AddChild(iText.Layout.Renderer.IRenderer)">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Layout.Renderer.FlexUtil.CalculateChildrenRectangles(iText.Kernel.Geom.Rectangle,iText.Layout.Renderer.FlexContainerRenderer)">
+            <summary>Performs flex layout algorithm.</summary>
+            <remarks>
+            Performs flex layout algorithm.
+            <para />
+            The algorithm could be found here:
+            <seealso>https://www.w3.org/TR/css-flexbox-1/#layout-algorithm</seealso>
+            </remarks>
+            <param name="flexContainerBBox">bounding box in which flex container should be rendered</param>
+            <param name="flexContainerRenderer">flex container's renderer</param>
+            <returns>list of lines</returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.FlexUtil.FlexItemCalculationInfo.CalculateTransferredSizeSuggestion">
+            <summary>
+            If the item has an intrinsic aspect ratio and its computed cross size property is definite,
+            then the transferred size suggestion is that size (clamped by its min and max cross size properties
+            if they are definite), converted through the aspect ratio.
+            </summary>
+            <remarks>
+            If the item has an intrinsic aspect ratio and its computed cross size property is definite,
+            then the transferred size suggestion is that size (clamped by its min and max cross size properties
+            if they are definite), converted through the aspect ratio. It is otherwise undefined.
+            </remarks>
+            <returns>transferred size suggestion if it can be calculated, null otherwise</returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.FlexUtil.FlexItemCalculationInfo.CalculateSpecifiedSizeSuggestion(System.Single)">
+            <summary>
+            If the item’s computed main size property is definite,
+            then the specified size suggestion is that size (clamped by its max main size property if it’s definite).
+            </summary>
+            <remarks>
+            If the item’s computed main size property is definite,
+            then the specified size suggestion is that size (clamped by its max main size property if it’s definite).
+            It is otherwise undefined.
+            </remarks>
+            <param name="flexContainerWidth">the width of the flex container</param>
+            <returns>specified size suggestion if it's definite, null otherwise</returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.FlexUtil.FlexItemCalculationInfo.CalculateContentSizeSuggestion(System.Single)">
+            <summary>
+            The content size suggestion is the min-content size in the main axis, clamped, if it has an aspect ratio,
+            by any definite min and max cross size properties converted through the aspect ratio,
+            and then further clamped by the max main size property if that is definite.
+            </summary>
+            <param name="flexContainerWidth">the width of the flex container</param>
+            <returns>content size suggestion</returns>
         </member>
         <member name="M:iText.Layout.Renderer.ILeafElementRenderer.GetAscent">
             <summary>
@@ -10143,6 +10792,28 @@
             <see cref="T:iText.Layout.Element.Image"/>
             which this object should manage
             </param>
+        </member>
+        <member name="M:iText.Layout.Renderer.ImageRenderer.HasAspectRatio">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Layout.Renderer.ImageRenderer.GetAspectRatio">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Layout.Renderer.ImageRenderer.GetImageWidth">
+            <summary>
+            Gets original width of the image, not the width set by
+            <see cref="M:iText.Layout.Element.Image.SetWidth(System.Single)"/>
+            method.
+            </summary>
+            <returns>original image width</returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.ImageRenderer.GetImageHeight">
+            <summary>
+            Gets original height of the image, not the height set by
+            <see cref="M:iText.Layout.Element.Image.SetHeight(System.Single)"/>
+            method.
+            </summary>
+            <returns>original image height</returns>
         </member>
         <member name="T:iText.Layout.Renderer.IRenderer">
             <summary>
@@ -10516,6 +11187,26 @@
             </param>
             <param name="text">the replacement text</param>
         </member>
+        <member name="M:iText.Layout.Renderer.LinkRenderer.GetNextRenderer">
+            <summary>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.TextRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            </summary>
+            <remarks>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.TextRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            <para />
+            If a renderer overflows to the next area, iText uses this method to create a renderer
+            for the overflow part. So if one wants to extend
+            <see cref="T:iText.Layout.Renderer.LinkRenderer"/>
+            , one should override
+            this method: otherwise the default method will be used and thus the default rather than the custom
+            renderer will be created.
+            </remarks>
+            <returns>new renderer instance</returns>
+        </member>
         <member name="M:iText.Layout.Renderer.ListItemRenderer.#ctor(iText.Layout.Element.ListItem)">
             <summary>Creates a ListItemRenderer from its corresponding layout object.</summary>
             <param name="modelElement">
@@ -10531,6 +11222,26 @@
             <see cref="T:iText.Layout.Element.List"/>
             which this object should manage
             </param>
+        </member>
+        <member name="M:iText.Layout.Renderer.ListRenderer.GetNextRenderer">
+            <summary>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.ListRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            </summary>
+            <remarks>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.ListRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            <para />
+            If a renderer overflows to the next area, iText uses this method to create a renderer
+            for the overflow part. So if one wants to extend
+            <see cref="T:iText.Layout.Renderer.ListRenderer"/>
+            , one should override
+            this method: otherwise the default method will be used and thus the default rather than the custom
+            renderer will be created.
+            </remarks>
+            <returns>new renderer instance</returns>
         </member>
         <member name="M:iText.Layout.Renderer.ListRenderer.CorrectListSplitting(iText.Layout.Renderer.IRenderer,iText.Layout.Renderer.IRenderer,iText.Layout.Renderer.IRenderer,iText.Layout.Layout.LayoutArea)">
             <summary>
@@ -10580,6 +11291,17 @@
             corrected
             <see cref="T:iText.Layout.Layout.LayoutResult">layout result</see>
             </returns>
+        </member>
+        <member name="T:iText.Layout.Renderer.MetaInfoContainer">
+            <summary>Class to store metaInfo that will be used for layout renderers.</summary>
+        </member>
+        <member name="M:iText.Layout.Renderer.MetaInfoContainer.#ctor(iText.Commons.Actions.Contexts.IMetaInfo)">
+            <summary>Creates MetaInfoContainer instance with provided meta info.</summary>
+            <param name="metaInfo">the meta info</param>
+        </member>
+        <member name="M:iText.Layout.Renderer.MetaInfoContainer.GetMetaInfo">
+            <summary>Return the IMetaInfo object.</summary>
+            <returns>returns IMetaInfo</returns>
         </member>
         <member name="T:iText.Layout.Renderer.Objectfit.ObjectFitApplyingResult">
             <summary>
@@ -10701,7 +11423,24 @@
             <summary><inheritDoc/></summary>
         </member>
         <member name="M:iText.Layout.Renderer.ParagraphRenderer.GetNextRenderer">
-            <summary><inheritDoc/></summary>
+            <summary>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.ParagraphRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            </summary>
+            <remarks>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.ParagraphRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            <para />
+            If a renderer overflows to the next area, iText uses this method to create a renderer
+            for the overflow part. So if one wants to extend
+            <see cref="T:iText.Layout.Renderer.ParagraphRenderer"/>
+            , one should override
+            this method: otherwise the default method will be used and thus the default rather than the custom
+            renderer will be created.
+            </remarks>
+            <returns>new renderer instance</returns>
         </member>
         <member name="M:iText.Layout.Renderer.ParagraphRenderer.GetDefaultProperty``1(System.Int32)">
             <summary><inheritDoc/></summary>
@@ -10782,6 +11521,14 @@
             <see cref="M:iText.Layout.Renderer.AbstractRenderer.RetrieveWidth(System.Single)"/>
             in case it can not be calculated, or renderer isn't rotated.
             </returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.TableBorderDescriptor.#ctor(System.Int32,System.Single,System.Single,System.Single[])">
+            <summary>Creates a table border descriptor which will be used while drawing the described border.</summary>
+            <param name="borderIndex">the index of the described border</param>
+            <param name="mainCoordinateStart">the border's start main-axis coordinate</param>
+            <param name="crossCoordinate">fixed cross-axis coordinate of the whole border</param>
+            <param name="mainCoordinateWidths">the sizes (widths or heights) of rows or columns depending on the type of main axis
+                </param>
         </member>
         <member name="F:iText.Layout.Renderer.TableBorders.horizontalBorders">
             <summary>Horizontal borders of the table.</summary>
@@ -10931,7 +11678,24 @@
             <summary><inheritDoc/></summary>
         </member>
         <member name="M:iText.Layout.Renderer.TableRenderer.GetNextRenderer">
-            <summary><inheritDoc/></summary>
+            <summary>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.TableRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            </summary>
+            <remarks>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.TableRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            <para />
+            If a renderer overflows to the next area, iText uses this method to create a renderer
+            for the overflow part. So if one wants to extend
+            <see cref="T:iText.Layout.Renderer.TableRenderer"/>
+            , one should override
+            this method: otherwise the default method will be used and thus the default rather than the custom
+            renderer will be created.
+            </remarks>
+            <returns>new renderer instance</returns>
         </member>
         <member name="M:iText.Layout.Renderer.TableRenderer.Move(System.Single,System.Single)">
             <summary><inheritDoc/></summary>
@@ -10972,6 +11736,15 @@
             <summary>Utility class that copies overflow renderer rows on cell replacement so it won't affect original renderer
                 </summary>
         </member>
+        <member name="M:iText.Layout.Renderer.TableWidths.GetCellWidth(iText.Layout.Renderer.CellRenderer,System.Boolean)">
+            <summary>Gets width of the cell, adding paddings and extra spacing if necessary.</summary>
+            <param name="cell">
+            renderer from which width will be taken.
+            Note that this method will not change original width of the element.
+            </param>
+            <param name="zeroIsValid">defines if 0 width is valid</param>
+            <returns>increased width of the renderer</returns>
+        </member>
         <member name="M:iText.Layout.Renderer.TabRenderer.#ctor(iText.Layout.Element.Tab)">
             <summary>Creates a TabRenderer from its corresponding layout object</summary>
             <param name="tab">
@@ -10979,6 +11752,26 @@
             <see cref="T:iText.Layout.Element.Tab"/>
             which this object should manage
             </param>
+        </member>
+        <member name="M:iText.Layout.Renderer.TabRenderer.GetNextRenderer">
+            <summary>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.TabRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            </summary>
+            <remarks>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.TabRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            <para />
+            If a renderer overflows to the next area, iText uses this method to create a renderer
+            for the overflow part. So if one wants to extend
+            <see cref="T:iText.Layout.Renderer.TabRenderer"/>
+            , one should override
+            this method: otherwise the default method will be used and thus the default rather than the custom
+            renderer will be created.
+            </remarks>
+            <returns>new renderer instance</returns>
         </member>
         <member name="T:iText.Layout.Renderer.TargetCounterHandler">
             <summary>Handler to handle target-counter logic.</summary>
@@ -11120,15 +11913,6 @@
             </summary>
             <param name="text">the replacement text</param>
         </member>
-        <member name="M:iText.Layout.Renderer.TextRenderer.SetText(iText.IO.Font.Otf.GlyphLine,System.Int32,System.Int32)">
-            <summary>Manually sets a GlyphLine to be rendered with a specific start and end point.</summary>
-            <param name="text">
-            a
-            <see cref="T:iText.IO.Font.Otf.GlyphLine"/>
-            </param>
-            <param name="leftPos">the leftmost end of the GlyphLine</param>
-            <param name="rightPos">the rightmost end of the GlyphLine</param>
-        </member>
         <member name="M:iText.Layout.Renderer.TextRenderer.SetText(iText.IO.Font.Otf.GlyphLine,iText.Kernel.Font.PdfFont)">
             <summary>Manually set a GlyphLine and PdfFont for rendering.</summary>
             <param name="text">
@@ -11145,6 +11929,35 @@
             <summary>Gets char code at given position for the text belonging to this renderer.</summary>
             <param name="pos">the position in range [0; length())</param>
             <returns>Unicode char code</returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.TextRenderer.GetNextRenderer">
+            <summary>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.TextRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            </summary>
+            <remarks>
+            Gets a new instance of this class to be used as a next renderer, after this renderer is used, if
+            <see cref="M:iText.Layout.Renderer.TextRenderer.Layout(iText.Layout.Layout.LayoutContext)"/>
+            is called more than once.
+            <para />
+            If
+            <see cref="T:iText.Layout.Renderer.TextRenderer"/>
+            overflows to the next line, iText uses this method to create a renderer
+            for the overflow part. So if one wants to extend
+            <see cref="T:iText.Layout.Renderer.TextRenderer"/>
+            , one should override
+            this method: otherwise the default method will be used and thus the default rather than the custom
+            renderer will be created. Another method that should be overridden in case of
+            <see cref="T:iText.Layout.Renderer.TextRenderer"/>
+            's extension is
+            <see cref="M:iText.Layout.Renderer.TextRenderer.CreateCopy(iText.IO.Font.Otf.GlyphLine,iText.Kernel.Font.PdfFont)"/>
+            . This method is responsible
+            for creation of
+            <see cref="T:iText.Layout.Renderer.TextRenderer"/>
+            's copies, which represent its parts of specific font.
+            </remarks>
+            <returns>new renderer instance</returns>
         </member>
         <member name="M:iText.Layout.Renderer.TextRenderer.CalculateAscenderDescender(iText.Kernel.Font.PdfFont)">
             <summary>Get ascender and descender from font metrics.</summary>
@@ -11228,17 +12041,62 @@
             has been created.
             </returns>
         </member>
-        <member name="M:iText.Layout.Renderer.TextRenderer.SetGlyphLineAndFont(iText.IO.Font.Otf.GlyphLine,iText.Kernel.Font.PdfFont)">
-            <param name="gl">
-            
+        <member name="M:iText.Layout.Renderer.TextRenderer.CreateCopy(iText.IO.Font.Otf.GlyphLine,iText.Kernel.Font.PdfFont)">
+            <summary>
+            Creates a copy of this
+            <see cref="T:iText.Layout.Renderer.TextRenderer"/>
+            , which corresponds to the passed
             <see cref="T:iText.IO.Font.Otf.GlyphLine"/>
-            glyph to be set
+            with
+            <see cref="T:iText.Kernel.Font.PdfFont"/>.
+            </summary>
+            <remarks>
+            Creates a copy of this
+            <see cref="T:iText.Layout.Renderer.TextRenderer"/>
+            , which corresponds to the passed
+            <see cref="T:iText.IO.Font.Otf.GlyphLine"/>
+            with
+            <see cref="T:iText.Kernel.Font.PdfFont"/>.
+            <para />
+            While processing
+            <see cref="T:iText.Layout.Renderer.TextRenderer"/>
+            , iText uses this method to create
+            <see cref="T:iText.IO.Font.Otf.GlyphLine">glyph lines</see>
+            of specific
+            <see cref="T:iText.Kernel.Font.PdfFont">fonts</see>
+            , which represent the
+            <see cref="T:iText.Layout.Renderer.TextRenderer"/>
+            's parts. If one extends
+            <see cref="T:iText.Layout.Renderer.TextRenderer"/>
+            , one should override this method, otherwise if
+            <see cref="T:iText.Layout.Font.FontSelector"/>
+            related logic is triggered, copies of this
+            <see cref="T:iText.Layout.Renderer.TextRenderer"/>
+            will have the default behavior rather than
+            the custom one.
+            </remarks>
+            <param name="gl">
+            a
+            <see cref="T:iText.IO.Font.Otf.GlyphLine"/>
+            which represents some of this
+            <see cref="T:iText.Layout.Renderer.TextRenderer"/>
+            's content
             </param>
             <param name="font">
-            
+            a
             <see cref="T:iText.Kernel.Font.PdfFont"/>
-            font to be set
+            for this part of the
+            <see cref="T:iText.Layout.Renderer.TextRenderer"/>
+            's content
             </param>
+            <returns>
+            copy of this
+            <see cref="T:iText.Layout.Renderer.TextRenderer"/>
+            , which correspond to the passed
+            <see cref="T:iText.IO.Font.Otf.GlyphLine"/>
+            with
+            <see cref="T:iText.Kernel.Font.PdfFont"/>
+            </returns>
         </member>
         <member name="M:iText.Layout.Renderer.TextRenderer.IsStartsWithSplitCharWhiteSpaceAndEndsWithSplitChar(iText.Layout.Splitting.ISplitCharacters)">
             <summary>Identifies two properties for the layouted text renderer text: start and end break possibilities.
@@ -11399,6 +12257,14 @@
             <see cref="T:iText.Layout.Renderer.TextSequenceWordWrapping.SpecialScriptsContainingSequenceStatus"/>
             instance standing for the strategy to proceed with.
             </returns>
+        </member>
+        <member name="M:iText.Layout.Renderer.TypographyUtils.SetTypographyApplierInstance(iText.Layout.Renderer.Typography.AbstractTypographyApplier)">
+            <summary>
+            Set
+            <see cref="T:iText.Layout.Renderer.Typography.AbstractTypographyApplier"/>
+            instance to use.
+            </summary>
+            <param name="newInstance">the instance to set</param>
         </member>
         <member name="M:iText.Layout.Renderer.TypographyUtils.IsPdfCalligraphAvailable">
             <summary>Checks if layout module can access pdfCalligraph</summary>
@@ -11911,12 +12777,6 @@
             <see cref="T:iText.Layout.Tagging.IAccessibleElement"/>.
             </remarks>
             <returns>an interface that allows to specify properties of a tagged element in Tagged PDF.</returns>
-        </member>
-        <member name="M:com.itextpdf.layout.layout.LayoutRect.GetCommonRectangle(com.itextpdf.layout.layout.LayoutRect[])">
-            <summary>Calculates the common rectangle which includes all the input rectangles.
-            	</summary>
-            <param name="rectangles">list of input rectangles.</param>
-            <returns>common rectangle.</returns>
         </member>
     </members>
 </doc>

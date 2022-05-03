@@ -1743,6 +1743,23 @@
             <param name="datablock">size of a datablock</param>
             <param name="nc">size of a errorblock</param>
         </member>
+        <member name="T:iText.Barcodes.Exceptions.BarcodeExceptionMessageConstant">
+            <summary>Class that bundles all the error message templates as constants.</summary>
+        </member>
+        <member name="T:iText.Barcodes.Exceptions.WriterException">
+            <summary>
+            A base class which covers the range of exceptions which may occur when encoding a barcode using
+            the Writer framework.
+            </summary>
+            <author>dswitkin@google.com (Daniel Switkin)</author>
+        </member>
+        <member name="M:iText.Barcodes.Exceptions.WriterException.#ctor">
+            <summary>Creates a WriterException.</summary>
+        </member>
+        <member name="M:iText.Barcodes.Exceptions.WriterException.#ctor(System.String)">
+            <summary>Creates a WriterException with a message.</summary>
+            <param name="message">message of the exception</param>
+        </member>
         <member name="T:iText.Barcodes.Qrcode.BitArray">
             <summary>A simple, fast array of bits, represented compactly by an array of ints internally.</summary>
             <author>Sean Owen</author>
@@ -2709,17 +2726,6 @@
             <param name="toEncode">data to encode</param>
             <param name="ecBytes">error correction bytes</param>
         </member>
-        <member name="T:iText.Barcodes.Qrcode.ReedSolomonException">
-            <summary>
-            Thrown when an exception occurs during Reed-Solomon decoding, such as when
-            there are too many errors to correct.
-            </summary>
-            <author>Sean Owen</author>
-        </member>
-        <member name="M:iText.Barcodes.Qrcode.ReedSolomonException.#ctor(System.String)">
-            <summary>Creates a ReedSolomonException with a message.</summary>
-            <param name="message">the message of the exception</param>
-        </member>
         <member name="T:iText.Barcodes.Qrcode.Version">
             <summary>See ISO 18004:2006 Annex D.</summary>
             <author>Sean Owen</author>
@@ -2797,20 +2803,6 @@
         </member>
         <member name="M:iText.Barcodes.Qrcode.Version.BuildVersions">
             <summary>See ISO 18004:2006 6.5.1 Table 9.</summary>
-        </member>
-        <member name="T:iText.Barcodes.Qrcode.WriterException">
-            <summary>
-            A base class which covers the range of exceptions which may occur when encoding a barcode using
-            the Writer framework.
-            </summary>
-            <author>dswitkin@google.com (Daniel Switkin)</author>
-        </member>
-        <member name="M:iText.Barcodes.Qrcode.WriterException.#ctor">
-            <summary>Creates a WriterException.</summary>
-        </member>
-        <member name="M:iText.Barcodes.Qrcode.WriterException.#ctor(System.String)">
-            <summary>Creates a WriterException with a message.</summary>
-            <param name="message">message of the exception</param>
         </member>
     </members>
 </doc>

@@ -1392,6 +1392,13 @@
             <summary>Creates a new BadPasswordException.</summary>
             <param name="message">the detail message.</param>
         </member>
+        <member name="T:iText.Kernel.Exceptions.InvalidXRefPrevException">
+            <summary>Exception class for invalid prev pointer in xref structure.</summary>
+        </member>
+        <member name="M:iText.Kernel.Exceptions.InvalidXRefPrevException.#ctor(System.String)">
+            <summary>Creates a new instance of InvalidPrevPointerException.</summary>
+            <param name="message">the detail message.</param>
+        </member>
         <member name="T:iText.Kernel.Exceptions.KernelExceptionMessageConstant">
             <summary>Class that bundles all the error message templates as constants.</summary>
         </member>
@@ -1469,6 +1476,13 @@
         <member name="M:iText.Kernel.Exceptions.PdfException.GetMessageParams">
             <summary>Gets additional params for Exception message.</summary>
             <returns>array of additional params</returns>
+        </member>
+        <member name="T:iText.Kernel.Exceptions.XrefCycledReferencesException">
+            <summary>Exception class for infinite loop in xref structure.</summary>
+        </member>
+        <member name="M:iText.Kernel.Exceptions.XrefCycledReferencesException.#ctor(System.String)">
+            <summary>Creates a new instance of XrefInfiniteLoopException.</summary>
+            <param name="message">the detail message.</param>
         </member>
         <member name="T:iText.Kernel.Font.DocFontEncoding">
             <summary>This class allow to parse document font's encoding.</summary>
@@ -10354,8 +10368,7 @@
             <returns>Current value of the annotation's highlighting mode.</returns>
         </member>
         <member name="M:iText.Kernel.Pdf.Annot.PdfWidgetAnnotation.ReleaseFormFieldFromWidgetAnnotation">
-            <summary>This method removes all widget annotation entries from the form field  the given annotation merged with.
-                </summary>
+            <summary>Remove widget annotation from AcroForm hierarchy.</summary>
         </member>
         <member name="M:iText.Kernel.Pdf.Annot.PdfWidgetAnnotation.SetVisibility(System.Int32)">
             <summary>
@@ -19990,6 +20003,18 @@
             </param>
             <returns>true if PDF stream is suspicious and false otherwise</returns>
         </member>
+        <member name="M:iText.Kernel.Pdf.MemoryLimitsAwareHandler.GetMaxNumberOfElementsInXrefStructure">
+            <summary>Gets maximum number of elements in xref structure.</summary>
+            <returns>maximum number of elements in xref structure.</returns>
+        </member>
+        <member name="M:iText.Kernel.Pdf.MemoryLimitsAwareHandler.SetMaxNumberOfElementsInXrefStructure(System.Int32)">
+            <summary>Sets maximum number of elements in xref structure.</summary>
+            <param name="maxNumberOfElementsInXrefStructure">maximum number of elements in xref structure.</param>
+        </member>
+        <member name="M:iText.Kernel.Pdf.MemoryLimitsAwareHandler.CheckIfXrefStructureExceedsTheLimit(System.Int32)">
+            <summary>Performs a check of possible extension of xref structure.</summary>
+            <param name="requestedCapacity">capacity to which we need to expand xref array.</param>
+        </member>
         <member name="M:iText.Kernel.Pdf.MemoryLimitsAwareHandler.ConsiderBytesOccupiedByDecompressedPdfStream(System.Int64)">
             <summary>Considers the number of bytes which are occupied by the decompressed pdf stream.</summary>
             <remarks>
@@ -22918,7 +22943,9 @@
             <param name="str">dictionary to create structure tree root</param>
         </member>
         <member name="M:iText.Kernel.Pdf.PdfDocument.RemoveUnusedWidgetsFromFields(iText.Kernel.Pdf.PdfPage)">
-            <summary>This method removes all annotation entries from form fields associated with a given page.</summary>
+            <summary>Removes all widgets associated with a given page from AcroForm structure.</summary>
+            <remarks>Removes all widgets associated with a given page from AcroForm structure. Widgets can be either pure or merged.
+                </remarks>
             <param name="page">to remove from.</param>
         </member>
         <member name="M:iText.Kernel.Pdf.PdfDocument.CopyOutlines(System.Collections.Generic.ICollection{iText.Kernel.Pdf.PdfOutline},iText.Kernel.Pdf.PdfDocument,System.Collections.Generic.IDictionary{iText.Kernel.Pdf.PdfPage,iText.Kernel.Pdf.PdfPage})">
@@ -23451,6 +23478,109 @@
         </member>
         <member name="M:iText.Kernel.Pdf.PdfNull.#ctor">
             <summary>Creates a PdfNull instance.</summary>
+        </member>
+        <member name="T:iText.Kernel.Pdf.PdfNumber">
+            <summary>
+            A
+            <c>PdfNumber</c>
+            -class is the PDF-equivalent of a
+            <c>Double</c>
+            -object.
+            </summary>
+            <remarks>
+            A
+            <c>PdfNumber</c>
+            -class is the PDF-equivalent of a
+            <c>Double</c>
+            -object.
+            <para />
+            PDF provides two types of numeric objects: integer and real. Integer objects represent mathematical integers. Real
+            objects represent mathematical real numbers. The range and precision of numbers may be limited by the internal
+            representations used in the computer on which the PDF processor is running.
+            An integer shall be written as one or more decimal digits optionally preceded by a sign. The value shall be
+            interpreted as a signed decimal integer and shall be converted to an integer object.
+            A real value shall be written as one or more decimal digits with an optional sign and a leading, trailing, or
+            embedded period (decimal point).
+            </remarks>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfNumber.#ctor(System.Double)">
+            <summary>
+            Creates an instance of
+            <see cref="T:iText.Kernel.Pdf.PdfNumber"/>
+            and sets value.
+            </summary>
+            <param name="value">double value to set</param>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfNumber.#ctor(System.Int32)">
+            <summary>
+            Creates an instance of
+            <see cref="T:iText.Kernel.Pdf.PdfNumber"/>
+            and sets value.
+            </summary>
+            <param name="value">int value to set</param>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfNumber.#ctor(System.Byte[])">
+            <summary>
+            Creates an instance of
+            <see cref="T:iText.Kernel.Pdf.PdfNumber"/>
+            with provided content.
+            </summary>
+            <param name="content">byte array content to set</param>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfNumber.GetValue">
+            <summary>
+            Returns value of current instance of
+            <see cref="T:iText.Kernel.Pdf.PdfNumber"/>.
+            </summary>
+            <returns>
+            value of
+            <see cref="T:iText.Kernel.Pdf.PdfNumber"/>
+            instance
+            </returns>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfNumber.DoubleValue">
+            <summary>
+            Returns double value of current instance of
+            <see cref="T:iText.Kernel.Pdf.PdfNumber"/>.
+            </summary>
+            <returns>
+            double value of
+            <see cref="T:iText.Kernel.Pdf.PdfNumber"/>
+            instance
+            </returns>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfNumber.FloatValue">
+            <summary>Returns value and converts it to float.</summary>
+            <returns>value converted to float</returns>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfNumber.LongValue">
+            <summary>Returns value and converts it to long.</summary>
+            <returns>value converted to long</returns>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfNumber.IntValue">
+            <summary>Returns value and converts it to an int.</summary>
+            <remarks>
+            Returns value and converts it to an int. If value surpasses
+            <see cref="F:System.Int32.MaxValue"/>
+            ,
+            <see cref="F:System.Int32.MaxValue"/>
+            would be return.
+            </remarks>
+            <returns>value converted to int</returns>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfNumber.SetValue(System.Int32)">
+            <summary>Sets value and convert it to double.</summary>
+            <param name="value">to set</param>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfNumber.SetValue(System.Double)">
+            <summary>Sets value.</summary>
+            <param name="value">to set</param>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfNumber.Increment">
+            <summary>Increments current value.</summary>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfNumber.Decrement">
+            <summary>Decrements current value.</summary>
         </member>
         <member name="M:iText.Kernel.Pdf.PdfNumber.HasDecimalPoint">
             <summary>Checks if string representation of the value contains decimal point.</summary>
@@ -25243,8 +25373,12 @@
             <param name="is">
             the
             <c>InputStream</c>
-            containing the document. The stream is read to the
-            end but is not closed.
+            containing the document. If the inputStream is an instance of
+            <see cref="T:iText.IO.Source.RASInputStream"/>
+            then the
+            <see cref="T:iText.IO.Source.IRandomAccessSource"/>
+            would be extracted. Otherwise the stream
+            is read to the end but is not closed.
             </param>
             <param name="properties">properties of the created reader</param>
         </member>
@@ -25261,10 +25395,12 @@
             <param name="is">
             the
             <c>InputStream</c>
-            containing the document. the
-            <c>InputStream</c>
-            containing the document. The stream is read to the
-            end but is not closed.
+            containing the document. If the inputStream is an instance of
+            <see cref="T:iText.IO.Source.RASInputStream"/>
+            then the
+            <see cref="T:iText.IO.Source.IRandomAccessSource"/>
+            would be extracted. Otherwise the stream
+            is read to the end but is not closed.
             </param>
         </member>
         <member name="M:iText.Kernel.Pdf.PdfReader.#ctor(System.String,iText.Kernel.Pdf.ReaderProperties)">
@@ -26957,6 +27093,61 @@
             value - previous item in the linked list of free references for the object denoted by the key.
             </summary>
         </member>
+        <member name="M:iText.Kernel.Pdf.PdfXrefTable.#ctor">
+            <summary>
+            Creates a
+            <see cref="T:iText.Kernel.Pdf.PdfXrefTable"/>
+            which will be used to store xref structure of the pdf document.
+            </summary>
+            <remarks>
+            Creates a
+            <see cref="T:iText.Kernel.Pdf.PdfXrefTable"/>
+            which will be used to store xref structure of the pdf document.
+            Capacity and
+            <see cref="T:iText.Kernel.Pdf.MemoryLimitsAwareHandler"/>
+            instance would be set by default values.
+            </remarks>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfXrefTable.#ctor(System.Int32)">
+            <summary>
+            Creates a
+            <see cref="T:iText.Kernel.Pdf.PdfXrefTable"/>
+            which will be used to store xref structure of the pdf document.
+            </summary>
+            <param name="capacity">initial capacity of xref table.</param>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfXrefTable.#ctor(iText.Kernel.Pdf.MemoryLimitsAwareHandler)">
+            <summary>
+            Creates a
+            <see cref="T:iText.Kernel.Pdf.PdfXrefTable"/>
+            which will be used to store xref structure of the pdf document.
+            </summary>
+            <param name="memoryLimitsAwareHandler">
+            custom
+            <see cref="T:iText.Kernel.Pdf.MemoryLimitsAwareHandler"/>
+            to set.
+            </param>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfXrefTable.#ctor(System.Int32,iText.Kernel.Pdf.MemoryLimitsAwareHandler)">
+            <summary>
+            Creates a
+            <see cref="T:iText.Kernel.Pdf.PdfXrefTable"/>
+            which will be used to store xref structure of the pdf document.
+            </summary>
+            <param name="capacity">initial capacity of xref table.</param>
+            <param name="memoryLimitsAwareHandler">
+            memoryLimitsAwareHandler custom
+            <see cref="T:iText.Kernel.Pdf.MemoryLimitsAwareHandler"/>
+            to set.
+            </param>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfXrefTable.SetMemoryLimitsAwareHandler(iText.Kernel.Pdf.MemoryLimitsAwareHandler)">
+            <summary>
+            Sets custom
+            <see cref="T:iText.Kernel.Pdf.MemoryLimitsAwareHandler"/>.
+            </summary>
+            <param name="memoryLimitsAwareHandler">instance to set.</param>
+        </member>
         <member name="M:iText.Kernel.Pdf.PdfXrefTable.Add(iText.Kernel.Pdf.PdfIndirectReference)">
             <summary>Adds indirect reference to list of indirect objects.</summary>
             <param name="reference">indirect reference to add.</param>
@@ -26974,6 +27165,44 @@
             <summary>Get appropriate reference to indirect object.</summary>
             <param name="index">is the index of required object</param>
             <returns>reference to object with the provided index</returns>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfXrefTable.WriteKeyInfo(iText.Kernel.Pdf.PdfDocument)">
+            <summary>Convenience method to write the fingerprint preceding the trailer.</summary>
+            <remarks>
+            Convenience method to write the fingerprint preceding the trailer.
+            The fingerprint contains information on iText products used in the generation or manipulation
+            of an outputted PDF file.
+            </remarks>
+            <param name="document">pdfDocument to write the fingerprint to</param>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfXrefTable.CreateNextIndirectReference(iText.Kernel.Pdf.PdfDocument)">
+            <summary>Creates next available indirect reference.</summary>
+            <param name="document">
+            is the current
+            <see cref="T:iText.Kernel.Pdf.PdfDocument">document</see>
+            </param>
+            <returns>created indirect reference.</returns>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfXrefTable.FreeReference(iText.Kernel.Pdf.PdfIndirectReference)">
+            <summary>Set the reference to free state.</summary>
+            <param name="reference">is a reference to be updated.</param>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfXrefTable.GetCapacity">
+            <summary>Gets the capacity of xref stream.</summary>
+            <returns>the capacity of xref stream.</returns>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfXrefTable.SetCapacity(System.Int32)">
+            <summary>Increase capacity of the array of indirect references.</summary>
+            <param name="capacity">is a new capacity to set</param>
+        </member>
+        <member name="M:iText.Kernel.Pdf.PdfXrefTable.WriteXrefTableAndTrailer(iText.Kernel.Pdf.PdfDocument,iText.Kernel.Pdf.PdfObject,iText.Kernel.Pdf.PdfObject)">
+            <summary>Writes cross reference table and trailer to PDF.</summary>
+            <param name="document">
+            is the current
+            <see cref="T:iText.Kernel.Pdf.PdfDocument">document</see>
+            </param>
+            <param name="fileId">field id</param>
+            <param name="crypto">pdf encryption</param>
         </member>
         <member name="M:iText.Kernel.Pdf.PdfXrefTable.MarkReadingCompleted">
             <summary>
@@ -27000,46 +27229,12 @@
             </param>
             <returns>created indirect reference to the object stream</returns>
         </member>
-        <member name="M:iText.Kernel.Pdf.PdfXrefTable.CreateNextIndirectReference(iText.Kernel.Pdf.PdfDocument)">
-            <summary>Creates next available indirect reference.</summary>
-            <param name="document">
-            is the current
-            <see cref="T:iText.Kernel.Pdf.PdfDocument">document</see>
-            </param>
-            <returns>created indirect reference.</returns>
-        </member>
-        <member name="M:iText.Kernel.Pdf.PdfXrefTable.FreeReference(iText.Kernel.Pdf.PdfIndirectReference)">
-            <summary>Set the reference to free state.</summary>
-            <param name="reference">is a reference to be updated.</param>
-        </member>
-        <member name="M:iText.Kernel.Pdf.PdfXrefTable.SetCapacity(System.Int32)">
-            <summary>Increase capacity of the array of indirect references.</summary>
-            <param name="capacity">is a new capacity to set</param>
-        </member>
-        <member name="M:iText.Kernel.Pdf.PdfXrefTable.WriteXrefTableAndTrailer(iText.Kernel.Pdf.PdfDocument,iText.Kernel.Pdf.PdfObject,iText.Kernel.Pdf.PdfObject)">
-            <summary>Writes cross reference table and trailer to PDF.</summary>
-            <param name="document">
-            is the current
-            <see cref="T:iText.Kernel.Pdf.PdfDocument">document</see>
-            </param>
-            <param name="fileId">field id</param>
-            <param name="crypto">pdf encryption</param>
-        </member>
         <member name="M:iText.Kernel.Pdf.PdfXrefTable.Clear">
             <summary>Clear the state of the cross-reference table.</summary>
         </member>
         <member name="M:iText.Kernel.Pdf.PdfXrefTable.GetOffsetSize(System.Int64)">
             <summary>Gets size of the offset.</summary>
             <remarks>Gets size of the offset. Max size is 2^40, i.e. 1 Tb.</remarks>
-        </member>
-        <member name="M:iText.Kernel.Pdf.PdfXrefTable.WriteKeyInfo(iText.Kernel.Pdf.PdfDocument)">
-            <summary>Convenience method to write the fingerprint preceding the trailer.</summary>
-            <remarks>
-            Convenience method to write the fingerprint preceding the trailer.
-            The fingerprint contains information on iText products used in the generation or manipulation
-            of an outputted PDF file.
-            </remarks>
-            <param name="document">pdfDocument to write the fingerprint to</param>
         </member>
         <member name="M:iText.Kernel.Pdf.PdfXrefTable.RemoveFreeRefFromList(System.Int32)">
             <summary>Removes indirect reference from free references linked list.</summary>
@@ -32023,8 +32218,8 @@
             <param name="preserveOutlines">defines whether the resultant documents will preserve outlines or not</param>
         </member>
         <member name="M:iText.Kernel.Utils.PdfSplitter.SplitBySize(System.Int64)">
-            <summary>Splits the document basing on the given size.</summary>
-            <param name="size"><strong>Preferred</strong> size for splitting.</param>
+            <summary>Splits the document basing on the given size specified in bytes.</summary>
+            <param name="size"><strong>Preferred</strong> size specified in bytes for splitting.</param>
             <returns>
             The documents which the source document was split into.
             Be warned that these documents are not closed.
@@ -32086,8 +32281,10 @@
             <see cref="T:iText.Kernel.Pdf.PdfWriter"/>
             depending on your needs.
             </remarks>
-            <param name="documentPageRange">the page range of the original document to be included in the document being created now.
-                </param>
+            <param name="documentPageRange">
+            the page range of the original document to be included
+            in the document being created now.
+            </param>
             <returns>the PdfWriter instance for the document which is being created.</returns>
         </member>
         <member name="M:iText.Kernel.Utils.PdfSplitter.SplitByOutlines(System.Collections.Generic.IList{System.String})">

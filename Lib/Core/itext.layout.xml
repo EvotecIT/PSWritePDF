@@ -10664,7 +10664,7 @@
         <member name="M:iText.Layout.Renderer.DocumentRenderer.EnsureDocumentHasNPages(System.Int32,iText.Kernel.Geom.PageSize)">
             <summary>Ensures that PDF document has n pages.</summary>
             <remarks>
-            Ensures that PDF document has n pages. If document has less pages,
+            Ensures that PDF document has n pages. If document has fewer pages,
             adds new pages by calling
             <see cref="M:iText.Layout.Renderer.DocumentRenderer.AddNewPage(iText.Kernel.Geom.PageSize)"/>
             method.

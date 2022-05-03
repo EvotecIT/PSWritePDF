@@ -88,6 +88,29 @@
             trimming strategy matches Acrobat's behavior
             </remarks>
         </member>
+        <member name="T:iText.Forms.Fields.FormsMetaInfoStaticContainer">
+            <summary>Class to store meta info that will be used in forms module in static context.</summary>
+        </member>
+        <member name="M:iText.Forms.Fields.FormsMetaInfoStaticContainer.UseMetaInfoDuringTheAction(iText.Layout.Renderer.MetaInfoContainer,iText.Commons.Utils.Action)">
+            <summary>Sets meta info related to forms into static context, executes the action and then cleans meta info.
+                </summary>
+            <remarks>
+            Sets meta info related to forms into static context, executes the action and then cleans meta info.
+            <para />
+            Keep in mind that this instance will only be accessible from the same thread.
+            </remarks>
+            <param name="metaInfoContainer">instance to be set.</param>
+            <param name="action">action which will be executed while meta info is set to static context.</param>
+        </member>
+        <member name="M:iText.Forms.Fields.FormsMetaInfoStaticContainer.GetMetaInfoForLayout">
+            <summary>Gets meta info which was set previously.</summary>
+            <remarks>
+            Gets meta info which was set previously.
+            <para />
+            Keep in mind that this operation will return meta info instance which was set previously from the same thread.
+            </remarks>
+            <returns>meta info instance.</returns>
+        </member>
         <member name="T:iText.Forms.Fields.PdfButtonFormField">
             <summary>An interactive control on the screen that raises events and/or can retain data.</summary>
         </member>

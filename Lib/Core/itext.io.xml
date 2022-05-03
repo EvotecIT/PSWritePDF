@@ -215,7 +215,6 @@
             are any.  Or: the minimum required to be able to take a normal sequential
             or random-access organized file, and be able to embed JBIG2 pages as images
             in a PDF.
-            TODO: the indeterminate-segment-size value of dataLength, else?
             </remarks>
         </member>
         <member name="T:iText.IO.Codec.Jbig2SegmentReader.Jbig2Segment">
@@ -1909,12 +1908,6 @@
             variable-size representation.
             </remarks>
         </member>
-        <member name="T:iText.IO.Font.CFFFont.SubrMarkerItem">
-            <summary>
-            TODO To change the template for this generated type comment go to
-            Window - Preferences - Java - Code Generation - Code and Comments
-            </summary>
-        </member>
         <member name="T:iText.IO.Font.CFFFont.DictOffsetItem">
             <summary>an unknown offset in a dictionary for the list.</summary>
             <remarks>
@@ -2046,10 +2039,9 @@
         <member name="F:iText.IO.Font.CFFFontSubset.NumOfHints">
             <summary>Number of arguments to the stem operators in a subroutine calculated recursively</summary>
         </member>
-        <member name="M:iText.IO.Font.CFFFontSubset.#ctor(System.Byte[],System.Collections.Generic.ICollection{System.Int32})">
+        <member name="M:iText.IO.Font.CFFFontSubset.#ctor(System.Byte[])">
             <summary>C'tor for CFFFontSubset</summary>
             <param name="cff">- The font file</param>
-            <param name="GlyphsUsed">- a Map that contains the glyph used in the subset</param>
         </member>
         <member name="M:iText.IO.Font.CFFFontSubset.CountCharset(System.Int32,System.Int32)">
             <summary>Calculates the length of the charset according to its format</summary>
@@ -2329,6 +2321,23 @@
             <param name="Font">the font</param>
             <param name="PrivateBase">IndexBaseItem for the private that's referencing to the subrs</param>
             <param name="Subrs">OffsetItem for the subrs</param>
+        </member>
+        <member name="M:iText.IO.Font.CFFFontSubset.GetCidForGlyphId(System.Int32)">
+            <summary>Returns the CID to which specified GID is mapped.</summary>
+            <param name="gid">glyph identifier</param>
+            <returns>CID value</returns>
+        </member>
+        <member name="M:iText.IO.Font.CFFFontSubset.GetCidForGlyphId(System.Int32,System.Int32)">
+            <summary>Returns the CID to which specified GID is mapped.</summary>
+            <param name="fontIndex">index of font for which cid-gid mapping is to be identified</param>
+            <param name="gid">glyph identifier</param>
+            <returns>CID value</returns>
+        </member>
+        <member name="M:iText.IO.Font.CFFFontSubset.InitGlyphIdToCharacterIdArray(System.Int32,System.Int32,System.Int32)">
+            <summary>Creates glyph-to-character id array.</summary>
+            <param name="fontIndex">index of font for which charsets data is to be parsed</param>
+            <param name="numOfGlyphs">number of glyphs in the font</param>
+            <param name="offset">the offset to charsets data</param>
         </member>
         <member name="M:iText.IO.Font.CidFontProperties.IsCidFont(System.String,System.String)">
             <summary>Checks if its a valid CJKFont font.</summary>
@@ -4272,6 +4281,22 @@
             </remarks>
             <returns>directory Offset</returns>
         </member>
+        <member name="M:iText.IO.Font.TrueTypeFont.MapGlyphsCidsToGids(System.Collections.Generic.ICollection{System.Int32})">
+            <summary>
+            Maps a set of glyph CIDs (as used in PDF file) to corresponding GID values
+            (as a glyph primary identifier in the font file).
+            </summary>
+            <remarks>
+            Maps a set of glyph CIDs (as used in PDF file) to corresponding GID values
+            (as a glyph primary identifier in the font file).
+            This call is only meaningful for fonts that return true for
+            <see cref="M:iText.IO.Font.TrueTypeFont.IsCff"/>.
+            For other types of fonts, GID and CID are always the same, so that call would essentially
+            return a set of the same values.
+            </remarks>
+            <param name="glyphs">a set of glyph CIDs</param>
+            <returns>a set of glyph ids corresponding to the passed glyph CIDs</returns>
+        </member>
         <member name="M:iText.IO.Font.TrueTypeFont.GetCodePagesSupported">
             <summary>Gets the code pages supported by the font.</summary>
             <returns>the code pages supported by the font</returns>
@@ -5246,8 +5271,8 @@
             <paramref name="line"/>
             equals to 'trailer'.
             </summary>
-            <param name="line">for check.</param>
-            <returns>true, if line is equals tio 'trailer', otherwise false.</returns>
+            <param name="line">for check</param>
+            <returns>true, if line is equals to 'trailer', otherwise false</returns>
         </member>
         <member name="M:iText.IO.Source.PdfTokenizer.ReadLineSegment(iText.IO.Source.ByteBuffer)">
             <summary>Reads data into the provided byte[].</summary>
@@ -5641,6 +5666,10 @@
             objects based on various types of sources
             </summary>
         </member>
+        <member name="F:iText.IO.Source.RandomAccessSourceFactory.forceReadDefaultValue">
+            <summary>The default value for the forceRead flag
+            	</summary>
+        </member>
         <member name="F:iText.IO.Source.RandomAccessSourceFactory.forceRead">
             <summary>Whether the full content of the source should be read into memory at construction
             	</summary>
@@ -5652,6 +5681,11 @@
         <member name="M:iText.IO.Source.RandomAccessSourceFactory.#ctor">
             <summary>Creates a factory that will give preference to accessing the underling data source using memory mapped files
             	</summary>
+        </member>
+        <member name="M:iText.IO.Source.RandomAccessSourceFactory.SetForceReadDefaultValue(System.Boolean)">
+            <summary>Determines the default value for the forceRead flag
+                </summary>
+            <param name="forceRead">true if by default the full content will be read, false otherwise</param>
         </member>
         <member name="M:iText.IO.Source.RandomAccessSourceFactory.SetForceRead(System.Boolean)">
             <summary>Determines whether the full content of the source will be read into memory
@@ -5698,13 +5732,34 @@
             <see cref="!:RandomAccessSource"/>
             </returns>
         </member>
+        <member name="M:iText.IO.Source.RandomAccessSourceFactory.ExtractOrCreateSource(System.IO.Stream)">
+            <summary>
+            Creates or extracts a
+            <see cref="!:RandomAccessSource"/>
+            based on a
+            <see cref="T:System.IO.Stream"/>
+            <para/>
+            If the InputStream is an instance of
+            <see cref="T:iText.IO.Source.RASInputStream"/>
+            then extracts the source from it.
+            Otherwise The full content of the InputStream is read into memory and used
+            as the source for the
+            <see cref="!:RandomAccessSource"/>
+            </summary>
+            <param name="inputStream">the stream to read from</param>
+            <returns>
+            the newly created or extracted
+            <see cref="!:RandomAccessSource"/>
+            </returns>
+        </member>
         <member name="M:iText.IO.Source.RandomAccessSourceFactory.CreateSource(System.IO.Stream)">
             <summary>
             Creates a
             <see cref="!:RandomAccessSource"/>
             based on an
             <see cref="T:System.IO.Stream"/>
-            .  The full content of the InputStream is read into memory and used
+            <para />
+            The full content of the InputStream is read into memory and used
             as the source for the
             <see cref="!:RandomAccessSource"/>
             </summary>

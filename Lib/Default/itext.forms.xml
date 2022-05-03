@@ -4,6 +4,20 @@
         <name>itext.forms</name>
     </assembly>
     <members>
+        <member name="M:iText.Forms.Exceptions.AttributeNotFoundException.#ctor(System.String)">
+            <summary>The exception thrown when the attribute with given name is not found in the object attributes list.
+                </summary>
+            <param name="attribute">the name of missing attribute.</param>
+        </member>
+        <member name="T:iText.Forms.Exceptions.FormsExceptionMessageConstant">
+            <summary>Class that bundles all the error message templates as constants.</summary>
+        </member>
+        <member name="F:iText.Forms.Exceptions.XfdfException.ATTRIBUTE_NAME_OR_VALUE_MISSING">
+            <summary>Message in case one tries to add attribute with null name or value</summary>
+        </member>
+        <member name="F:iText.Forms.Exceptions.XfdfException.PAGE_IS_MISSING">
+            <summary>Message in case one tries to add annotation without indicating the page it belongs to</summary>
+        </member>
         <member name="F:iText.Forms.Fields.Borders.AbstractFormBorder.FORM_UNDERLINE">
             <summary>The form underline border.</summary>
             <seealso cref="T:iText.Forms.Fields.Borders.UnderlineBorder"/>
@@ -73,6 +87,29 @@
             Custom implementation for rendering form field values. It makes sure that text value
             trimming strategy matches Acrobat's behavior
             </remarks>
+        </member>
+        <member name="T:iText.Forms.Fields.FormsMetaInfoStaticContainer">
+            <summary>Class to store meta info that will be used in forms module in static context.</summary>
+        </member>
+        <member name="M:iText.Forms.Fields.FormsMetaInfoStaticContainer.UseMetaInfoDuringTheAction(iText.Layout.Renderer.MetaInfoContainer,iText.Commons.Utils.Action)">
+            <summary>Sets meta info related to forms into static context, executes the action and then cleans meta info.
+                </summary>
+            <remarks>
+            Sets meta info related to forms into static context, executes the action and then cleans meta info.
+            <para />
+            Keep in mind that this instance will only be accessible from the same thread.
+            </remarks>
+            <param name="metaInfoContainer">instance to be set.</param>
+            <param name="action">action which will be executed while meta info is set to static context.</param>
+        </member>
+        <member name="M:iText.Forms.Fields.FormsMetaInfoStaticContainer.GetMetaInfoForLayout">
+            <summary>Gets meta info which was set previously.</summary>
+            <remarks>
+            Gets meta info which was set previously.
+            <para />
+            Keep in mind that this operation will return meta info instance which was set previously from the same thread.
+            </remarks>
+            <returns>meta info instance.</returns>
         </member>
         <member name="T:iText.Forms.Fields.PdfButtonFormField">
             <summary>An interactive control on the screen that raises events and/or can retain data.</summary>
@@ -389,9 +426,6 @@
         <member name="F:iText.Forms.Fields.PdfFormField.FF_PASSWORD">
             <summary>Flag that designates, if set, that the field's contents must be obfuscated.</summary>
         </member>
-        <member name="F:iText.Forms.Fields.PdfFormField.DEFAULT_FONT_SIZE">
-            <summary>Size of text in form fields when font size is not explicitly set.</summary>
-        </member>
         <member name="F:iText.Forms.Fields.PdfFormField.TYPE_CHECK">
             <summary>A field with the symbol check</summary>
         </member>
@@ -409,6 +443,24 @@
         </member>
         <member name="F:iText.Forms.Fields.PdfFormField.TYPE_STAR">
             <summary>A field with the symbol star</summary>
+        </member>
+        <member name="F:iText.Forms.Fields.PdfFormField.X_OFFSET">
+            <summary>Default padding X offset</summary>
+        </member>
+        <member name="F:iText.Forms.Fields.PdfFormField.DEFAULT_FONT_SIZE">
+            <summary>Size of text in form fields when font size is not explicitly set.</summary>
+        </member>
+        <member name="F:iText.Forms.Fields.PdfFormField.MIN_FONT_SIZE">
+            <summary>Minimal size of text in form fields</summary>
+        </member>
+        <member name="F:iText.Forms.Fields.PdfFormField.DA_FONT">
+            <summary>Index of font value in default appearance element</summary>
+        </member>
+        <member name="F:iText.Forms.Fields.PdfFormField.DA_SIZE">
+            <summary>Index of font size value in default appearance element</summary>
+        </member>
+        <member name="F:iText.Forms.Fields.PdfFormField.DA_COLOR">
+            <summary>Index of color value in default appearance element</summary>
         </member>
         <member name="M:iText.Forms.Fields.PdfFormField.#ctor(iText.Kernel.Pdf.PdfDictionary)">
             <summary>
@@ -1897,14 +1949,6 @@
             <see cref="T:iText.Kernel.Pdf.PdfString"/>
             </returns>
         </member>
-        <member name="M:iText.Forms.Fields.PdfFormField.SetDefaultAppearance(System.String)">
-            <summary>
-            Sets default appearance string containing a sequence of valid page-content graphics or text state operators that
-            define such properties as the field's text size and color.
-            </summary>
-            <param name="defaultAppearance">a valid sequence of PDF content stream syntax</param>
-            <returns>the edited field</returns>
-        </member>
         <member name="M:iText.Forms.Fields.PdfFormField.UpdateDefaultAppearance">
             <summary>Updates DA for Variable text, Push button and choice form fields.</summary>
             <remarks>
@@ -2014,19 +2058,6 @@
             <param name="fontSize">The new font size to be set</param>
             <returns>The edited PdfFormField</returns>
         </member>
-        <member name="M:iText.Forms.Fields.PdfFormField.SetFontAndSize(iText.Kernel.Font.PdfFont,System.Int32)">
-            <summary>
-            Combined setter for the <c>font</c> and <c>fontSize</c>
-            properties.
-            </summary>
-            <remarks>
-            Combined setter for the <c>font</c> and <c>fontSize</c>
-            properties. Regenerates the field appearance after setting the new value.
-            </remarks>
-            <param name="font">The new font to be set</param>
-            <param name="fontSize">The new font size to be set</param>
-            <returns>The edited PdfFormField</returns>
-        </member>
         <member name="M:iText.Forms.Fields.PdfFormField.SetFontAndSize(iText.Kernel.Font.PdfFont,System.Single)">
             <summary>
             Combined setter for the <c>font</c> and <c>fontSize</c>
@@ -2107,6 +2138,11 @@
             <summary>Sets the border width for the field.</summary>
             <param name="borderWidth">The new border width.</param>
             <returns>The edited field</returns>
+        </member>
+        <member name="M:iText.Forms.Fields.PdfFormField.SetBorderStyle(iText.Kernel.Pdf.PdfDictionary)">
+            <summary>Sets the border style for the field.</summary>
+            <param name="style">the new border style.</param>
+            <returns>the edited field</returns>
         </member>
         <member name="M:iText.Forms.Fields.PdfFormField.SetBorderColor(iText.Kernel.Colors.Color)">
             <summary>Sets the Border Color.</summary>
@@ -2225,27 +2261,58 @@
             if the wrapper is used.
             </remarks>
         </member>
-        <member name="M:iText.Forms.Fields.PdfFormField.GenerateDefaultAppearanceString(iText.Kernel.Font.PdfFont,System.Single,iText.Kernel.Colors.Color,iText.Kernel.Pdf.PdfResources)">
-            <summary>Generate default appearance, /DA key.</summary>
-            <param name="font">
-            preferred font. If
-            <see cref="M:iText.Forms.Fields.PdfFormField.GetFont"/>
-            is not null, it will be used instead.
-            </param>
-            <param name="fontSize">
-            preferred font size. If
-            <see cref="F:iText.Forms.Fields.PdfFormField.fontSize"/>
-            is valid,
-            it will be used instead.
-            </param>
-            <param name="color">color for the DA</param>
-            <param name="res">resources</param>
-            <returns>generated string</returns>
+        <member name="M:iText.Forms.Fields.PdfFormField.GetDocument">
+            <summary>
+            Gets the
+            <see cref="T:iText.Kernel.Pdf.PdfDocument"/>
+            that owns that form field.
+            </summary>
+            <returns>
+            the
+            <see cref="T:iText.Kernel.Pdf.PdfDocument"/>
+            that owns that form field.
+            </returns>
         </member>
-        <member name="M:iText.Forms.Fields.PdfFormField.GetFontAndSize(iText.Kernel.Pdf.PdfDictionary)">
-            <summary>Gets font and font size.</summary>
-            <param name="asNormal">normal appearance, will be ignored.</param>
-            <returns>array where first index is PdfFont and the second is font name.</returns>
+        <member name="M:iText.Forms.Fields.PdfFormField.GetRect(iText.Kernel.Pdf.PdfDictionary)">
+            <summary>
+            Gets a
+            <see cref="T:iText.Kernel.Geom.Rectangle"/>
+            that matches the current size and position of this form field.
+            </summary>
+            <param name="field">current form field.</param>
+            <returns>
+            a
+            <see cref="T:iText.Kernel.Geom.Rectangle"/>
+            that matches the current size and position of this form field.
+            </returns>
+        </member>
+        <member name="M:iText.Forms.Fields.PdfFormField.ProcessOptions(System.String[][])">
+            <summary>
+            Convert
+            <see cref="T:System.String"/>
+            multidimensional array of combo box or list options to
+            <see cref="T:iText.Kernel.Pdf.PdfArray"/>.
+            </summary>
+            <param name="options">Two-dimensional array of options.</param>
+            <returns>
+            a
+            <see cref="T:iText.Kernel.Pdf.PdfArray"/>
+            that contains all the options.
+            </returns>
+        </member>
+        <member name="M:iText.Forms.Fields.PdfFormField.ProcessOptions(System.String[])">
+            <summary>
+            Convert
+            <see cref="T:System.String"/>
+            array of combo box or list options to
+            <see cref="T:iText.Kernel.Pdf.PdfArray"/>.
+            </summary>
+            <param name="options">array of options.</param>
+            <returns>
+            a
+            <see cref="T:iText.Kernel.Pdf.PdfArray"/>
+            that contains all the options.
+            </returns>
         </member>
         <member name="M:iText.Forms.Fields.PdfFormField.DrawTextAppearance(iText.Kernel.Geom.Rectangle,iText.Kernel.Font.PdfFont,System.Single,System.String,iText.Kernel.Pdf.Xobject.PdfFormXObject)">
             <summary>Draws the visual appearance of text in a form field.</summary>
@@ -2255,17 +2322,6 @@
             <see cref="T:iText.Kernel.Font.PdfFont"/>
             </param>
             <param name="fontSize">The size of the font</param>
-            <param name="value">The initial value</param>
-            <param name="appearance">The appearance</param>
-        </member>
-        <member name="M:iText.Forms.Fields.PdfFormField.DrawMultiLineTextAppearance(iText.Kernel.Geom.Rectangle,iText.Kernel.Font.PdfFont,System.Single,System.String,iText.Kernel.Pdf.Xobject.PdfFormXObject)">
-            <summary>Draws the visual appearance of multiline text in a form field.</summary>
-            <param name="rect">The location on the page for the list field</param>
-            <param name="font">
-            a
-            <see cref="T:iText.Kernel.Font.PdfFont"/>
-            </param>
-            <param name="fontSize">The size of the font, will be ignored</param>
             <param name="value">The initial value</param>
             <param name="appearance">The appearance</param>
         </member>
@@ -2287,12 +2343,6 @@
             <param name="height">The height of the rectangle to draw</param>
         </member>
         <member name="M:iText.Forms.Fields.PdfFormField.DrawRadioAppearance(System.Single,System.Single,System.String)">
-            <summary>Draws the appearance of a radio button with a specified value.</summary>
-            <param name="width">the width of the radio button to draw</param>
-            <param name="height">the height of the radio button to draw</param>
-            <param name="value">the value of the button</param>
-        </member>
-        <member name="M:iText.Forms.Fields.PdfFormField.DrawPdfA1RadioAppearance(System.Single,System.Single,System.String)">
             <summary>Draws the appearance of a radio button with a specified value.</summary>
             <param name="width">the width of the radio button to draw</param>
             <param name="height">the height of the radio button to draw</param>
@@ -2339,13 +2389,6 @@
             <see cref="F:iText.Forms.Fields.PdfFormField.TYPE_STAR"/>
             </param>
         </member>
-        <member name="M:iText.Forms.Fields.PdfFormField.DrawPdfA1CheckAppearance(System.Single,System.Single,System.String,System.Int32)">
-            <summary>Draws PDF/A-1 compliant check appearance.</summary>
-            <param name="width">width of the checkbox</param>
-            <param name="height">height of the checkbox</param>
-            <param name="selectedValue">the selected value of the checkbox which determines the appearance of the checkbox
-                </param>
-        </member>
         <member name="M:iText.Forms.Fields.PdfFormField.DrawPushButtonAppearance(System.Single,System.Single,System.String,iText.Kernel.Font.PdfFont,System.Single)">
             <summary>Draws the appearance for a push button.</summary>
             <param name="width">the width of the pushbutton</param>
@@ -2355,22 +2398,6 @@
             a
             <see cref="T:iText.Kernel.Font.PdfFont"/>
             </param>
-            <param name="fontSize">the size of the font</param>
-            <returns>
-            a new
-            <see cref="T:iText.Kernel.Pdf.Xobject.PdfFormXObject"/>
-            </returns>
-        </member>
-        <member name="M:iText.Forms.Fields.PdfFormField.DrawPushButtonAppearance(System.Single,System.Single,System.String,iText.Kernel.Font.PdfFont,iText.Kernel.Pdf.PdfName,System.Single)">
-            <summary>Draws the appearance for a push button.</summary>
-            <param name="width">the width of the pushbutton</param>
-            <param name="height">the width of the pushbutton</param>
-            <param name="text">the text to display on the button</param>
-            <param name="font">
-            a
-            <see cref="T:iText.Kernel.Font.PdfFont"/>
-            </param>
-            <param name="fontName">will be ignored.</param>
             <param name="fontSize">the size of the font</param>
             <returns>
             a new
@@ -2395,7 +2422,7 @@
             </param>
             <param name="fontSize">the size of the font</param>
         </member>
-        <member name="M:iText.Forms.Fields.PdfFormField.DrawCheckBox(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single,System.Boolean)">
+        <member name="M:iText.Forms.Fields.PdfFormField.DrawCheckBox(iText.Kernel.Pdf.Canvas.PdfCanvas,System.Single,System.Single,System.Single)">
             <summary>Performs the low-level drawing operations to draw a checkbox object.</summary>
             <param name="canvas">
             the
@@ -2405,7 +2432,6 @@
             <param name="width">the width of the button</param>
             <param name="height">the width of the button</param>
             <param name="fontSize">the size of the font</param>
-            <param name="on">the boolean value of the checkbox</param>
         </member>
         <member name="M:iText.Forms.Fields.PdfFormField.CalculateTranslationHeightAfterFieldRot(iText.Kernel.Geom.Rectangle,System.Double,System.Double)">
             <summary>
@@ -2995,7 +3021,6 @@
             </remarks>
             <param name="appearance">a String containing a sequence of valid PDF syntax</param>
             <returns>current AcroForm</returns>
-            <seealso cref="M:iText.Forms.Fields.PdfFormField.SetDefaultAppearance(System.String)"/>
         </member>
         <member name="M:iText.Forms.PdfAcroForm.GetDefaultAppearance">
             <summary>Gets the <c>DA</c> String property on the AcroForm.</summary>
@@ -3272,7 +3297,6 @@
             <remarks>
             A sample implementation of the {#link IPdfPageExtraCopier} interface which
             copies only AcroForm fields to a new page.
-            <para />
             <para />
             NOTE: While it's absolutely not necessary to use the same PdfPageFormCopier instance for copying operations,
             it is still worth to know that PdfPageFormCopier uses some caching logic which can potentially improve performance
@@ -4696,11 +4720,6 @@
             instance.
             </returns>
         </member>
-        <member name="M:iText.Forms.Xfdf.AttributeNotFoundException.#ctor(System.String)">
-            <summary>The exception thrown when the attribute with given name is not found in the object attributes list.
-                </summary>
-            <param name="attribute">the name of missing attribute.</param>
-        </member>
         <member name="T:iText.Forms.Xfdf.AttributeObject">
             <summary>Represents the attribute of any XFDF element.</summary>
         </member>
@@ -5198,9 +5217,6 @@
             <summary>Represents encoding attribute of data or resource elements (children of fileattachment and sound elements).
                 </summary>
         </member>
-        <member name="T:iText.Forms.Xfdf.Encoding">
-            <summary>To be removed in 7.2</summary>
-        </member>
         <member name="T:iText.Forms.Xfdf.FieldObject">
             <summary>Represents the field element, a child of the fields and field elements.</summary>
             <remarks>
@@ -5656,12 +5672,6 @@
         <member name="T:iText.Forms.Xfdf.XfdfConstants">
             <summary>Class containing constants to be used in XFDF processing.</summary>
         </member>
-        <member name="F:iText.Forms.Xfdf.XfdfException.ATTRIBUTE_NAME_OR_VALUE_MISSING">
-            <summary>Message in case one tries to add attribute with null name or value</summary>
-        </member>
-        <member name="F:iText.Forms.Xfdf.XfdfException.PAGE_IS_MISSING">
-            <summary>Message in case one tries to add annotation without indicating the page it belongs to</summary>
-        </member>
         <member name="M:iText.Forms.Xfdf.XfdfFileUtils.CreateNewXfdfDocument">
             <summary>Creates a new xml-styled document for writing xfdf info.</summary>
             <remarks>Creates a new xml-styled document for writing xfdf info.</remarks>
@@ -5751,15 +5761,19 @@
         </member>
         <member name="M:iText.Forms.Xfdf.XfdfObject.GetAnnots">
             <summary>Gets the annots element, a child of the xfdf element and is the container for annot elements.</summary>
+            <returns>the annots element</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.XfdfObject.SetAnnots(iText.Forms.Xfdf.AnnotsObject)">
             <summary>Sets the annots element, a child of the xfdf element and is the container for annot elements.</summary>
+            <param name="annots">element</param>
         </member>
         <member name="M:iText.Forms.Xfdf.XfdfObject.GetAttributes">
             <summary>Gets the list of attributes of xfdf object.</summary>
+            <returns>the list of attributes</returns>
         </member>
         <member name="M:iText.Forms.Xfdf.XfdfObject.SetAttributes(System.Collections.Generic.IList{iText.Forms.Xfdf.AttributeObject})">
             <summary>Sets the list of attributes of xfdf object.</summary>
+            <param name="attributes">list of attributes objects</param>
         </member>
         <member name="M:iText.Forms.Xfdf.XfdfObject.MergeToPdf(iText.Kernel.Pdf.PdfDocument,System.String)">
             <summary>Merges info from XfdfObject to pdf document.</summary>

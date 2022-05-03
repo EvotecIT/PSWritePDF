@@ -1,0 +1,1928 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>itext.commons</name>
+    </assembly>
+    <members>
+        <member name="T:iText.Commons.Actions.AbstractContextBasedEventHandler">
+            <summary>Base class for events handling depending on the context.</summary>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractContextBasedEventHandler.#ctor(iText.Commons.Actions.Contexts.IContext)">
+            <summary>
+            Creates a new instance of the handler with the defined fallback for events within unknown
+            contexts.
+            </summary>
+            <param name="onUnknownContext">is a fallback for events within unknown context</param>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractContextBasedEventHandler.OnEvent(iText.Commons.Actions.IEvent)">
+            <summary>
+            Performs context validation and if event is allowed to be processed passes it to
+            <see cref="M:iText.Commons.Actions.AbstractContextBasedEventHandler.OnAcceptedEvent(iText.Commons.Actions.AbstractContextBasedITextEvent)"/>.
+            </summary>
+            <param name="event">to handle</param>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractContextBasedEventHandler.OnAcceptedEvent(iText.Commons.Actions.AbstractContextBasedITextEvent)">
+            <summary>Handles the accepted event.</summary>
+            <param name="event">to handle</param>
+        </member>
+        <member name="T:iText.Commons.Actions.AbstractContextBasedITextEvent">
+            <summary>Represents a context-based event.</summary>
+            <remarks>
+            Represents a context-based event. See also
+            <see cref="T:iText.Commons.Actions.AbstractContextBasedEventHandler"/>.
+            Only for internal usage.
+            </remarks>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractContextBasedITextEvent.#ctor(iText.Commons.Actions.Data.ProductData,iText.Commons.Actions.Contexts.IMetaInfo)">
+            <summary>Creates an event containing auxiliary meta data.</summary>
+            <param name="productData">is a description of the product which has generated an event</param>
+            <param name="metaInfo">is an auxiliary meta info</param>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractContextBasedITextEvent.GetClassFromContext">
+            <summary>Obtains the current event context class.</summary>
+            <returns>context class</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractContextBasedITextEvent.SetMetaInfo(iText.Commons.Actions.Contexts.IMetaInfo)">
+            <summary>Sets meta info.</summary>
+            <param name="metaInfo">meta info</param>
+            <returns>true if meta info has been set, false otherwise</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractContextBasedITextEvent.GetMetaInfo">
+            <summary>Obtains stored meta info associated with the event.</summary>
+            <returns>meta info</returns>
+        </member>
+        <member name="T:iText.Commons.Actions.AbstractEventWrapper">
+            <summary>Base class to wrap events.</summary>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractEventWrapper.#ctor(iText.Commons.Actions.AbstractProductProcessITextEvent,iText.Commons.Actions.Confirmations.EventConfirmationType)">
+            <summary>Creates a wrapper for the event.</summary>
+            <param name="event">
+            is a
+            <see cref="T:iText.Commons.Actions.AbstractProductProcessITextEvent"/>
+            to wrap
+            </param>
+            <param name="confirmationType">event confirmation type</param>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractEventWrapper.#ctor(iText.Commons.Actions.Sequence.SequenceId,iText.Commons.Actions.AbstractProductProcessITextEvent,iText.Commons.Actions.Confirmations.EventConfirmationType)">
+            <summary>
+            Creates a wrapper of event associated with
+            <see cref="T:iText.Commons.Actions.Sequence.SequenceId"/>.
+            </summary>
+            <param name="updatedSequenceId">
+            is a
+            <see cref="T:iText.Commons.Actions.Sequence.SequenceId"/>
+            for the document. May be different with
+            sequence id of original event
+            </param>
+            <param name="event">
+            is a
+            <see cref="T:iText.Commons.Actions.AbstractProductProcessITextEvent"/>
+            to wrap
+            </param>
+            <param name="confirmationType">event confirmation type</param>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractEventWrapper.GetEvent">
+            <summary>Obtains the wrapped event.</summary>
+            <returns>wrapped event</returns>
+        </member>
+        <member name="T:iText.Commons.Actions.AbstractITextConfigurationEvent">
+            <summary>Abstract class which represents system configuration events.</summary>
+            <remarks>Abstract class which represents system configuration events. Only for internal usage.</remarks>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractITextConfigurationEvent.AddProcessor(iText.Commons.Actions.Processors.ITextProductEventProcessor)">
+            <summary>
+            Adds a new
+            <see cref="T:iText.Commons.Actions.Processors.ITextProductEventProcessor"/>
+            for a product.
+            </summary>
+            <param name="processor">is a new processor</param>
+            <returns>a replaced processor for the product</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractITextConfigurationEvent.RemoveProcessor(System.String)">
+            <summary>Removes a processor registered for a product.</summary>
+            <param name="productName">is a product for which processor is removed</param>
+            <returns>removed processor</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractITextConfigurationEvent.GetActiveProcessor(System.String)">
+            <summary>Gets a processor registered for a product.</summary>
+            <remarks>
+            Gets a processor registered for a product.
+            <para />
+            If processor isn't registered and product supports AGPL mode
+            <see cref="T:iText.Commons.Actions.Processors.DefaultITextProductEventProcessor"/>
+            will be obtained otherwise null will be returned.
+            </remarks>
+            <param name="productName">is a product for which processor is obtained</param>
+            <returns>processor for the product</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractITextConfigurationEvent.GetProcessors">
+            <summary>Gets an unmodifiable map of registered processors.</summary>
+            <returns>all processors</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractITextConfigurationEvent.GetEvents(iText.Commons.Actions.Sequence.SequenceId)">
+            <summary>Gets events registered for provided identifier.</summary>
+            <param name="id">is the identifier</param>
+            <returns>the list of event for identifier</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractITextConfigurationEvent.AddEvent(iText.Commons.Actions.Sequence.SequenceId,iText.Commons.Actions.AbstractProductProcessITextEvent)">
+            <summary>Registers a new event for provided identifier.</summary>
+            <param name="id">is the identifier</param>
+            <param name="event">is the event to register</param>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractITextConfigurationEvent.RegisterInternalNamespace(System.String)">
+            <summary>Registers internal namespace.</summary>
+            <param name="namespace">is the namespace to register</param>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractITextConfigurationEvent.DoAction">
+            <summary>Method defines the logic of action processing.</summary>
+        </member>
+        <member name="T:iText.Commons.Actions.AbstractITextEvent">
+            <summary>Abstract class which defines events only for internal usage.</summary>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractITextEvent.#ctor">
+            <summary>Creates an instance of abstract iText event.</summary>
+            <remarks>Creates an instance of abstract iText event. Only for internal usage.</remarks>
+        </member>
+        <member name="T:iText.Commons.Actions.AbstractProductITextEvent">
+            <summary>
+            Abstract class which defines general product events by encapsulating
+            <see cref="T:iText.Commons.Actions.Data.ProductData"/>
+            of the product which generated event.
+            </summary>
+            <remarks>
+            Abstract class which defines general product events by encapsulating
+            <see cref="T:iText.Commons.Actions.Data.ProductData"/>
+            of the product which generated event. Only for internal usage.
+            </remarks>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractProductITextEvent.#ctor(iText.Commons.Actions.Data.ProductData)">
+            <summary>
+            Creates instance of abstract product iText event based
+            on passed product data.
+            </summary>
+            <remarks>
+            Creates instance of abstract product iText event based
+            on passed product data. Only for internal usage.
+            </remarks>
+            <param name="productData">is a description of the product which has generated an event</param>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractProductITextEvent.GetProductData">
+            <summary>Gets a product data which generated the event.</summary>
+            <returns>information about the product</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractProductITextEvent.GetProductName">
+            <summary>Gets a name of product which generated the event.</summary>
+            <returns>product name</returns>
+        </member>
+        <member name="T:iText.Commons.Actions.AbstractProductProcessITextEvent">
+            <summary>Abstract class which defines product process event.</summary>
+            <remarks>Abstract class which defines product process event. Only for internal usage.</remarks>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractProductProcessITextEvent.#ctor(iText.Commons.Actions.Sequence.SequenceId,iText.Commons.Actions.Data.ProductData,iText.Commons.Actions.Contexts.IMetaInfo,iText.Commons.Actions.Confirmations.EventConfirmationType)">
+            <summary>
+            Creates an event associated with
+            <see cref="T:iText.Commons.Actions.Sequence.SequenceId"/>.
+            </summary>
+            <remarks>
+            Creates an event associated with
+            <see cref="T:iText.Commons.Actions.Sequence.SequenceId"/>
+            . It may contain auxiliary meta data.
+            </remarks>
+            <param name="sequenceId">is a general identifier for the event</param>
+            <param name="productData">is a description of the product which has generated an event</param>
+            <param name="metaInfo">is an auxiliary meta info</param>
+            <param name="confirmationType">
+            defines when the event should be confirmed to notify that the
+            associated process has finished successfully
+            </param>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractProductProcessITextEvent.#ctor(iText.Commons.Actions.Data.ProductData,iText.Commons.Actions.Contexts.IMetaInfo,iText.Commons.Actions.Confirmations.EventConfirmationType)">
+            <summary>Creates an event which is not associated with any object.</summary>
+            <remarks>Creates an event which is not associated with any object. It may contain auxiliary meta data.</remarks>
+            <param name="productData">is a description of the product which has generated an event</param>
+            <param name="metaInfo">is an auxiliary meta info</param>
+            <param name="confirmationType">
+            defines when the event should be confirmed to notify that the
+            associated process has finished successfully
+            </param>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractProductProcessITextEvent.GetSequenceId">
+            <summary>Retrieves an identifier of event source.</summary>
+            <returns>an identifier of event source</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractProductProcessITextEvent.GetEventType">
+            <summary>Returns an event type.</summary>
+            <returns>event type</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractProductProcessITextEvent.GetConfirmationType">
+            <summary>
+            Retrieves an
+            <see cref="T:iText.Commons.Actions.Confirmations.EventConfirmationType">event confirmation type</see>.
+            </summary>
+            <returns>
+            value of event confirmation type which defines when the event should be confirmed
+            to notify that the associated process has finished successfully
+            </returns>
+        </member>
+        <member name="T:iText.Commons.Actions.AbstractStatisticsAggregator">
+            <summary>Abstract class for statistics aggregation.</summary>
+            <remarks>Abstract class for statistics aggregation. Note that aggregator class must be thread safe.</remarks>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractStatisticsAggregator.Aggregate(iText.Commons.Actions.AbstractStatisticsEvent)">
+            <summary>Aggregates data from the provided event.</summary>
+            <param name="event">
+            
+            <see cref="T:iText.Commons.Actions.AbstractStatisticsEvent"/>
+            instance
+            </param>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractStatisticsAggregator.RetrieveAggregation">
+            <summary>Retrieves aggregated data.</summary>
+            <returns>
+            aggregated data as
+            <see cref="T:System.Object"/>
+            </returns>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractStatisticsAggregator.Merge(iText.Commons.Actions.AbstractStatisticsAggregator)">
+            <summary>Merges data from the provided aggregator into this aggregator.</summary>
+            <param name="aggregator">from which data will be taken.</param>
+        </member>
+        <member name="T:iText.Commons.Actions.AbstractStatisticsEvent">
+            <summary>Abstract class which defines statistics event.</summary>
+            <remarks>Abstract class which defines statistics event. Only for internal usage.</remarks>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractStatisticsEvent.#ctor(iText.Commons.Actions.Data.ProductData)">
+            <summary>Creates instance of abstract statistics iText event based on passed product data.</summary>
+            <remarks>Creates instance of abstract statistics iText event based on passed product data. Only for internal usage.
+                </remarks>
+            <param name="productData">is a description of the product which has generated an event</param>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractStatisticsEvent.CreateStatisticsAggregatorFromName(System.String)">
+            <summary>Creates statistics aggregator based on provided statistics name.</summary>
+            <remarks>
+            Creates statistics aggregator based on provided statistics name.
+            By default prints log warning and returns <c>null</c>.
+            </remarks>
+            <param name="statisticsName">
+            name of statistics based on which aggregator will be created.
+            Shall be one of those returned from
+            <see cref="M:iText.Commons.Actions.AbstractStatisticsEvent.GetStatisticsNames"/>
+            </param>
+            <returns>
+            new instance of
+            <see cref="T:iText.Commons.Actions.AbstractStatisticsAggregator"/>
+            </returns>
+        </member>
+        <member name="M:iText.Commons.Actions.AbstractStatisticsEvent.GetStatisticsNames">
+            <summary>Gets all statistics names related to this event.</summary>
+            <returns>
+            
+            <see cref="!:System.Collections.IList&lt;E&gt;"/>
+            of statistics names
+            </returns>
+        </member>
+        <member name="T:iText.Commons.Actions.Confirmations.ConfirmedEventWrapper">
+            <summary>
+            A wrapper for a
+            <see cref="T:iText.Commons.Actions.AbstractProductProcessITextEvent"/>
+            storing additional data about the event.
+            </summary>
+            <remarks>
+            A wrapper for a
+            <see cref="T:iText.Commons.Actions.AbstractProductProcessITextEvent"/>
+            storing additional data about the event.
+            If wrapped event is immutable then the instance of the wrapper is immutable too.
+            </remarks>
+        </member>
+        <member name="M:iText.Commons.Actions.Confirmations.ConfirmedEventWrapper.#ctor(iText.Commons.Actions.AbstractProductProcessITextEvent,System.String,System.String)">
+            <summary>Creates a wrapper for the event with additional data about the event.</summary>
+            <param name="event">
+            is a
+            <see cref="T:iText.Commons.Actions.AbstractProductProcessITextEvent"/>
+            to wrap
+            </param>
+            <param name="productUsageType">is a product usage marker</param>
+            <param name="producerLine">
+            is a producer line defined by the
+            <see cref="T:iText.Commons.Actions.Processors.ITextProductEventProcessor"/>
+            which registered the event
+            </param>
+        </member>
+        <member name="M:iText.Commons.Actions.Confirmations.ConfirmedEventWrapper.GetProductUsageType">
+            <summary>Obtains the license type for the product which generated the event.</summary>
+            <returns>product usage type</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.Confirmations.ConfirmedEventWrapper.GetProducerLine">
+            <summary>
+            Gets producer line defined by the
+            <see cref="T:iText.Commons.Actions.Processors.ITextProductEventProcessor"/>
+            which registered the
+            event.
+            </summary>
+            <returns>producer line</returns>
+        </member>
+        <member name="T:iText.Commons.Actions.Confirmations.ConfirmEvent">
+            <summary>
+            Used to confirm that process associated with some
+            <see cref="T:iText.Commons.Actions.AbstractProductProcessITextEvent"/>
+            ended successfully.
+            </summary>
+        </member>
+        <member name="M:iText.Commons.Actions.Confirmations.ConfirmEvent.#ctor(iText.Commons.Actions.Sequence.SequenceId,iText.Commons.Actions.AbstractProductProcessITextEvent)">
+            <summary>Creates an instance of confirmation event.</summary>
+            <param name="updatedSequenceId">
+            is a
+            <see cref="T:iText.Commons.Actions.Sequence.SequenceId"/>
+            for the document. May be different with
+            sequence id of original event
+            </param>
+            <param name="confirmedEvent">is an event to confirm</param>
+        </member>
+        <member name="M:iText.Commons.Actions.Confirmations.ConfirmEvent.#ctor(iText.Commons.Actions.AbstractProductProcessITextEvent)">
+            <summary>Creates an instance of confirmation event.</summary>
+            <param name="confirmedEvent">is an event to confirm</param>
+        </member>
+        <member name="M:iText.Commons.Actions.Confirmations.ConfirmEvent.GetConfirmedEvent">
+            <summary>
+            Returns the
+            <see cref="T:iText.Commons.Actions.AbstractProductProcessITextEvent"/>
+            associated with confirmed process.
+            </summary>
+            <returns>confirmed event</returns>
+        </member>
+        <member name="T:iText.Commons.Actions.Confirmations.EventConfirmationType">
+            <summary>
+            Defines the strategy of
+            <see cref="T:iText.Commons.Actions.AbstractProductProcessITextEvent"/>
+            confirming.
+            </summary>
+        </member>
+        <member name="F:iText.Commons.Actions.Confirmations.EventConfirmationType.ON_DEMAND">
+            <summary>
+            The successful execution of the process associated with the event should be confirmed by the
+            second invocation of the
+            <see cref="M:iText.Commons.Actions.EventManager.OnEvent(iText.Commons.Actions.IEvent)"/>
+            method.
+            </summary>
+        </member>
+        <member name="F:iText.Commons.Actions.Confirmations.EventConfirmationType.ON_CLOSE">
+            <summary>
+            The successful execution of the process associated with the event will be confirmed during
+            the end of processing.
+            </summary>
+        </member>
+        <member name="F:iText.Commons.Actions.Confirmations.EventConfirmationType.UNCONFIRMABLE">
+            <summary>The process associated with the event shouldn't be confirmed.</summary>
+        </member>
+        <member name="T:iText.Commons.Actions.Contexts.AbstractContextManagerConfigurationEvent">
+            <summary>Class is recommended for internal usage.</summary>
+            <remarks>Class is recommended for internal usage. Represents system configuration events.</remarks>
+        </member>
+        <member name="M:iText.Commons.Actions.Contexts.AbstractContextManagerConfigurationEvent.#ctor">
+            <summary>Creates an instance of context manager configuration event.</summary>
+        </member>
+        <member name="M:iText.Commons.Actions.Contexts.AbstractContextManagerConfigurationEvent.RegisterGenericContext(System.Collections.Generic.ICollection{System.String},System.Collections.Generic.ICollection{System.String})">
+            <summary>Registers generic context for products and namespaces which are associated with them.</summary>
+            <param name="namespaces">namespaces of the products to be registered</param>
+            <param name="products">the products to be registered</param>
+        </member>
+        <member name="M:iText.Commons.Actions.Contexts.AbstractContextManagerConfigurationEvent.UnregisterContext(System.Collections.Generic.ICollection{System.String})">
+            <summary>Unregisters certain namespaces.</summary>
+            <param name="namespaces">the namespaces to be unregisted</param>
+        </member>
+        <member name="T:iText.Commons.Actions.Contexts.ContextManager">
+            <summary>The class that retrieves context of its invocation.</summary>
+        </member>
+        <member name="M:iText.Commons.Actions.Contexts.ContextManager.GetInstance">
+            <summary>Gets the singleton instance of this class.</summary>
+            <returns>
+            the
+            <see cref="T:iText.Commons.Actions.Contexts.ContextManager"/>
+            instance
+            </returns>
+        </member>
+        <member name="M:iText.Commons.Actions.Contexts.ContextManager.GetContext(System.Type)">
+            <summary>Gets the context associated with the passed class object.</summary>
+            <remarks>
+            Gets the context associated with the passed class object.
+            The context is determined by class namespace.
+            </remarks>
+            <param name="clazz">the class for which the context will be determined.</param>
+            <returns>
+            the
+            <see cref="T:iText.Commons.Actions.Contexts.IContext"/>
+            associated with the class, or
+            <see langword="null"/>
+            if the class is unknown.
+            </returns>
+        </member>
+        <member name="M:iText.Commons.Actions.Contexts.ContextManager.GetContext(System.String)">
+            <summary>Gets the context associated with the passed class object.</summary>
+            <remarks>
+            Gets the context associated with the passed class object.
+            The context is determined by class namespace.
+            </remarks>
+            <param name="className">the class name with the namespace for which the context will be determined.</param>
+            <returns>
+            the
+            <see cref="T:iText.Commons.Actions.Contexts.IContext"/>
+            associated with the class, or
+            <see langword="null"/>
+            if the class is unknown.
+            </returns>
+        </member>
+        <member name="T:iText.Commons.Actions.Contexts.GenericContext">
+            <summary>
+            Generic context that allows
+            <see cref="T:iText.Commons.Actions.AbstractContextBasedITextEvent"/>
+            based on the whitelist of supported events.
+            </summary>
+        </member>
+        <member name="M:iText.Commons.Actions.Contexts.GenericContext.#ctor(System.Collections.Generic.ICollection{System.String})">
+            <summary>Creates a Generic Context instance with support of provided namespaces and products.</summary>
+            <param name="supportedProducts">is a collection of supported products</param>
+        </member>
+        <member name="M:iText.Commons.Actions.Contexts.GenericContext.IsAllowed(iText.Commons.Actions.AbstractContextBasedITextEvent)">
+            <summary>Checks if the source product of the event is supported by the context.</summary>
+            <param name="event">
+            
+            <inheritDoc/>
+            </param>
+            <returns>
+            
+            <inheritDoc/>
+            </returns>
+        </member>
+        <member name="T:iText.Commons.Actions.Contexts.IContext">
+            <summary>The class that determines weather event should be processed or not.</summary>
+            <remarks>
+            The class that determines weather event should be processed or not.
+            Is calculated by the
+            <see cref="T:iText.Commons.Actions.Contexts.ContextManager"/>
+            </remarks>
+        </member>
+        <member name="M:iText.Commons.Actions.Contexts.IContext.IsAllowed(iText.Commons.Actions.AbstractContextBasedITextEvent)">
+            <summary>Determines weather event should be processed or not.</summary>
+            <param name="event">is an event to test</param>
+            <returns>true if event is allowed by the actual context and false otherwise</returns>
+        </member>
+        <member name="T:iText.Commons.Actions.Contexts.IMetaInfo">
+            <summary>The meta info that can holds information about instance that throws the event.</summary>
+        </member>
+        <member name="T:iText.Commons.Actions.Contexts.UnknownContext">
+            <summary>
+            The fallback
+            <see cref="T:iText.Commons.Actions.Contexts.IContext"/>.
+            </summary>
+        </member>
+        <member name="F:iText.Commons.Actions.Contexts.UnknownContext.RESTRICTIVE">
+            <summary>
+            The
+            <see cref="T:iText.Commons.Actions.Contexts.IContext"/>
+            that forbids all events.
+            </summary>
+        </member>
+        <member name="F:iText.Commons.Actions.Contexts.UnknownContext.PERMISSIVE">
+            <summary>
+            The
+            <see cref="T:iText.Commons.Actions.Contexts.IContext"/>
+            that allows all events.
+            </summary>
+        </member>
+        <member name="M:iText.Commons.Actions.Contexts.UnknownContext.#ctor(System.Boolean)">
+            <summary>
+            Creates a fallback
+            <see cref="T:iText.Commons.Actions.Contexts.IContext"/>.
+            </summary>
+            <param name="allowEvents">defines whether the context allows all events or not</param>
+        </member>
+        <member name="M:iText.Commons.Actions.Contexts.UnknownContext.IsAllowed(iText.Commons.Actions.AbstractContextBasedITextEvent)">
+            <summary>Depending on its internal state allows or rejects all event.</summary>
+            <remarks>
+            Depending on its internal state allows or rejects all event.
+            Behaviour is defined via constructor
+            <see cref="M:iText.Commons.Actions.Contexts.UnknownContext.#ctor(System.Boolean)"/>
+            </remarks>
+            <param name="event">
+            
+            <inheritDoc/>
+            </param>
+            <returns>
+            
+            <inheritDoc/>
+            </returns>
+        </member>
+        <member name="T:iText.Commons.Actions.Data.CommonsProductData">
+            <summary>
+            Stores an instance of
+            <see cref="T:iText.Commons.Actions.Data.ProductData"/>
+            related to iText commons module.
+            </summary>
+        </member>
+        <member name="M:iText.Commons.Actions.Data.CommonsProductData.GetInstance">
+            <summary>
+            Getter for an instance of
+            <see cref="T:iText.Commons.Actions.Data.ProductData"/>
+            related to iText commons module.
+            </summary>
+            <returns>iText commons product description</returns>
+        </member>
+        <member name="T:iText.Commons.Actions.Data.ProductData">
+            <summary>Class is used to describe used product information.</summary>
+        </member>
+        <member name="M:iText.Commons.Actions.Data.ProductData.#ctor(System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary>Creates a new instance of product data.</summary>
+            <param name="publicProductName">is a product name</param>
+            <param name="productName">is a technical name of the product</param>
+            <param name="version">is a version of the product</param>
+            <param name="sinceCopyrightYear">is the first year of a product development</param>
+            <param name="toCopyrightYear">is a last year of a product development</param>
+        </member>
+        <member name="M:iText.Commons.Actions.Data.ProductData.#ctor(System.String,System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary>Creates a new instance of product data.</summary>
+            <param name="publicProductName">is a product name</param>
+            <param name="productName">is a technical name of the product</param>
+            <param name="version">is a version of the product</param>
+            <param name="minimalCompatibleLicenseKeyVersion">is a minimal compatible version of licensekey library</param>
+            <param name="sinceCopyrightYear">is the first year of a product development</param>
+            <param name="toCopyrightYear">is a last year of a product development</param>
+        </member>
+        <member name="M:iText.Commons.Actions.Data.ProductData.GetPublicProductName">
+            <summary>Getter for a product name.</summary>
+            <returns>product name</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.Data.ProductData.GetProductName">
+            <summary>Getter for a technical name of the product.</summary>
+            <returns>the technical name of the product</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.Data.ProductData.GetVersion">
+            <summary>Getter for a version of the product.</summary>
+            <returns>version of the product</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.Data.ProductData.GetSinceCopyrightYear">
+            <summary>Getter for the first year of copyright period.</summary>
+            <returns>the first year of copyright</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.Data.ProductData.GetToCopyrightYear">
+            <summary>Getter for the last year of copyright period.</summary>
+            <returns>the last year of copyright</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.Data.ProductData.GetMinCompatibleLicensingModuleVersion">
+            <summary>Getter for the minimal compatible licensekey version.</summary>
+            <returns>minimal compatible version of licensekey library.</returns>
+        </member>
+        <member name="T:iText.Commons.Actions.EventManager">
+            <summary>Entry point for event handling mechanism.</summary>
+            <remarks>
+            Entry point for event handling mechanism. Class is a singleton,
+            see
+            <see cref="M:iText.Commons.Actions.EventManager.GetInstance"/>.
+            </remarks>
+        </member>
+        <member name="M:iText.Commons.Actions.EventManager.GetInstance">
+            <summary>Allows an access to the instance of EventManager.</summary>
+            <returns>the instance of the class</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.EventManager.OnEvent(iText.Commons.Actions.IEvent)">
+            <summary>Handles the event.</summary>
+            <param name="event">to handle</param>
+        </member>
+        <member name="M:iText.Commons.Actions.EventManager.Register(iText.Commons.Actions.IEventHandler)">
+            <summary>
+            Add new
+            <see cref="T:iText.Commons.Actions.IEventHandler"/>
+            to the event handling process.
+            </summary>
+            <param name="handler">is a handler to add</param>
+        </member>
+        <member name="M:iText.Commons.Actions.EventManager.IsRegistered(iText.Commons.Actions.IEventHandler)">
+            <summary>Check if the handler was registered for event handling process.</summary>
+            <param name="handler">is a handler to check</param>
+            <returns>true if handler has been already registered and false otherwise</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.EventManager.Unregister(iText.Commons.Actions.IEventHandler)">
+            <summary>Removes handler from event handling process.</summary>
+            <param name="handler">is a handle to remove</param>
+            <returns>
+            true if the handler had been registered previously and was removed. False if the
+            handler was not found among registered handlers
+            </returns>
+        </member>
+        <member name="T:iText.Commons.Actions.IEvent">
+            <summary>Base marker interface for any generated event of any source.</summary>
+        </member>
+        <member name="T:iText.Commons.Actions.IEventHandler">
+            <summary>The interface for an event handler.</summary>
+        </member>
+        <member name="M:iText.Commons.Actions.IEventHandler.OnEvent(iText.Commons.Actions.IEvent)">
+            <summary>Handles the event.</summary>
+            <param name="event">to handle</param>
+        </member>
+        <member name="T:iText.Commons.Actions.NamespaceConstant">
+            <summary>Class that stores namespaces of iText open source products.</summary>
+        </member>
+        <member name="T:iText.Commons.Actions.Processors.AbstractITextProductEventProcessor">
+            <summary>Abstract class with some standard functionality for product event processing.</summary>
+        </member>
+        <member name="M:iText.Commons.Actions.Processors.AbstractITextProductEventProcessor.#ctor(System.String)">
+            <summary>Creates a new instance of an abstract processor for the provided product.</summary>
+            <param name="productName">the product which will be handled by this processor</param>
+        </member>
+        <member name="T:iText.Commons.Actions.Processors.DefaultITextProductEventProcessor">
+            <summary>Defines a default strategy of product event processing.</summary>
+        </member>
+        <member name="M:iText.Commons.Actions.Processors.DefaultITextProductEventProcessor.#ctor(System.String)">
+            <summary>Creates an instance of product event processor.</summary>
+            <param name="productName">is a product name</param>
+        </member>
+        <member name="T:iText.Commons.Actions.Processors.ITextProductEventProcessor">
+            <summary>Interface for product event processors.</summary>
+        </member>
+        <member name="M:iText.Commons.Actions.Processors.ITextProductEventProcessor.OnEvent(iText.Commons.Actions.AbstractProductProcessITextEvent)">
+            <summary>
+            Handles the
+            <see cref="T:iText.Commons.Actions.AbstractProductProcessITextEvent"/>.
+            </summary>
+            <param name="event">to handle</param>
+        </member>
+        <member name="M:iText.Commons.Actions.Processors.ITextProductEventProcessor.GetProductName">
+            <summary>Gets the name of the product to which this processor corresponds.</summary>
+            <returns>the product name</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.Processors.ITextProductEventProcessor.GetUsageType">
+            <summary>Gets the usage type of the product to which this processor corresponds.</summary>
+            <returns>the usage type</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.Processors.ITextProductEventProcessor.GetProducer">
+            <summary>Gets the producer line for the product.</summary>
+            <returns>the producer line</returns>
+        </member>
+        <member name="T:iText.Commons.Actions.Producer.AbstractFormattedPlaceholderPopulator">
+            <summary>Abstract populator for placeholders consuming a parameter which is a pattern string.</summary>
+            <remarks>
+            Abstract populator for placeholders consuming a parameter which is a pattern string. Any latin
+            letter inside the pattern which is not quoted considered as a param defining the component of the
+            outputted value.
+            </remarks>
+        </member>
+        <member name="F:iText.Commons.Actions.Producer.AbstractFormattedPlaceholderPopulator.APOSTROPHE">
+            <summary>Escaping character.</summary>
+        </member>
+        <member name="M:iText.Commons.Actions.Producer.AbstractFormattedPlaceholderPopulator.AttachQuotedString(System.Int32,System.Text.StringBuilder,System.Char[])">
+            <summary>Processes quoted string inside format array.</summary>
+            <remarks>
+            Processes quoted string inside format array. It is expected that provided index points to the
+            apostrophe character so that since the <c>index + 1</c> position quoted string starts.
+            <para />
+            String may contain escaped apostrophes <c>\'</c> which processed as characters.
+            Backslash is used for escaping so you need double backslash to print it <c>\\</c>. All
+            the rest backslashes (not followed by apostrophe or one more backslash) are simply ignored.
+            </remarks>
+            <param name="index">is a index of apostrophe starting a new quoted string</param>
+            <param name="builder">
+            is a
+            <see cref="T:System.Text.StringBuilder"/>
+            building a resulting formatted string. It is
+            updated by the method: quoted string is attached
+            </param>
+            <param name="formatArray">is a format representation</param>
+            <returns>index of the character after the closing apostrophe</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.Producer.AbstractFormattedPlaceholderPopulator.IsLetter(System.Char)">
+            <summary>Checks if provided character is a latin letter.</summary>
+            <param name="ch">is character to check</param>
+            <returns><c>true</c> if character is a latin letter and <c>false</c> otherwise</returns>
+        </member>
+        <member name="T:iText.Commons.Actions.Producer.CopyrightSincePlaceholderPopulator">
+            <summary>Class is used to populate <c>copyrightSince</c> placeholder.</summary>
+            <remarks>
+            Class is used to populate <c>copyrightSince</c> placeholder. The resulting string is a
+            representation of the first year of copyright years range. Among all products involved into
+            product creation the earliest <c>copyrightSince</c> year is picked as a resulting value.
+            </remarks>
+        </member>
+        <member name="M:iText.Commons.Actions.Producer.CopyrightSincePlaceholderPopulator.Populate(System.Collections.Generic.IList{iText.Commons.Actions.Confirmations.ConfirmedEventWrapper},System.String)">
+            <summary>
+            Builds a replacement for a placeholder <c>copyrightSince</c> in accordance with the
+            registered events.
+            </summary>
+            <param name="events">
+            is a list of event involved into document processing. It is expected that it
+            is not empty as such cases should be handled by
+            <see cref="T:iText.Commons.Actions.Producer.ProducerBuilder"/>
+            without
+            calling any
+            <see cref="T:iText.Commons.Actions.Producer.IPlaceholderPopulator"/>
+            </param>
+            <param name="parameter">
+            is a parameter for the placeholder. It should be <c>null</c> as
+            <c>copyrightSince</c> as the placeholder is not configurable
+            </param>
+            <returns>the earliest copyright year</returns>
+        </member>
+        <member name="T:iText.Commons.Actions.Producer.CopyrightToPlaceholderPopulator">
+            <summary>Class is used to populate <c>copyrightTo</c> placeholder.</summary>
+            <remarks>
+            Class is used to populate <c>copyrightTo</c> placeholder. The resulting string is a
+            representation of the last year of copyright years range. Among all products involved into
+            product creation the latest <c>copyrightTo</c> year is picked as a resulting value
+            </remarks>
+        </member>
+        <member name="M:iText.Commons.Actions.Producer.CopyrightToPlaceholderPopulator.Populate(System.Collections.Generic.IList{iText.Commons.Actions.Confirmations.ConfirmedEventWrapper},System.String)">
+            <summary>
+            Builds a replacement for a placeholder <c>copyrightTo</c> in accordance with the
+            registered events.
+            </summary>
+            <param name="events">
+            is a list of event involved into document processing. It is expected that it
+            is not empty as such cases should be handled by
+            <see cref="T:iText.Commons.Actions.Producer.ProducerBuilder"/>
+            without
+            calling any
+            <see cref="T:iText.Commons.Actions.Producer.IPlaceholderPopulator"/>
+            </param>
+            <param name="parameter">
+            is a parameter for the placeholder. It should be <c>null</c> as
+            <c>copyrightTo</c> as the placeholder is not configurable
+            </param>
+            <returns>the latest copyright year</returns>
+        </member>
+        <member name="T:iText.Commons.Actions.Producer.CurrentDatePlaceholderPopulator">
+            <summary>Class is used to populate <c>currentDate</c> placeholder.</summary>
+            <remarks>
+            Class is used to populate <c>currentDate</c> placeholder. Placeholder should be configured
+            with parameter defining the format of date output. Within format strings, unquoted letters from
+            <c>A</c> to <c>Z</c> and from <c>a</c> to <c>z</c> are process as pattern
+            letters. Chain of equal pattern letters forms an appropriate component of
+            <c>currentDate</c> format. There following components are supported:
+            <para />
+            <list type="bullet">
+            <item><description><c>d</c> is for the day of the month, from 1 through 31
+            </description></item>
+            <item><description><c>dd</c> is for the day of the month, from 01 through 31
+            </description></item>
+            <item><description><c>M</c> defines the month from 1 to 12
+            </description></item>
+            <item><description><c>MM</c> defines the month from 01 to 12
+            </description></item>
+            <item><description><c>MMM</c> defines the abbreviated name of the month
+            </description></item>
+            <item><description><c>MMMM</c> defines the full name of month
+            </description></item>
+            <item><description><c>yy</c> means the year from 00 to 99
+            </description></item>
+            <item><description><c>yyyy</c> means the year in for digits format
+            </description></item>
+            <item><description><c>s</c> shows current second, from 0 through 59
+            </description></item>
+            <item><description><c>ss</c> shows current second, from 00 through 59
+            </description></item>
+            <item><description><c>m</c> is replaced with the current minute from 0 to 59
+            </description></item>
+            <item><description><c>mm</c> is replaced with the current minute from 00 to 59
+            </description></item>
+            <item><description><c>H</c> stands for the current hour, using a 24-hour clock from 0 to 23
+            </description></item>
+            <item><description><c>HH</c> stands for the current hour, using a 24-hour clock from 00 to 23
+            </description></item>
+            </list>
+            <para />
+            Text can be quoted using single quotes (') to avoid interpretation. All other characters are not
+            interpreted and just copied into the output string. String may contain escaped apostrophes
+            <c>\'</c> which processed as characters. Backslash is used for escaping so you need double
+            backslash to print it <c>\\</c>. All the rest backslashes (not followed by apostrophe or
+            one more backslash) are simply ignored.
+            <para />
+            The result of the processing is current date representing in accordance with the provided format.
+            </remarks>
+        </member>
+        <member name="M:iText.Commons.Actions.Producer.CurrentDatePlaceholderPopulator.Populate(System.Collections.Generic.IList{iText.Commons.Actions.Confirmations.ConfirmedEventWrapper},System.String)">
+            <summary>
+            Builds a replacement for a placeholder <c>currentDate</c> in accordance with the
+            provided format.
+            </summary>
+            <param name="events">
+            is a list of event involved into document processing. It is not used during
+            the placeholder replacement
+            </param>
+            <param name="parameter">defines output format in accordance with the description</param>
+            <returns>date of producer line creation in accordance with defined format</returns>
+        </member>
+        <member name="T:iText.Commons.Actions.Producer.IPlaceholderPopulator">
+            <summary>Interface for placeholder population.</summary>
+        </member>
+        <member name="M:iText.Commons.Actions.Producer.IPlaceholderPopulator.Populate(System.Collections.Generic.IList{iText.Commons.Actions.Confirmations.ConfirmedEventWrapper},System.String)">
+            <summary>
+            Populates a placeholder based on the list of
+            <see cref="T:iText.Commons.Actions.Confirmations.ConfirmedEventWrapper"/>
+            and the array of parts of placeholder.
+            </summary>
+            <param name="events">is a list of event involved into document processing</param>
+            <param name="parameter">is a parameter passed to a placeholder and separated via delimiter <c>:</c></param>
+            <returns>value for placeholder replacement</returns>
+        </member>
+        <member name="T:iText.Commons.Actions.Producer.ProducerBuilder">
+            <summary>Class is used for producer line building.</summary>
+        </member>
+        <member name="F:iText.Commons.Actions.Producer.ProducerBuilder.PATTERN_STRING">
+            <summary>Pattern is used to search a placeholders.</summary>
+            <remarks>
+            Pattern is used to search a placeholders. Currently it searches substrings started with
+            <c>${</c> and ended with <c>}</c> without <c>}</c> character inside.
+            These substrings are interpreted as placeholders and the first group is the content of the
+            placeholder.
+            Note: The escape on '}' is necessary for regex dialect compatibility reasons.
+            </remarks>
+        </member>
+        <member name="M:iText.Commons.Actions.Producer.ProducerBuilder.ModifyProducer``1(System.Collections.Generic.IList{``0},System.String)">
+            <summary>Modifies an old producer line according to events registered for the document.</summary>
+            <remarks>
+            Modifies an old producer line according to events registered for the document.
+            Events can be either wrapped with
+            <see cref="T:iText.Commons.Actions.Confirmations.ConfirmedEventWrapper"/>
+            or not.
+            Format of the new producer line will be defined by the first event in the list.
+            Placeholder will be replaced and merged all together
+            </remarks>
+            <param name="events">list of events registered for the document</param>
+            <param name="oldProducer">
+            old producer line. If <c>null</c> or empty, will be replaced
+            with a new one. Otherwise new line will be attached with
+            <c>modified using</c> prefix. If old producer line already contains
+            <c>modified using</c> substring, it will be overriden with a new one
+            </param>
+            <returns>modified producer line</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.Producer.ProducerBuilder.DoAction">
+            <summary>Configuration events for util internal purposes are not expected to be sent.</summary>
+        </member>
+        <member name="T:iText.Commons.Actions.Producer.UsedProductsPlaceholderPopulator">
+            <summary>Class is used to populate <c>usedProducts</c> placeholder.</summary>
+            <remarks>
+            Class is used to populate <c>usedProducts</c> placeholder. Placeholder should be configured
+            with parameter defining the format of output. Within format strings, unquoted letters from
+            <c>A</c> to <c>Z</c> and from <c>a</c> to <c>z</c> are process as pattern
+            letters representing appropriate component of <c>usedProducts</c> format. There are three
+            letters which are allowed in the outputformat:
+            <para />
+            <list type="bullet">
+            <item><description><c>P</c> stands for product name
+            </description></item>
+            <item><description><c>V</c> stands for version of the product
+            </description></item>
+            <item><description><c>T</c> is for usage type of the product
+            </description></item>
+            </list>
+            <para />
+            Text can be quoted using single quotes (') to avoid interpretation. All other characters are not
+            interpreted and just copied into the output string. String may contain escaped apostrophes
+            <c>\'</c> which processed as characters. Backslash is used for escaping so you need double
+            backslash to print it <c>\\</c>. All the rest backslashes (not followed by apostrophe or
+            one more backslash) are simply ignored.
+            <para />
+            The result of the processing is the list of all products mentioned among events as a
+            comma-separated list. The order of the elements is defined by the order of products mentioning in
+            the <c>events</c>. Equal strings are skipped even if they were generated for different
+            products (i. e. format <c>P</c> stands for product name only: if several version of the
+            same product are used, it will be the only mentioning of that product).
+            </remarks>
+        </member>
+        <member name="M:iText.Commons.Actions.Producer.UsedProductsPlaceholderPopulator.Populate(System.Collections.Generic.IList{iText.Commons.Actions.Confirmations.ConfirmedEventWrapper},System.String)">
+            <summary>
+            Builds a replacement for a placeholder <c>usedProducts</c> in accordance with the
+            registered events and provided format.
+            </summary>
+            <param name="events">is a list of event involved into document processing</param>
+            <param name="parameter">defines output format in accordance with the for description</param>
+            <returns>populated comma-separated list of used products in accordance with the format</returns>
+        </member>
+        <member name="T:iText.Commons.Actions.ProductEventHandler">
+            <summary>Handles events based oh their origin.</summary>
+        </member>
+        <member name="M:iText.Commons.Actions.ProductEventHandler.OnAcceptedEvent(iText.Commons.Actions.AbstractContextBasedITextEvent)">
+            <summary>
+            Pass the event to the appropriate
+            <see cref="T:iText.Commons.Actions.Processors.ITextProductEventProcessor"/>.
+            </summary>
+            <param name="event">to handle</param>
+        </member>
+        <member name="T:iText.Commons.Actions.Sequence.AbstractIdentifiableElement">
+            <summary>
+            The class allows to make any element identifiable so that it is possible to store some metadata
+            for it.
+            </summary>
+        </member>
+        <member name="M:iText.Commons.Actions.Sequence.AbstractIdentifiableElement.GetSequenceId">
+            <summary>Obtains an identifier if it was set.</summary>
+            <returns>identifier</returns>
+        </member>
+        <member name="M:iText.Commons.Actions.Sequence.AbstractIdentifiableElement.SetSequenceId(iText.Commons.Actions.Sequence.SequenceId)">
+            <summary>Sets an identifier.</summary>
+            <param name="sequenceId">is a new identifier for the element</param>
+        </member>
+        <member name="T:iText.Commons.Actions.Sequence.SequenceId">
+            <summary>The class represents unique numeric identifier with autoincrement strategy of generation.</summary>
+        </member>
+        <member name="M:iText.Commons.Actions.Sequence.SequenceId.#ctor">
+            <summary>Creates a new instance of identifier.</summary>
+        </member>
+        <member name="M:iText.Commons.Actions.Sequence.SequenceId.GetId">
+            <summary>Obtains an id.</summary>
+            <returns>id</returns>
+        </member>
+        <member name="T:iText.Commons.Actions.Sequence.SequenceIdManager">
+            <summary>
+            Util class which is responsible for marking of
+            <see cref="T:iText.Commons.Actions.Sequence.AbstractIdentifiableElement"/>
+            with
+            appropriate
+            <see cref="T:iText.Commons.Actions.Sequence.SequenceId"/>.
+            </summary>
+        </member>
+        <member name="M:iText.Commons.Actions.Sequence.SequenceIdManager.SetSequenceId(iText.Commons.Actions.Sequence.AbstractIdentifiableElement,iText.Commons.Actions.Sequence.SequenceId)">
+            <summary>
+            Provides an
+            <see cref="T:iText.Commons.Actions.Sequence.AbstractIdentifiableElement"/>
+            with a
+            <see cref="T:iText.Commons.Actions.Sequence.SequenceId"/>.
+            </summary>
+            <remarks>
+            Provides an
+            <see cref="T:iText.Commons.Actions.Sequence.AbstractIdentifiableElement"/>
+            with a
+            <see cref="T:iText.Commons.Actions.Sequence.SequenceId"/>
+            . Note that it is
+            forbidden to override already existing identifier. If try to provide a new one then exception
+            will be thrown.
+            </remarks>
+            <param name="element">is an identifiable element</param>
+            <param name="sequenceId">is an identifier to set</param>
+        </member>
+        <member name="M:iText.Commons.Actions.Sequence.SequenceIdManager.GetSequenceId(iText.Commons.Actions.Sequence.AbstractIdentifiableElement)">
+            <summary>Gets an identifier of the element.</summary>
+            <remarks>Gets an identifier of the element. If it was not provided will return <c>null</c>.</remarks>
+            <param name="element">is an identifiable element</param>
+            <returns>the identifier of the element if presented and <c>null</c> otherwise</returns>
+        </member>
+        <member name="T:iText.Commons.Exceptions.AggregatedException">
+            <summary>Composite exception class.</summary>
+        </member>
+        <member name="F:iText.Commons.Exceptions.AggregatedException.ERROR_DURING_EVENT_PROCESSING">
+            <summary>Notifies that event processing failed.</summary>
+        </member>
+        <member name="M:iText.Commons.Exceptions.AggregatedException.#ctor(System.Collections.Generic.IList{System.Exception})">
+            <summary>Creates an instance of aggregated exception based on the collection of exceptions.</summary>
+            <param name="aggregatedExceptions">is a list of aggregated exceptions</param>
+        </member>
+        <member name="M:iText.Commons.Exceptions.AggregatedException.#ctor(System.String,System.Collections.Generic.IList{System.Exception})">
+            <summary>Creates an instance of aggregated exception based on the collection of exceptions.</summary>
+            <param name="message">the detail message</param>
+            <param name="aggregatedExceptions">is a list of aggregated exceptions</param>
+        </member>
+        <member name="P:iText.Commons.Exceptions.AggregatedException.Message">
+            <summary>
+            Builds message for the exception including its own message and all messages from the
+            aggregated exceptions.
+            </summary>
+            <returns>aggregated message</returns>
+        </member>
+        <member name="M:iText.Commons.Exceptions.AggregatedException.GetAggregatedExceptions">
+            <summary>Gets a list of aggregated exceptions.</summary>
+            <returns>aggregated exceptions</returns>
+        </member>
+        <member name="T:iText.Commons.Exceptions.CommonsExceptionMessageConstant">
+            <summary>Class that bundles all the error message templates as constants.</summary>
+        </member>
+        <member name="F:iText.Commons.Exceptions.CommonsExceptionMessageConstant.ELEMENT_ALREADY_HAS_IDENTIFIER">
+            <summary>Message warns about overriding of the identifier of identifiable element.</summary>
+            <remarks>
+            Message warns about overriding of the identifier of identifiable element. List of params:
+            <list type="bullet">
+            <item><description>0th is an original element identifier;
+            </description></item>
+            <item><description>1st is a new element identifier;
+            </description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="T:iText.Commons.Exceptions.ITextException">
+            <summary>General iText exception.</summary>
+            <remarks>
+            General iText exception.
+            <para />
+            Important note, not all iText exceptions are extended from ITextException.
+            </remarks>
+        </member>
+        <member name="M:iText.Commons.Exceptions.ITextException.#ctor">
+            <summary>Creates a new ITextException with no error message and cause.</summary>
+        </member>
+        <member name="M:iText.Commons.Exceptions.ITextException.#ctor(System.String)">
+            <summary>Creates a new ITextException.</summary>
+            <param name="message">the detail message</param>
+        </member>
+        <member name="M:iText.Commons.Exceptions.ITextException.#ctor(System.Exception)">
+            <summary>Creates a new ITextException.</summary>
+            <param name="cause">
+            the cause (which is saved for later retrieval by
+            <see cref="P:System.Exception.InnerException"/>
+            method)
+            </param>
+        </member>
+        <member name="M:iText.Commons.Exceptions.ITextException.#ctor(System.String,System.Exception)">
+            <summary>Creates a new ITextException.</summary>
+            <param name="message">the detail message</param>
+            <param name="cause">
+            the cause (which is saved for later retrieval by
+            <see cref="P:System.Exception.InnerException"/>
+            method)
+            </param>
+        </member>
+        <member name="T:iText.Commons.Exceptions.ProductEventHandlerRepeatException">
+            <summary>The class represents a signal to the event handler that it is necessary to repeat the handling of the current event.
+                </summary>
+        </member>
+        <member name="M:iText.Commons.Exceptions.ProductEventHandlerRepeatException.#ctor(System.String)">
+            <summary>
+            Creates a new instance of
+            <see cref="T:iText.Commons.Exceptions.ProductEventHandlerRepeatException"/>
+            based on message.
+            </summary>
+            <param name="message">the detail message</param>
+        </member>
+        <member name="T:iText.Commons.Exceptions.UnknownProductException">
+            <summary>An exception notifies that unknown product was found in iText ecosystem.</summary>
+        </member>
+        <member name="F:iText.Commons.Exceptions.UnknownProductException.UNKNOWN_PRODUCT">
+            <summary>Message notifies that event corresponding to unknown product was met.</summary>
+            <remarks>
+            Message notifies that event corresponding to unknown product was met. It is a parametrized
+            message. List of params:
+            <list type="bullet">
+            <item><description>the name of unknown product
+            </description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:iText.Commons.Exceptions.UnknownProductException.#ctor(System.String)">
+            <summary>Creates a new instance of the exception.</summary>
+            <param name="message">the detail message</param>
+        </member>
+        <member name="T:iText.Commons.ITextLogManager">
+            <summary>
+            iText static log manager working with the <c>Microsoft.Extensions.Logging</c> framework. Use it to add iText
+            logs to your application. Call <see cref = "M:iText.Commons.ITextLogManager.SetLoggerFactory(Microsoft.Extensions.Logging.ILoggerFactory)" /> to set up a logger factory that will
+            receive iText log messages.
+            </summary>
+        </member>
+        <member name="M:iText.Commons.ITextLogManager.SetLoggerFactory(Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            Sets the implementation of <see cref="T:Microsoft.Extensions.Logging.ILoggerFactory"/> to be used for creating <see cref="T:Microsoft.Extensions.Logging.ILogger"/>
+            objects.
+            </summary>
+            <param name="factory">The factory.</param>
+        </member>
+        <member name="M:iText.Commons.ITextLogManager.GetLoggerFactory">
+            <summary>
+            Gets an instance of the used logger factory.
+            </summary>
+            <returns>The factory.</returns>
+        </member>
+        <member name="M:iText.Commons.ITextLogManager.GetLogger(System.Type)">
+            <summary>
+            Creates a new <see cref="T:Microsoft.Extensions.Logging.ILogger"/> instance using the full name of the given type.
+            </summary>
+            <param name="type">The type.</param>
+            <returns></returns>
+        </member>
+        <member name="T:iText.Commons.Logs.CommonsLogMessageConstant">
+            <summary>Class that bundles all the error message templates as constants.</summary>
+        </member>
+        <member name="F:iText.Commons.Logs.CommonsLogMessageConstant.INVALID_STATISTICS_NAME">
+            <summary>Message notifies that an invalid statistics name was received, because there is no aggregator for it.
+                </summary>
+            <remarks>
+            Message notifies that an invalid statistics name was received, because there is no aggregator for it.
+            <list type="bullet">
+            <item><description>0th is a statistics name which is invalid;
+            </description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:iText.Commons.Logs.CommonsLogMessageConstant.UNKNOWN_PLACEHOLDER_WAS_IGNORED">
+            <summary>
+            Message notifies that unknown placeholder was ignored during parsing of the producer line
+            format.
+            </summary>
+            <remarks>
+            Message notifies that unknown placeholder was ignored during parsing of the producer line
+            format. List of params:
+            <list type="bullet">
+            <item><description>0th is a name of ignored placeholder;
+            </description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:iText.Commons.Logs.CommonsLogMessageConstant.UNREPORTED_EVENT">
+            <summary>Message warns that some event is at confirmation stage but it is not known.</summary>
+            <remarks>
+            Message warns that some event is at confirmation stage but it is not known. Probably some processing has failed.
+            List of params:
+            <list type="bullet">
+            <item><description>0th is a name of product for which event was reported;
+            </description></item>
+            <item><description>1st is an event type;
+            </description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="T:iText.Commons.Utils.DateTimeUtil">
+            <summary>
+            This file is a helper class for internal usage only.
+            Be aware that its API and functionality may be changed in future.
+            </summary>
+        </member>
+        <member name="M:iText.Commons.Utils.DateTimeUtil.GetUtcMillisFromEpoch(System.Nullable{System.DateTime})">
+            <summary>
+            Gets the date time as UTC milliseconds from the epoch.
+            </summary>
+            <param name="dateTime">date to be converted to millis</param>
+            <returns>the date as UTC milliseconds from the epoch</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.DateTimeUtil.GetCalendar(System.DateTime)">
+            <summary>
+            Gets the calendar date and time of a day.
+            </summary>
+            <param name="dateTime">the date to be returned as calendar</param>
+            <returns>the calendar date and time of a day</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.DateTimeUtil.GetCurrentTime">
+            <summary>
+            Gets the current time in the default time zone with the default locale.
+            </summary>
+            <returns>the current time in the default time zone with the default locale</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.DateTimeUtil.GetCurrentUtcTime">
+            <summary>
+            Gets the current time consistently.
+            </summary>
+            <returns>the time at which it was allocated, measured to the nearest millisecond</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.DateTimeUtil.IsInPast(System.DateTime)">
+            <summary>
+            Defines if date is in past.
+            </summary>
+            <returns>true if given date is in past, false instead</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.DateTimeUtil.GetRelativeTime(System.DateTime)">
+            <summary>
+            Gets the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by specified date.
+            </summary>
+            <param name="date">the specified date to get time</param>
+            <returns>the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by the specified date</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.DateTimeUtil.ParseWithDefaultPattern(System.String)">
+            <summary>
+            Parses passing date with default {@code yyyy-MM-dd} pattern.
+            </summary>
+            <param name="date">date is date to be parse</param>
+            <returns>parse date</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.DateTimeUtil.Parse(System.String,System.String)">
+            <summary>
+            Parses passing date with specified format.
+            </summary>
+            <param name="date">the date to be parsed</param>
+            <param name="format">the format of parsing the date</param>
+            <returns>parsed date</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.DateTimeUtil.FormatWithDefaultPattern(System.DateTime)">
+            <summary>
+            Format passing date with default yyyy-MM-dd pattern.
+            </summary>
+            <param name="date">the date to be formatted</param>
+            <returns>formatted date</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.DateTimeUtil.Format(System.DateTime,System.String)">
+            <summary>
+            Format passing date with specified pattern.
+            </summary>
+            <param name="date">the date to be formatted</param>
+            <param name="pattern">pattern for format</param>
+            <returns>formatted date</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.DateTimeUtil.GetCurrentTimeZoneOffset">
+            <summary>
+            Gets the offset of time zone from UTC.
+            </summary>
+            <returns>the offset of time zone from UTC</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.DateTimeUtil.GetCurrentTimeZoneOffset(System.DateTime)">
+            <summary>
+            Gets the offset of time zone from UTC at the specified date.
+            </summary>
+            <param name="date">the date represented in milliseconds since January 1, 1970 00:00:00 GMT</param>
+            <returns>the offset of time zone from UTC at the specified date adjusted with the amount of daylight saving.</returns>
+        </member>
+        <member name="T:iText.Commons.Utils.EncodingUtil">
+            <summary>
+            This file is a helper class for internal usage only.
+            Be aware that its API and functionality may be changed in future.
+            </summary>
+        </member>
+        <member name="M:iText.Commons.Utils.EncodingUtil.ConvertToBytes(System.Char[],System.String)">
+            <summary>
+            Converts to byte array an array of chars, taking the provided encoding into account.
+            </summary>
+            <param name="chars">an array of chars to be converted to bytes</param>
+            <param name="encoding">the encoding to be taken into account while converting the provided array of chars</param>
+            <returns>the resultant array of bytes</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.EncodingUtil.ConvertToString(System.Byte[],System.String)">
+            <summary>
+            Converts to String an array of bytes, taking the provided encoding into account.
+            </summary>
+            <param name="chars">an array of bytes to be converted to String</param>
+            <param name="encoding">the encoding to be taken into account while converting the provided bytes</param>
+            <returns>the resultant string</returns>
+        </member>
+        <member name="T:iText.Commons.Utils.FileUtil">
+            <summary>
+            This file is a helper class for internal usage only.
+            Be aware that its API and functionality may be changed in future.
+            </summary>
+        </member>
+        <member name="M:iText.Commons.Utils.FileUtil.GetFontsDir">
+            <summary>
+            Gets the default windows font directory.
+            </summary>
+            <returns>the default windows font directory</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.FileUtil.FileExists(System.String)">
+            <summary>
+            Checks whether there is a file at the provided path.
+            </summary>
+            <param name="path">the path to the file to be checked on existence</param>
+            <returns><CODE>true</CODE> if such a file exists, otherwise <CODE>false</CODE></returns>
+        </member>
+        <member name="M:iText.Commons.Utils.FileUtil.DirectoryExists(System.String)">
+            <summary>
+            Checks whether there is a directory at the provided path.
+            </summary>
+            <param name="path">the path to the directory to be checked on existence</param>
+            <returns>true if such a directory exists, otherwise false</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.FileUtil.ListFilesInDirectory(System.String,System.Boolean)">
+            <summary>
+            Lists all the files located at the provided directory.
+            </summary>
+            <param name="path">path to the directory</param>
+            <param name="recursive">if <CODE>true</CODE>, files from all the subdirectories will be returned</param>
+            <returns>all the files located at the provided directory</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.FileUtil.ListFilesInDirectoryByFilter(System.String,iText.Commons.Utils.FileUtil.IFileFilter)">
+            <summary>
+            Lists all the files located at the provided directory, which are accepted by the provided filter.
+            </summary>
+            <param name="path">path to the directory</param>
+            <param name="filter">filter to accept files to be listed</param>
+            <returns>all the files located at the provided directory, which are accepted by the provided filter</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.FileUtil.ListFilesInDirectoryByFilter(System.String,System.Boolean,iText.Commons.Utils.FileUtil.IFileFilter)">
+            <summary>
+            Lists all the files located at the provided directory, which are accepted by the provided filter.
+            </summary>
+            <param name="path">path to the directory</param>
+            <param name="recursive">if <CODE>true</CODE>, files from all the subdirectories will be returned</param>
+            <param name="filter">filter to accept files to be listed</param>
+            <returns>all the files located at the provided directory, which are accepted by the provided filter</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.FileUtil.CreateTempFile(System.String)">
+            <summary>
+            Creates a temporary file at the provided path.
+            </summary>
+            <param name="path">path to the temporary file to be created. If it is a directory,
+            then the temporary file will be created at this directory</param>
+            <returns>the created temporary file</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.FileUtil.CreateDirectories(System.String)">
+            <summary>
+            Creates a directory at the provided path.
+            </summary>
+            <param name="outPath">path to the directory to be created</param>
+        </member>
+        <member name="M:iText.Commons.Utils.FileUtil.DeleteFile(System.IO.FileInfo)">
+            <summary>
+            Deletes a file and returns whether the operation succeeded.
+            </summary>
+            <remarks>
+            Deletes a file and returns whether the operation succeeded.
+            Note that only *files* are supported, not directories.
+            </remarks>
+            <param name="file">file to be deleted</param>
+            <returns>true if file was deleted successfully, false otherwise</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.FileUtil.ParentDirectory(System.Uri)">
+            <summary>
+            Returns an URL of the parent directory for the resource.
+            </summary>
+            <param name="url">of resource</param>
+            <returns>parent directory path| the same path if a catalog`s url is passed;</returns>
+        </member>
+        <member name="T:iText.Commons.Utils.FilterReader">
+            <summary>
+            Abstract class for reading filtered character streams.
+            The abstract class <code>FilterReader</code> itself
+            provides default methods that pass all requests to
+            the contained stream. Subclasses of <code>FilterReader</code>
+            should override some of these methods and may also provide
+            additional methods and fields.
+            
+            @author      Mark Reinhold
+            @since       JDK1.1
+            </summary>
+        </member>
+        <member name="M:iText.Commons.Utils.FilterReader.Read">
+            <summary>
+            Reads a single character.
+            </summary>
+        </member>
+        <member name="M:iText.Commons.Utils.FilterReader.Read(System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Reads characters into a portion of an array.
+            </summary>
+        </member>
+        <member name="T:iText.Commons.Utils.IanaEncodings">
+            Translates a IANA encoding name to a Java encoding.
+        </member>
+        <member name="F:iText.Commons.Utils.IanaEncodings.map">
+            The object that maps IANA to Java encodings. 
+        </member>
+        <member name="T:iText.Commons.Utils.JavaCollectionsUtil">
+            <summary>
+            This file is a helper class for internal usage only.
+            Be aware that its API and functionality may be changed in future.
+            </summary>
+        </member>
+        <member name="T:iText.Commons.Utils.JavaUtil">
+            <summary>
+            This file is a helper class for internal usage only.
+            Be aware that its API and functionality may be changed in future.
+            </summary>
+        </member>
+        <member name="T:iText.Commons.Utils.MapUtil">
+            <summary>Utility class for work with collections.</summary>
+            <remarks>Utility class for work with collections. Not for public use.</remarks>
+        </member>
+        <member name="M:iText.Commons.Utils.MapUtil.Equals``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>
+            Checks if two
+            <see cref="!:System.Collections.IDictionary&lt;K, V&gt;">maps</see>
+            are equal: the are of the same types and has equal number of stored
+            entries and both has the same set of keys ans each key is associated with an appropriate
+            value.
+            </summary>
+            <param name="m1">is the first map</param>
+            <param name="m2">is the second map</param>
+            <typeparam name="K">is a type of keys</typeparam>
+            <typeparam name="V">is a type of values</typeparam>
+            <returns>
+            
+            <see langword="true"/>
+            if maps are equal and
+            <see langword="false"/>
+            otherwise
+            </returns>
+        </member>
+        <member name="M:iText.Commons.Utils.MapUtil.Merge``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1},System.Func{``1,``1,``1})">
+            <summary>Merges data from source Map into destination Map using provided function if key exists in both Maps.
+                </summary>
+            <remarks>
+            Merges data from source Map into destination Map using provided function if key exists in both Maps.
+            If key doesn't exist in destination Map in will be putted directly.
+            </remarks>
+            <param name="destination">Map to which data will be merged.</param>
+            <param name="source">Map from which data will be taken.</param>
+            <param name="valuesMerger">function which will be used to merge Maps values.</param>
+            <typeparam name="K">is a type of keys</typeparam>
+            <typeparam name="V">is a type of values</typeparam>
+        </member>
+        <member name="M:iText.Commons.Utils.MapUtil.GetHashCode``2(System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>
+            Calculates the hash code of the
+            <see cref="!:System.Collections.IDictionary&lt;K, V&gt;">map</see>.
+            </summary>
+            <param name="m1">is the map</param>
+            <typeparam name="K">is a type of keys</typeparam>
+            <typeparam name="V">is a type of values</typeparam>
+            <returns>
+            the hash code of the
+            <see cref="!:System.Collections.IDictionary&lt;K, V&gt;">map</see>.
+            </returns>
+        </member>
+        <member name="M:iText.Commons.Utils.MapUtil.PutIfNotNull``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+            <summary>Puts value to map if the value is not null.</summary>
+            <param name="map">the map in which value can be pushed</param>
+            <param name="key">the key</param>
+            <param name="value">the value</param>
+            <typeparam name="K">is a type of key</typeparam>
+            <typeparam name="V">is a type of value</typeparam>
+        </member>
+        <member name="T:iText.Commons.Utils.MessageFormatUtil">
+            <summary>This file is a helper class for internal usage only.</summary>
+            <remarks>
+            This file is a helper class for internal usage only.
+            Be aware that its API and functionality may be changed in future.
+            </remarks>
+        </member>
+        <member name="T:iText.Commons.Utils.ProcessInfo">
+            <summary>Class contains a process information, such as process exit code and process output.</summary>
+        </member>
+        <member name="M:iText.Commons.Utils.ProcessInfo.#ctor(System.Int32,System.String,System.String)">
+            <summary>
+            Create a new instance, containing a process information,
+            such as process exit code, process standard and error outputs.
+            </summary>
+            <param name="exitCode">exit code of the process.</param>
+            <param name="processStdOutput">the standard output of the process.</param>
+            <param name="processErrOutput">the error output of the process.</param>
+        </member>
+        <member name="M:iText.Commons.Utils.ProcessInfo.GetExitCode">
+            <summary>Getter for a process exit code.</summary>
+            <returns>Returns a process exit code.</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.ProcessInfo.GetProcessStdOutput">
+            <summary>Getter for a standard process output.</summary>
+            <returns>Returns a process standard output string.</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.ProcessInfo.GetProcessErrOutput">
+            <summary>Getter for an error process output.</summary>
+            <returns>Returns a process error output string.</returns>
+        </member>
+        <member name="T:iText.Commons.Utils.Properties">
+            <summary>
+            Summary description for Properties.
+            </summary>
+        </member>
+        <member name="T:iText.Commons.Utils.PushbackReader">
+            <summary>
+            A character-stream reader that allows characters to be pushed back into the
+            stream.
+            
+            @author      Mark Reinhold
+            @since       JDK1.1
+            </summary>
+        </member>
+        <member name="F:iText.Commons.Utils.PushbackReader._buf">
+            <summary>
+            Pushback buffer </summary>
+        </member>
+        <member name="F:iText.Commons.Utils.PushbackReader._pos">
+            <summary>
+            Current position in buffer </summary>
+        </member>
+        <member name="M:iText.Commons.Utils.PushbackReader.#ctor(System.IO.TextReader,System.Int32)">
+            <summary>
+            Creates a new pushback reader with a pushback buffer of the given size.
+            </summary>
+            <param name="in">   The reader from which characters will be read </param>
+            <param name="size"> The size of the pushback buffer </param>
+        </member>
+        <member name="M:iText.Commons.Utils.PushbackReader.#ctor(System.IO.TextReader)">
+            <summary>
+            Creates a new pushback reader with a one-character pushback buffer.
+            </summary>
+            <param name="in">  The reader from which characters will be read </param>
+        </member>
+        <member name="M:iText.Commons.Utils.PushbackReader.EnsureOpen">
+            <summary>
+            Checks to make sure that the stream has not been closed. </summary>
+        </member>
+        <member name="M:iText.Commons.Utils.PushbackReader.Read">
+            <summary>
+            Reads a single character.
+            </summary>
+            <returns>     The character read, or -1 if the end of the stream has been
+                        reached
+            </returns>
+        </member>
+        <member name="M:iText.Commons.Utils.PushbackReader.Read(System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Reads characters into a portion of an array.
+            </summary>
+            <param name="cbuf">  Destination buffer </param>
+            <param name="off">   Offset at which to start writing characters </param>
+            <param name="len">   Maximum number of characters to read
+            </param>
+            <returns>     The number of characters read, or -1 if the end of the
+                        stream has been reached
+            </returns>
+        </member>
+        <member name="M:iText.Commons.Utils.PushbackReader.Unread(System.Int32)">
+            <summary>
+            Pushes back a single character by copying it to the front of the
+            pushback buffer. After this method returns, the next character to be read
+            will have the value <code>(char)c</code>.
+            </summary>
+            <param name="c">  The int value representing a character to be pushed back
+            </param>
+        </member>
+        <member name="M:iText.Commons.Utils.PushbackReader.Unread(System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Pushes back a portion of an array of characters by copying it to the
+            front of the pushback buffer.  After this method returns, the next
+            character to be read will have the value <code>cbuf[off]</code>, the
+            character after that will have the value <code>cbuf[off+1]</code>, and
+            so forth.
+            </summary>
+            <param name="cbuf">  Character array </param>
+            <param name="off">   Offset of first character to push back </param>
+            <param name="len">   Number of characters to push back
+            </param>
+        </member>
+        <member name="M:iText.Commons.Utils.PushbackReader.Unread(System.Char[])">
+            <summary>
+            Pushes back an array of characters by copying it to the front of the
+            pushback buffer.  After this method returns, the next character to be
+            read will have the value <code>cbuf[0]</code>, the character after that
+            will have the value <code>cbuf[1]</code>, and so forth.
+            </summary>
+            <param name="cbuf">  Character array to push back
+            </param>
+        </member>
+        <member name="M:iText.Commons.Utils.PushbackReader.Dispose(System.Boolean)">
+            <summary>
+            Closes the stream and releases any system resources associated with
+            it. Once the stream has been closed, further read(),
+            unread(), ready(), or skip() invocations will throw an IOException.
+            Closing a previously closed stream has no effect.
+            </summary>
+        </member>
+        <member name="T:iText.Commons.Utils.SortUtil">
+            <summary>
+            This file is a helper class for internal usage only.
+            Be aware that its API and functionality may be changed in future.
+            </summary>
+        </member>
+        <member name="M:iText.Commons.Utils.SortUtil.MergeSort``1(``0[],System.Int32,System.Int32,System.Collections.Generic.IComparer{``0})">
+            <summary>
+            
+            </summary>
+            <param name="from">the index of the first element, inclusive, to be sorted</param>
+            <param name="to">the index of the last element, exclusive, to be sorted</param>
+        </member>
+        <member name="T:iText.Commons.Utils.StringUtil">
+            <summary>
+            This file is a helper class for internal usage only.
+            Be aware that its API and functionality may be changed in future.
+            </summary>
+        </member>
+        <member name="T:iText.Commons.Utils.SystemUtil">
+            <summary>
+            This file is a helper class for internal usage only.
+            Be aware that its API and functionality may be changed in future.
+            </summary>
+        </member>
+        <member name="M:iText.Commons.Utils.SystemUtil.GetRelativeTimeMillis">
+            <summary>
+            Should be used in relative constructs (for example to check how many milliseconds have passed).
+            Shouldn't be used in the DateTime creation since the nanoseconds are expected there.
+            </summary>
+            <returns>relative time in milliseconds</returns>
+        </member>
+        <member name="M:iText.Commons.Utils.SystemUtil.GetEnvironmentVariable(System.String)">
+            <summary>
+            Gets environment variable with given name.
+            </summary>
+            <param name="name">the name of environment variable.</param>
+            <returns>variable value or null if there is no such.</returns>
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.COMMON">
+            Unicode script "Common".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.LATIN">
+            Unicode script "Latin".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.GREEK">
+            Unicode script "Greek".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.CYRILLIC">
+            Unicode script "Cyrillic".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.ARMENIAN">
+            Unicode script "Armenian".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.HEBREW">
+            Unicode script "Hebrew".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.ARABIC">
+            Unicode script "Arabic".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.SYRIAC">
+            Unicode script "Syriac".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.THAANA">
+            Unicode script "Thaana".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.DEVANAGARI">
+            Unicode script "Devanagari".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.BENGALI">
+            Unicode script "Bengali".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.GURMUKHI">
+            Unicode script "Gurmukhi".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.GUJARATI">
+            Unicode script "Gujarati".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.ORIYA">
+            Unicode script "Oriya".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.TAMIL">
+            Unicode script "Tamil".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.TELUGU">
+            Unicode script "Telugu".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.KANNADA">
+            Unicode script "Kannada".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.MALAYALAM">
+            Unicode script "Malayalam".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.SINHALA">
+            Unicode script "Sinhala".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.THAI">
+            Unicode script "Thai".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.LAO">
+            Unicode script "Lao".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.TIBETAN">
+            Unicode script "Tibetan".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.MYANMAR">
+            Unicode script "Myanmar".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.GEORGIAN">
+            Unicode script "Georgian".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.HANGUL">
+            Unicode script "Hangul".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.ETHIOPIC">
+            Unicode script "Ethiopic".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.CHEROKEE">
+            Unicode script "Cherokee".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.CANADIAN_ABORIGINAL">
+            Unicode script "Canadian_Aboriginal".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.OGHAM">
+            Unicode script "Ogham".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.RUNIC">
+            Unicode script "Runic".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.KHMER">
+            Unicode script "Khmer".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.MONGOLIAN">
+            Unicode script "Mongolian".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.HIRAGANA">
+            Unicode script "Hiragana".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.KATAKANA">
+            Unicode script "Katakana".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.BOPOMOFO">
+            Unicode script "Bopomofo".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.HAN">
+            Unicode script "Han".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.YI">
+            Unicode script "Yi".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.OLD_ITALIC">
+            Unicode script "Old_Italic".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.GOTHIC">
+            Unicode script "Gothic".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.DESERET">
+            Unicode script "Deseret".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.INHERITED">
+            Unicode script "Inherited".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.TAGALOG">
+            Unicode script "Tagalog".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.HANUNOO">
+            Unicode script "Hanunoo".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.BUHID">
+            Unicode script "Buhid".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.TAGBANWA">
+            Unicode script "Tagbanwa".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.LIMBU">
+            Unicode script "Limbu".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.TAI_LE">
+            Unicode script "Tai_Le".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.LINEAR_B">
+            Unicode script "Linear_B".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.UGARITIC">
+            Unicode script "Ugaritic".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.SHAVIAN">
+            Unicode script "Shavian".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.OSMANYA">
+            Unicode script "Osmanya".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.CYPRIOT">
+            Unicode script "Cypriot".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.BRAILLE">
+            Unicode script "Braille".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.BUGINESE">
+            Unicode script "Buginese".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.COPTIC">
+            Unicode script "Coptic".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.NEW_TAI_LUE">
+            Unicode script "New_Tai_Lue".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.GLAGOLITIC">
+            Unicode script "Glagolitic".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.TIFINAGH">
+            Unicode script "Tifinagh".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.SYLOTI_NAGRI">
+            Unicode script "Syloti_Nagri".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.OLD_PERSIAN">
+            Unicode script "Old_Persian".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.KHAROSHTHI">
+            Unicode script "Kharoshthi".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.BALINESE">
+            Unicode script "Balinese".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.CUNEIFORM">
+            Unicode script "Cuneiform".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.PHOENICIAN">
+            Unicode script "Phoenician".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.PHAGS_PA">
+            Unicode script "Phags_Pa".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.NKO">
+            Unicode script "Nko".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.SUNDANESE">
+            Unicode script "Sundanese".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.BATAK">
+            Unicode script "Batak".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.LEPCHA">
+            Unicode script "Lepcha".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.OL_CHIKI">
+            Unicode script "Ol_Chiki".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.VAI">
+            Unicode script "Vai".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.SAURASHTRA">
+            Unicode script "Saurashtra".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.KAYAH_LI">
+            Unicode script "Kayah_Li".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.REJANG">
+            Unicode script "Rejang".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.LYCIAN">
+            Unicode script "Lycian".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.CARIAN">
+            Unicode script "Carian".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.LYDIAN">
+            Unicode script "Lydian".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.CHAM">
+            Unicode script "Cham".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.TAI_THAM">
+            Unicode script "Tai_Tham".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.TAI_VIET">
+            Unicode script "Tai_Viet".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.AVESTAN">
+            Unicode script "Avestan".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.EGYPTIAN_HIEROGLYPHS">
+            Unicode script "Egyptian_Hieroglyphs".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.SAMARITAN">
+            Unicode script "Samaritan".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.MANDAIC">
+            Unicode script "Mandaic".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.LISU">
+            Unicode script "Lisu".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.BAMUM">
+            Unicode script "Bamum".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.JAVANESE">
+            Unicode script "Javanese".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.MEETEI_MAYEK">
+            Unicode script "Meetei_Mayek".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.IMPERIAL_ARAMAIC">
+            Unicode script "Imperial_Aramaic".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.OLD_SOUTH_ARABIAN">
+            Unicode script "Old_South_Arabian".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.INSCRIPTIONAL_PARTHIAN">
+            Unicode script "Inscriptional_Parthian".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.INSCRIPTIONAL_PAHLAVI">
+            Unicode script "Inscriptional_Pahlavi".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.OLD_TURKIC">
+            Unicode script "Old_Turkic".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.BRAHMI">
+            Unicode script "Brahmi".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.KAITHI">
+            Unicode script "Kaithi".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.MEROITIC_HIEROGLYPHS">
+            Unicode script "Meroitic Hieroglyphs".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.MEROITIC_CURSIVE">
+            Unicode script "Meroitic Cursive".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.SORA_SOMPENG">
+            Unicode script "Sora Sompeng".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.CHAKMA">
+            Unicode script "Chakma".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.SHARADA">
+            Unicode script "Sharada".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.TAKRI">
+            Unicode script "Takri".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.MIAO">
+            Unicode script "Miao".
+        </member>
+        <member name="F:iText.Commons.Utils.UnicodeScript.UNKNOWN">
+            Unicode script "Unknown".
+        </member>
+        <member name="T:iText.Commons.Utils.UnicodeScriptUtil">
+            <summary>
+            This file is a helper class for internal usage only.
+            Be aware that its API and functionality may be changed in future.
+            </summary>
+        </member>
+        <member name="M:iText.Commons.Utils.UnicodeScriptUtil.Of(System.Int32)">
+                    * Returns the enum constant representing the Unicode script of which
+                    * the given character (Unicode code point) is assigned to.
+                     *
+                    * @param   codePoint the character (Unicode code point) in question.
+                    * @return  The {@code UnicodeScript} constant representing the
+                    *          Unicode script of which this character is assigned to.
+                    *
+                    * @exception IllegalArgumentException if the specified
+                    * {@code codePoint} is an invalid Unicode code point.
+                    * @see Character#isValidCodePoint(int)
+                    *
+        </member>
+    </members>
+</doc>

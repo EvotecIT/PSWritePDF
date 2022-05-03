@@ -1014,8 +1014,10 @@
             <summary>Verifies a certificate against a single OCSP response</summary>
             <param name="ocspResp">the OCSP response</param>
             <param name="signCert">the certificate that needs to be checked</param>
-            <param name="issuerCert">the certificate of CA (certificate that issued signCert). This certificate is considered trusted and valid by this method.
-                </param>
+            <param name="issuerCert">
+            the certificate of CA (certificate that issued signCert). This certificate is considered trusted
+            and valid by this method.
+            </param>
             <param name="signDate">sign date</param>
             <returns>
             
@@ -1612,18 +1614,23 @@
             <returns>
             a
             <see cref="T:iText.Kernel.Pdf.PdfName"/>
-            that identifies type of the wrapped dictionary, returns null if it is not explicitly specified.
+            that identifies type of the wrapped dictionary,
+            returns null if it is not explicitly specified.
             </returns>
         </member>
         <member name="M:iText.Signatures.PdfSignature.SetByteRange(System.Int32[])">
             <summary>Sets the /ByteRange.</summary>
-            <param name="range">an array of pairs of integers that specifies the byte range used in the digest calculation. A pair consists of the starting byte offset and the length
-                </param>
+            <param name="range">
+            an array of pairs of integers that specifies the byte range used in the digest calculation.
+            A pair consists of the starting byte offset and the length
+            </param>
         </member>
         <member name="M:iText.Signatures.PdfSignature.GetByteRange">
             <summary>Gets the /ByteRange.</summary>
-            <returns>an array of pairs of integers that specifies the byte range used in the digest calculation. A pair consists of the starting byte offset and the length.
-                </returns>
+            <returns>
+            an array of pairs of integers that specifies the byte range used in the digest calculation.
+            A pair consists of the starting byte offset and the length.
+            </returns>
         </member>
         <member name="M:iText.Signatures.PdfSignature.SetContents(System.Byte[])">
             <summary>Sets the /Contents value to the specified byte[].</summary>
