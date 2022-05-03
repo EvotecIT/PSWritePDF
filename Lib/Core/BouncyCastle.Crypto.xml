@@ -4,6 +4,42 @@
         <name>BouncyCastle.Crypto</name>
     </assembly>
     <members>
+        <member name="T:Org.BouncyCastle.Apache.Bzip2.BZip2Constants">
+             Base class for both the compress and decompress classes.
+             Holds common arrays, and static data.
+            
+             @author <a href="mailto:keiron@aftexsw.com">Keiron Liddle</a>
+        </member>
+        <member name="T:Org.BouncyCastle.Apache.Bzip2.CBZip2InputStream">
+             An input stream that decompresses from the BZip2 format (with the file
+             header chars) to be read as any other stream.
+            
+             @author <a href="mailto:keiron@aftexsw.com">Keiron Liddle</a>
+            
+             <b>NB:</b> note this class has been modified to read the leading BZ from the
+             start of the BZIP2 stream to make it compatible with other PGP programs.
+        </member>
+        <member name="T:Org.BouncyCastle.Apache.Bzip2.CBZip2OutputStream">
+             An output stream that compresses into the BZip2 format (with the file
+             header chars) into another stream.
+            
+             @author <a href="mailto:keiron@aftexsw.com">Keiron Liddle</a>
+            
+             TODO:    Update to BZip2 1.0.1
+             <b>NB:</b> note this class has been modified to add a leading BZ to the
+             start of the BZIP2 stream to make it compatible with other PGP programs.
+        </member>
+        <member name="M:Org.BouncyCastle.Apache.Bzip2.CBZip2OutputStream.WriteByte(System.Byte)">
+            
+             modified by Oliver Merkel, 010128
+            
+        </member>
+        <member name="T:Org.BouncyCastle.Apache.Bzip2.CRC">
+             A simple class the hold and calculate the CRC for sanity checking
+             of the data.
+            
+             @author <a href="mailto:keiron@aftexsw.com">Keiron Liddle</a>
+        </member>
         <member name="M:Org.BouncyCastle.Asn1.Anssi.AnssiNamedCurves.GetByOid(Org.BouncyCastle.Asn1.DerObjectIdentifier)">
              return the X9ECParameters object for the named curve represented by
              the passed in object identifier. Null if the curve isn't present.
@@ -4130,22 +4166,6 @@
               }
             
               </pre>
-        </member>
-        <member name="T:Org.BouncyCastle.Asn1.Nist.KMacWithShake128Params">
-            <summary>
-            KMACwithSHAKE128-params ::= SEQUENCE {
-                kMACOutputLength     INTEGER DEFAULT 256, -- Output length in bits
-                customizationString  OCTET STRING DEFAULT ''H
-            } 
-            </summary>
-        </member>
-        <member name="T:Org.BouncyCastle.Asn1.Nist.KMacWithShake256Params">
-            <summary>
-            KMACwithSHAKE256-params ::= SEQUENCE {
-                kMACOutputLength     INTEGER DEFAULT 512, -- Output length in bits
-                customizationString  OCTET STRING DEFAULT ''H
-            } 
-            </summary>
         </member>
         <member name="T:Org.BouncyCastle.Asn1.Nist.NistNamedCurves">
             Utility class for fetching curves using their NIST names as published in FIPS-PUB 186-3
@@ -12467,19 +12487,6 @@
         <member name="M:Org.BouncyCastle.Crypto.Digests.Blake2sDigest.ClearSalt">
             Overwrite the salt (pepper) if it is secret and no longer used
             (zeroization).
-        </member>
-        <member name="T:Org.BouncyCastle.Crypto.Digests.CShakeDigest">
-            <summary>
-            Customizable SHAKE function.
-            </summary>
-        </member>
-        <member name="M:Org.BouncyCastle.Crypto.Digests.CShakeDigest.#ctor(System.Int32,System.Byte[],System.Byte[])">
-            <summary>
-            Base constructor
-            </summary>
-            <param name="bitLength">bit length of the underlying SHAKE function, 128 or 256.</param>
-            <param name="N">the function name string, note this is reserved for use by NIST. Avoid using it if not required.</param>
-            <param name="S">the customization string - available for local use.</param>
         </member>
         <member name="T:Org.BouncyCastle.Crypto.Digests.Dstu7564Digest">
             implementation of Ukrainian DSTU 7564 hash function
@@ -26209,42 +26216,6 @@
             <summary>
             Allows enumeration of the signature names supported by the generator.
             </summary>
-        </member>
-        <member name="T:Org.BouncyCastle.Apache.Bzip2.BZip2Constants">
-             Base class for both the compress and decompress classes.
-             Holds common arrays, and static data.
-            
-             @author <a href="mailto:keiron@aftexsw.com">Keiron Liddle</a>
-        </member>
-        <member name="T:Org.BouncyCastle.Apache.Bzip2.CBZip2InputStream">
-             An input stream that decompresses from the BZip2 format (with the file
-             header chars) to be read as any other stream.
-            
-             @author <a href="mailto:keiron@aftexsw.com">Keiron Liddle</a>
-            
-             <b>NB:</b> note this class has been modified to read the leading BZ from the
-             start of the BZIP2 stream to make it compatible with other PGP programs.
-        </member>
-        <member name="T:Org.BouncyCastle.Apache.Bzip2.CBZip2OutputStream">
-             An output stream that compresses into the BZip2 format (with the file
-             header chars) into another stream.
-            
-             @author <a href="mailto:keiron@aftexsw.com">Keiron Liddle</a>
-            
-             TODO:    Update to BZip2 1.0.1
-             <b>NB:</b> note this class has been modified to add a leading BZ to the
-             start of the BZIP2 stream to make it compatible with other PGP programs.
-        </member>
-        <member name="M:Org.BouncyCastle.Apache.Bzip2.CBZip2OutputStream.WriteByte(System.Byte)">
-            
-             modified by Oliver Merkel, 010128
-            
-        </member>
-        <member name="T:Org.BouncyCastle.Apache.Bzip2.CRC">
-             A simple class the hold and calculate the CRC for sanity checking
-             of the data.
-            
-             @author <a href="mailto:keiron@aftexsw.com">Keiron Liddle</a>
         </member>
         <member name="M:crypto.Security.ComputeHash(System.String,System.String)">
             <summary>

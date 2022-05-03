@@ -250,19 +250,6 @@
             containing the color spaces used in the document
             </param>
         </member>
-        <member name="M:iText.Pdfa.Checker.PdfAChecker.CheckColor(iText.Kernel.Colors.Color,iText.Kernel.Pdf.PdfDictionary,System.Nullable{System.Boolean})">
-            <summary>
-            This method checks compliance with the color restrictions imposed by the
-            available color spaces in the document.
-            </summary>
-            <param name="color">the color to check</param>
-            <param name="currentColorSpaces">
-            a
-            <see cref="T:iText.Kernel.Pdf.PdfDictionary"/>
-            containing the color spaces used in the document
-            </param>
-            <param name="fill">whether the color is used for fill or stroke operations</param>
-        </member>
         <member name="M:iText.Pdfa.Checker.PdfAChecker.CheckColor(iText.Kernel.Colors.Color,iText.Kernel.Pdf.PdfDictionary,System.Nullable{System.Boolean},iText.Kernel.Pdf.PdfStream)">
             <summary>
             This method checks compliance with the color restrictions imposed by the
@@ -308,12 +295,19 @@
             </remarks>
             <param name="intent">the intent to be analyzed</param>
         </member>
-        <member name="M:iText.Pdfa.Checker.PdfAChecker.CheckExtGState(iText.Kernel.Pdf.Canvas.CanvasGraphicsState)">
-            <summary>
-            Performs a number of checks on the graphics state, among others ISO
-            19005-1 section 6.2.8 and 6.4 and ISO 19005-2 section 6.2.5 and 6.2.10.
-            </summary>
-            <param name="extGState">the graphics state to be checked</param>
+        <member name="M:iText.Pdfa.Checker.PdfAChecker.CheckFontGlyphs(iText.Kernel.Font.PdfFont,iText.Kernel.Pdf.PdfStream)">
+            <summary>Performs a check of the each font glyph as a Form XObject.</summary>
+            <remarks>
+            Performs a check of the each font glyph as a Form XObject. See ISO 19005-2 Annex A.5.
+            This only applies to type 3 fonts.
+            This method will be abstract in update 7.2
+            </remarks>
+            <param name="font">
+            
+            <see cref="T:iText.Kernel.Font.PdfFont"/>
+            to be checked
+            </param>
+            <param name="contentStream">stream containing checked font</param>
         </member>
         <member name="M:iText.Pdfa.Checker.PdfAChecker.CheckExtGState(iText.Kernel.Pdf.Canvas.CanvasGraphicsState,iText.Kernel.Pdf.PdfStream)">
             <summary>
@@ -337,20 +331,6 @@
             for most of them we consider that iText always creates valid fonts.
             </remarks>
             <param name="pdfFont">font to be checked</param>
-        </member>
-        <member name="M:iText.Pdfa.Checker.PdfAChecker.CheckFontGlyphs(iText.Kernel.Font.PdfFont,iText.Kernel.Pdf.PdfStream)">
-            <summary>Performs a check of the each font glyph as a Form XObject.</summary>
-            <remarks>
-            Performs a check of the each font glyph as a Form XObject. See ISO 19005-2 Annex A.5.
-            This only applies to type 3 fonts.
-            This method will be abstract in update 7.2
-            </remarks>
-            <param name="font">
-            
-            <see cref="T:iText.Kernel.Font.PdfFont"/>
-            to be checked
-            </param>
-            <param name="contentStream">stream containing checked font</param>
         </member>
         <member name="M:iText.Pdfa.Checker.PdfAChecker.CheckXrefTable(iText.Kernel.Pdf.PdfXrefTable)">
             <summary>Verify the conformity of the cross-reference table.</summary>
@@ -407,20 +387,26 @@
             to check
             </param>
         </member>
-        <member name="T:iText.Pdfa.PdfAConformanceException">
+        <member name="T:iText.Pdfa.Exceptions.PdfAConformanceException">
             <summary>Exception that is thrown when the PDF Document doesn't adhere to the PDF/A specification.</summary>
         </member>
-        <member name="M:iText.Pdfa.PdfAConformanceException.#ctor(System.String)">
+        <member name="M:iText.Pdfa.Exceptions.PdfAConformanceException.#ctor(System.String)">
             <summary>Creates a PdfAConformanceException.</summary>
             <param name="message">the error message</param>
         </member>
-        <member name="M:iText.Pdfa.PdfAConformanceException.#ctor(System.String,System.Object)">
+        <member name="M:iText.Pdfa.Exceptions.PdfAConformanceException.#ctor(System.String,System.Object)">
             <summary>Creates a PdfAConformanceException.</summary>
             <param name="message">the error message</param>
             <param name="object">an object</param>
         </member>
-        <member name="T:iText.Pdfa.PdfAConformanceLogMessageConstant">
+        <member name="T:iText.Pdfa.Exceptions.PdfaExceptionMessageConstant">
+            <summary>Class that bundles all the error message templates as constants.</summary>
+        </member>
+        <member name="T:iText.Pdfa.Logs.PdfAConformanceLogMessageConstant">
             <summary>Class containing pdfa conformance constants to be used in logging.</summary>
+        </member>
+        <member name="T:iText.Pdfa.Logs.PdfALogMessageConstant">
+            <summary>Class containing constants to be used in logging.</summary>
         </member>
         <member name="T:iText.Pdfa.PdfADocument">
             <summary>
@@ -439,7 +425,7 @@
             <see cref="T:iText.Kernel.Pdf.PdfAConformanceLevel"/>
             ) to ensure that the PDF/A standard is followed.
             This class will throw exceptions, mostly
-            <see cref="T:iText.Pdfa.PdfAConformanceException"/>
+            <see cref="T:iText.Pdfa.Exceptions.PdfAConformanceException"/>
             ,
             and thus refuse to output a PDF/A file if at any point the document does not
             adhere to the PDF/A guidelines specified by the
@@ -507,9 +493,6 @@
             a
             <see cref="T:iText.Kernel.Pdf.PdfAConformanceLevel"/>
             </returns>
-        </member>
-        <member name="T:iText.Pdfa.PdfALogMessageConstant">
-            <summary>Class containing constants to be used in logging.</summary>
         </member>
         <member name="T:iText.Pdfa.PdfAXMPUtil">
             <summary>Utilities to construct an XMP for a PDF/A file.</summary>

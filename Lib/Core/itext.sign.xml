@@ -156,11 +156,11 @@
         <member name="T:iText.Signatures.CertificateInfo.X509NameTokenizer">
             <summary>
             Class for breaking up an X500 Name into it's component tokens, similar to
-            <see cref="T:iText.IO.Util.StringTokenizer"/>.
+            <see cref="T:iText.Commons.Utils.StringTokenizer"/>.
             </summary>
             <remarks>
             Class for breaking up an X500 Name into it's component tokens, similar to
-            <see cref="T:iText.IO.Util.StringTokenizer"/>.
+            <see cref="T:iText.Commons.Utils.StringTokenizer"/>.
             We need this class as some of the lightweight Java environments don't support classes such as StringTokenizer.
             </remarks>
         </member>
@@ -559,6 +559,9 @@
             <param name="oid">an id (for instance "1.2.840.113549.1.1.1")</param>
             <returns>an algorithm name (for instance "RSA")</returns>
         </member>
+        <member name="T:iText.Signatures.Exceptions.SignExceptionMessageConstant">
+            <summary>Class that bundles all the error message templates as constants.</summary>
+        </member>
         <member name="T:iText.Signatures.ExternalBlankSignatureContainer">
             <summary>Produces a blank (or empty) signature.</summary>
             <remarks>
@@ -646,15 +649,26 @@
             <summary>Interface for the Online Certificate Status Protocol (OCSP) Client.</summary>
         </member>
         <member name="M:iText.Signatures.IOcspClient.GetEncoded(Org.BouncyCastle.X509.X509Certificate,Org.BouncyCastle.X509.X509Certificate,System.String)">
-            <summary>Gets an encoded byte array with OCSP validation.</summary>
-            <remarks>Gets an encoded byte array with OCSP validation. The method should not throw an exception.</remarks>
+            <summary>Fetch a DER-encoded BasicOCSPResponse from an OCSP responder.</summary>
+            <remarks>
+            Fetch a DER-encoded BasicOCSPResponse from an OCSP responder. The method should not throw
+            an exception.
+            <para />
+            Note: do not pass in the full DER-encoded OCSPResponse object obtained from the responder,
+            only the DER-encoded BasicOCSPResponse value contained in the response data.
+            </remarks>
             <param name="checkCert">Certificate to check.</param>
             <param name="issuerCert">The parent certificate.</param>
             <param name="url">
-            The url to get the verification. It it's null it will be taken.
-            from the check cert or from other implementation specific source
+            The URL of the OCSP responder endpoint. If null, implementations can
+            attempt to obtain a URL from the AuthorityInformationAccess extension of
+            the certificate, or from another implementation-specific source.
             </param>
-            <returns>A byte array with the validation or null if the validation could not be obtained</returns>
+            <returns>
+            a byte array containing a DER-encoded BasicOCSPResponse structure or null if one
+            could not be obtained
+            </returns>
+            <seealso><a href="https://datatracker.ietf.org/doc/html/rfc6960#section-4.2.1">RFC 6960 § 4.2.1</a></seealso>
         </member>
         <member name="T:iText.Signatures.ITSAClient">
             <summary>Time Stamp Authority client (caller) interface.</summary>
@@ -709,6 +723,9 @@
             info about the timestamp and the time stamping authority.
             </summary>
             <param name="info">a TimeStampTokenInfo object</param>
+        </member>
+        <member name="T:iText.Signatures.Logs.SignLogMessageConstant">
+            <summary>Class which contains constants to be used in logging inside sign module.</summary>
         </member>
         <member name="T:iText.Signatures.LtvVerification">
             <summary>Add verification according to PAdES-LTV (part 4).</summary>
@@ -782,9 +799,9 @@
         <member name="M:iText.Signatures.LtvVerification.AddVerification(System.String,System.Collections.Generic.ICollection{System.Byte[]},System.Collections.Generic.ICollection{System.Byte[]},System.Collections.Generic.ICollection{System.Byte[]})">
             <summary>Adds verification to the signature.</summary>
             <param name="signatureName">name of the signature</param>
-            <param name="ocsps">collection of ocsp responses</param>
-            <param name="crls">collection of crls</param>
-            <param name="certs">collection of certificates</param>
+            <param name="ocsps">collection of DER-encoded BasicOCSPResponses</param>
+            <param name="crls">collection of DER-encoded CRLs</param>
+            <param name="certs">collection of DER-encoded certificates</param>
             <returns>boolean</returns>
         </member>
         <member name="M:iText.Signatures.LtvVerification.Merge">
@@ -848,10 +865,10 @@
             <summary>Set the verifyRootCertificate to false if you can't verify the root certificate.</summary>
             <param name="verifyRootCertificate">false if you can't verify the root certificate, otherwise true</param>
         </member>
-        <member name="M:iText.Signatures.LtvVerifier.SetEventCountingMetaInfo(iText.Kernel.Counter.Event.IMetaInfo)">
+        <member name="M:iText.Signatures.LtvVerifier.SetEventCountingMetaInfo(iText.Commons.Actions.Contexts.IMetaInfo)">
             <summary>
             Sets the
-            <see cref="T:iText.Kernel.Counter.Event.IMetaInfo"/>
+            <see cref="T:iText.Commons.Actions.Contexts.IMetaInfo"/>
             that will be used during
             <see cref="T:iText.Kernel.Pdf.PdfDocument"/>
             creation.
@@ -924,8 +941,8 @@
         </member>
         <member name="M:iText.Signatures.OcspClientBouncyCastle.#ctor(iText.Signatures.OCSPVerifier)">
             <summary>
-            Create
-            <c>OcspClient</c>
+            Creates
+            <c>OcspClient</c>.
             </summary>
             <param name="verifier">will be used for response verification.</param>
             <seealso cref="T:iText.Signatures.OCSPVerifier"/>
@@ -940,23 +957,26 @@
             <param name="checkCert">to certificate to check</param>
             <param name="rootCert">the parent certificate</param>
             <param name="url">to get the verification</param>
+            <returns>OCSP response</returns>
         </member>
         <member name="M:iText.Signatures.OcspClientBouncyCastle.GetEncoded(Org.BouncyCastle.X509.X509Certificate,Org.BouncyCastle.X509.X509Certificate,System.String)">
-            <summary>Gets an encoded byte array with OCSP validation.</summary>
-            <remarks>Gets an encoded byte array with OCSP validation. The method should not throw an exception.</remarks>
-            <param name="checkCert">to certificate to check</param>
-            <param name="rootCert">the parent certificate</param>
-            <param name="url">
-            to get the verification. It it's null it will be taken
-            from the check cert or from other implementation specific source
-            </param>
-            <returns>a byte array with the validation or null if the validation could not be obtained</returns>
+            <summary><inheritDoc/></summary>
         </member>
         <member name="M:iText.Signatures.OcspClientBouncyCastle.GenerateOCSPRequest(Org.BouncyCastle.X509.X509Certificate,Org.BouncyCastle.Math.BigInteger)">
             <summary>Generates an OCSP request using BouncyCastle.</summary>
             <param name="issuerCert">certificate of the issues</param>
             <param name="serialNumber">serial number</param>
             <returns>an OCSP request</returns>
+        </member>
+        <member name="M:iText.Signatures.OcspClientBouncyCastle.GetOcspResponse(Org.BouncyCastle.X509.X509Certificate,Org.BouncyCastle.X509.X509Certificate,System.String)">
+            <summary>Gets an OCSP response object using BouncyCastle.</summary>
+            <param name="checkCert">to certificate to check</param>
+            <param name="rootCert">the parent certificate</param>
+            <param name="url">
+            to get the verification. If it's null it will be taken
+            from the check cert or from other implementation specific source
+            </param>
+            <returns>an OCSP response</returns>
         </member>
         <member name="T:iText.Signatures.OCSPVerifier">
             <summary>
@@ -976,9 +996,9 @@
             <param name="ocsps">a list of OCSP responses</param>
         </member>
         <member name="M:iText.Signatures.OCSPVerifier.Verify(Org.BouncyCastle.X509.X509Certificate,Org.BouncyCastle.X509.X509Certificate,System.DateTime)">
-            <summary>Verifies if a a valid OCSP response is found for the certificate.</summary>
+            <summary>Verifies if a valid OCSP response is found for the certificate.</summary>
             <remarks>
-            Verifies if a a valid OCSP response is found for the certificate.
+            Verifies if a valid OCSP response is found for the certificate.
             If this method returns false, it doesn't mean the certificate isn't valid.
             It means we couldn't verify it against any OCSP response that was available.
             </remarks>
@@ -1002,16 +1022,6 @@
             <see langword="true"/>
             , in case successful check, otherwise false.
             </returns>
-        </member>
-        <member name="M:iText.Signatures.OCSPVerifier.IsValidResponse(Org.BouncyCastle.Ocsp.BasicOcspResp,Org.BouncyCastle.X509.X509Certificate)">
-            <summary>
-            Verifies if an OCSP response is genuine
-            If it doesn't verify against the issuer certificate and response's certificates, it may verify
-            using a trusted anchor or cert.
-            </summary>
-            <param name="ocspResp">the OCSP response</param>
-            <param name="issuerCert">the issuer certificate. This certificate is considered trusted and valid by this method.
-                </param>
         </member>
         <member name="M:iText.Signatures.OCSPVerifier.IsValidResponse(Org.BouncyCastle.Ocsp.BasicOcspResp,Org.BouncyCastle.X509.X509Certificate,System.DateTime)">
             <summary>
@@ -1248,7 +1258,12 @@
             <summary>The digest attributes</summary>
         </member>
         <member name="M:iText.Signatures.PdfPKCS7.GetDigestAlgorithmOid">
-            <summary>Getter for the ID of the digest algorithm, e.g. "2.16.840.1.101.3.4.2.1"</summary>
+            <summary>Getter for the ID of the digest algorithm, e.g. "2.16.840.1.101.3.4.2.1".</summary>
+            <remarks>
+            Getter for the ID of the digest algorithm, e.g. "2.16.840.1.101.3.4.2.1".
+            See ISO-32000-1, section 12.8.3.3 PKCS#7 Signatures as used in ISO 32000
+            </remarks>
+            <returns>the ID of the digest algorithm</returns>
         </member>
         <member name="M:iText.Signatures.PdfPKCS7.GetHashAlgorithm">
             <summary>Returns the name of the digest algorithm, e.g. "SHA256".</summary>
@@ -1258,10 +1273,19 @@
             <summary>The encryption algorithm.</summary>
         </member>
         <member name="M:iText.Signatures.PdfPKCS7.GetDigestEncryptionAlgorithmOid">
-            <summary>Getter for the digest encryption algorithm</summary>
+            <summary>Getter for the digest encryption algorithm.</summary>
+            <remarks>
+            Getter for the digest encryption algorithm.
+            See ISO-32000-1, section 12.8.3.3 PKCS#7 Signatures as used in ISO 32000
+            </remarks>
+            <returns>the encryption algorithm</returns>
         </member>
         <member name="M:iText.Signatures.PdfPKCS7.GetDigestAlgorithm">
             <summary>Get the algorithm used to calculate the message digest, e.g. "SHA1withRSA".</summary>
+            <remarks>
+            Get the algorithm used to calculate the message digest, e.g. "SHA1withRSA".
+            See ISO-32000-1, section 12.8.3.3 PKCS#7 Signatures as used in ISO 32000
+            </remarks>
             <returns>the algorithm used to calculate the message digest</returns>
         </member>
         <member name="F:iText.Signatures.PdfPKCS7.externalDigest">
@@ -1316,23 +1340,6 @@
             <param name="secondDigest">the digest in the authenticatedAttributes</param>
             <returns>the bytes for the PKCS7SignedData object</returns>
         </member>
-        <member name="M:iText.Signatures.PdfPKCS7.GetEncodedPKCS7(System.Byte[],iText.Signatures.ITSAClient,System.Byte[],System.Collections.Generic.ICollection{System.Byte[]},iText.Signatures.PdfSigner.CryptoStandard)">
-            <summary>Gets the bytes for the PKCS7SignedData object.</summary>
-            <remarks>
-            Gets the bytes for the PKCS7SignedData object. Optionally the authenticatedAttributes
-            in the signerInfo can also be set, and/or a time-stamp-authority client
-            may be provided.
-            </remarks>
-            <param name="secondDigest">the digest in the authenticatedAttributes</param>
-            <param name="tsaClient">TSAClient - null or an optional time stamp authority client</param>
-            <param name="ocsp">DER-encoded OCSP response for the first certificate in the signature certificates chain, or null if OCSP revocation data is not to be added.
-                </param>
-            <param name="crlBytes">collection of DER-encoded CRL for certificates from the signature certificates chain, or null if CRL revocation data is not to be added.
-                </param>
-            <param name="sigtype">specifies the PKCS7 standard flavor to which created PKCS7SignedData object will adhere: either basic CMS or CAdES
-                </param>
-            <returns>byte[] the bytes for the PKCS7SignedData object</returns>
-        </member>
         <member name="M:iText.Signatures.PdfPKCS7.GetEncodedPKCS7(System.Byte[],iText.Signatures.PdfSigner.CryptoStandard,iText.Signatures.ITSAClient,System.Collections.Generic.ICollection{System.Byte[]},System.Collections.Generic.ICollection{System.Byte[]})">
             <summary>Gets the bytes for the PKCS7SignedData object.</summary>
             <remarks>
@@ -1344,10 +1351,15 @@
             <param name="sigtype">specifies the PKCS7 standard flavor to which created PKCS7SignedData object will adhere: either basic CMS or CAdES
                 </param>
             <param name="tsaClient">TSAClient - null or an optional time stamp authority client</param>
-            <param name="ocsp">collection of DER-encoded OCSP responses for the  certificate in the signature certificates chain, or null if OCSP revocation data is not to be added.
-                </param>
-            <param name="crlBytes">collection of DER-encoded CRL for certificates from the signature certificates chain, or null if CRL revocation data is not to be added.
-                </param>
+            <param name="ocsp">
+            collection of DER-encoded BasicOCSPResponses for the  certificate in the signature certificates
+            chain, or null if OCSP revocation data is not to be added.
+            </param>
+            <param name="crlBytes">
+            collection of DER-encoded CRL for certificates from the signature certificates chain,
+            or null if CRL revocation data is not to be added.
+            </param>
+            <seealso><a href="https://datatracker.ietf.org/doc/html/rfc6960#section-4.2.1">RFC 6960 § 4.2.1</a></seealso>
             <returns>byte[] the bytes for the PKCS7SignedData object</returns>
         </member>
         <member name="M:iText.Signatures.PdfPKCS7.BuildUnauthenticatedAttributes(System.Byte[])">
@@ -1364,42 +1376,6 @@
             <param name="timeStampToken">byte[] - time stamp token, DER encoded signedData</param>
             <returns>ASN1EncodableVector</returns>
         </member>
-        <member name="M:iText.Signatures.PdfPKCS7.GetAuthenticatedAttributeBytes(System.Byte[],System.Byte[],System.Collections.Generic.ICollection{System.Byte[]},iText.Signatures.PdfSigner.CryptoStandard)">
-            <summary>When using authenticatedAttributes the authentication process is different.</summary>
-            <remarks>
-            When using authenticatedAttributes the authentication process is different.
-            The document digest is generated and put inside the attribute. The signing is done over the DER encoded
-            authenticatedAttributes. This method provides that encoding and the parameters must be
-            exactly the same as in
-            <see cref="M:iText.Signatures.PdfPKCS7.GetEncodedPKCS7(System.Byte[])"/>.
-            <para />
-            A simple example:
-            <para />
-            <pre>
-            Calendar cal = Calendar.getInstance();
-            PdfPKCS7 pk7 = new PdfPKCS7(key, chain, null, "SHA1", null, false);
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA1");
-            byte[] buf = new byte[8192];
-            int n;
-            InputStream inp = sap.getRangeStream();
-            while ((n = inp.read(buf)) &gt; 0) {
-            messageDigest.update(buf, 0, n);
-            }
-            byte[] hash = messageDigest.digest();
-            byte[] sh = pk7.getAuthenticatedAttributeBytes(hash, cal);
-            pk7.update(sh, 0, sh.length);
-            byte[] sg = pk7.getEncodedPKCS7(hash, cal);
-            </pre>
-            </remarks>
-            <param name="secondDigest">the content digest</param>
-            <param name="ocsp">collection of DER-encoded OCSP responses for the  certificate in the signature certificates chain, or null if OCSP revocation data is not to be added.
-                </param>
-            <param name="crlBytes">collection of DER-encoded CRL for certificates from the signature certificates chain, or null if CRL revocation data is not to be added.
-                </param>
-            <param name="sigtype">specifies the PKCS7 standard flavor to which created PKCS7SignedData object will adhere: either basic CMS or CAdES
-                </param>
-            <returns>the byte array representation of the authenticatedAttributes ready to be signed</returns>
-        </member>
         <member name="M:iText.Signatures.PdfPKCS7.GetAuthenticatedAttributeBytes(System.Byte[],iText.Signatures.PdfSigner.CryptoStandard,System.Collections.Generic.ICollection{System.Byte[]},System.Collections.Generic.ICollection{System.Byte[]})">
             <summary>When using authenticatedAttributes the authentication process is different.</summary>
             <remarks>
@@ -1409,8 +1385,10 @@
             exactly the same as in
             <see cref="M:iText.Signatures.PdfPKCS7.GetEncodedPKCS7(System.Byte[])"/>.
             <para />
-            A simple example:
+            Note: do not pass in the full DER-encoded OCSPResponse object obtained from the responder,
+            only the DER-encoded BasicOCSPResponse value contained in the response data.
             <para />
+            A simple example:
             <pre>
             Calendar cal = Calendar.getInstance();
             PdfPKCS7 pk7 = new PdfPKCS7(key, chain, null, "SHA1", null, false);
@@ -1428,13 +1406,20 @@
             </pre>
             </remarks>
             <param name="secondDigest">the content digest</param>
-            <param name="sigtype">specifies the PKCS7 standard flavor to which created PKCS7SignedData object will adhere: either basic CMS or CAdES
-                </param>
-            <param name="ocsp">collection of DER-encoded OCSP responses for the  certificate in the signature certificates chain, or null if OCSP revocation data is not to be added.
-                </param>
-            <param name="crlBytes">collection of DER-encoded CRL for certificates from the signature certificates chain, or null if CRL revocation data is not to be added.
-                </param>
+            <param name="sigtype">
+            specifies the PKCS7 standard flavor to which created PKCS7SignedData object will adhere:
+            either basic CMS or CAdES
+            </param>
+            <param name="ocsp">
+            collection of DER-encoded BasicOCSPResponses for the  certificate in the signature certificates
+            chain, or null if OCSP revocation data is not to be added.
+            </param>
+            <param name="crlBytes">
+            collection of DER-encoded CRL for certificates from the signature certificates chain,
+            or null if CRL revocation data is not to be added.
+            </param>
             <returns>the byte array representation of the authenticatedAttributes ready to be signed</returns>
+            <seealso><a href="https://datatracker.ietf.org/doc/html/rfc6960#section-4.2.1">RFC 6960 § 4.2.1</a></seealso>
         </member>
         <member name="M:iText.Signatures.PdfPKCS7.GetAuthenticatedAttributeSet(System.Byte[],System.Collections.Generic.ICollection{System.Byte[]},System.Collections.Generic.ICollection{System.Byte[]},iText.Signatures.PdfSigner.CryptoStandard)">
             <summary>
@@ -1459,10 +1444,6 @@
         </member>
         <member name="F:iText.Signatures.PdfPKCS7.verifyResult">
             <summary>The result of the verification</summary>
-        </member>
-        <member name="M:iText.Signatures.PdfPKCS7.Verify">
-            <summary>Verify the digest.</summary>
-            <returns><c>true</c> if the signature checks out, <c>false</c> otherwise</returns>
         </member>
         <member name="M:iText.Signatures.PdfPKCS7.VerifySignatureIntegrityAndAuthenticity">
             <summary>
@@ -1576,7 +1557,8 @@
             <returns>the timestamp date</returns>
         </member>
         <member name="M:iText.Signatures.PdfPKCS7.GetFilterSubtype">
-            <summary>Returns the filter subtype.</summary>
+            <summary>Getter for the filter subtype.</summary>
+            <returns>the filter subtype</returns>
         </member>
         <member name="M:iText.Signatures.PdfPKCS7.GetEncryptionAlgorithm">
             <summary>Returns the encryption algorithm</summary>
@@ -1649,6 +1631,11 @@
         </member>
         <member name="M:iText.Signatures.PdfSignature.GetContents">
             <summary>Gets the /Contents entry value.</summary>
+            <remarks>
+            Gets the /Contents entry value.
+            See ISO 32000-1 12.8.1, Table 252 – Entries in a signature dictionary.
+            </remarks>
+            <returns>the signature content</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignature.SetCert(System.Byte[])">
             <summary>Sets the /Cert value of this signature.</summary>
@@ -1656,6 +1643,19 @@
         </member>
         <member name="M:iText.Signatures.PdfSignature.GetCert">
             <summary>Gets the /Cert entry value of this signature.</summary>
+            <remarks>
+            Gets the /Cert entry value of this signature.
+            See ISO 32000-1 12.8.1, Table 252 – Entries in a signature dictionary.
+            </remarks>
+            <returns>the signature cert</returns>
+        </member>
+        <member name="M:iText.Signatures.PdfSignature.GetCertObject">
+            <summary>Gets the /Cert entry value of this signature.</summary>
+            <remarks>
+            Gets the /Cert entry value of this signature.
+            /Cert entry required when SubFilter is adbe.x509.rsa_sha1. May be array or byte string.
+            </remarks>
+            <returns>the signature cert value</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignature.SetName(System.String)">
             <summary>Sets the /Name of the person signing the document.</summary>
@@ -1863,6 +1863,7 @@
             The page number of the signature field which
             this signature appearance is associated with.
             </param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.GetPageRect">
             <summary>
@@ -1883,13 +1884,26 @@
             The rectangle that represents the position and
             dimension of the signature field in the page.
             </param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.GetLayer0">
             <summary>Get Layer 0 of the appearance.</summary>
+            <remarks>
+            Get Layer 0 of the appearance.
+            <para />
+            The size of the layer is determined by the rectangle set via
+            <see cref="M:iText.Signatures.PdfSignatureAppearance.SetPageRect(iText.Kernel.Geom.Rectangle)"/>
+            </remarks>
             <returns>layer 0</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.GetLayer2">
             <summary>Get Layer 2 of the appearance.</summary>
+            <remarks>
+            Get Layer 2 of the appearance.
+            <para />
+            The size of the layer is determined by the rectangle set via
+            <see cref="M:iText.Signatures.PdfSignatureAppearance.SetPageRect(iText.Kernel.Geom.Rectangle)"/>
+            </remarks>
             <returns>layer 2</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.GetRenderingMode">
@@ -1899,6 +1913,7 @@
         <member name="M:iText.Signatures.PdfSignatureAppearance.SetRenderingMode(iText.Signatures.PdfSignatureAppearance.RenderingMode)">
             <summary>Sets the rendering mode for this signature.</summary>
             <param name="renderingMode">the rendering mode</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.GetReason">
             <summary>Returns the signing reason.</summary>
@@ -1907,10 +1922,12 @@
         <member name="M:iText.Signatures.PdfSignatureAppearance.SetReason(System.String)">
             <summary>Sets the signing reason.</summary>
             <param name="reason">signing reason.</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.SetReasonCaption(System.String)">
             <summary>Sets the caption for the signing reason.</summary>
             <param name="reasonCaption">A new signing reason caption</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.GetLocation">
             <summary>Returns the signing location.</summary>
@@ -1919,10 +1936,12 @@
         <member name="M:iText.Signatures.PdfSignatureAppearance.SetLocation(System.String)">
             <summary>Sets the signing location.</summary>
             <param name="location">A new signing location</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.SetLocationCaption(System.String)">
             <summary>Sets the caption for the signing location.</summary>
             <param name="locationCaption">A new signing location caption</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.GetSignatureCreator">
             <summary>Returns the signature creator.</summary>
@@ -1931,6 +1950,7 @@
         <member name="M:iText.Signatures.PdfSignatureAppearance.SetSignatureCreator(System.String)">
             <summary>Sets the name of the application used to create the signature.</summary>
             <param name="signatureCreator">A new name of the application signing a document</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.GetContact">
             <summary>Returns the signing contact.</summary>
@@ -1939,6 +1959,7 @@
         <member name="M:iText.Signatures.PdfSignatureAppearance.SetContact(System.String)">
             <summary>Sets the signing contact.</summary>
             <param name="contact">A new signing contact</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.SetCertificate(Org.BouncyCastle.X509.X509Certificate)">
             <summary>Sets the certificate used to provide the text in the appearance.</summary>
@@ -1947,6 +1968,7 @@
             This certificate doesn't take part in the actual signing process.
             </remarks>
             <param name="signCertificate">the certificate</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.GetCertificate">
             <summary>Get the signing certificate.</summary>
@@ -1960,10 +1982,12 @@
             <summary>Sets the Image object to render when Render is set to RenderingMode.GRAPHIC or RenderingMode.GRAPHIC_AND_DESCRIPTION.
                 </summary>
             <param name="signatureGraphic">image rendered. If null the mode is defaulted to RenderingMode.DESCRIPTION</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.SetReuseAppearance(System.Boolean)">
             <summary>Indicates that the existing appearances needs to be reused as layer 0.</summary>
-            <param name="reuseAppearance"/>
+            <param name="reuseAppearance">is an appearances reusing flag value to set</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.GetImage">
             <summary>Gets the background image for the layer 2.</summary>
@@ -1972,6 +1996,7 @@
         <member name="M:iText.Signatures.PdfSignatureAppearance.SetImage(iText.IO.Image.ImageData)">
             <summary>Sets the background image for the layer 2.</summary>
             <param name="image">the background image for the layer 2</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.GetImageScale">
             <summary>Gets the scaling to be applied to the background image.</summary>
@@ -1986,6 +2011,7 @@
             In any of the cases the image will always be centered. It's zero by default.
             </remarks>
             <param name="imageScale">the scaling to be applied to the background image</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.SetLayer2Text(System.String)">
             <summary>Sets the signature text identifying the signer.</summary>
@@ -1993,6 +2019,7 @@
             the signature text identifying the signer. If null or not set
             a standard description will be used
             </param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.GetLayer2Text">
             <summary>Gets the signature text identifying the signer if set by setLayer2Text().</summary>
@@ -2006,10 +2033,12 @@
             <summary>Sets the n2 and n4 layer font.</summary>
             <remarks>Sets the n2 and n4 layer font. If the font size is zero, auto-fit will be used.</remarks>
             <param name="layer2Font">the n2 and n4 font</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.SetLayer2FontSize(System.Single)">
             <summary>Sets the n2 and n4 layer font size.</summary>
             <param name="fontSize">font size</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.GetLayer2FontSize">
             <summary>Gets the n2 and n4 layer font size.</summary>
@@ -2018,6 +2047,7 @@
         <member name="M:iText.Signatures.PdfSignatureAppearance.SetLayer2FontColor(iText.Kernel.Colors.Color)">
             <summary>Sets the n2 and n4 layer font color.</summary>
             <param name="color">font color</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.GetLayer2FontColor">
             <summary>Gets the n2 and n4 layer font color.</summary>
@@ -2029,9 +2059,9 @@
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.GetAppearance">
             <summary>Constructs appearance (top-level) for a signature.</summary>
-            <seealso><a href="http://partners.adobe.com/asn/developer/pdfs/tn/ppkappearances.pdf">PPKAppearances.pdf</a> for further details
-                </seealso>
             <returns>a top-level signature appearance</returns>
+            <seealso><a href="https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/ppkappearances.pdf">Adobe Pdf Digital
+            * Signature Appearances</a></seealso>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.GetSignDate">
             <summary>Returns the signature date.</summary>
@@ -2040,10 +2070,12 @@
         <member name="M:iText.Signatures.PdfSignatureAppearance.SetSignDate(System.DateTime)">
             <summary>Sets the signature date.</summary>
             <param name="signDate">A new signature date</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="M:iText.Signatures.PdfSignatureAppearance.SetFieldName(System.String)">
             <summary>Set the field name of the appearance.</summary>
             <param name="fieldName">name of the field</param>
+            <returns>this instance to support fluent interface</returns>
         </member>
         <member name="T:iText.Signatures.PdfSignatureAppearance.RenderingMode">
             <summary>Signature rendering modes.</summary>
@@ -2174,29 +2206,6 @@
         </member>
         <member name="F:iText.Signatures.PdfSigner.closed">
             <summary>Boolean to check if this PdfSigner instance has been closed already or not.</summary>
-        </member>
-        <member name="M:iText.Signatures.PdfSigner.#ctor(iText.Kernel.Pdf.PdfReader,System.IO.Stream,System.Boolean)">
-            <summary>Creates a PdfSigner instance.</summary>
-            <remarks>
-            Creates a PdfSigner instance. Uses a
-            <see cref="T:System.IO.MemoryStream"/>
-            instead of a temporary file.
-            </remarks>
-            <param name="reader">PdfReader that reads the PDF file</param>
-            <param name="outputStream">OutputStream to write the signed PDF file</param>
-            <param name="append">boolean to indicate whether the signing should happen in append mode or not</param>
-        </member>
-        <member name="M:iText.Signatures.PdfSigner.#ctor(iText.Kernel.Pdf.PdfReader,System.IO.Stream,System.String,System.Boolean)">
-            <summary>Creates a PdfSigner instance.</summary>
-            <remarks>
-            Creates a PdfSigner instance. Uses a
-            <see cref="T:System.IO.MemoryStream"/>
-            instead of a temporary file.
-            </remarks>
-            <param name="reader">PdfReader that reads the PDF file</param>
-            <param name="outputStream">OutputStream to write the signed PDF file</param>
-            <param name="path">File to which the output is temporarily written</param>
-            <param name="append">boolean to indicate whether the signing should happen in append mode or not</param>
         </member>
         <member name="M:iText.Signatures.PdfSigner.#ctor(iText.Kernel.Pdf.PdfReader,System.IO.Stream,iText.Kernel.Pdf.StampingProperties)">
             <summary>Creates a PdfSigner instance.</summary>
@@ -2468,6 +2477,37 @@
             calculation. The key is a PdfName and the value an Integer. At least the /Contents must be present
             </param>
         </member>
+        <member name="M:iText.Signatures.PdfSigner.PopulateExistingSignatureFormField(iText.Forms.PdfAcroForm)">
+            <summary>Populates already existing signature form field in the acroForm object.</summary>
+            <remarks>
+            Populates already existing signature form field in the acroForm object.
+            This method is called during the
+            <see cref="!:PreClose(System.Collections.Generic.IDictionary&lt;K, V&gt;)"/>
+            method if the signature field already exists.
+            </remarks>
+            <param name="acroForm">
+            
+            <see cref="T:iText.Forms.PdfAcroForm"/>
+            object in which the signature field will be populated
+            </param>
+            <returns>signature field lock dictionary</returns>
+        </member>
+        <member name="M:iText.Signatures.PdfSigner.CreateNewSignatureFormField(iText.Forms.PdfAcroForm,System.String)">
+            <summary>Creates new signature form field and adds it to the acroForm object.</summary>
+            <remarks>
+            Creates new signature form field and adds it to the acroForm object.
+            This method is called during the
+            <see cref="!:PreClose(System.Collections.Generic.IDictionary&lt;K, V&gt;)"/>
+            method if the signature field doesn't exist.
+            </remarks>
+            <param name="acroForm">
+            
+            <see cref="T:iText.Forms.PdfAcroForm"/>
+            object in which new signature field will be added
+            </param>
+            <param name="name">the name of the field</param>
+            <returns>signature field lock dictionary</returns>
+        </member>
         <member name="M:iText.Signatures.PdfSigner.GetRangeStream">
             <summary>Gets the document bytes that are hashable when using external signatures.</summary>
             <remarks>
@@ -2635,13 +2675,17 @@
             <summary>An array of PdfString values with fieldnames</summary>
         </member>
         <member name="M:iText.Signatures.SignaturePermissions.FieldLock.#ctor(iText.Signatures.SignaturePermissions,iText.Kernel.Pdf.PdfName,iText.Kernel.Pdf.PdfArray)">
-            <summary>Creates a FieldLock instance</summary>
+            <summary>Creates a FieldLock instance.</summary>
+            <param name="action">indicates the set of fields that should be locked</param>
+            <param name="fields">an array of text strings containing field names</param>
         </member>
         <member name="M:iText.Signatures.SignaturePermissions.FieldLock.GetAction">
             <summary>Getter for the field lock action.</summary>
+            <returns>the action of field lock dictionary</returns>
         </member>
         <member name="M:iText.Signatures.SignaturePermissions.FieldLock.GetFields">
             <summary>Getter for the fields involved in the lock action.</summary>
+            <returns>the fields of field lock dictionary</returns>
         </member>
         <member name="M:iText.Signatures.SignaturePermissions.FieldLock.ToString">
             <summary>toString method</summary>
@@ -2664,6 +2708,8 @@
             in a signature dictionary as well as some of the permissions
             defined by the signature.
             </summary>
+            <param name="sigDict">the signature dictionary</param>
+            <param name="previous">the signature permissions</param>
         </member>
         <member name="M:iText.Signatures.SignaturePermissions.IsCertification">
             <summary>Getter to find out if the signature is a certification signature.</summary>
@@ -2714,15 +2760,6 @@
         <member name="T:iText.Signatures.SignatureUtil">
             <summary>Utility class that provides several convenience methods concerning digital signatures.</summary>
         </member>
-        <member name="M:iText.Signatures.SignatureUtil.AsLongArray(iText.Kernel.Pdf.PdfArray)">
-            <summary>
-            Converts a
-            <see cref="T:iText.Kernel.Pdf.PdfArray"/>
-            to an array of longs
-            </summary>
-            <param name="pdfArray">PdfArray to be converted</param>
-            <returns>long[] containing the PdfArray values</returns>
-        </member>
         <member name="M:iText.Signatures.SignatureUtil.#ctor(iText.Kernel.Pdf.PdfDocument)">
             <summary>Creates a SignatureUtil instance.</summary>
             <remarks>
@@ -2730,37 +2767,6 @@
             iText will create a new AcroForm if the PdfDocument doesn't contain one.
             </remarks>
             <param name="document">PdfDocument to be inspected</param>
-        </member>
-        <member name="M:iText.Signatures.SignatureUtil.VerifySignature(System.String)">
-            <summary>
-            Prepares an
-            <see cref="T:iText.Signatures.PdfPKCS7"/>
-            instance for the given signature.
-            </summary>
-            <remarks>
-            Prepares an
-            <see cref="T:iText.Signatures.PdfPKCS7"/>
-            instance for the given signature.
-            This method handles signature parsing and might throw an exception if
-            signature is malformed.
-            <para />
-            The returned
-            <see cref="T:iText.Signatures.PdfPKCS7"/>
-            can be used to fetch additional info about the signature
-            and also to perform integrity check of data signed by the given signature field.
-            <para />
-            In order to check that given signature covers the current PdfDocument revision please
-            use
-            <see cref="M:iText.Signatures.SignatureUtil.SignatureCoversWholeDocument(System.String)"/>
-            method.
-            </remarks>
-            <param name="name">the signature field name</param>
-            <returns>
-            a
-            <see cref="T:iText.Signatures.PdfPKCS7"/>
-            instance which can be used to fetch additional info about the signature
-            and also to perform integrity check of data signed by the given signature field.
-            </returns>
         </member>
         <member name="M:iText.Signatures.SignatureUtil.ReadSignatureData(System.String)">
             <summary>
@@ -2861,6 +2867,7 @@
              </summary>
              <param name="cert"></param>
              <returns></returns>
+             TODO DEVSIX-2534
         </member>
         <member name="F:iText.Signatures.TimestampConstants.UNDEFINED_TIMESTAMP_DATE">
             <summary>The timestamp which is returned in case the signed document doesn't contain timestamp.</summary>
@@ -2930,10 +2937,11 @@
             size is not likely to change (as long as we call the same TSA using
             the same imprint length).
             </remarks>
-            <param name="url">String - Time Stamp Authority URL (i.e. "http://tsatest1.digistamp.com/TSA")</param>
-            <param name="username">String - user(account) name</param>
-            <param name="password">String - password</param>
-            <param name="tokSzEstimate">int - estimated size of received time stamp token (DER encoded)</param>
+            <param name="url">Time Stamp Authority URL (i.e. "http://tsatest1.digistamp.com/TSA")</param>
+            <param name="username">user(account) name</param>
+            <param name="password">password</param>
+            <param name="tokSzEstimate">estimated size of received time stamp token (DER encoded)</param>
+            <param name="digestAlgorithm">is a hash algorithm</param>
         </member>
         <member name="M:iText.Signatures.TSAClientBouncyCastle.SetTSAInfo(iText.Signatures.ITSAInfoBouncyCastle)">
             <param name="tsaInfo">the tsaInfo to set</param>
@@ -2969,13 +2977,16 @@
         </member>
         <member name="M:iText.Signatures.TSAClientBouncyCastle.GetTSAResponse(System.Byte[])">
             <summary>Get timestamp token - communications layer</summary>
+            <param name="requestBytes">is a byte representation of TSA request</param>
             <returns>- byte[] - TSA response, raw bytes (RFC 3161 encoded)</returns>
         </member>
         <member name="T:iText.Signatures.VerificationException">
             <summary>An exception that is thrown when something is wrong with a certificate.</summary>
         </member>
         <member name="M:iText.Signatures.VerificationException.#ctor(Org.BouncyCastle.X509.X509Certificate,System.String)">
-            <summary>Creates a VerificationException</summary>
+            <summary>Creates a VerificationException.</summary>
+            <param name="cert">is a failed certificate</param>
+            <param name="message">is a reason of failure</param>
         </member>
         <member name="T:iText.Signatures.VerificationOK">
             <summary>

@@ -1810,6 +1810,70 @@
             <summary>Get the number of color components in the profile.</summary>
             <returns>number of components</returns>
         </member>
+        <member name="T:iText.IO.Exceptions.ExceptionUtil">
+            <summary>This file is a helper class for internal usage only.</summary>
+            <remarks>
+            This file is a helper class for internal usage only.
+            Be aware that its API and functionality may be changed in future.
+            </remarks>
+        </member>
+        <member name="T:iText.IO.Exceptions.IOException">
+            <summary>Exception class for exceptions in io module.</summary>
+        </member>
+        <member name="F:iText.IO.Exceptions.IOException.obj">
+            <summary>Object for more details</summary>
+        </member>
+        <member name="M:iText.IO.Exceptions.IOException.#ctor(System.String)">
+            <summary>Creates a new IOException.</summary>
+            <param name="message">the detail message.</param>
+        </member>
+        <member name="M:iText.IO.Exceptions.IOException.#ctor(System.Exception)">
+            <summary>Creates a new IOException.</summary>
+            <param name="cause">
+            the cause (which is saved for later retrieval by
+            <see cref="P:System.Exception.InnerException"/>
+            method).
+            </param>
+        </member>
+        <member name="M:iText.IO.Exceptions.IOException.#ctor(System.String,System.Object)">
+            <summary>Creates a new IOException.</summary>
+            <param name="message">the detail message.</param>
+            <param name="obj">an object for more details.</param>
+        </member>
+        <member name="M:iText.IO.Exceptions.IOException.#ctor(System.String,System.Exception)">
+            <summary>Creates a new IOException.</summary>
+            <param name="message">the detail message.</param>
+            <param name="cause">
+            the cause (which is saved for later retrieval by
+            <see cref="P:System.Exception.InnerException"/>
+            method).
+            </param>
+        </member>
+        <member name="M:iText.IO.Exceptions.IOException.#ctor(System.String,System.Exception,System.Object)">
+            <summary>Creates a new instance of IOException.</summary>
+            <param name="message">the detail message.</param>
+            <param name="cause">
+            the cause (which is saved for later retrieval by
+            <see cref="P:System.Exception.InnerException"/>
+            method).
+            </param>
+            <param name="obj">an object for more details.</param>
+        </member>
+        <member name="P:iText.IO.Exceptions.IOException.Message">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.IO.Exceptions.IOException.GetMessageParams">
+            <summary>Gets additional params for Exception message.</summary>
+            <returns>params for exception message.</returns>
+        </member>
+        <member name="M:iText.IO.Exceptions.IOException.SetMessageParams(System.Object[])">
+            <summary>Sets additional params for Exception message.</summary>
+            <param name="messageParams">additional params.</param>
+            <returns>object itself.</returns>
+        </member>
+        <member name="T:iText.IO.Exceptions.IoExceptionMessage">
+            <summary>Class containing constants to be used in exceptions in the IO module.</summary>
+        </member>
         <member name="T:iText.IO.Font.CFFFont.Item">
             <summary>List items for the linked list that builds the new CID font.</summary>
         </member>
@@ -2292,10 +2356,6 @@
             <param name="cmap">a CMAP</param>
             <returns>true, if the CMapEncoding was built with the cmap. Otherwise false.</returns>
         </member>
-        <member name="M:iText.IO.Font.CMapEncoding.GetCmapCode(System.Int32)">
-            <param name="cid">a CID</param>
-            <returns>CMAP code as an int</returns>
-        </member>
         <member name="T:iText.IO.Font.Cmap.AbstractCMap">
             <author>psoares</author>
         </member>
@@ -2620,70 +2680,6 @@
             argument is set to true (which is by default).
             </remarks>
         </member>
-        <member name="T:iText.IO.Font.FontConstants">
-            <summary>
-            Font constants for
-            <see cref="T:iText.IO.Font.FontProgramFactory"/>
-            and PdfFontFactory.
-            </summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.UNDEFINED">
-            <summary>Undefined font style.</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.NORMAL">
-            <summary>Normal font style.</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.BOLD">
-            <summary>Bold font style.</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.ITALIC">
-            <summary>Italic font style.</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.BOLDITALIC">
-            <summary>Bold-Italic font style.</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.COURIER">
-            <summary>This is a possible value of a base 14 type 1 font</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.COURIER_BOLD">
-            <summary>This is a possible value of a base 14 type 1 font</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.COURIER_OBLIQUE">
-            <summary>This is a possible value of a base 14 type 1 font</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.COURIER_BOLDOBLIQUE">
-            <summary>This is a possible value of a base 14 type 1 font</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.HELVETICA">
-            <summary>This is a possible value of a base 14 type 1 font</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.HELVETICA_BOLD">
-            <summary>This is a possible value of a base 14 type 1 font</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.HELVETICA_OBLIQUE">
-            <summary>This is a possible value of a base 14 type 1 font</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.HELVETICA_BOLDOBLIQUE">
-            <summary>This is a possible value of a base 14 type 1 font</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.SYMBOL">
-            <summary>This is a possible value of a base 14 type 1 font</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.TIMES_ROMAN">
-            <summary>This is a possible value of a base 14 type 1 font</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.TIMES_BOLD">
-            <summary>This is a possible value of a base 14 type 1 font</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.TIMES_ITALIC">
-            <summary>This is a possible value of a base 14 type 1 font</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.TIMES_BOLDITALIC">
-            <summary>This is a possible value of a base 14 type 1 font</summary>
-        </member>
-        <member name="F:iText.IO.Font.FontConstants.ZAPFDINGBATS">
-            <summary>This is a possible value of a base 14 type 1 font</summary>
-        </member>
         <member name="F:iText.IO.Font.FontEncoding.NOTDEF">
             <summary>A not defined character in a custom PDF encoding.</summary>
         </member>
@@ -2720,6 +2716,16 @@
             <summary>Gets unicode value for corresponding font's char code.</summary>
             <param name="index">font's char code</param>
             <returns>-1, if the char code unsupported or valid unicode.</returns>
+        </member>
+        <member name="M:iText.IO.Font.FontEncoding.SetDifference(System.Int32,System.String)">
+            <summary>Sets a new value in the differences array.</summary>
+            <remarks>
+            Sets a new value in the differences array.
+            See
+            <see cref="F:iText.IO.Font.FontEncoding.differences"/>.
+            </remarks>
+            <param name="index">position to replace</param>
+            <param name="difference">new difference value</param>
         </member>
         <member name="M:iText.IO.Font.FontEncoding.ConvertToBytes(System.String)">
             <summary>
@@ -2812,6 +2818,62 @@
             <param name="enc">the encoding to be normalized</param>
             <returns>the normalized encoding</returns>
         </member>
+        <member name="M:iText.IO.Font.FontMetrics.GetTypoAscender">
+            <summary>Gets typo (a.k.a. sTypo or OS/2) vertical metric corresponding to ascender.</summary>
+            <remarks>
+            Gets typo (a.k.a. sTypo or OS/2) vertical metric corresponding to ascender.
+            <para />
+            Typo vertical metrics are the primary source for iText ascender/descender calculations.
+            </remarks>
+            <returns>typo ascender value in normalized 1000-units</returns>
+        </member>
+        <member name="M:iText.IO.Font.FontMetrics.GetTypoDescender">
+            <summary>Gets typo (a.k.a. sTypo or OS/2) vertical metric corresponding to descender.</summary>
+            <remarks>
+            Gets typo (a.k.a. sTypo or OS/2) vertical metric corresponding to descender.
+            <para />
+            Typo vertical metrics are the primary source for iText ascender/descender calculations.
+            </remarks>
+            <returns>typo descender value in normalized 1000-units</returns>
+        </member>
+        <member name="M:iText.IO.Font.FontMetrics.GetCapHeight">
+            <summary>Gets the capital letters height.</summary>
+            <remarks>
+            Gets the capital letters height.
+            <para />
+            This property defines the vertical coordinate of the top of flat capital letters,
+            measured from the baseline.
+            </remarks>
+            <returns>cap height in 1000-units</returns>
+        </member>
+        <member name="M:iText.IO.Font.FontMetrics.SetTypoAscender(System.Int32)">
+            <summary>Sets typo (a.k.a. sTypo or OS/2) vertical metric corresponding to ascender.</summary>
+            <remarks>
+            Sets typo (a.k.a. sTypo or OS/2) vertical metric corresponding to ascender.
+            <para />
+            Typo vertical metrics are the primary source for iText ascender/descender calculations.
+            </remarks>
+            <param name="typoAscender">typo ascender value in normalized 1000-units</param>
+        </member>
+        <member name="M:iText.IO.Font.FontMetrics.SetTypoDescender(System.Int32)">
+            <summary>Sets typo (a.k.a. sTypo or OS/2) vertical metric corresponding to descender.</summary>
+            <remarks>
+            Sets typo (a.k.a. sTypo or OS/2) vertical metric corresponding to descender.
+            <para />
+            Typo vertical metrics are the primary source for iText ascender/descender calculations.
+            </remarks>
+            <param name="typoDescender">typo descender value in normalized 1000-units</param>
+        </member>
+        <member name="M:iText.IO.Font.FontMetrics.SetCapHeight(System.Int32)">
+            <summary>Sets the capital letters height.</summary>
+            <remarks>
+            Sets the capital letters height.
+            <para />
+            This property defines the vertical coordinate of the top of flat capital letters,
+            measured from the baseline.
+            </remarks>
+            <param name="capHeight">cap height in 1000-units</param>
+        </member>
         <member name="M:iText.IO.Font.FontNames.GetNames(System.Int32)">
             <summary>Extracts the names of the font in all the languages available.</summary>
             <param name="id">the name id to retrieve in OpenType notation</param>
@@ -2902,10 +2964,34 @@
             <param name="name">the full name of the font</param>
             <returns>the name without the modifiers Bold, Italic or BoldItalic</returns>
         </member>
-        <member name="M:iText.IO.Font.FontProgram.SetItalicAngle(System.Int32)">
-            <summary>Sets the PostScript italic angel.</summary>
+        <member name="M:iText.IO.Font.FontProgram.SetTypoAscender(System.Int32)">
+            <summary>Sets typo ascender.</summary>
             <remarks>
-            Sets the PostScript italic angel.
+            Sets typo ascender. See also
+            <see cref="M:iText.IO.Font.FontMetrics.SetTypoAscender(System.Int32)"/>.
+            </remarks>
+            <param name="ascender">typo ascender value in 1000-units</param>
+        </member>
+        <member name="M:iText.IO.Font.FontProgram.SetTypoDescender(System.Int32)">
+            <summary>Sets typo descender.</summary>
+            <remarks>
+            Sets typo descender. See also
+            <see cref="M:iText.IO.Font.FontMetrics.SetTypoDescender(System.Int32)"/>.
+            </remarks>
+            <param name="descender">typo descender value in 1000-units</param>
+        </member>
+        <member name="M:iText.IO.Font.FontProgram.SetCapHeight(System.Int32)">
+            <summary>Sets the capital letters height.</summary>
+            <remarks>
+            Sets the capital letters height. See also
+            <see cref="M:iText.IO.Font.FontMetrics.SetCapHeight(System.Int32)"/>.
+            </remarks>
+            <param name="capHeight">cap height in 1000-units</param>
+        </member>
+        <member name="M:iText.IO.Font.FontProgram.SetItalicAngle(System.Int32)">
+            <summary>Sets the PostScript italic angle.</summary>
+            <remarks>
+            Sets the PostScript italic angle.
             <para />
             Italic angle in counter-clockwise degrees from the vertical. Zero for upright text, negative for text that leans to the right (forward).
             </remarks>
@@ -3564,6 +3650,19 @@
             </remarks>
             <returns>a <c>HashMap</c> representing this map</returns>
         </member>
+        <member name="M:iText.IO.Font.Otf.ChainingContextualTable`1.CheckIfLookaheadContextMatch(iText.IO.Font.Otf.GlyphLine,`0,System.Int32)">
+            <summary>Checks if given glyph line at the given position matches given rule.</summary>
+            <param name="line">glyph line to be checked</param>
+            <param name="rule">rule to be compared with a given line</param>
+            <param name="startIdx">glyph line position</param>
+            <returns>true if given glyph line at the given position matches given rule</returns>
+        </member>
+        <member name="M:iText.IO.Font.Otf.ChainingContextualTable`1.CheckIfBacktrackContextMatch(iText.IO.Font.Otf.GlyphLine,`0)">
+            <summary>Checks if given glyph line at the given position matches given rule.</summary>
+            <param name="line">glyph line to be checked</param>
+            <param name="rule">rule to be compared with a given line</param>
+            <returns>true if given glyph line matches given rule</returns>
+        </member>
         <member name="M:iText.IO.Font.Otf.ContextualPositionRule.GetPosLookupRecords">
             <summary>Retrieves the position lookup records.</summary>
             <remarks>
@@ -3867,6 +3966,12 @@
             Contextual Positioning Subtables
             </summary>
         </member>
+        <member name="T:iText.IO.Font.Otf.GposLookupType8">
+            <summary>
+            Lookup Type 8:
+            Chaining Contextual Positioning Subtable
+            </summary>
+        </member>
         <member name="T:iText.IO.Font.Otf.GsubLookupType1">
             <summary>LookupType 1: Single Substitution Subtable</summary>
             <author>psoares</author>
@@ -3915,19 +4020,6 @@
         <member name="T:iText.IO.Font.Otf.Lookuptype5.SubTableLookup5Format3">
             <summary>Contextual Substitution Subtable: Coverage-based context glyph substitution</summary>
         </member>
-        <member name="M:iText.IO.Font.Otf.Lookuptype6.SubTableLookup6.CheckIfLookaheadContextMatch(iText.IO.Font.Otf.GlyphLine,iText.IO.Font.Otf.ContextualSubstRule,System.Int32)">
-            <summary>Checks if given glyph line at the given position matches given rule.</summary>
-            <param name="line">glyph line to be checked</param>
-            <param name="rule">rule to be compared with a given line</param>
-            <param name="startIdx">glyph line position</param>
-            <returns>true if given glyph line at the given position matches given rule</returns>
-        </member>
-        <member name="M:iText.IO.Font.Otf.Lookuptype6.SubTableLookup6.CheckIfBacktrackContextMatch(iText.IO.Font.Otf.GlyphLine,iText.IO.Font.Otf.ContextualSubstRule)">
-            <summary>Checks if given glyph line at the given position matches given rule.</summary>
-            <param name="line">glyph line to be checked</param>
-            <param name="rule">rule to be compared with a given line</param>
-            <returns>true if given glyph line matches given rule</returns>
-        </member>
         <member name="T:iText.IO.Font.Otf.Lookuptype6.SubTableLookup6Format1">
             <summary>Chaining Contextual Substitution Subtable: Simple Chaining Context Glyph Substitution</summary>
         </member>
@@ -3936,6 +4028,15 @@
         </member>
         <member name="T:iText.IO.Font.Otf.Lookuptype6.SubTableLookup6Format3">
             <summary>Chaining Contextual Substitution Subtable: Coverage-based Chaining Context Glyph Substitution</summary>
+        </member>
+        <member name="T:iText.IO.Font.Otf.Lookuptype8.PosTableLookup8Format1">
+            <summary>Chaining Context Positioning Format 1: Simple Glyph Contexts</summary>
+        </member>
+        <member name="T:iText.IO.Font.Otf.Lookuptype8.PosTableLookup8Format2">
+            <summary>Chained Contexts Positioning Format 2: Class-based Glyph Contexts</summary>
+        </member>
+        <member name="T:iText.IO.Font.Otf.Lookuptype8.PosTableLookup8Format3">
+            <summary>Chained Contexts Positioning Format 3: Coverage-based Glyph Contexts</summary>
         </member>
         <member name="T:iText.IO.Font.Otf.MarkTable">
             <author>psoares</author>
@@ -4322,15 +4423,6 @@
             <param name="url">url of the image</param>
             <param name="noHeader">indicates that the source image does not have a header</param>
         </member>
-        <member name="M:iText.IO.Image.BmpImageData.#ctor(System.Uri,System.Boolean,System.Int32)">
-            <summary>
-            Creates instance of
-            <see cref="T:iText.IO.Image.BmpImageData"/>
-            </summary>
-            <param name="url">url of the image</param>
-            <param name="noHeader">indicates that the source image does not have a header</param>
-            <param name="size">the size of the image (length of the byte array)</param>
-        </member>
         <member name="M:iText.IO.Image.BmpImageData.#ctor(System.Byte[],System.Boolean)">
             <summary>
             Creates instance of
@@ -4338,18 +4430,6 @@
             </summary>
             <param name="bytes">contents of the image</param>
             <param name="noHeader">indicates that the source image does not have a header</param>
-        </member>
-        <member name="M:iText.IO.Image.BmpImageData.#ctor(System.Byte[],System.Boolean,System.Int32)">
-            <summary>
-            Creates instance of
-            <see cref="T:iText.IO.Image.BmpImageData"/>
-            </summary>
-            <param name="bytes">contents of the image</param>
-            <param name="noHeader">indicates that the source image does not have a header</param>
-            <param name="size">the size of the image (length of the byte array)</param>
-        </member>
-        <member name="M:iText.IO.Image.BmpImageData.GetSize">
-            <returns>size of the image</returns>
         </member>
         <member name="M:iText.IO.Image.BmpImageData.IsNoHeader">
             <returns>True if the bitmap image does not contain a header</returns>
@@ -4406,12 +4486,16 @@
         <member name="F:iText.IO.Image.ImageData.serialId">
             <summary>a static that is used for attributing a unique id to each image.</summary>
         </member>
-        <member name="F:iText.IO.Image.ImageData.colorSpace">
-            <summary>is the number of components used to encode colorspace, not actual colorspace.</summary>
+        <member name="F:iText.IO.Image.ImageData.colorEncodingComponentsNumber">
+            <summary>Is the number of components used to encode colorspace.</summary>
         </member>
-        <member name="M:iText.IO.Image.ImageData.GetColorSpace">
-            <summary>Gets the number of components used to encode colorspace, not actual colorspace.</summary>
+        <member name="M:iText.IO.Image.ImageData.GetColorEncodingComponentsNumber">
+            <summary>Gets the number of components used to encode colorspace.</summary>
             <returns>the number of components used to encode colorspace</returns>
+        </member>
+        <member name="M:iText.IO.Image.ImageData.SetColorEncodingComponentsNumber(System.Int32)">
+            <summary>Sets the number of components used to encode colorspace.</summary>
+            <param name="colorEncodingComponentsNumber">the number of components used to encode colorspace</param>
         </member>
         <member name="M:iText.IO.Image.ImageData.CanImageBeInline">
             <summary>Checks if image can be inline</summary>
@@ -4488,24 +4572,10 @@
             <param name="noHeader">Whether the image contains a header.</param>
             <returns>created ImageData</returns>
         </member>
-        <member name="M:iText.IO.Image.ImageDataFactory.CreateBmp(System.Uri,System.Boolean,System.Int32)">
-            <summary>Get a bitmap ImageData instance from the specified url.</summary>
-            <param name="url">location of the image.</param>
-            <param name="noHeader">Whether the image contains a header.</param>
-            <param name="size">size of the image</param>
-            <returns>created ImageData</returns>
-        </member>
         <member name="M:iText.IO.Image.ImageDataFactory.CreateBmp(System.Byte[],System.Boolean)">
             <summary>Get a bitmap ImageData instance from the provided bytes.</summary>
             <param name="bytes">array containing the raw image data</param>
-            <param name="noHeader">Whether the image contains a header</param>
-            <returns>created ImageData.</returns>
-        </member>
-        <member name="M:iText.IO.Image.ImageDataFactory.CreateBmp(System.Byte[],System.Boolean,System.Int32)">
-            <summary>Get a bitmap ImageData instance from the provided bytes.</summary>
-            <param name="bytes">array containing the raw image data</param>
             <param name="noHeader">Whether the image contains a header.</param>
-            <param name="size">size of the image</param>
             <returns>created ImageData</returns>
         </member>
         <member name="M:iText.IO.Image.ImageDataFactory.CreateGif(System.Byte[])">
@@ -4621,7 +4691,7 @@
             <summary>Helper class that detects image type by magic bytes</summary>
         </member>
         <member name="M:iText.IO.Image.ImageTypeDetector.DetectImageType(System.Byte[])">
-            <summary>Detect image type by magic bytes given the byte array source</summary>
+            <summary>Detect image type by magic bytes given the byte array source.</summary>
             <param name="source">image bytes</param>
             <returns>
             detected image type, see
@@ -4632,8 +4702,19 @@
             </returns>
         </member>
         <member name="M:iText.IO.Image.ImageTypeDetector.DetectImageType(System.Uri)">
-            <summary>Detect image type by magic bytes given the source URL</summary>
+            <summary>Detect image type by magic bytes given the source URL.</summary>
             <param name="source">image URL</param>
+            <returns>
+            detected image type, see
+            <see cref="T:iText.IO.Image.ImageType"/>
+            . Returns
+            <see cref="F:iText.IO.Image.ImageType.NONE"/>
+            if image type is unknown
+            </returns>
+        </member>
+        <member name="M:iText.IO.Image.ImageTypeDetector.DetectImageType(System.IO.Stream)">
+            <summary>Detect image type by magic bytes given the input stream.</summary>
+            <param name="stream">image stream</param>
             <returns>
             detected image type, see
             <see cref="T:iText.IO.Image.ImageType"/>
@@ -4840,64 +4921,7 @@
             <summary>Processes the ImageData as a TIFF image.</summary>
             <param name="image">image to process.</param>
         </member>
-        <member name="T:iText.IO.IOException">
-            <summary>Exception class for exceptions in io module.</summary>
-        </member>
-        <member name="F:iText.IO.IOException.obj">
-            <summary>Object for more details</summary>
-        </member>
-        <member name="M:iText.IO.IOException.#ctor(System.String)">
-            <summary>Creates a new IOException.</summary>
-            <param name="message">the detail message.</param>
-        </member>
-        <member name="M:iText.IO.IOException.#ctor(System.Exception)">
-            <summary>Creates a new IOException.</summary>
-            <param name="cause">
-            the cause (which is saved for later retrieval by
-            <see cref="P:System.Exception.InnerException"/>
-            method).
-            </param>
-        </member>
-        <member name="M:iText.IO.IOException.#ctor(System.String,System.Object)">
-            <summary>Creates a new IOException.</summary>
-            <param name="message">the detail message.</param>
-            <param name="obj">an object for more details.</param>
-        </member>
-        <member name="M:iText.IO.IOException.#ctor(System.String,System.Exception)">
-            <summary>Creates a new IOException.</summary>
-            <param name="message">the detail message.</param>
-            <param name="cause">
-            the cause (which is saved for later retrieval by
-            <see cref="P:System.Exception.InnerException"/>
-            method).
-            </param>
-        </member>
-        <member name="M:iText.IO.IOException.#ctor(System.String,System.Exception,System.Object)">
-            <summary>Creates a new instance of IOException.</summary>
-            <param name="message">the detail message.</param>
-            <param name="cause">
-            the cause (which is saved for later retrieval by
-            <see cref="P:System.Exception.InnerException"/>
-            method).
-            </param>
-            <param name="obj">an object for more details.</param>
-        </member>
-        <member name="P:iText.IO.IOException.Message">
-            <summary><inheritDoc/></summary>
-        </member>
-        <member name="M:iText.IO.IOException.GetMessageParams">
-            <summary>Gets additional params for Exception message.</summary>
-            <returns>params for exception message.</returns>
-        </member>
-        <member name="M:iText.IO.IOException.SetMessageParams(System.Object[])">
-            <summary>Sets additional params for Exception message.</summary>
-            <param name="messageParams">additional params.</param>
-            <returns>object itself.</returns>
-        </member>
-        <member name="T:iText.IO.IoExceptionMessage">
-            <summary>Class containing constants to be used in exceptions in the IO module.</summary>
-        </member>
-        <member name="T:iText.IO.LogMessageConstant">
+        <member name="T:iText.IO.Logs.IoLogMessageConstant">
             <summary>Class containing constants to be used in logging.</summary>
         </member>
         <member name="T:iText.IO.Source.ArrayRandomAccessSource">
@@ -5621,15 +5645,6 @@
             <summary>Whether the full content of the source should be read into memory at construction
             	</summary>
         </member>
-        <member name="F:iText.IO.Source.RandomAccessSourceFactory.usePlainRandomAccess">
-            <summary>
-            Whether
-            <see cref="T:System.IO.FileStream"/>
-            should be used instead of a
-            <see cref="!:java.nio.channels.FileChannel"/>
-            , where applicable
-            </summary>
-        </member>
         <member name="F:iText.IO.Source.RandomAccessSourceFactory.exclusivelyLockFile">
             <summary>Whether the underlying file should have a RW lock on it or just an R lock
             	</summary>
@@ -5829,8 +5844,53 @@
             <summary>This file is a helper class for internal usage only.</summary>
             <remarks>
             This file is a helper class for internal usage only.
-            Be aware that its API and functionality may be changed in future.
+            Be aware that its API and functionality may be changed in the future.
             </remarks>
+        </member>
+        <member name="M:iText.IO.Util.ArrayUtil.ShortenArray(System.Byte[],System.Int32)">
+            <summary>Shortens byte array.</summary>
+            <param name="src">the byte array</param>
+            <param name="length">the new length of bytes array</param>
+            <returns>the shortened byte array</returns>
+        </member>
+        <member name="M:iText.IO.Util.ArrayUtil.ToIntArray(System.Collections.Generic.ICollection{System.Int32})">
+            <summary>Converts a collection to an int array.</summary>
+            <param name="collection">the collection</param>
+            <returns>the int array</returns>
+        </member>
+        <member name="M:iText.IO.Util.ArrayUtil.HashCode(System.Byte[])">
+            <summary>Creates a hash of the given byte array.</summary>
+            <param name="a">the byte array</param>
+            <returns>the byte array</returns>
+        </member>
+        <member name="M:iText.IO.Util.ArrayUtil.FillWithValue(System.Int32[],System.Int32)">
+            <summary>Fills an array with the given value.</summary>
+            <param name="a">the int array</param>
+            <param name="value">the number of a value</param>
+            <returns>the int array</returns>
+        </member>
+        <member name="M:iText.IO.Util.ArrayUtil.FillWithValue(System.Single[],System.Single)">
+            <summary>Fills an array with the given value.</summary>
+            <param name="a">the float array</param>
+            <param name="value">the number of a value</param>
+            <returns>the float array</returns>
+        </member>
+        <member name="M:iText.IO.Util.ArrayUtil.FillWithValue``1(``0[],``0)">
+            <summary>Fills an array with the given value.</summary>
+            <param name="a">the array</param>
+            <param name="value">the value of type</param>
+            <typeparam name="T">the type of the implementation</typeparam>
+        </member>
+        <member name="M:iText.IO.Util.ArrayUtil.CloneArray(System.Int32[])">
+            <summary>Clones int array.</summary>
+            <param name="src">the int array</param>
+            <returns>the int array</returns>
+        </member>
+        <member name="M:iText.IO.Util.ArrayUtil.IndexOf(System.Object[],System.Object)">
+            <summary>Gets the index of object.</summary>
+            <param name="a">the object array</param>
+            <param name="key">the object key</param>
+            <returns>the index of object</returns>
         </member>
         <member name="T:iText.IO.Util.AssemblyLoadContextUtil">
             <summary>This file is a helper class for internal usage only.</summary>
@@ -5855,19 +5915,7 @@
             text is correct
             </returns>
         </member>
-        <member name="T:iText.IO.Util.DateTimeUtil">
-            <summary>
-            This file is a helper class for internal usage only.
-            Be aware that its API and functionality may be changed in future.
-            </summary>
-        </member>
         <member name="T:iText.IO.Util.DecimalFormatUtil">
-            <summary>
-            This file is a helper class for internal usage only.
-            Be aware that its API and functionality may be changed in future.
-            </summary>
-        </member>
-        <member name="T:iText.IO.Util.EncodingUtil">
             <summary>
             This file is a helper class for internal usage only.
             Be aware that its API and functionality may be changed in future.
@@ -5877,46 +5925,6 @@
             <summary>
             This file is a helper class for internal usage only.
             Be aware that its API and functionality may be changed in future.
-            </summary>
-        </member>
-        <member name="T:iText.IO.Util.ExceptionUtil">
-            <summary>This file is a helper class for internal usage only.</summary>
-            <remarks>
-            This file is a helper class for internal usage only.
-            Be aware that its API and functionality may be changed in future.
-            </remarks>
-        </member>
-        <member name="T:iText.IO.Util.FileUtil">
-            <summary>
-            This file is a helper class for internal usage only.
-            Be aware that its API and functionality may be changed in future.
-            </summary>
-        </member>
-        <member name="M:iText.IO.Util.FileUtil.DeleteFile(System.IO.FileInfo)">
-            Deletes a file and returns whether the operation succeeded.
-            Node that only *files* are supported, not directories.
-        </member>
-        <member name="T:iText.IO.Util.FilterReader">
-            <summary>
-            Abstract class for reading filtered character streams.
-            The abstract class <code>FilterReader</code> itself
-            provides default methods that pass all requests to
-            the contained stream. Subclasses of <code>FilterReader</code>
-            should override some of these methods and may also provide
-            additional methods and fields.
-            
-            @author      Mark Reinhold
-            @since       JDK1.1
-            </summary>
-        </member>
-        <member name="M:iText.IO.Util.FilterReader.Read">
-            <summary>
-            Reads a single character.
-            </summary>
-        </member>
-        <member name="M:iText.IO.Util.FilterReader.Read(System.Char[],System.Int32,System.Int32)">
-            <summary>
-            Reads characters into a portion of an array.
             </summary>
         </member>
         <member name="T:iText.IO.Util.FilterUtil">
@@ -5947,8 +5955,33 @@
             <param name="deflated">the input data bytes</param>
             <param name="inflated">the buffer for the uncompressed data</param>
         </member>
+        <member name="T:iText.IO.Util.GhostscriptHelper">
+            <summary>A utility class that is used as an interface to run 3rd-party tool Ghostscript.</summary>
+            <remarks>
+            A utility class that is used as an interface to run 3rd-party tool Ghostscript.
+            Ghostscript is an interpreter for the PostScript language and PDF files, it allows to render them
+            as images.
+            <para />
+            The Ghostscript needs to be installed independently on the system. This class provides a convenient
+            way to run it by passing a terminal command. The command can either be specified explicitly or by a mean
+            of environment variable
+            <see cref="F:iText.IO.Util.GhostscriptHelper.GHOSTSCRIPT_ENVIRONMENT_VARIABLE"/>.
+            </remarks>
+        </member>
         <member name="F:iText.IO.Util.GhostscriptHelper.GHOSTSCRIPT_ENVIRONMENT_VARIABLE">
             <summary>The name of the environment variable with the command to execute Ghostscript operations.</summary>
+        </member>
+        <member name="M:iText.IO.Util.GhostscriptHelper.#ctor">
+            <summary>
+            Creates new instance that will rely on Ghostscript execution command defined by
+            <see cref="F:iText.IO.Util.GhostscriptHelper.GHOSTSCRIPT_ENVIRONMENT_VARIABLE"/>
+            environment variable.
+            </summary>
+        </member>
+        <member name="M:iText.IO.Util.GhostscriptHelper.#ctor(System.String)">
+            <summary>Creates new instance that will rely on Ghostscript execution command defined as passed argument.</summary>
+            <param name="newGsExec">the Ghostscript execution command; if null - environment variables will be used instead
+                </param>
         </member>
         <member name="M:iText.IO.Util.GhostscriptHelper.GetCliExecutionCommand">
             <summary>Returns a command that is used to run the utility.</summary>
@@ -5960,20 +5993,36 @@
             <returns>a string command</returns>
         </member>
         <member name="M:iText.IO.Util.GhostscriptHelper.RunGhostScriptImageGeneration(System.String,System.String,System.String)">
-            <summary>Runs ghostscript to create images of pdfs.</summary>
-            <param name="pdf">Path to the pdf file.</param>
-            <param name="outDir">Path to the output directory</param>
-            <param name="image">Path to the generated image</param>
+            <summary>Runs Ghostscript to render the PDF's pages as PNG images.</summary>
+            <param name="pdf">Path to the PDF file to be rendered</param>
+            <param name="outDir">Path to the output directory, in which the rendered pages will be stored</param>
+            <param name="image">
+            String which defines the name of the resultant images. This string will be
+            concatenated with the number of the rendered page from the start of the
+            PDF in "-%03d" format, e.g. "-011" for the eleventh rendered page and so on.
+            This number may not correspond to the actual page number: for example,
+            if the passed pageList equals to "5,3", then images with postfixes "-001.png"
+            and "-002.png" will be created: the former for the third page, the latter
+            for the fifth page. "%" sign in the passed name is prohibited.
+            </param>
         </member>
         <member name="M:iText.IO.Util.GhostscriptHelper.RunGhostScriptImageGeneration(System.String,System.String,System.String,System.String)">
-            <summary>Runs ghostscript to create images of specified pages of pdfs.</summary>
-            <param name="pdf">Path to the pdf file.</param>
-            <param name="outDir">Path to the output directory</param>
-            <param name="image">Path to the generated image</param>
+            <summary>Runs Ghostscript to render the PDF's pages as PNG images.</summary>
+            <param name="pdf">Path to the PDF file to be rendered</param>
+            <param name="outDir">Path to the output directory, in which the rendered pages will be stored</param>
+            <param name="image">
+            String which defines the name of the resultant images. This string will be
+            concatenated with the number of the rendered page from the start of the
+            PDF in "-%03d" format, e.g. "-011" for the eleventh rendered page and so on.
+            This number may not correspond to the actual page number: for example,
+            if the passed pageList equals to "5,3", then images with postfixes "-001.png"
+            and "-002.png" will be created: the former for the third page, the latter
+            for the fifth page. "%" sign in the passed name is prohibited.
+            </param>
             <param name="pageList">
-            String with numbers of the required pages to extract as image. Should be formatted as string with
-            numbers, separated by commas, without whitespaces. Can be null, if it is required to extract
-            all pages as images.
+            String with numbers of the required pages to be rendered as images.
+            This string should be formatted as a string with numbers, separated by commas,
+            without whitespaces. Can be null, if it is required to render all the PDF's pages.
             </param>
         </member>
         <member name="T:iText.IO.Util.GhostscriptHelper.GhostscriptExecutionException">
@@ -6105,12 +6154,6 @@
             <param name="value">new element</param>
             <returns>this</returns>
         </member>
-        <member name="T:iText.IO.Util.IanaEncodings">
-            Translates a IANA encoding name to a Java encoding.
-        </member>
-        <member name="F:iText.IO.Util.IanaEncodings.map">
-            The object that maps IANA to Java encodings. 
-        </member>
         <member name="F:iText.IO.Util.ImageHandlerUtil.GHOSTSCRIPT_ENVIRONMENT_VARIABLE">
             <summary>The name of the environment variable with the command to execute Ghostscript operations.</summary>
         </member>
@@ -6175,9 +6218,52 @@
             </summary>
             <param name="msg">the detail message.</param>
         </member>
+        <member name="T:iText.IO.Util.ImageMagickCompareResult">
+            <summary>
+            A helper data class, which aggregates true/false result of ImageMagick comparing
+            as well as the number of different pixels.
+            </summary>
+        </member>
+        <member name="M:iText.IO.Util.ImageMagickCompareResult.#ctor(System.Boolean,System.Int64)">
+            <summary>Creates an instance that contains ImageMagick comparing result information.</summary>
+            <param name="result">true, if the compared images are equal.</param>
+            <param name="diffPixels">number of different pixels.</param>
+        </member>
+        <member name="M:iText.IO.Util.ImageMagickCompareResult.IsComparingResultSuccessful">
+            <summary>Returns image compare boolean value.</summary>
+            <returns>true if the compared images are equal.</returns>
+        </member>
+        <member name="M:iText.IO.Util.ImageMagickCompareResult.GetDiffPixels">
+            <summary>Getter for a different pixels count.</summary>
+            <returns>Returns a a different pixels count.</returns>
+        </member>
+        <member name="T:iText.IO.Util.ImageMagickHelper">
+            <summary>A utility class that is used as an interface to run 3rd-party tool ImageMagick.</summary>
+            <remarks>
+            A utility class that is used as an interface to run 3rd-party tool ImageMagick.
+            ImageMagick among other things allows to compare images and this class provides means to utilize this feature.
+            <para />
+            The ImageMagick needs to be installed independently on the system. This class provides a convenient
+            way to run it by passing a terminal command. The command can either be specified explicitly or by a mean
+            of environment variable
+            <see cref="F:iText.IO.Util.ImageMagickHelper.MAGICK_COMPARE_ENVIRONMENT_VARIABLE"/>.
+            </remarks>
+        </member>
         <member name="F:iText.IO.Util.ImageMagickHelper.MAGICK_COMPARE_ENVIRONMENT_VARIABLE">
             <summary>The name of the environment variable with the command to execute ImageMagic comparison operations.
                 </summary>
+        </member>
+        <member name="M:iText.IO.Util.ImageMagickHelper.#ctor">
+            <summary>
+            Creates new instance that will rely on ImageMagick execution command defined by
+            <see cref="F:iText.IO.Util.ImageMagickHelper.MAGICK_COMPARE_ENVIRONMENT_VARIABLE"/>
+            environment variable.
+            </summary>
+        </member>
+        <member name="M:iText.IO.Util.ImageMagickHelper.#ctor(System.String)">
+            <summary>Creates new instance that will rely on ImageMagick execution command defined as passed argument.</summary>
+            <param name="newCompareExec">the ImageMagick execution command; if null - environment variables will be used instead
+                </param>
         </member>
         <member name="M:iText.IO.Util.ImageMagickHelper.GetCliExecutionCommand">
             <summary>Returns a command that is used to run the utility.</summary>
@@ -6207,6 +6293,44 @@
             </param>
             <returns>boolean result of comparing: true - images are visually equal</returns>
         </member>
+        <member name="M:iText.IO.Util.ImageMagickHelper.RunImageMagickImageCompareWithThreshold(System.String,System.String,System.String,System.String,System.Int64)">
+            <summary>
+            Runs imageMagick to visually compare images with the specified fuzziness value and given threshold
+            and generate difference output.
+            </summary>
+            <param name="outImageFilePath">Path to the output image file</param>
+            <param name="cmpImageFilePath">Path to the cmp image file</param>
+            <param name="diffImageName">Path to the difference output image file</param>
+            <param name="fuzzValue">
+            String fuzziness value to compare images. Should be formatted as string with integer
+            or decimal number. Can be null, if it is not required to use fuzziness
+            </param>
+            <param name="threshold">Long value of accepted threshold.</param>
+            <returns>boolean result of comparing: true - images are visually equal</returns>
+        </member>
+        <member name="M:iText.IO.Util.ImageMagickHelper.RunImageMagickImageCompareAndGetResult(System.String,System.String,System.String,System.String)">
+            <summary>Runs imageMagick to visually compare images with the specified fuzziness value and generate difference output.
+                </summary>
+            <remarks>
+            Runs imageMagick to visually compare images with the specified fuzziness value and generate difference output.
+            This method returns an object of
+            <see cref="T:iText.IO.Util.ImageMagickCompareResult"/>
+            , containing comparing result information,
+            such as boolean result value and the number of different pixels.
+            </remarks>
+            <param name="outImageFilePath">Path to the output image file</param>
+            <param name="cmpImageFilePath">Path to the cmp image file</param>
+            <param name="diffImageName">Path to the difference output image file</param>
+            <param name="fuzzValue">
+            String fuzziness value to compare images. Should be formatted as string with integer
+            or decimal number. Can be null, if it is not required to use fuzziness
+            </param>
+            <returns>
+            an object of
+            <see cref="T:iText.IO.Util.ImageMagickCompareResult"/>
+            . containing comparing result information.
+            </returns>
+        </member>
         <member name="T:iText.IO.Util.IntHashtable">
             <summary>A hash map that uses primitive ints for the key rather than objects.</summary>
             <remarks>
@@ -6222,11 +6346,11 @@
             <author>Bruno Lowagie (change Objects as keys into int values)</author>
             <author>Paulo Soares (added extra methods)</author>
         </member>
-        <member name="F:iText.IO.Util.IntHashtable.table">
-            <summary>The hash table data.</summary>
-        </member>
         <member name="F:iText.IO.Util.IntHashtable.count">
             <summary>The total number of entries in the hash table.</summary>
+        </member>
+        <member name="F:iText.IO.Util.IntHashtable.table">
+            <summary>The hash table data.</summary>
         </member>
         <member name="F:iText.IO.Util.IntHashtable.threshold">
             <summary>The table is rehashed when its size exceeds this threshold.</summary>
@@ -6399,124 +6523,6 @@
             <param name="value">The value for this key</param>
             <param name="next">A reference to the next entry in the table</param>
         </member>
-        <member name="T:iText.IO.Util.JavaCollectionsUtil">
-            <summary>
-            This file is a helper class for internal usage only.
-            Be aware that its API and functionality may be changed in future.
-            </summary>
-        </member>
-        <member name="T:iText.IO.Util.JavaUtil">
-            <summary>
-            This file is a helper class for internal usage only.
-            Be aware that its API and functionality may be changed in future.
-            </summary>
-        </member>
-        <member name="T:iText.IO.Util.MessageFormatUtil">
-            <summary>This file is a helper class for internal usage only.</summary>
-            <remarks>
-            This file is a helper class for internal usage only.
-            Be aware that its API and functionality may be changed in future.
-            </remarks>
-        </member>
-        <member name="T:iText.IO.Util.Properties">
-            <summary>
-            Summary description for Properties.
-            </summary>
-        </member>
-        <member name="T:iText.IO.Util.PushbackReader">
-            <summary>
-            A character-stream reader that allows characters to be pushed back into the
-            stream.
-            
-            @author      Mark Reinhold
-            @since       JDK1.1
-            </summary>
-        </member>
-        <member name="F:iText.IO.Util.PushbackReader._buf">
-            <summary>
-            Pushback buffer </summary>
-        </member>
-        <member name="F:iText.IO.Util.PushbackReader._pos">
-            <summary>
-            Current position in buffer </summary>
-        </member>
-        <member name="M:iText.IO.Util.PushbackReader.#ctor(System.IO.TextReader,System.Int32)">
-            <summary>
-            Creates a new pushback reader with a pushback buffer of the given size.
-            </summary>
-            <param name="in">   The reader from which characters will be read </param>
-            <param name="size"> The size of the pushback buffer </param>
-        </member>
-        <member name="M:iText.IO.Util.PushbackReader.#ctor(System.IO.TextReader)">
-            <summary>
-            Creates a new pushback reader with a one-character pushback buffer.
-            </summary>
-            <param name="in">  The reader from which characters will be read </param>
-        </member>
-        <member name="M:iText.IO.Util.PushbackReader.EnsureOpen">
-            <summary>
-            Checks to make sure that the stream has not been closed. </summary>
-        </member>
-        <member name="M:iText.IO.Util.PushbackReader.Read">
-            <summary>
-            Reads a single character.
-            </summary>
-            <returns>     The character read, or -1 if the end of the stream has been
-                        reached
-            </returns>
-        </member>
-        <member name="M:iText.IO.Util.PushbackReader.Read(System.Char[],System.Int32,System.Int32)">
-            <summary>
-            Reads characters into a portion of an array.
-            </summary>
-            <param name="cbuf">  Destination buffer </param>
-            <param name="off">   Offset at which to start writing characters </param>
-            <param name="len">   Maximum number of characters to read
-            </param>
-            <returns>     The number of characters read, or -1 if the end of the
-                        stream has been reached
-            </returns>
-        </member>
-        <member name="M:iText.IO.Util.PushbackReader.Unread(System.Int32)">
-            <summary>
-            Pushes back a single character by copying it to the front of the
-            pushback buffer. After this method returns, the next character to be read
-            will have the value <code>(char)c</code>.
-            </summary>
-            <param name="c">  The int value representing a character to be pushed back
-            </param>
-        </member>
-        <member name="M:iText.IO.Util.PushbackReader.Unread(System.Char[],System.Int32,System.Int32)">
-            <summary>
-            Pushes back a portion of an array of characters by copying it to the
-            front of the pushback buffer.  After this method returns, the next
-            character to be read will have the value <code>cbuf[off]</code>, the
-            character after that will have the value <code>cbuf[off+1]</code>, and
-            so forth.
-            </summary>
-            <param name="cbuf">  Character array </param>
-            <param name="off">   Offset of first character to push back </param>
-            <param name="len">   Number of characters to push back
-            </param>
-        </member>
-        <member name="M:iText.IO.Util.PushbackReader.Unread(System.Char[])">
-            <summary>
-            Pushes back an array of characters by copying it to the front of the
-            pushback buffer.  After this method returns, the next character to be
-            read will have the value <code>cbuf[0]</code>, the character after that
-            will have the value <code>cbuf[1]</code>, and so forth.
-            </summary>
-            <param name="cbuf">  Character array to push back
-            </param>
-        </member>
-        <member name="M:iText.IO.Util.PushbackReader.Dispose(System.Boolean)">
-            <summary>
-            Closes the stream and releases any system resources associated with
-            it. Once the stream has been closed, further read(),
-            unread(), ready(), or skip() invocations will throw an IOException.
-            Closing a previously closed stream has no effect.
-            </summary>
-        </member>
         <member name="T:iText.IO.Util.ResourceUtil">
             <summary>
             This file is a helper class for internal usage only.
@@ -6533,19 +6539,6 @@
             <see langword="null"/>
             if not found.
             </returns>
-        </member>
-        <member name="T:iText.IO.Util.SortUtil">
-            <summary>
-            This file is a helper class for internal usage only.
-            Be aware that its API and functionality may be changed in future.
-            </summary>
-        </member>
-        <member name="M:iText.IO.Util.SortUtil.MergeSort``1(``0[],System.Int32,System.Int32,System.Collections.Generic.IComparer{``0})">
-            <summary>
-            
-            </summary>
-            <param name="from">the index of the first element, inclusive, to be sorted</param>
-            <param name="to">the index of the last element, exclusive, to be sorted</param>
         </member>
         <member name="T:iText.IO.Util.StreamUtil">
             <summary>This file is a helper class for internal usage only.</summary>
@@ -6637,32 +6630,6 @@
             <param name="b">the buffer into which the data is read.</param>
             <param name="off">an int specifying the offset into the data.</param>
             <param name="len">an int specifying the number of bytes to read.</param>
-        </member>
-        <member name="T:iText.IO.Util.StringUtil">
-            <summary>
-            This file is a helper class for internal usage only.
-            Be aware that its API and functionality may be changed in future.
-            </summary>
-        </member>
-        <member name="T:iText.IO.Util.SystemUtil">
-            <summary>
-            This file is a helper class for internal usage only.
-            Be aware that its API and functionality may be changed in future.
-            </summary>
-        </member>
-        <member name="M:iText.IO.Util.SystemUtil.GetRelativeTimeMillis">
-            <summary>
-            Should be used in relative constructs (for example to check how many milliseconds have passed).
-            Shouldn't be used in the DateTime creation since the nanoseconds are expected there.
-            </summary>
-            <returns>relative time in milliseconds</returns>
-        </member>
-        <member name="M:iText.IO.Util.SystemUtil.GetEnvironmentVariable(System.String)">
-            <summary>
-            Gets environment variable with given name.
-            </summary>
-            <param name="name">the name of environment variable.</param>
-            <returns>variable value or null if there is no such.</returns>
         </member>
         <member name="T:iText.IO.Util.TextUtil">
             <summary>This file is a helper class for internal usage only.</summary>
@@ -6784,334 +6751,6 @@
             Determines if represented Glyph is ' ' (SPACE) character.
             </summary>
         </member>
-        <member name="F:iText.IO.Util.UnicodeScript.COMMON">
-            Unicode script "Common".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.LATIN">
-            Unicode script "Latin".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.GREEK">
-            Unicode script "Greek".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.CYRILLIC">
-            Unicode script "Cyrillic".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.ARMENIAN">
-            Unicode script "Armenian".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.HEBREW">
-            Unicode script "Hebrew".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.ARABIC">
-            Unicode script "Arabic".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.SYRIAC">
-            Unicode script "Syriac".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.THAANA">
-            Unicode script "Thaana".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.DEVANAGARI">
-            Unicode script "Devanagari".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.BENGALI">
-            Unicode script "Bengali".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.GURMUKHI">
-            Unicode script "Gurmukhi".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.GUJARATI">
-            Unicode script "Gujarati".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.ORIYA">
-            Unicode script "Oriya".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.TAMIL">
-            Unicode script "Tamil".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.TELUGU">
-            Unicode script "Telugu".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.KANNADA">
-            Unicode script "Kannada".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.MALAYALAM">
-            Unicode script "Malayalam".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.SINHALA">
-            Unicode script "Sinhala".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.THAI">
-            Unicode script "Thai".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.LAO">
-            Unicode script "Lao".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.TIBETAN">
-            Unicode script "Tibetan".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.MYANMAR">
-            Unicode script "Myanmar".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.GEORGIAN">
-            Unicode script "Georgian".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.HANGUL">
-            Unicode script "Hangul".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.ETHIOPIC">
-            Unicode script "Ethiopic".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.CHEROKEE">
-            Unicode script "Cherokee".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.CANADIAN_ABORIGINAL">
-            Unicode script "Canadian_Aboriginal".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.OGHAM">
-            Unicode script "Ogham".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.RUNIC">
-            Unicode script "Runic".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.KHMER">
-            Unicode script "Khmer".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.MONGOLIAN">
-            Unicode script "Mongolian".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.HIRAGANA">
-            Unicode script "Hiragana".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.KATAKANA">
-            Unicode script "Katakana".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.BOPOMOFO">
-            Unicode script "Bopomofo".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.HAN">
-            Unicode script "Han".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.YI">
-            Unicode script "Yi".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.OLD_ITALIC">
-            Unicode script "Old_Italic".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.GOTHIC">
-            Unicode script "Gothic".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.DESERET">
-            Unicode script "Deseret".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.INHERITED">
-            Unicode script "Inherited".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.TAGALOG">
-            Unicode script "Tagalog".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.HANUNOO">
-            Unicode script "Hanunoo".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.BUHID">
-            Unicode script "Buhid".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.TAGBANWA">
-            Unicode script "Tagbanwa".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.LIMBU">
-            Unicode script "Limbu".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.TAI_LE">
-            Unicode script "Tai_Le".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.LINEAR_B">
-            Unicode script "Linear_B".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.UGARITIC">
-            Unicode script "Ugaritic".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.SHAVIAN">
-            Unicode script "Shavian".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.OSMANYA">
-            Unicode script "Osmanya".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.CYPRIOT">
-            Unicode script "Cypriot".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.BRAILLE">
-            Unicode script "Braille".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.BUGINESE">
-            Unicode script "Buginese".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.COPTIC">
-            Unicode script "Coptic".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.NEW_TAI_LUE">
-            Unicode script "New_Tai_Lue".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.GLAGOLITIC">
-            Unicode script "Glagolitic".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.TIFINAGH">
-            Unicode script "Tifinagh".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.SYLOTI_NAGRI">
-            Unicode script "Syloti_Nagri".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.OLD_PERSIAN">
-            Unicode script "Old_Persian".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.KHAROSHTHI">
-            Unicode script "Kharoshthi".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.BALINESE">
-            Unicode script "Balinese".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.CUNEIFORM">
-            Unicode script "Cuneiform".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.PHOENICIAN">
-            Unicode script "Phoenician".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.PHAGS_PA">
-            Unicode script "Phags_Pa".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.NKO">
-            Unicode script "Nko".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.SUNDANESE">
-            Unicode script "Sundanese".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.BATAK">
-            Unicode script "Batak".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.LEPCHA">
-            Unicode script "Lepcha".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.OL_CHIKI">
-            Unicode script "Ol_Chiki".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.VAI">
-            Unicode script "Vai".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.SAURASHTRA">
-            Unicode script "Saurashtra".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.KAYAH_LI">
-            Unicode script "Kayah_Li".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.REJANG">
-            Unicode script "Rejang".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.LYCIAN">
-            Unicode script "Lycian".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.CARIAN">
-            Unicode script "Carian".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.LYDIAN">
-            Unicode script "Lydian".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.CHAM">
-            Unicode script "Cham".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.TAI_THAM">
-            Unicode script "Tai_Tham".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.TAI_VIET">
-            Unicode script "Tai_Viet".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.AVESTAN">
-            Unicode script "Avestan".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.EGYPTIAN_HIEROGLYPHS">
-            Unicode script "Egyptian_Hieroglyphs".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.SAMARITAN">
-            Unicode script "Samaritan".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.MANDAIC">
-            Unicode script "Mandaic".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.LISU">
-            Unicode script "Lisu".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.BAMUM">
-            Unicode script "Bamum".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.JAVANESE">
-            Unicode script "Javanese".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.MEETEI_MAYEK">
-            Unicode script "Meetei_Mayek".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.IMPERIAL_ARAMAIC">
-            Unicode script "Imperial_Aramaic".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.OLD_SOUTH_ARABIAN">
-            Unicode script "Old_South_Arabian".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.INSCRIPTIONAL_PARTHIAN">
-            Unicode script "Inscriptional_Parthian".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.INSCRIPTIONAL_PAHLAVI">
-            Unicode script "Inscriptional_Pahlavi".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.OLD_TURKIC">
-            Unicode script "Old_Turkic".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.BRAHMI">
-            Unicode script "Brahmi".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.KAITHI">
-            Unicode script "Kaithi".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.MEROITIC_HIEROGLYPHS">
-            Unicode script "Meroitic Hieroglyphs".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.MEROITIC_CURSIVE">
-            Unicode script "Meroitic Cursive".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.SORA_SOMPENG">
-            Unicode script "Sora Sompeng".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.CHAKMA">
-            Unicode script "Chakma".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.SHARADA">
-            Unicode script "Sharada".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.TAKRI">
-            Unicode script "Takri".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.MIAO">
-            Unicode script "Miao".
-        </member>
-        <member name="F:iText.IO.Util.UnicodeScript.UNKNOWN">
-            Unicode script "Unknown".
-        </member>
-        <member name="T:iText.IO.Util.UnicodeScriptUtil">
-            <summary>
-            This file is a helper class for internal usage only.
-            Be aware that its API and functionality may be changed in future.
-            </summary>
-        </member>
-        <member name="M:iText.IO.Util.UnicodeScriptUtil.Of(System.Int32)">
-                    * Returns the enum constant representing the Unicode script of which
-                    * the given character (Unicode code point) is assigned to.
-                     *
-                    * @param   codePoint the character (Unicode code point) in question.
-                    * @return  The {@code UnicodeScript} constant representing the
-                    *          Unicode script of which this character is assigned to.
-                    *
-                    * @exception IllegalArgumentException if the specified
-                    * {@code codePoint} is an invalid Unicode code point.
-                    * @see Character#isValidCodePoint(int)
-                    *
-        </member>
         <member name="T:iText.IO.Util.UrlUtil">
             <summary>
             This file is a helper class for internal usage only.
@@ -7141,8 +6780,9 @@
             <summary>
             This method gets the last redirected url.
             </summary>
-            <param name="uri">an initial url</param>
-            <returns>the last redirected url</returns>
+            <param name="uri">an initial url.</param>
+            
+            <returns>the last redirected url.</returns>
         </member>
         <member name="M:iText.IO.Util.UrlUtil.GetFileUriString(System.String)">
             <summary>
@@ -7157,6 +6797,27 @@
             </summary>
             <param name="filename">a given filename</param>
             <returns>a normalized uri string</returns>
+        </member>
+        <member name="M:iText.IO.Util.UrlUtil.GetInputStreamOfFinalConnection(System.Uri)">
+            <summary>
+            Gets the input stream of connection related to last redirected url. You should manually close input stream after
+            calling this method to not hold any open resources.
+            </summary>
+            <param name="url">an initial URL.</param>
+            
+            <returns>an input stream of connection related to the last redirected url.</returns>
+        </member>
+        <member name="T:iText.IO.Util.XmlUtil">
+            <summary>
+            This file is a helper class for internal usage only.
+            Be aware that its API and functionality may be changed in future.
+            </summary>
+        </member>
+        <member name="M:iText.IO.Util.XmlUtil.InitNewXmlDocument">
+            <summary>
+            This method creates a new empty Xml document.
+            </summary>
+            <returns>a new Xml document</returns>
         </member>
         <member name="T:System.util.zlib.ZDeflaterOutputStream">
             <summary>
