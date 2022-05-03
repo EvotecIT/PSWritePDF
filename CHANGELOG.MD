@@ -3,7 +3,7 @@
 #### - 0.0.19 - 2022.05.03
   - Library updated to itext 7.2.2
   - Fixes **Register-PDFFont** not registering fonts properly
-  -
+
 #### - 0.0.18 - 2021.12.23
   - Added `New-PDFImage` basic functionality
   - Added `Convert-HTMLToPDF`
