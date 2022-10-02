@@ -1,4 +1,4 @@
-﻿function Convert-PDFToText {
+function Convert-PDFToText {
     <#
     .SYNOPSIS
     Converts PDF to TEXT
@@ -12,6 +12,9 @@
     .PARAMETER Page
     The page number to convert (default is all pages)
 
+    .PARAMETER ExtractionStrategy
+    The iText Extractiostrategey that is used to parse the text. Currently supports LocationTextExtractionStrategy (LT) and SimpleTextExtractionStrategy (ST)(Default).
+    
     .PARAMETER IgnoreProtection
     The switch will allow reading of PDF files that are "owner password" encrypted for protection/security (e.g. preventing copying of text, printing etc).
     The switch doesn't allow reading of PDF files that are "user password" encrypted (i.e. you cannot open them without the password)
@@ -19,6 +22,10 @@
     .EXAMPLE
     # Get all pages text
     Convert-PDFToText -FilePath "$PSScriptRoot\Example04.pdf"
+    
+    .EXAMPLE
+    # Get all pages text with Location-Extractionstrategy
+    Convert-PDFToText -FilePath "$PSScriptRoot\Example04.pdf" -ExtractionStrategy "LT"
 
     .EXAMPLE
     # Get page 1 text only
@@ -31,6 +38,8 @@
     param(
         [string] $FilePath,
         [int[]] $Page,
+        [ValidateSet("SimpleTextExtractionStrategy","LocationTextExtractionStrategy","ST","LT")]
+        [string] $ExtractionStrategy =  "SimpleTextExtractionStrategy",
         [switch] $IgnoreProtection
     )
     if ($FilePath -and (Test-Path -LiteralPath $FilePath)) {
@@ -41,7 +50,11 @@
         }
         try {
             [iText.Kernel.Pdf.PdfDocument] $SourcePDF = [iText.Kernel.Pdf.PdfDocument]::new($Source);
-            [iText.Kernel.Pdf.Canvas.Parser.Listener.LocationTextExtractionStrategy] $ExtractionStrategy = [iText.Kernel.Pdf.Canvas.Parser.Listener.LocationTextExtractionStrategy]::new()
+            if($ExtractionStrategy -eq "SimpleTextExtractionStrategy" -or $ExtractionStrategy -eq "ST") {
+                [iText.Kernel.Pdf.Canvas.Parser.Listener.SimpleTextExtractionStrategy] $iTextExtractionStrategy = [iText.Kernel.Pdf.Canvas.Parser.Listener.SimpleTextExtractionStrategy]::new()
+            } elseif ($ExtractionStrategy -eq "LocationTextExtractionStrategy" -or $ExtractionStrategy -eq "LT") {
+                [iText.Kernel.Pdf.Canvas.Parser.Listener.LocationTextExtractionStrategy] $iTextExtractionStrategy = [iText.Kernel.Pdf.Canvas.Parser.Listener.LocationTextExtractionStrategy]::new()
+            }
         } catch {
             $ErrorMessage = $_.Exception.Message
             Write-Warning "Convert-PDFToText - Processing document $ResolvedPath failed with error: $ErrorMessage"
@@ -52,7 +65,7 @@
             for ($Count = 1; $Count -le $PagesCount; $Count++) {
                 try {
                     $ExtractedPage = $SourcePDF.GetPage($Count)
-                    [iText.Kernel.Pdf.Canvas.Parser.PdfTextExtractor]::GetTextFromPage($ExtractedPage, $ExtractionStrategy)
+                    [iText.Kernel.Pdf.Canvas.Parser.PdfTextExtractor]::GetTextFromPage($ExtractedPage, $iTextExtractionStrategy)
                 } catch {
                     $ErrorMessage = $_.Exception.Message
                     Write-Warning "Convert-PDFToText - Processing document $ResolvedPath failed with error: $ErrorMessage"
@@ -63,7 +76,7 @@
                 if ($Count -le $PagesCount -and $Count -gt 0) {
                     try {
                         $ExtractedPage = $SourcePDF.GetPage($Count)
-                        [iText.Kernel.Pdf.Canvas.Parser.PdfTextExtractor]::GetTextFromPage($ExtractedPage, $ExtractionStrategy)
+                        [iText.Kernel.Pdf.Canvas.Parser.PdfTextExtractor]::GetTextFromPage($ExtractedPage, $iTextExtractionStrategy)
                     } catch {
                         $ErrorMessage = $_.Exception.Message
                         Write-Warning "Convert-PDFToText - Processing document $ResolvedPath failed with error: $ErrorMessage"
