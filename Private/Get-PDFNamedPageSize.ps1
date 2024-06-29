@@ -61,8 +61,8 @@
     }
     $Size = $PDFSizes["$Height$Width"]
     if ($Size) {
-        return $Size
+        $Size
     } else {
-        return [PSCustomObject] @{ PageSize = 'Unknown'; $Rotated = $null }
+        [PSCustomObject] @{ PageSize = 'Unknown'; Rotated = $null }
     }
 }
