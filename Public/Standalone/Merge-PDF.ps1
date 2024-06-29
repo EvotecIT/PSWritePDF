@@ -35,17 +35,20 @@
     )
 
     if ($OutputFile) {
+        $ResolvedOutputFile = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($OutputFile)
+        Write-Verbose -Message "Merge-PDF - Preparing document $ResolvedOutputFile"
         try {
-            [iText.Kernel.Pdf.PdfWriter] $Writer = [iText.Kernel.Pdf.PdfWriter]::new($OutputFile)
+            [iText.Kernel.Pdf.PdfWriter] $Writer = [iText.Kernel.Pdf.PdfWriter]::new($ResolvedOutputFile)
             [iText.Kernel.Pdf.PdfDocument] $PDF = [iText.Kernel.Pdf.PdfDocument]::new($Writer);
             [iText.Kernel.Utils.PdfMerger] $Merger = [iText.Kernel.Utils.PdfMerger]::new($PDF)
         } catch {
             $ErrorMessage = $_.Exception.Message
-            Write-Warning "Merge-PDF - Processing document $OutputFile failed with error: $ErrorMessage"
+            Write-Warning "Merge-PDF - Processing document $ResolvedOutputFile failed with error: $ErrorMessage"
         }
         foreach ($File in $InputFile) {
-            if ($File -and (Test-Path -LiteralPath $File)) {
-                $ResolvedFile = Convert-Path -LiteralPath $File
+            $ResolvedFile = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($File)
+            if ($File -and (Test-Path -LiteralPath $ResolvedFile)) {
+                Write-Verbose -Message "Merge-PDF - Processing document $ResolvedFile"
                 try {
                     $Source = [iText.Kernel.Pdf.PdfReader]::new($ResolvedFile)
                     if ($IgnoreProtection) {
