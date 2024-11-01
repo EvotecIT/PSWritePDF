@@ -10,6 +10,18 @@ $Script:PDFFontValidation = {
     )
     $_ -in $Array
 }
+
+$Script:PDFTextAlignments = {
+    ([iText.Layout.Properties.TextAlignment] | Get-Member -static -MemberType Property).Name
+}
+$Script:PDFTextAlignmentValidation = {
+    $Array = @(
+        (& $Script:PDFTextAlignments)
+        ''
+    )
+    $_ -in $Array
+}
+
 $Script:PDFFontList = {
     param($commandName, $parameterName, $wordToComplete, $commandAst, $fakeBoundParameters)
     @(
