@@ -12,10 +12,10 @@
     $Image = [iText.Layout.Element.Image]::new($ImageData)
 
     if ($Width) {
-        $Image.SetWidth($Width)
+        $null = $Image.SetWidth($Width)
     }
     if ($Height) {
-        $Image.SetHeight($Height)
+        $null = $Image.SetHeight($Height)
 
     }
     if ($BackgroundColor) {

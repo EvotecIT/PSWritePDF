@@ -5,10 +5,16 @@
         [ValidateScript( { & $Script:PDFFontValidationList } )][string[]] $Font,
         #[string[]] $FontFamily,
         [ValidateScript( { & $Script:PDFColorValidation } )][string[]] $FontColor,
-        [nullable[bool][]] $FontBold
+        [nullable[bool][]] $FontBold,
+        [int] $FontSize,
+        [string] $TextAlignment,
+        [nullable[float]] $MarginTop,
+        [nullable[float]] $MarginBottom,
+        [nullable[float]] $MarginLeft,
+        [nullable[float]] $MarginRight
     )
 
-    $Paragraph = [iText.Layout.Element.Paragraph]::new()
+    $Paragraph = [iText.Layout.Element.Paragraph]::New()
 
     if ($FontBold) {
         [Array] $FontBold = $FontBold
@@ -50,6 +56,9 @@
                 }
             }
         }
+        if ($FontSize) {
+            $PDFText = $PDFText.SetFontSize($FontSize)
+        }
         if ($Font) {
             if ($null -ne $Font[$i]) {
                 if ($Font[$i]) {
@@ -75,6 +84,18 @@
             }
         }
         $null = $Paragraph.Add($PDFText)
+    }
+    if ($TextAlignment) {
+        $ConvertedTextAlignment = Get-PDFConstantTextAlignment -TextAlignment $TextAlignment
+        $null = $Paragraph.SetTextAlignment($ConvertedTextAlignment)
+    }
+    $null = $Paragraph.SetMarginTop($MarginTop)
+    $null = $Paragraph.SetMarginBottom($MarginBottom)
+    if ($MarginLeft) {
+        $null = $Paragraph.SetMarginLeft($MarginLeft)
+    }
+    if ($MarginRight) {
+        $null = $Paragraph.SetMarginRight($MarginRight)
     }
     $Paragraph
 }
