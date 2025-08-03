@@ -28,21 +28,23 @@ namespace PdfIMO
         });
 
         public static Color GetColor(PdfColor color) => color switch
-        {
-            PdfColor.Black => ColorConstants.BLACK,
-            PdfColor.Blue => ColorConstants.BLUE,
-            PdfColor.Red => ColorConstants.RED,
-            PdfColor.Green => ColorConstants.GREEN,
-            PdfColor.Gray => ColorConstants.GRAY,
-            _ => ColorConstants.BLACK
-        };
+            {
+                PdfColor.Black => ColorConstants.BLACK,
+                PdfColor.Blue => ColorConstants.BLUE,
+                PdfColor.Red => ColorConstants.RED,
+                PdfColor.Green => ColorConstants.GREEN,
+                PdfColor.Gray => ColorConstants.GRAY,
+                PdfColor.Yellow => ColorConstants.YELLOW,
+                _ => ColorConstants.BLACK
+            };
 
         public static PageSize GetPageSize(PdfPageSize size) => size switch
-        {
-            PdfPageSize.A4 => PageSize.A4,
-            PdfPageSize.Letter => PageSize.LETTER,
-            PdfPageSize.Legal => PageSize.LEGAL,
-            _ => PageSize.A4
-        };
+            {
+                PdfPageSize.A4 => PageSize.A4,
+                PdfPageSize.A5 => PageSize.A5,
+                PdfPageSize.Letter => PageSize.LETTER,
+                PdfPageSize.Legal => PageSize.LEGAL,
+                _ => PageSize.A4
+            };
     }
 }

@@ -24,13 +24,15 @@ namespace PdfIMO
         Blue,
         Red,
         Green,
-        Gray
+        Gray,
+        Yellow
     }
 
     public enum PdfPageSize
     {
         Default,
         A4,
+        A5,
         Letter,
         Legal
     }
