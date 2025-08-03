@@ -1,0 +1,75 @@
+name: Test PowerShell
+
+on:
+  push:
+    branches:
+      - v2-speedygonzales
+    paths-ignore:
+      - '*.md'
+      - 'Docs/**'
+      - 'Examples/**'
+      - '.gitignore'
+  pull_request:
+    branches:
+      - v2-speedygonzales
+
+env:
+  DOTNET_VERSION: '8.x'
+  BUILD_CONFIGURATION: 'Debug'
+
+jobs:
+  test-windows-ps5:
+    name: 'Windows PowerShell 5.1'
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install PowerShell modules
+        shell: powershell
+        run: |
+          Write-Host "PowerShell Version: $($PSVersionTable.PSVersion)"
+          Install-Module -Name Pester -Repository PSGallery -Force -SkipPublisherCheck -AllowClobber
+          Install-Module -Name PSWriteColor -Repository PSGallery -Force -SkipPublisherCheck -AllowClobber
+
+      - name: Build .NET solution
+        run: |
+          dotnet restore Sources/PSWritePDF.sln
+          dotnet build Sources/PSWritePDF.sln --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
+
+      - name: Run PowerShell tests
+        shell: powershell
+        run: ./PSWritePDF.Tests.ps1
+
+  test-windows-ps7:
+    name: 'Windows PowerShell 7'
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install PowerShell modules
+        shell: pwsh
+        run: |
+          Write-Host "PowerShell Version: $($PSVersionTable.PSVersion)"
+          Install-Module -Name Pester -Repository PSGallery -Force -SkipPublisherCheck -AllowClobber
+          Install-Module -Name PSWriteColor -Repository PSGallery -Force -SkipPublisherCheck -AllowClobber
+
+      - name: Build .NET solution
+        run: |
+          dotnet restore Sources/PSWritePDF.sln
+          dotnet build Sources/PSWritePDF.sln --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
+
+      - name: Run PowerShell tests
+        shell: pwsh
+        run: ./PSWritePDF.Tests.ps1
