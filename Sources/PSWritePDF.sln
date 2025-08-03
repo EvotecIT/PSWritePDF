@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfIMO", "PdfIMO\PdfIMO.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfIMO.Tests", "PdfIMO.Tests\PdfIMO.Tests.csproj", "{2E5D3BC2-A41A-45A0-BC4E-35922AAF1024}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfIMO.Examples", "PdfIMO.Examples\PdfIMO.Examples.csproj", "{D12AF663-6DAA-492F-B885-E0D1C91B60EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{2E5D3BC2-A41A-45A0-BC4E-35922AAF1024}.Release|x64.Build.0 = Release|Any CPU
 		{2E5D3BC2-A41A-45A0-BC4E-35922AAF1024}.Release|x86.ActiveCfg = Release|Any CPU
 		{2E5D3BC2-A41A-45A0-BC4E-35922AAF1024}.Release|x86.Build.0 = Release|Any CPU
+		{D12AF663-6DAA-492F-B885-E0D1C91B60EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D12AF663-6DAA-492F-B885-E0D1C91B60EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D12AF663-6DAA-492F-B885-E0D1C91B60EA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D12AF663-6DAA-492F-B885-E0D1C91B60EA}.Debug|x64.Build.0 = Debug|Any CPU
+		{D12AF663-6DAA-492F-B885-E0D1C91B60EA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D12AF663-6DAA-492F-B885-E0D1C91B60EA}.Debug|x86.Build.0 = Debug|Any CPU
+		{D12AF663-6DAA-492F-B885-E0D1C91B60EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D12AF663-6DAA-492F-B885-E0D1C91B60EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D12AF663-6DAA-492F-B885-E0D1C91B60EA}.Release|x64.ActiveCfg = Release|Any CPU
+		{D12AF663-6DAA-492F-B885-E0D1C91B60EA}.Release|x64.Build.0 = Release|Any CPU
+		{D12AF663-6DAA-492F-B885-E0D1C91B60EA}.Release|x86.ActiveCfg = Release|Any CPU
+		{D12AF663-6DAA-492F-B885-E0D1C91B60EA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
