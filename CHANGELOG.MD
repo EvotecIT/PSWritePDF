@@ -1,5 +1,8 @@
 ﻿## Changelog
 
+#### 0.0.21
+- Fix `Get-PDFNamedPageSize has typo on line 66 causing Error: A null key is not allowed in a hash literal.` in [#50](https://github.com/EvotecIT/PSWritePDF/issues/50)
+
 #### 0.0.20 - 2022.10.02
 - Added Text-Extractionstrategys [#40](https://github.com/EvotecIT/PSWritePDF/pull/40) - thank you **MathisDukatz**
 
