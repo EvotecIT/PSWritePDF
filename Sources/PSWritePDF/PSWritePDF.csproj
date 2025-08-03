@@ -12,9 +12,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="itext7" Version="8.0.5" />
-		<PackageReference Include="itext7.font-asian" Version="8.0.5" />
-		<PackageReference Include="itext7.pdfhtml" Version="5.0.5" />
+                <PackageReference Include="itext7" Version="9.2.0" />
+                <PackageReference Include="itext7.font-asian" Version="9.2.0" />
+                <PackageReference Include="itext7.pdfhtml" Version="6.2.0" />
 		<PackageReference Include="PowerShellStandard.Library" Version="5.1.1" PrivateAssets="all" />
 		<PackageReference Include="System.Management" Version="7.0.2" PrivateAssets="all" />
 	</ItemGroup>
