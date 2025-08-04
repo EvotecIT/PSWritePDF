@@ -30,4 +30,7 @@
 	<PropertyGroup Condition=" '$(TargetFramework)' == 'net472' ">
 		<DefineConstants>$(DefineConstants);FRAMEWORK</DefineConstants>
 	</PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
 </Project>

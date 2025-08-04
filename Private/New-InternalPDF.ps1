@@ -8,7 +8,7 @@
     )
 
     if ($Version) {
-        $PDFVersion = Get-PDFConstantVersion -Version $Version
+        $PDFVersion = Get-PDFVersion -Version $Version
         $WriterProperties = [iText.Kernel.Pdf.WriterProperties]::new()
         $null = $WriterProperties.SetPdfVersion($PDFVersion)
     }
@@ -56,5 +56,4 @@ function New-InternalPDF {
     }
 }
 #>
-Register-ArgumentCompleter -CommandName New-InternalPDF -ParameterName PageSize -ScriptBlock $Script:PDFPageSize
-Register-ArgumentCompleter -CommandName New-InternalPDF -ParameterName Version -ScriptBlock $Script:PDFVersion
+# Removed legacy argument completers tied to deprecated constant functions
