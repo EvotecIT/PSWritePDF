@@ -3,7 +3,7 @@ name: Test PowerShell
 on:
   push:
     branches:
-      - v2-speedygonzales
+      - master
     paths-ignore:
       - '*.md'
       - 'Docs/**'
@@ -11,7 +11,7 @@ on:
       - '.gitignore'
   pull_request:
     branches:
-      - v2-speedygonzales
+      - master
 
 env:
   DOTNET_VERSION: '8.x'
