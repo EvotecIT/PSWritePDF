@@ -15,7 +15,11 @@ if ($AssemblyFolders.BaseName -contains 'Standard') {
 }
 Foreach ($Import in @($Assembly)) {
     try {
-        Add-Type -Path $Import.Fullname -ErrorAction Stop
+        if ($Import.BaseName -eq 'PSWritePDF') {
+            Import-Module $Import.FullName -ErrorAction Stop
+        } else {
+            Add-Type -Path $Import.Fullname -ErrorAction Stop
+        }
     } catch [System.Reflection.ReflectionTypeLoadException] {
         Write-Error -Message "Message: $($_.Exception.Message)"
         Write-Error -Message "StackTrace: $($_.Exception.StackTrace)"
@@ -36,4 +40,4 @@ Foreach ($Import in @($Public + $Private)) {
     }
 }
 
-Export-ModuleMember -Function '*' -Alias '*'
+Export-ModuleMember -Function '*' -Cmdlet '*' -Alias '*'
