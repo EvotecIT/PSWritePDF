@@ -9,7 +9,6 @@ using iText.Kernel.Pdf.Canvas.Parser;
 namespace PSWritePDF.Cmdlets;
 
 [Cmdlet(VerbsData.Convert, "PDFToText")]
-[Alias("Convert-PDFToText")]
 [OutputType(typeof(string))]
 public class CmdletConvertPDFToText : PSCmdlet
 {

@@ -7,7 +7,6 @@ using iText.Kernel.Utils;
 namespace PSWritePDF.Cmdlets;
 
 [Cmdlet(VerbsData.Merge, "PDF")]
-[Alias("Merge-PDF")]
 public class CmdletMergePDF : PSCmdlet
 {
     [Parameter(Mandatory = true)]

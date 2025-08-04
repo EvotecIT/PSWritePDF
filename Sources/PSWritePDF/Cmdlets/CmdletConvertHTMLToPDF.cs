@@ -6,7 +6,6 @@ using System.Net.Http;
 namespace PSWritePDF.Cmdlets;
 
 [Cmdlet(VerbsData.Convert, "HTMLToPDF", DefaultParameterSetName = ParameterSetNames.Uri)]
-[Alias("Convert-HTMLToPDF")]
 public class CmdletConvertHTMLToPDF : PSCmdlet
 {
     private static class ParameterSetNames

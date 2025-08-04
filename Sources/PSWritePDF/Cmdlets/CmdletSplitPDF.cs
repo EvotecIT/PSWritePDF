@@ -6,7 +6,6 @@ using iText.Kernel.Pdf;
 namespace PSWritePDF.Cmdlets;
 
 [Cmdlet(VerbsCommon.Split, "PDF")]
-[Alias("Split-PDF")]
 public class CmdletSplitPDF : PSCmdlet
 {
     [Parameter(Mandatory = true)]

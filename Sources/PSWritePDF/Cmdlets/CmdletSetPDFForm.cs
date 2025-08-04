@@ -9,7 +9,6 @@ using iText.Kernel.Pdf;
 namespace PSWritePDF.Cmdlets;
 
 [Cmdlet(VerbsCommon.Set, "PDFForm")]
-[Alias("Set-PDFForm")]
 public class CmdletSetPDFForm : PSCmdlet
 {
     [Parameter(Mandatory = true)]

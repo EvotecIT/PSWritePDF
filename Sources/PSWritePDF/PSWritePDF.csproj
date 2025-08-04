@@ -1,36 +1,64 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <Company>Evotec</Company>
+        <Authors>Przemyslaw Klys</Authors>
+        <VersionPrefix>1.0.0</VersionPrefix>
+        <TargetFrameworks>net472;netstandard2.0;net8.0</TargetFrameworks>
+        <AssemblyName>PSWritePDF</AssemblyName>
 
-	<PropertyGroup>
-		<Company>Evotec</Company>
-		<Authors>Przemyslaw Klys</Authors>
-		<VersionPrefix>1.0.0</VersionPrefix>
-		<TargetFrameworks>net472;netstandard2.0;net8.0</TargetFrameworks>
-		<AssemblyName>PSWritePDF</AssemblyName>
+        <Copyright>(c) 2011 - 2024 Przemyslaw Klys @ Evotec. All rights reserved.</Copyright>
+        <LangVersion>Latest</LangVersion>
+    </PropertyGroup>
 
-		<Copyright>(c) 2011 - 2024 Przemyslaw Klys @ Evotec. All rights reserved.</Copyright>
-		<LangVersion>Latest</LangVersion>
-	</PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\PdfIMO\PdfIMO.csproj" />
+    </ItemGroup>
 
-        <ItemGroup>
-                <PackageReference Include="itext7" Version="9.2.0" />
-                <PackageReference Include="itext7.font-asian" Version="9.2.0" />
-                <PackageReference Include="itext7.pdfhtml" Version="6.2.0" />
-                <PackageReference Include="PowerShellStandard.Library" Version="5.1.1" PrivateAssets="all" />
-                <PackageReference Include="System.Management" Version="7.0.2" PrivateAssets="all" />
-        </ItemGroup>
+    <PropertyGroup>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    </PropertyGroup>
 
-        <ItemGroup>
-                <ProjectReference Include="..\PdfIMO\PdfIMO.csproj" />
-        </ItemGroup>
+    <PropertyGroup Condition=" '$(TargetFramework)' == 'net472' ">
+        <DefineConstants>$(DefineConstants);FRAMEWORK</DefineConstants>
+    </PropertyGroup>
+    <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
+        <Reference Include="System.Net.Http" />
+    </ItemGroup>
 
-	<PropertyGroup>
-		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-	</PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="PowerShellStandard.Library" Version="5.1.1" PrivateAssets="all" />
+    </ItemGroup>
 
-	<PropertyGroup Condition=" '$(TargetFramework)' == 'net472' ">
-		<DefineConstants>$(DefineConstants);FRAMEWORK</DefineConstants>
-	</PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net472' ">
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
+    <!-- Make sure the output DLL's from library are included in the output -->
+    <PropertyGroup>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    </PropertyGroup>
+
+    <!-- We need to remove PowerShell conflicting libraries as it will break output -->
+    <Target Name="RemoveFilesAfterBuild" AfterTargets="Build">
+        <Delete Files="$(OutDir)System.Management.Automation.dll" />
+        <Delete Files="$(OutDir)System.Management.dll" />
+    </Target>
+
+
+    <PropertyGroup>
+        <!-- This is needed for XmlDoc2CmdletDoc to generate a PowerShell documentation file. -->
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <!-- This is needed for XmlDoc2CmdletDoc to generate a PowerShell documentation file. -->
+        <PackageReference Include="MatejKafka.XmlDoc2CmdletDoc" Version="0.7.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <!-- Copy help documentation to publish output after publish -->
+    <Target Name="CopyHelpDocumentationToPublishOutput" AfterTargets="Publish">
+        <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll-Help.xml"
+            DestinationFiles="$(PublishDir)$(AssemblyName).dll-Help.xml"
+            Condition="Exists('$(OutputPath)$(AssemblyName).dll-Help.xml')" />
+    </Target>
 </Project>
