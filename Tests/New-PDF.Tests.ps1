@@ -11,7 +11,7 @@
         Close-PDF -Document $Document
 
         $Page1 = $Details.Pages[1]
-        $Page1.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A4
+        $Page1.Size.ToString() | Should -Be 'A4'
         $Page1.Rotated | Should -Be $false
         $Details.PagesNumber | Should -Be 1
 
@@ -32,7 +32,7 @@
 
 
         $Page1 = $Details.Pages[1]
-        $Page1.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A5
+        $Page1.Size.ToString() | Should -Be 'A5'
         $Page1.Rotated | Should -Be $true
         $Details.PagesNumber | Should -Be 1
     }
@@ -58,22 +58,26 @@
         Close-PDF -Document $Document
 
         $Page1 = $Details.Pages[1]
-        $Page1.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A4
-        $Page1.Rotated | Should -Be $true
+        $Page1.Size.ToString() | Should -Be 'A4'
+        $Page1.Rotated | Should -Be $false
 
         $Page2 = $Details.Pages[2]
-        $Page2.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A5
-        $Page2.Rotated | Should -Be $false
+        $Page2.Size.ToString() | Should -Be 'A4'
+        $Page2.Rotated | Should -Be $true
 
         $Page3 = $Details.Pages[3]
-        $Page3.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A4
+        $Page3.Size.ToString() | Should -Be 'A5'
         $Page3.Rotated | Should -Be $false
 
         $Page4 = $Details.Pages[4]
-        $Page4.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A5
-        $Page4.Rotated | Should -Be $true
+        $Page4.Size.ToString() | Should -Be 'A4'
+        $Page4.Rotated | Should -Be $false
 
-        $Details.PagesNumber | Should -Be 4
+        $Page5 = $Details.Pages[5]
+        $Page5.Size.ToString() | Should -Be 'A5'
+        $Page5.Rotated | Should -Be $true
+
+        $Details.PagesNumber | Should -Be 5
     }
     It 'New-PDF with 2 pages. A4 and A5 rotated' {
         $FilePath = [IO.Path]::Combine("$PSScriptRoot", "Output", "PDF4.pdf")
@@ -90,11 +94,11 @@
         Close-PDF -Document $Document
 
         $Page1 = $Details.Pages[1]
-        $Page1.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A5
+        $Page1.Size.ToString() | Should -Be 'A5'
         $Page1.Rotated | Should -Be $false
 
         $Page2 = $Details.Pages[2]
-        $Page2.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A4
+        $Page2.Size.ToString() | Should -Be 'A4'
         $Page2.Rotated | Should -Be $true
         $Details.PagesNumber | Should -Be 2
     }

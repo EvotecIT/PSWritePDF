@@ -1,7 +1,7 @@
 ﻿Import-Module .\PSWritePDF.psd1 -Force
 
 New-PDF {
-    Register-PDFFont -FontName 'Verdana' -FontPath 'C:\Windows\fonts\verdana.ttf' -Encoding IDENTITY_H -Cached -Default
+    Register-PDFFont -FontName 'Verdana' -FontPath 'C:\Windows\fonts\verdana.ttf' -Encoding IdentityH -Cached -Default
     New-PDFText -Text 'Hello ', 'World' -Font HELVETICA, TIMES_ITALIC -FontColor GRAY, BLUE -FontBold $true, $false, $true
     New-PDFText -Text 'Testing adding text. ', 'Keep in mind that this works like array.' -Font HELVETICA -FontColor RED
     New-PDFText -Text 'This text is going by defaults.', ' This will continue...', ' and we can continue working like that.'

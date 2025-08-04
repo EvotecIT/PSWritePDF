@@ -3,11 +3,11 @@
 # This shows handling of edge cases where this shouldnt throw errors, but warnings.
 
 New-PDF -FilePath "$PSScriptRoot\Example01_Simple3-1.pdf" -PDFContent {
-    Register-PDFFont -FontName 'Verdana' -FontPath 'C:\Windows\fonts\verdana.ttf' -Encoding IDENTITY_H -Cached -Default
+    Register-PDFFont -FontName 'Verdana' -FontPath 'C:\Windows\fonts\verdana.ttf' -Encoding IdentityH -Cached -Default
     New-PDFText -Text 'Hello ', 'Привет !'
 } -Show
 New-PDF -FilePath "$PSScriptRoot\Example01_Simple3-2.pdf" -PDFContent {
-    Register-PDFFont -FontName 'Verdana' -FontPath 'C:\Windows\fonts\verdana.ttf' -Encoding IDENTITY_H -Cached -Default
+    Register-PDFFont -FontName 'Verdana' -FontPath 'C:\Windows\fonts\verdana.ttf' -Encoding IdentityH -Cached -Default
     New-PDFText -Text 'Hello ', 'Привет !'
 } -Show
 

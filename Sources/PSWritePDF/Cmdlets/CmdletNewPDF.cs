@@ -28,6 +28,11 @@ public class CmdletNewPDF : PSCmdlet {
     [Parameter, Alias("Open")] public SwitchParameter Show { get; set; }
 
     protected override void ProcessRecord() {
+        var directory = Path.GetDirectoryName(FilePath);
+        if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory)) {
+            Directory.CreateDirectory(directory);
+        }
+
         iTextPdf.PdfWriter writer;
         if (!string.IsNullOrEmpty(Version)) {
             var enumName = "PDF_" + Version.Replace('.', '_');
@@ -47,12 +52,16 @@ public class CmdletNewPDF : PSCmdlet {
 
         if (PDFContent != null) {
             PDFContent.Invoke();
-            document.Close();
-            if (Show.IsPresent && File.Exists(FilePath)) {
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(FilePath) { UseShellExecute = true });
-            }
-        } else {
-            WriteObject(pdfDocument);
+        }
+
+        document.Close();
+
+        if (Show.IsPresent && File.Exists(FilePath)) {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(FilePath) { UseShellExecute = true });
+        }
+
+        if (PDFContent == null) {
+            WriteObject(FilePath);
         }
 
         SessionState.PSVariable.Remove("Document");

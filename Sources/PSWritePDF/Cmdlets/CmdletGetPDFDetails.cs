@@ -43,14 +43,15 @@ public class CmdletGetPDFDetails : PSCmdlet
             var pageSize = page.GetPageSizeWithRotation();
             var height = (int)pageSize.GetHeight();
             var width = (int)pageSize.GetWidth();
-            var (size, rotated) = PdfPageSizeLookup.Get(height, width);
+            var (size, _) = PdfPageSizeLookup.Get(height, width);
+            var isRotated = width > height;
             details.Pages[i] = new PdfPageDetails
             {
                 Height = height,
                 Width = width,
                 Rotation = page.GetRotation(),
                 Size = size,
-                Rotated = rotated
+                Rotated = isRotated
             };
         }
 

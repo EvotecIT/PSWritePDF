@@ -20,7 +20,7 @@ Describe 'New-PDF' {
         Close-PDF -Document $Document
 
         $Page1 = $Details.Pages[1]
-        $Page1.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A4
+        $Page1.Size.ToString() | Should -Be 'A4'
         $Page1.Rotated | Should -Be $false
         $Details.PagesNumber | Should -Be 1
     }
@@ -42,7 +42,7 @@ Describe 'New-PDF' {
         Close-PDF -Document $Document
 
         $Page1 = $Details.Pages[1]
-        $Page1.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A4
+        $Page1.Size.ToString() | Should -Be 'A4'
         $Page1.Rotated | Should -Be $false
         $Details.PagesNumber | Should -Be 1
     }
@@ -86,7 +86,7 @@ Describe 'New-PDF' {
         Close-PDF -Document $Document
 
         $Page1 = $Details.Pages[1]
-        $Page1.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A4
+        $Page1.Size.ToString() | Should -Be 'A4'
         $Page1.Rotated | Should -Be $false
         $Details.PagesNumber | Should -Be 1
     }
