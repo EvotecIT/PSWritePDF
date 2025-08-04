@@ -1,12 +1,12 @@
 ﻿@{
     AliasesToExport      = @()
     Author               = 'Przemyslaw Klys'
-    CmdletsToExport      = @()
+    CmdletsToExport      = @('Close-PDF', 'Get-PDF', 'Get-PDFDetails', 'Get-PDFFormField', 'New-PDF', 'New-PDFArea', 'New-PDFDocument', 'New-PDFImage', 'New-PDFInfo', 'New-PDFList', 'New-PDFListItem', 'New-PDFOptions', 'New-PDFPage', 'New-PDFTable', 'New-PDFText', 'Register-PDFFont')
     CompanyName          = 'Evotec'
     CompatiblePSEditions = @('Desktop', 'Core')
     Copyright            = '(c) 2011 - 2022 Przemyslaw Klys @ Evotec. All rights reserved.'
     Description          = 'Little project to create, read, modify, split, merge PDF files on Windows, Linux and Mac.'
-    FunctionsToExport    = @('Close-PDF', 'Get-PDF', 'Get-PDFDetails', 'Get-PDFFormField', 'New-PDF', 'New-PDFArea', 'New-PDFDocument', 'New-PDFImage', 'New-PDFInfo', 'New-PDFList', 'New-PDFListItem', 'New-PDFOptions', 'New-PDFPage', 'New-PDFTable', 'New-PDFText', 'Register-PDFFont', 'Get-PDFConstantAction', 'Get-PDFConstantPageSize', 'Get-PDFConstantVersion', 'Convert-HTMLToPDF', 'Convert-PDFToText', 'Merge-PDF', 'Set-PDFForm', 'Split-PDF')
+    FunctionsToExport    = @('Get-PDFConstantAction', 'Get-PDFConstantPageSize', 'Get-PDFConstantVersion', 'Convert-HTMLToPDF', 'Convert-PDFToText', 'Merge-PDF', 'Set-PDFForm', 'Split-PDF')
     GUID                 = '19fcb43c-d8c5-44a9-84e4-bccf29765490'
     ModuleVersion        = '0.0.21'
     PowerShellVersion    = '5.1'
