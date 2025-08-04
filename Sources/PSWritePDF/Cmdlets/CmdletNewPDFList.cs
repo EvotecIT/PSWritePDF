@@ -8,8 +8,10 @@ namespace PSWritePDF.Cmdlets;
 
 [Cmdlet(VerbsCommon.New, "PDFList")]
 public class CmdletNewPDFList : PSCmdlet {
-    [Parameter(Position = 0)]
+    [Parameter(Position = 0, ParameterSetName = "ScriptBlock")]
     public ScriptBlock? ListItems { get; set; }
+    [Parameter(Position = 0, ParameterSetName = "Items")]
+    public string[]? Items { get; set; }
     [Parameter] public double? Indent { get; set; }
     [Parameter] public ListSymbol Symbol { get; set; } = ListSymbol.Hyphen;
     [Parameter] public PdfFontName? Font { get; set; }
@@ -23,7 +25,9 @@ public class CmdletNewPDFList : PSCmdlet {
 
     protected override void ProcessRecord() {
         var items = new List<string>();
-        if (ListItems != null) {
+        if (Items != null) {
+            items.AddRange(Items);
+        } else if (ListItems != null) {
             foreach (var result in ListItems.Invoke()) {
                 if (result != null) {
                     items.Add(result.ToString()!);
