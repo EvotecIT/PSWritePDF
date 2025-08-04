@@ -15,17 +15,13 @@ public class CmdletGetPDFFormField : PSCmdlet
     {
         try
         {
-            var acroForm = PdfAcroForm.GetAcroForm(PDF, true);
-            var method = typeof(PdfAcroForm).GetMethod("GetFormFields");
-            if (method != null)
+            var acroForm = PdfAcroForm.GetAcroForm(PDF, false);
+            var fields = acroForm?.GetAllFormFields();
+            if (fields != null)
             {
-                var fields = method.Invoke(acroForm, null) as System.Collections.Generic.IDictionary<string, iText.Forms.Fields.PdfFormField>;
-                if (fields != null)
+                foreach (var kv in fields)
                 {
-                    foreach (var kv in fields)
-                    {
-                        WriteObject(new PdfFormFieldInfo { Name = kv.Key, Field = kv.Value });
-                    }
+                    WriteObject(new PdfFormFieldInfo { Name = kv.Key, Field = kv.Value });
                 }
             }
         }

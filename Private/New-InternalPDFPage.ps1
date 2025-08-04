@@ -42,4 +42,4 @@
     }
 }
 
-Register-ArgumentCompleter -CommandName New-InternalPDFPage -ParameterName PageSize -ScriptBlock $Script:PDFPageSize
+# Removed legacy argument completer tied to deprecated page size function
