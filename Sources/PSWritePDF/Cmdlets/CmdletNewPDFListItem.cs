@@ -1,13 +1,41 @@
+using System;
 using System.Management.Automation;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using PdfIMO;
 
 namespace PSWritePDF.Cmdlets;
 
 [Cmdlet(VerbsCommon.New, "PDFListItem")]
 public class CmdletNewPDFListItem : PSCmdlet {
     [Parameter(Mandatory = true)]
-    public string Text { get; set; } = string.Empty;
+    public string[] Text { get; set; } = Array.Empty<string>();
+
+    [Parameter] public PdfFontName[]? Font { get; set; }
+    [Parameter] public PdfColor[]? FontColor { get; set; }
+    [Parameter] public bool?[]? FontBold { get; set; }
+    [Parameter] public int? FontSize { get; set; }
+    [Parameter] public TextAlignment? TextAlignment { get; set; }
+    [Parameter] public double? MarginTop { get; set; }
+    [Parameter] public double? MarginBottom { get; set; }
+    [Parameter] public double? MarginLeft { get; set; }
+    [Parameter] public double? MarginRight { get; set; }
 
     protected override void ProcessRecord() {
-        WriteObject(Text);
+        var paragraph = PdfText.CreateParagraph(
+            Text,
+            Font,
+            FontColor,
+            FontBold,
+            FontSize,
+            TextAlignment,
+            (float?)MarginTop,
+            (float?)MarginBottom,
+            (float?)MarginLeft,
+            (float?)MarginRight);
+
+        var listItem = new ListItem();
+        listItem.Add(paragraph);
+        WriteObject(listItem);
     }
 }

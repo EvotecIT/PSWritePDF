@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Management.Automation;
 using iText.Layout;
+using iText.Layout.Element;
 using iText.Layout.Properties;
 using PdfIMO;
 
@@ -24,32 +25,65 @@ public class CmdletNewPDFList : PSCmdlet {
     [Parameter] public double? MarginRight { get; set; }
 
     protected override void ProcessRecord() {
-        var items = new List<string>();
+        var listItems = new List<ListItem>();
         if (Items != null) {
-            items.AddRange(Items);
+            foreach (var item in Items) {
+                var paragraph = PdfText.CreateParagraph(
+                    new[] { item },
+                    Font.HasValue ? new[] { Font.Value } : null,
+                    FontColor.HasValue ? new[] { FontColor.Value } : null,
+                    null,
+                    FontSize,
+                    TextAlignment,
+                    (float?)MarginTop,
+                    (float?)MarginBottom,
+                    (float?)MarginLeft,
+                    (float?)MarginRight);
+                var listItem = new ListItem();
+                listItem.Add(paragraph);
+                listItems.Add(listItem);
+            }
         } else if (ListItems != null) {
             foreach (var result in ListItems.Invoke()) {
-                if (result != null) {
-                    items.Add(result.ToString()!);
+                var value = (result as PSObject)?.BaseObject ?? result;
+                switch (value) {
+                    case ListItem item:
+                        listItems.Add(item);
+                        break;
+                    case string text:
+                        var paragraph = PdfText.CreateParagraph(
+                            new[] { text },
+                            Font.HasValue ? new[] { Font.Value } : null,
+                            FontColor.HasValue ? new[] { FontColor.Value } : null,
+                            null,
+                            FontSize,
+                            TextAlignment,
+                            (float?)MarginTop,
+                            (float?)MarginBottom,
+                            (float?)MarginLeft,
+                            (float?)MarginRight);
+                        var listItem = new ListItem();
+                        listItem.Add(paragraph);
+                        listItems.Add(listItem);
+                        break;
                 }
             }
         }
 
         var document = SessionState.PSVariable.GetValue("Document") as Document;
-        if (document != null) {
-            PdfList.AddList(
-                document,
-                items,
-                (float?)Indent,
-                Symbol,
-                Font,
-                FontColor,
-                FontSize,
-                TextAlignment,
-                (float?)MarginTop,
-                (float?)MarginBottom,
-                (float?)MarginLeft,
-                (float?)MarginRight);
+        if (document == null) return;
+
+        var list = new List();
+        if (Indent.HasValue) {
+            list.SetSymbolIndent((float)Indent.Value);
         }
+        if (Symbol == ListSymbol.Bullet) {
+            list.SetListSymbol("\u2022");
+        }
+        foreach (var item in listItems) {
+            list.Add(item);
+        }
+
+        document.Add(list);
     }
 }

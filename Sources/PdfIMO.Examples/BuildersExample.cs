@@ -17,6 +17,7 @@ public static class BuildersExample
             new[] { "Hello PdfIMO Builders" },
             new[] { PdfFontName.HELVETICA },
             new[] { PdfColor.Red },
+            null,
             14,
             TextAlignment.CENTER);
         document.Add(paragraph);

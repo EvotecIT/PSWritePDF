@@ -27,6 +27,7 @@ public class CmdletNewPDFText : PSCmdlet {
             Text,
             Font,
             FontColor,
+            FontBold,
             FontSize,
             TextAlignment,
             (float?)MarginTop,

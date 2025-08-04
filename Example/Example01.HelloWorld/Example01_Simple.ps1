@@ -1,4 +1,4 @@
-﻿Import-Module .\PSWritePDF.psd1 -Force
+Import-Module .\PSWritePDF.psd1 -Force
 
 New-PDF {
     Register-PDFFont -FontName 'Verdana' -FontPath 'C:\Windows\fonts\verdana.ttf' -Encoding IDENTITY_H -Cached -Default

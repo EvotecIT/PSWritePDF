@@ -36,6 +36,7 @@ namespace PdfIMO
                     new[] { item },
                     font.HasValue ? new[] { font.Value } : null,
                     fontColor.HasValue ? new[] { fontColor.Value } : null,
+                    null,
                     fontSize,
                     textAlignment,
                     marginTop,

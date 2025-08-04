@@ -23,6 +23,7 @@ namespace PdfIMO.Tests
                     new[] { "Hello from builders" },
                     new[] { PdfFontName.HELVETICA },
                     new[] { PdfColor.Blue },
+                    null,
                     12,
                     TextAlignment.CENTER);
 
