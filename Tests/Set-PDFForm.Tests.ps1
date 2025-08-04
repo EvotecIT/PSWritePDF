@@ -43,9 +43,9 @@ Describe 'Set-PDFForm' -Tags "PDFForm" {
             $FieldName = $_
             $FieldValue = $FieldNameAndValueHashTable[$FieldName]
             $AcrobatFormFields |
-            Where-Object key -EQ $FieldName |
+            Where-Object Name -EQ $FieldName |
             ForEach-Object {
-                $_.Value.GetValue()
+                $_.Field.GetValue()
             } |
             Should -Be $FieldValue
         }
@@ -76,9 +76,9 @@ Describe 'Set-PDFForm' -Tags "PDFForm" {
             $FieldName = $_
             $FieldValue = $FieldNameAndValueHashTable[$FieldName]
             $AcrobatFormFields |
-            Where-Object key -EQ $FieldName |
+            Where-Object Name -EQ $FieldName |
             ForEach-Object {
-                $_.Value.GetValueAsString() | ConvertTo-Boolean
+                $_.Field.GetValueAsString() | ConvertTo-Boolean
             } |
             Should -Be $FieldValue
         }
