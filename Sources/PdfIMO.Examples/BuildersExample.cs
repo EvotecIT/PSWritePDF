@@ -15,7 +15,7 @@ public static class BuildersExample
 
         var paragraph = PdfText.CreateParagraph(
             new[] { "Hello PdfIMO Builders" },
-            new[] { PdfFontName.HELVETICA },
+            new[] { PdfHelpers.CreateFont(PdfFontName.HELVETICA) },
             new[] { PdfColor.Red },
             null,
             14,

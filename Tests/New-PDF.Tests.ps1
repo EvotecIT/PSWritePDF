@@ -21,7 +21,7 @@ Describe 'New-PDF' {
         New-PDF  -MarginLeft 120 -MarginRight 20 -MarginTop 20 -MarginBottom 20 -PageSize A5 -Rotate {
             New-PDFText -Text 'Test ', 'Me', 'Oooh' -FontColor BLUE, YELLOW, RED
             New-PDFList -Indent 3 {
-                New-PDFListItem -Text 'Test', ' Item' -Font HELVETICA, HELVETICA_BOLD -FontColor GRAY, BLUE
+                New-PDFListItem -Text 'Test', ' Item' -Font HELVETICA, TIMES_ITALIC -FontColor GRAY, BLUE -FontBold $null, $true
                 New-PDFListItem -Text '2nd', ' element' -FontColor RED, GREEN -FontBold $null, $true
             }
         } -FilePath $FilePath

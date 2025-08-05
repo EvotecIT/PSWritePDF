@@ -21,7 +21,7 @@ namespace PdfIMO.Tests
 
                 var paragraph = PdfText.CreateParagraph(
                     new[] { "Hello from builders" },
-                    new[] { PdfFontName.HELVETICA },
+                    new[] { PdfHelpers.CreateFont(PdfFontName.HELVETICA) },
                     new[] { PdfColor.Blue },
                     null,
                     12,

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using iText.Kernel.Font;
 using iText.Layout;
 using iText.Layout.Element;
 
@@ -34,7 +35,7 @@ namespace PdfIMO
             {
                 var paragraph = PdfText.CreateParagraph(
                     new[] { item },
-                    font.HasValue ? new[] { font.Value } : null,
+                    font.HasValue ? new[] { PdfHelpers.CreateFont(font.Value) } : null,
                     fontColor.HasValue ? new[] { fontColor.Value } : null,
                     null,
                     fontSize,

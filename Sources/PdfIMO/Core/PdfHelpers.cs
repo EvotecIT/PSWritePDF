@@ -4,7 +4,7 @@ using iText.Kernel.Geom;
 
 namespace PdfIMO
 {
-    internal static class PdfHelpers
+    public static class PdfHelpers
     {
         public static PdfFont CreateFont(PdfFontName font) =>
             PdfFontFactory.CreateFont(PdfFontLookup.GetFont(font));

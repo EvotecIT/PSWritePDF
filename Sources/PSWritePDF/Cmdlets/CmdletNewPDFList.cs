@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Management.Automation;
+using iText.Kernel.Font;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
@@ -15,7 +17,7 @@ public class CmdletNewPDFList : PSCmdlet {
     public string[]? Items { get; set; }
     [Parameter] public double? Indent { get; set; }
     [Parameter] public ListSymbol Symbol { get; set; } = ListSymbol.Hyphen;
-    [Parameter] public PdfFontName? Font { get; set; }
+    [Parameter] public string? Font { get; set; }
     [Parameter] public PdfColor? FontColor { get; set; }
     [Parameter] public int? FontSize { get; set; }
     [Parameter] public TextAlignment? TextAlignment { get; set; }
@@ -26,11 +28,18 @@ public class CmdletNewPDFList : PSCmdlet {
 
     protected override void ProcessRecord() {
         var listItems = new List<ListItem>();
+        PdfFont? resolvedFont = null;
+        if (!string.IsNullOrEmpty(Font))
+        {
+            var fontsDict = SessionState.PSVariable.GetValue("Fonts") as IDictionary<string, PdfFont>;
+            resolvedFont = ResolveFont(Font, fontsDict);
+        }
+
         if (Items != null) {
             foreach (var item in Items) {
                 var paragraph = PdfText.CreateParagraph(
                     new[] { item },
-                    Font.HasValue ? new[] { Font.Value } : null,
+                    resolvedFont != null ? new[] { resolvedFont } : null,
                     FontColor.HasValue ? new[] { FontColor.Value } : null,
                     null,
                     FontSize,
@@ -53,7 +62,7 @@ public class CmdletNewPDFList : PSCmdlet {
                     case string text:
                         var paragraph = PdfText.CreateParagraph(
                             new[] { text },
-                            Font.HasValue ? new[] { Font.Value } : null,
+                            resolvedFont != null ? new[] { resolvedFont } : null,
                             FontColor.HasValue ? new[] { FontColor.Value } : null,
                             null,
                             FontSize,
@@ -85,5 +94,23 @@ public class CmdletNewPDFList : PSCmdlet {
         }
 
         document.Add(list);
+    }
+
+    private static PdfFont? ResolveFont(string name, IDictionary<string, PdfFont>? customFonts)
+    {
+        if (string.IsNullOrEmpty(name))
+            return null;
+
+        if (Enum.TryParse(name, true, out PdfFontName enumFont))
+        {
+            return PdfHelpers.CreateFont(enumFont);
+        }
+
+        if (customFonts != null && customFonts.TryGetValue(name, out var pdfFont))
+        {
+            return pdfFont;
+        }
+
+        return null;
     }
 }
