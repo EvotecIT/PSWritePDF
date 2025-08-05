@@ -33,7 +33,10 @@ namespace PdfIMO
                 if (fontList != null && fontList.Count > 0)
                 {
                     var font = fontList.Count > i ? fontList[i] : fontList[0];
-                    pdfText.SetFont(font);
+                    if (font != null)
+                    {
+                        pdfText.SetFont(font);
+                    }
                 }
 
                 // FontBold is handled when resolving fonts in cmdlets
