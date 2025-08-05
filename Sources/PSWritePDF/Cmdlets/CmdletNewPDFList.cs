@@ -11,7 +11,7 @@ namespace PSWritePDF.Cmdlets;
 public class CmdletNewPDFList : PSCmdlet {
     [Parameter(Position = 0, ParameterSetName = "ScriptBlock")]
     public ScriptBlock? ListItems { get; set; }
-    [Parameter(Position = 0, ParameterSetName = "Items")]
+    [Parameter(ParameterSetName = "Items")]
     public string[]? Items { get; set; }
     [Parameter] public double? Indent { get; set; }
     [Parameter] public ListSymbol Symbol { get; set; } = ListSymbol.Hyphen;
