@@ -86,6 +86,35 @@ Describe 'Set-PDFForm' -Tags "PDFForm" {
         Close-PDF -Document $PDF
     }
 
+    It 'Set-PDFForm PassThru returns destination path' {
+        $FilePath = [IO.Path]::Combine("$PSScriptRoot", "Output", "SampleAcroFormOutput.pdf")
+        $FilePathSource = [IO.Path]::Combine("$PSScriptRoot", "Input", "SampleAcroForm.pdf")
+
+        $result = Set-PDFForm -SourceFilePath $FilePathSource -DestinationFilePath $FilePath -PassThru
+
+        $result | Should -Be $FilePath
+
+        $pdf = $result | Get-PDF
+        $pdf | Should -BeOfType [iText.Kernel.Pdf.PdfDocument]
+        Close-PDF -Document $pdf
+    }
+
+    It 'Set-PDFForm accepts FieldNameAndValueHashTable from pipeline' {
+        $FilePath = [IO.Path]::Combine("$PSScriptRoot", "Output", "SampleAcroFormOutput.pdf")
+        $FilePathSource = [IO.Path]::Combine("$PSScriptRoot", "Input", "SampleAcroForm.pdf")
+
+        @{ "Text 1" = "Piped" } |
+            Set-PDFForm -SourceFilePath $FilePathSource -DestinationFilePath $FilePath -WarningAction SilentlyContinue
+
+        $PDF = Get-PDF -FilePath $FilePath
+        $AcrobatFormFields = Get-PDFFormField -PDF $PDF
+        $AcrobatFormFields |
+            Where-Object Name -EQ 'Text 1' |
+            ForEach-Object { $_.Field.GetValue() } |
+            Should -Be 'Piped'
+        Close-PDF -Document $PDF
+    }
+
     # cleanup
     $FolderPath = [IO.Path]::Combine("$PSScriptRoot", "Output")
     $Files = Get-ChildItem -LiteralPath $FolderPath -File
