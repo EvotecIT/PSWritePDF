@@ -6,7 +6,7 @@ namespace PdfIMO
 {
     public static class PdfImage
     {
-        public static void AddImage(
+        public static Image AddImage(
             Document document,
             string imagePath,
             int? width = null,
@@ -31,6 +31,7 @@ namespace PdfIMO
             }
 
             document.Add(image);
+            return image;
         }
     }
 }
