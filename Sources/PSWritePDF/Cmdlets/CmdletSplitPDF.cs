@@ -1,36 +1,49 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Management.Automation;
 using iText.Kernel.Pdf;
 
 namespace PSWritePDF.Cmdlets;
 
-[Cmdlet(VerbsCommon.Split, "PDF")]
+ [Cmdlet(VerbsCommon.Split, "PDF")]
 public class CmdletSplitPDF : PSCmdlet
 {
-    [Parameter(Mandatory = true)]
+    private const string SplitCountParameterSet = "SplitCount";
+    private const string PageRangeParameterSet = "PageRange";
+    private const string BookmarkParameterSet = "Bookmark";
+
+    [Parameter(Mandatory = true, ParameterSetName = SplitCountParameterSet)]
+    [Parameter(Mandatory = true, ParameterSetName = PageRangeParameterSet)]
+    [Parameter(Mandatory = true, ParameterSetName = BookmarkParameterSet)]
     public string FilePath { get; set; }
 
-    [Parameter(Mandatory = true)]
+    [Parameter(Mandatory = true, ParameterSetName = SplitCountParameterSet)]
+    [Parameter(Mandatory = true, ParameterSetName = PageRangeParameterSet)]
+    [Parameter(Mandatory = true, ParameterSetName = BookmarkParameterSet)]
     public string OutputFolder { get; set; }
 
-    [Parameter]
+    [Parameter(ParameterSetName = SplitCountParameterSet)]
+    [Parameter(ParameterSetName = PageRangeParameterSet)]
+    [Parameter(ParameterSetName = BookmarkParameterSet)]
     public string OutputName { get; set; } = "OutputDocument";
 
-    [Parameter]
+    [Parameter(ParameterSetName = SplitCountParameterSet)]
     public int SplitCount { get; set; } = 1;
 
-    [Parameter]
+    [Parameter(ParameterSetName = PageRangeParameterSet)]
+    public string[] PageRange { get; set; }
+
+    [Parameter(ParameterSetName = BookmarkParameterSet)]
+    public string[] Bookmark { get; set; }
+
+    [Parameter(ParameterSetName = SplitCountParameterSet)]
+    [Parameter(ParameterSetName = PageRangeParameterSet)]
+    [Parameter(ParameterSetName = BookmarkParameterSet)]
     public SwitchParameter IgnoreProtection { get; set; }
 
     protected override void ProcessRecord()
     {
-        if (SplitCount == 0)
-        {
-            WriteWarning("SplitCount is 0. Terminating.");
-            return;
-        }
-
         if (!File.Exists(FilePath))
         {
             WriteWarning($"Path '{FilePath}' doesn't exist. Terminating.");
@@ -53,7 +66,26 @@ public class CmdletSplitPDF : PSCmdlet
 
             using var document = new PdfDocument(reader);
             var splitter = new PdfSequentialSplitter(document, OutputFolder, OutputName);
-            var documents = splitter.SplitByPageCount(SplitCount);
+            IList<PdfDocument> documents;
+
+            if (ParameterSetName == SplitCountParameterSet)
+            {
+                if (SplitCount == 0)
+                {
+                    WriteWarning("SplitCount is 0. Terminating.");
+                    return;
+                }
+
+                documents = splitter.SplitByPageCount(SplitCount);
+            }
+            else if (ParameterSetName == PageRangeParameterSet)
+            {
+                documents = splitter.SplitByPageRanges(PageRange);
+            }
+            else
+            {
+                documents = splitter.SplitByBookmarks(Bookmark);
+            }
 
             foreach (var doc in documents)
             {

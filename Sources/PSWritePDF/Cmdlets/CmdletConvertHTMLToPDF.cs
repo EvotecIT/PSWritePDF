@@ -5,7 +5,7 @@ using System.Net.Http;
 
 namespace PSWritePDF.Cmdlets;
 
-[Cmdlet(VerbsData.Convert, "HTMLToPDF", DefaultParameterSetName = ParameterSetNames.Uri)]
+[Cmdlet(VerbsData.Convert, "HTMLToPDF", DefaultParameterSetName = ParameterSetNames.Uri, SupportsShouldProcess = true)]
 public class CmdletConvertHTMLToPDF : PSCmdlet
 {
     private static class ParameterSetNames
@@ -29,6 +29,9 @@ public class CmdletConvertHTMLToPDF : PSCmdlet
 
     [Parameter]
     public SwitchParameter Open { get; set; }
+
+    [Parameter]
+    public SwitchParameter Force { get; set; }
 
     protected override void ProcessRecord()
     {
@@ -62,6 +65,17 @@ public class CmdletConvertHTMLToPDF : PSCmdlet
             return;
         }
 
+        if (File.Exists(OutputFilePath) && !Force.IsPresent)
+        {
+            WriteWarning($"File '{OutputFilePath}' already exists. Use -Force to overwrite.");
+            return;
+        }
+
+        if (!ShouldProcess(OutputFilePath, "Convert HTML to PDF"))
+        {
+            return;
+        }
+
         try
         {
             using var fs = new FileStream(OutputFilePath, FileMode.Create, FileAccess.Write);
@@ -75,6 +89,8 @@ public class CmdletConvertHTMLToPDF : PSCmdlet
                 };
                 System.Diagnostics.Process.Start(psi);
             }
+
+            WriteObject(OutputFilePath);
         }
         catch (Exception ex)
         {

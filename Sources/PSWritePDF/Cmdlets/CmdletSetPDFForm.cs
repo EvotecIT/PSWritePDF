@@ -19,7 +19,7 @@ public class CmdletSetPDFForm : PSCmdlet
     [ValidateNotNullOrEmpty]
     public string DestinationFilePath { get; set; }
 
-    [Parameter]
+    [Parameter(ValueFromPipeline = true)]
     public IDictionary FieldNameAndValueHashTable { get; set; }
 
     [Parameter]
@@ -28,6 +28,9 @@ public class CmdletSetPDFForm : PSCmdlet
 
     [Parameter]
     public SwitchParameter IgnoreProtection { get; set; }
+
+    [Parameter]
+    public SwitchParameter PassThru { get; set; }
 
     protected override void ProcessRecord()
     {
@@ -101,6 +104,11 @@ public class CmdletSetPDFForm : PSCmdlet
             if (Flatten)
             {
                 form.FlattenFields();
+            }
+
+            if (PassThru)
+            {
+                WriteObject(DestinationFilePath);
             }
         }
         catch (Exception ex)

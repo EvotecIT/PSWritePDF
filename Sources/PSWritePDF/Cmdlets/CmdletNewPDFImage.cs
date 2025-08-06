@@ -1,3 +1,4 @@
+using System.IO;
 using System.Management.Automation;
 using iText.Layout;
 using PdfIMO;
@@ -14,9 +15,18 @@ public class CmdletNewPDFImage : PSCmdlet {
     [Parameter] public double? BackgroundColorOpacity { get; set; }
 
     protected override void ProcessRecord() {
+        if (!File.Exists(ImagePath)) {
+            var message = $"Image file '{ImagePath}' was not found.";
+            var exception = new FileNotFoundException(message, ImagePath);
+            var errorRecord = new ErrorRecord(exception, "ImageNotFound", ErrorCategory.ObjectNotFound, ImagePath);
+            ThrowTerminatingError(errorRecord);
+            return;
+        }
+
         var document = SessionState.PSVariable.GetValue("Document") as Document;
         if (document != null) {
-            PdfImage.AddImage(document, ImagePath, Width, Height, BackgroundColor, BackgroundColorOpacity);
+            var image = PdfImage.AddImage(document, ImagePath, Width, Height, BackgroundColor, BackgroundColorOpacity);
+            WriteObject(image);
         }
     }
 }
