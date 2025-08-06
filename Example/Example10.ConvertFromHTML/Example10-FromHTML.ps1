@@ -5,4 +5,5 @@ $HTMLInput = New-HTML {
     New-HTMLTable -DataTable (Get-Process | Select-Object -First 3)
 }
 
-Convert-HTMLToPDF -Content $HTMLInput -OutputFilePath "$PSScriptRoot\Example10-FromHTML.pdf" -Open
+$output = Convert-HTMLToPDF -Content $HTMLInput -OutputFilePath "$PSScriptRoot\Example10-FromHTML.pdf" -Force -Open
+Write-Host "PDF saved to $output"
