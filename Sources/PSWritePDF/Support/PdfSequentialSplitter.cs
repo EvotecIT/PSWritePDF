@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using iText.Kernel.Pdf;
 using iText.Kernel.Utils;
 
@@ -22,6 +24,17 @@ internal sealed class PdfSequentialSplitter : PdfSplitter
         var name = $"{_outputName}{_order++}.pdf";
         var path = Path.Combine(_destinationFolder, name);
         return new PdfWriter(path);
+    }
+
+    public IList<PdfDocument> SplitByPageRanges(IEnumerable<string> pageRanges)
+    {
+        var ranges = pageRanges.Select(r => new PageRange(r)).ToList();
+        return ExtractPageRanges(ranges);
+    }
+
+    public IList<PdfDocument> SplitByBookmarks(IEnumerable<string> bookmarks)
+    {
+        return SplitByOutlines(bookmarks.ToList());
     }
 }
 
