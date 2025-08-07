@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Management.Automation;
+using System.Text;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Parser;
 
 namespace PSWritePDF.Cmdlets;
 
 [Cmdlet(VerbsData.Convert, "PDFToText")]
-[OutputType(typeof(string))]
+[OutputType(typeof(PSObject))]
 public class CmdletConvertPDFToText : PSCmdlet
 {
     [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
@@ -24,6 +25,9 @@ public class CmdletConvertPDFToText : PSCmdlet
 
     [Parameter]
     public SwitchParameter IgnoreProtection { get; set; }
+
+    [Parameter]
+    public string? OutFile { get; set; }
 
     protected override void ProcessRecord()
     {
@@ -43,6 +47,8 @@ public class CmdletConvertPDFToText : PSCmdlet
         int pagesCount = pdf.GetNumberOfPages();
         IEnumerable<int> pages = Page.Length == 0 ? Enumerable.Range(1, pagesCount) : Page;
 
+        var collectedTexts = new List<string>();
+
         foreach (int pageNum in pages)
         {
             if (pageNum < 1 || pageNum > pagesCount)
@@ -56,11 +62,30 @@ public class CmdletConvertPDFToText : PSCmdlet
                 var page = pdf.GetPage(pageNum);
                 var strategy = ExtractionStrategy.ToStrategy();
                 string text = PdfTextExtractor.GetTextFromPage(page, strategy);
-                WriteObject(text);
+
+                var outputObject = new PSObject();
+                outputObject.TypeNames.Insert(0, "System.Management.Automation.PSCustomObject");
+                outputObject.Properties.Add(new PSNoteProperty("PageNumber", pageNum));
+                outputObject.Properties.Add(new PSNoteProperty("Text", text));
+                WriteObject(outputObject);
+                collectedTexts.Add(text);
             }
             catch (Exception ex)
             {
                 WriteWarning($"Processing document '{FilePath}' failed with error: {ex.Message}");
+            }
+        }
+
+        if (!string.IsNullOrWhiteSpace(OutFile))
+        {
+            try
+            {
+                var combined = string.Join(Environment.NewLine, collectedTexts);
+                File.WriteAllText(OutFile, combined, Encoding.UTF8);
+            }
+            catch (Exception ex)
+            {
+                WriteWarning($"Saving file '{OutFile}' failed with error: {ex.Message}");
             }
         }
     }
