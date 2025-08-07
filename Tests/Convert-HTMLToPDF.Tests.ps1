@@ -1,6 +1,10 @@
 Describe 'Convert-HTMLToPDF' {
     BeforeAll {
-        New-Item -Path $PSScriptRoot -Force -ItemType Directory -Name 'Output' | Out-Null
+        $outputDir = Join-Path $PSScriptRoot 'Output'
+        if (Test-Path $outputDir) {
+            Remove-Item -LiteralPath $outputDir -Recurse -Force
+        }
+        New-Item -Path $outputDir -ItemType Directory | Out-Null
     }
 
     It 'converts HTML string to PDF and outputs file path' {
@@ -19,6 +23,13 @@ Describe 'Convert-HTMLToPDF' {
         (Get-Item $file).LastWriteTime | Should -Be $timestamp
         Convert-HTMLToPDF -Content '<html><body>Second</body></html>' -OutputFilePath $file -Force | Out-Null
         (Get-Item $file).LastWriteTime | Should -Not -Be $timestamp
+    }
+
+    It 'converts HTML from a URI' {
+        $file = Join-Path $PSScriptRoot 'Output' 'uri.pdf'
+        $result = Convert-HTMLToPDF -Uri 'https://example.com/' -OutputFilePath $file -Confirm:$false
+        Test-Path $file | Should -BeTrue
+        $result | Should -Be $file
     }
 
     AfterAll {
