@@ -1,7 +1,9 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Management.Automation;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace PSWritePDF.Cmdlets;
@@ -33,6 +35,12 @@ public class CmdletConvertHTMLToPDF : AsyncPSCmdlet
 
     [Parameter]
     public SwitchParameter Force { get; set; }
+
+    [Parameter]
+    public string BaseUri { get; set; }
+
+    [Parameter]
+    public string[] CssFilePath { get; set; }
 
     protected override async Task ProcessRecordAsync()
     {
@@ -79,8 +87,34 @@ public class CmdletConvertHTMLToPDF : AsyncPSCmdlet
 
         try
         {
+            if (CssFilePath != null && CssFilePath.Length > 0)
+            {
+                var cssContent = new StringBuilder();
+                foreach (var css in CssFilePath.Where(File.Exists))
+                {
+                    cssContent.AppendLine(File.ReadAllText(css));
+                }
+                foreach (var missing in CssFilePath.Where(p => !File.Exists(p)))
+                {
+                    WriteWarning($"CSS file '{missing}' doesn't exist.");
+                }
+                if (cssContent.Length > 0)
+                {
+                    var styleTag = $"<style>{cssContent}</style>";
+                    var headCloseIndex = html.IndexOf("</head>", StringComparison.OrdinalIgnoreCase);
+                    html = headCloseIndex >= 0
+                        ? html.Insert(headCloseIndex, styleTag)
+                        : styleTag + html;
+                }
+            }
+
             using var fs = new FileStream(OutputFilePath, FileMode.Create, FileAccess.Write);
-            iText.Html2pdf.HtmlConverter.ConvertToPdf(html, fs);
+            var properties = new iText.Html2pdf.ConverterProperties();
+            if (!string.IsNullOrEmpty(BaseUri))
+            {
+                properties.SetBaseUri(BaseUri);
+            }
+            iText.Html2pdf.HtmlConverter.ConvertToPdf(html, fs, properties);
             if (Open.IsPresent)
             {
                 var psi = new System.Diagnostics.ProcessStartInfo

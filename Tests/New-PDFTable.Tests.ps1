@@ -1,6 +1,8 @@
 
 Describe 'New-PDF' {
-    New-Item -Path $PSScriptRoot -Force -ItemType Directory -Name 'Output'
+    BeforeAll {
+        New-Item -Path $PSScriptRoot -Force -ItemType Directory -Name 'Output' | Out-Null
+    }
     It 'New-PDFTable should not throw when using 2 element array' {
         $Data = @(
             [PSCustomObject] @{ Test = 'Name'; Test2 = 'Name2'; Test3 = 'Name3' }
@@ -20,7 +22,7 @@ Describe 'New-PDF' {
         Close-PDF -Document $Document
 
         $Page1 = $Details.Pages[1]
-        $Page1.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A4
+        $Page1.Size | Should -Be 'A4'
         $Page1.Rotated | Should -Be $false
         $Details.PagesNumber | Should -Be 1
     }
@@ -42,7 +44,7 @@ Describe 'New-PDF' {
         Close-PDF -Document $Document
 
         $Page1 = $Details.Pages[1]
-        $Page1.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A4
+        $Page1.Size | Should -Be 'A4'
         $Page1.Rotated | Should -Be $false
         $Details.PagesNumber | Should -Be 1
     }
@@ -86,8 +88,11 @@ Describe 'New-PDF' {
         Close-PDF -Document $Document
 
         $Page1 = $Details.Pages[1]
-        $Page1.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A4
+        $Page1.Size | Should -Be 'A4'
         $Page1.Rotated | Should -Be $false
         $Details.PagesNumber | Should -Be 1
+    }
+    AfterAll {
+        Remove-Item -LiteralPath (Join-Path $PSScriptRoot 'Output') -Recurse -Force -ErrorAction SilentlyContinue
     }
 }

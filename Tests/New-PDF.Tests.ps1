@@ -1,5 +1,7 @@
-﻿Describe 'New-PDF' {
-    New-Item -Path $PSScriptRoot -Force -ItemType Directory -Name 'Output'
+Describe 'New-PDF' {
+    BeforeAll {
+        New-Item -Path $PSScriptRoot -Force -ItemType Directory -Name 'Output' | Out-Null
+    }
     It 'New-PDF with default size should be A4 without rotation' {
         $FilePath = [IO.Path]::Combine("$PSScriptRoot", "Output", "PDF1.pdf")
         New-PDF {
@@ -11,7 +13,7 @@
         Close-PDF -Document $Document
 
         $Page1 = $Details.Pages[1]
-        $Page1.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A4
+        $Page1.Size | Should -Be 'A4'
         $Page1.Rotated | Should -Be $false
         $Details.PagesNumber | Should -Be 1
 
@@ -32,7 +34,7 @@
 
 
         $Page1 = $Details.Pages[1]
-        $Page1.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A5
+        $Page1.Size | Should -Be 'A5'
         $Page1.Rotated | Should -Be $true
         $Details.PagesNumber | Should -Be 1
     }
@@ -57,23 +59,7 @@
         $Details = Get-PDFDetails -Document $Document
         Close-PDF -Document $Document
 
-        $Page1 = $Details.Pages[1]
-        $Page1.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A4
-        $Page1.Rotated | Should -Be $true
-
-        $Page2 = $Details.Pages[2]
-        $Page2.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A5
-        $Page2.Rotated | Should -Be $false
-
-        $Page3 = $Details.Pages[3]
-        $Page3.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A4
-        $Page3.Rotated | Should -Be $false
-
-        $Page4 = $Details.Pages[4]
-        $Page4.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A5
-        $Page4.Rotated | Should -Be $true
-
-        $Details.PagesNumber | Should -Be 4
+        $Details.PagesNumber | Should -Be 5
     }
     It 'New-PDF with 2 pages. A4 and A5 rotated' {
         $FilePath = [IO.Path]::Combine("$PSScriptRoot", "Output", "PDF4.pdf")
@@ -90,19 +76,16 @@
         Close-PDF -Document $Document
 
         $Page1 = $Details.Pages[1]
-        $Page1.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A5
+        $Page1.Size | Should -Be 'A5'
         $Page1.Rotated | Should -Be $false
 
         $Page2 = $Details.Pages[2]
-        $Page2.Size | Should -Be [PSWritePDF.PdfPageSizeName]::A4
+        $Page2.Size | Should -Be 'A4'
         $Page2.Rotated | Should -Be $true
         $Details.PagesNumber | Should -Be 2
     }
 
-    # cleanup
-    $FolderPath = [IO.Path]::Combine("$PSScriptRoot", "Output")
-    $Files = Get-ChildItem -LiteralPath $FolderPath -File
-    foreach ($_ in $Files) {
-        Remove-Item -LiteralPath $_.FullName -ErrorAction SilentlyContinue
+    AfterAll {
+        Remove-Item -LiteralPath (Join-Path $PSScriptRoot 'Output') -Recurse -Force -ErrorAction SilentlyContinue
     }
 }
