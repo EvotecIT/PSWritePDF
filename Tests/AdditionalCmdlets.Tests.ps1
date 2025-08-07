@@ -12,7 +12,7 @@ Describe 'Additional cmdlets' {
 
     It 'New-PDFDocument creates document object' {
         $file = Join-Path $PSScriptRoot 'Output' 'doc.pdf'
-        New-PDF -FilePath $file | Out-Null
+        New-PDF { New-PDFText -Text 'Init' } -FilePath $file | Out-Null
         $pdf = Get-PDF -FilePath $file
         $doc = New-PDFDocument -PDF $pdf
         $doc | Should -BeOfType 'iText.Layout.Document'
@@ -21,7 +21,7 @@ Describe 'Additional cmdlets' {
 
     It 'New-PDFInfo sets metadata' {
         $file = Join-Path $PSScriptRoot 'Output' 'info.pdf'
-        New-PDF -FilePath $file | Out-Null
+        New-PDF { New-PDFText -Text 'Init' } -FilePath $file | Out-Null
         $pdf = Get-PDF -FilePath $file
         New-PDFInfo -PDF $pdf -Title 'TestTitle' -Author 'TestAuthor' -AddCreationDate | Out-Null
         $info = $pdf.GetDocumentInfo()
