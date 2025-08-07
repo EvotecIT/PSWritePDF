@@ -5,16 +5,35 @@ using PdfIMO;
 namespace PSWritePDF.Cmdlets;
 
 [Cmdlet(VerbsCommon.New, "PDFOptions")]
-public class CmdletNewPDFOptions : PSCmdlet {
+public class CmdletNewPDFOptions : PSCmdlet
+{
     [Parameter] public double? MarginLeft { get; set; }
     [Parameter] public double? MarginRight { get; set; }
     [Parameter] public double? MarginTop { get; set; }
     [Parameter] public double? MarginBottom { get; set; }
+    [Parameter] public SwitchParameter PassThru { get; set; }
 
-    protected override void ProcessRecord() {
+    protected override void ProcessRecord()
+    {
         var document = SessionState.PSVariable.GetValue("Document") as Document;
-        if (document != null) {
+        if (document != null)
+        {
             PdfOptions.Apply(document, (float?)MarginLeft, (float?)MarginRight, (float?)MarginTop, (float?)MarginBottom);
+            if (PassThru)
+            {
+                WriteObject(document);
+            }
+        }
+        else if (PassThru)
+        {
+            var options = new PdfDocumentOptions
+            {
+                MarginLeft = (float?)MarginLeft,
+                MarginRight = (float?)MarginRight,
+                MarginTop = (float?)MarginTop,
+                MarginBottom = (float?)MarginBottom
+            };
+            WriteObject(options);
         }
     }
 }

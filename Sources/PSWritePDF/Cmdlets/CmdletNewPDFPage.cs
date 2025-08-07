@@ -16,6 +16,7 @@ public class CmdletNewPDFPage : PSCmdlet {
     [Parameter] public double? MarginBottom { get; set; }
     [Parameter] public PdfPageSize? PageSize { get; set; }
     [Parameter] public SwitchParameter Rotate { get; set; }
+    [Parameter] public SwitchParameter PassThru { get; set; }
 
     protected override void ProcessRecord() {
         var pdfDocument = SessionState.PSVariable.GetValue("PdfDocument") as iTextPdf.PdfDocument;
@@ -26,5 +27,9 @@ public class CmdletNewPDFPage : PSCmdlet {
         var document = PdfPage.AddPage(pdfDocument, size, Rotate.IsPresent, (float?)MarginLeft, (float?)MarginRight, (float?)MarginTop, (float?)MarginBottom);
         SessionState.PSVariable.Set("Document", document);
         PageContent?.Invoke();
+        if (PassThru)
+        {
+            WriteObject(document);
+        }
     }
 }

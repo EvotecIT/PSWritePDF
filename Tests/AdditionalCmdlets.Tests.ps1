@@ -38,4 +38,28 @@ Describe 'Additional cmdlets' {
         $default = Get-Variable -Name DefaultFont -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Value
         $default | Should -Not -BeNullOrEmpty
     }
+
+    It 'New-PDFPage -PassThru returns document' {
+        $file = Join-Path $PSScriptRoot 'Output' 'page.pdf'
+        New-PDF -FilePath $file {
+            $doc = New-PDFPage -PassThru {
+                New-PDFText -Text 'Hi'
+            }
+            $doc | Should -BeOfType 'iText.Layout.Document'
+        }
+    }
+
+    It 'New-PDFOptions -PassThru returns document when available' {
+        $file = Join-Path $PSScriptRoot 'Output' 'optionsdoc.pdf'
+        New-PDF -FilePath $file {
+            $doc = New-PDFOptions -MarginLeft 15 -PassThru
+            $doc | Should -BeOfType 'iText.Layout.Document'
+        }
+    }
+
+    It 'New-PDFOptions -PassThru returns options object when document missing' {
+        $options = New-PDFOptions -MarginLeft 10 -PassThru
+        $options | Should -BeOfType 'PSWritePDF.PdfDocumentOptions'
+        $options.MarginLeft | Should -Be 10
+    }
 }
