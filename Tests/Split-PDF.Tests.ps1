@@ -22,24 +22,47 @@ Describe 'Split-PDF' {
         $output = Join-Path $PSScriptRoot 'Output' 'Parts'
         New-Item -Path $output -Force -ItemType Directory | Out-Null
         $file = Join-Path $PSScriptRoot 'Input' 'SampleToSplit.pdf'
-        Split-PDF -FilePath $file -OutputFolder $output -SplitCount 1 -OutputName 'part'
-        (Get-ChildItem -Path $output -Filter 'part*.pdf').Count | Should -BeGreaterThan 1
+        $files = Split-PDF -FilePath $file -OutputFolder $output -SplitCount 1 -OutputName 'part'
+        $files.Count | Should -BeGreaterThan 1
+        $files | ForEach-Object { Test-Path $_ | Should -BeTrue }
     }
 
     It 'splits pdf by page ranges' {
         $output = Join-Path $PSScriptRoot 'Output' 'Ranges'
         New-Item -Path $output -Force -ItemType Directory | Out-Null
         $file = Join-Path $PSScriptRoot 'Input' 'SampleToSplit.pdf'
-        Split-PDF -FilePath $file -OutputFolder $output -PageRange '1'
-        (Get-ChildItem -Path $output -Filter 'OutputDocument*.pdf').Count | Should -Be 1
+        $files = Split-PDF -FilePath $file -OutputFolder $output -PageRange '1'
+        $files.Count | Should -Be 1
+        $files | ForEach-Object { Test-Path $_ | Should -BeTrue }
     }
 
     It 'splits pdf by bookmarks' {
         $output = Join-Path $PSScriptRoot 'Output' 'Bookmarks'
         New-Item -Path $output -Force -ItemType Directory | Out-Null
         $file = Join-Path $PSScriptRoot 'Input' 'Bookmarked.pdf'
-        Split-PDF -FilePath $file -OutputFolder $output -Bookmark 'Chapter 1','Chapter 2'
-        (Get-ChildItem -Path $output -Filter 'OutputDocument*.pdf').Count | Should -Be 2
+        $files = Split-PDF -FilePath $file -OutputFolder $output -Bookmark 'Chapter 1','Chapter 2'
+        $files.Count | Should -Be 2
+        $files | ForEach-Object { Test-Path $_ | Should -BeTrue }
+    }
+
+    It 'performs a dry run with WhatIf' {
+        $output = Join-Path $PSScriptRoot 'Output' 'DryRun'
+        New-Item -Path $output -Force -ItemType Directory | Out-Null
+        $file = Join-Path $PSScriptRoot 'Input' 'SampleToSplit.pdf'
+        $files = Split-PDF -FilePath $file -OutputFolder $output -SplitCount 1 -WhatIf
+        (Get-ChildItem -Path $output -Filter '*.pdf').Count | Should -Be 0
+        $files | Should -BeNullOrEmpty
+    }
+
+    It 'overwrites existing files with Force' {
+        $output = Join-Path $PSScriptRoot 'Output' 'Force'
+        New-Item -Path $output -Force -ItemType Directory | Out-Null
+        $file = Join-Path $PSScriptRoot 'Input' 'SampleToSplit.pdf'
+        $first = Split-PDF -FilePath $file -OutputFolder $output -SplitCount 1 -OutputName 'part'
+        $second = Split-PDF -FilePath $file -OutputFolder $output -SplitCount 1 -OutputName 'part'
+        $second | Should -BeNullOrEmpty
+        $forced = Split-PDF -FilePath $file -OutputFolder $output -SplitCount 1 -OutputName 'part' -Force
+        $forced.Count | Should -BeGreaterThan 0
     }
 
     AfterAll {
