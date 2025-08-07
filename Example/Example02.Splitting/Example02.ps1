@@ -9,3 +9,9 @@ Split-PDF -FilePath "$PSScriptRoot\SampleToSplit.pdf" -OutputFolder "$PSScriptRo
 # Split PDF using bookmark titles
 Split-PDF -FilePath "$PSScriptRoot\SampleToSplit.pdf" -OutputFolder "$PSScriptRoot\Output" -Bookmark 'Chapter 1','Chapter 2'
 
+# Show a dry run without creating files
+Split-PDF -FilePath "$PSScriptRoot\SampleToSplit.pdf" -OutputFolder "$PSScriptRoot\Output" -SplitCount 1 -WhatIf
+
+# Overwrite existing files if needed
+Split-PDF -FilePath "$PSScriptRoot\SampleToSplit.pdf" -OutputFolder "$PSScriptRoot\Output" -SplitCount 1 -OutputName 'part' -Force
+

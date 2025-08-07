@@ -6,7 +6,7 @@ using iText.Kernel.Pdf;
 
 namespace PSWritePDF.Cmdlets;
 
- [Cmdlet(VerbsCommon.Split, "PDF")]
+[Cmdlet(VerbsCommon.Split, "PDF", SupportsShouldProcess = true)]
 public class CmdletSplitPDF : PSCmdlet
 {
     private const string SplitCountParameterSet = "SplitCount";
@@ -42,6 +42,11 @@ public class CmdletSplitPDF : PSCmdlet
     [Parameter(ParameterSetName = BookmarkParameterSet)]
     public SwitchParameter IgnoreProtection { get; set; }
 
+    [Parameter(ParameterSetName = SplitCountParameterSet)]
+    [Parameter(ParameterSetName = PageRangeParameterSet)]
+    [Parameter(ParameterSetName = BookmarkParameterSet)]
+    public SwitchParameter Force { get; set; }
+
     protected override void ProcessRecord()
     {
         if (!File.Exists(FilePath))
@@ -58,6 +63,11 @@ public class CmdletSplitPDF : PSCmdlet
 
         try
         {
+            if (!ShouldProcess(FilePath, $"Split into '{OutputFolder}'"))
+            {
+                return;
+            }
+
             using var reader = new PdfReader(FilePath);
             if (IgnoreProtection)
             {
@@ -65,7 +75,7 @@ public class CmdletSplitPDF : PSCmdlet
             }
 
             using var document = new PdfDocument(reader);
-            var splitter = new PdfSequentialSplitter(document, OutputFolder, OutputName);
+            var splitter = new PdfSequentialSplitter(document, OutputFolder, OutputName, Force.IsPresent);
             IList<PdfDocument> documents;
 
             if (ParameterSetName == SplitCountParameterSet)
@@ -91,6 +101,8 @@ public class CmdletSplitPDF : PSCmdlet
             {
                 doc.Close();
             }
+
+            WriteObject(splitter.OutputFiles, true);
         }
         catch (Exception ex)
         {
