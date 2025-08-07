@@ -2,11 +2,12 @@ using System;
 using System.IO;
 using System.Management.Automation;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace PSWritePDF.Cmdlets;
 
 [Cmdlet(VerbsData.Convert, "HTMLToPDF", DefaultParameterSetName = ParameterSetNames.Uri, SupportsShouldProcess = true)]
-public class CmdletConvertHTMLToPDF : PSCmdlet
+public class CmdletConvertHTMLToPDF : AsyncPSCmdlet
 {
     private static class ParameterSetNames
     {
@@ -33,7 +34,7 @@ public class CmdletConvertHTMLToPDF : PSCmdlet
     [Parameter]
     public SwitchParameter Force { get; set; }
 
-    protected override void ProcessRecord()
+    protected override async Task ProcessRecordAsync()
     {
         string html = Content;
 
@@ -51,7 +52,7 @@ public class CmdletConvertHTMLToPDF : PSCmdlet
             try
             {
                 using var client = new HttpClient();
-                html = client.GetStringAsync(Uri).GetAwaiter().GetResult();
+                html = await client.GetStringAsync(Uri).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -90,7 +91,10 @@ public class CmdletConvertHTMLToPDF : PSCmdlet
                 System.Diagnostics.Process.Start(psi);
             }
 
-            WriteObject(OutputFilePath);
+            if (ShouldProcess(OutputFilePath, "Write output"))
+            {
+                WriteObject(OutputFilePath);
+            }
         }
         catch (Exception ex)
         {
