@@ -12,8 +12,9 @@ namespace PSWritePDF.Cmdlets;
 [OutputType(typeof(string))]
 public class CmdletConvertPDFToText : PSCmdlet
 {
-    [Parameter(Mandatory = true)]
-    public string FilePath { get; set; }
+    [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+    [Alias("FullName")]
+    public string FilePath { get; set; } = string.Empty;
 
     [Parameter]
     public int[] Page { get; set; } = Array.Empty<int>();
