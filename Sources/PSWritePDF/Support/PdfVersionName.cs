@@ -1,5 +1,6 @@
 namespace PSWritePDF;
 
+/// <summary>Lists supported PDF specification versions.</summary>
 public enum PdfVersionName
 {
     PDF_1_0,

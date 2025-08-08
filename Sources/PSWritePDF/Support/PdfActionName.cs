@@ -1,5 +1,6 @@
 namespace PSWritePDF;
 
+/// <summary>Specifies available PDF form action flags.</summary>
 public enum PdfActionName
 {
     RESET_EXCLUDE,

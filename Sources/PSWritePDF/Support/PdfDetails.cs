@@ -1,5 +1,6 @@
 namespace PSWritePDF;
 
+/// <summary>Enumerates known PDF page size names.</summary>
 public enum PdfPageSizeName
 {
     A0,
@@ -31,31 +32,53 @@ public enum PdfPageSizeName
     Unknown
 }
 
+/// <summary>Represents detailed information about a PDF page.</summary>
 public class PdfPageDetails
 {
+    /// <summary>Height of the page in points.</summary>
     public int Height { get; set; }
+    /// <summary>Width of the page in points.</summary>
     public int Width { get; set; }
+    /// <summary>Rotation angle.</summary>
     public int Rotation { get; set; }
+    /// <summary>Named page size.</summary>
     public PdfPageSizeName Size { get; set; } = PdfPageSizeName.Unknown;
+    /// <summary>Indicates if the page is rotated.</summary>
     public bool? Rotated { get; set; }
 }
 
+/// <summary>Aggregated details for a PDF document.</summary>
 public class PdfDocumentDetails
 {
+    /// <summary>Document author.</summary>
     public string? Author { get; set; }
+    /// <summary>Document creator.</summary>
     public string? Creator { get; set; }
+    /// <summary>Internal hash code.</summary>
     public int HashCode { get; set; }
+    /// <summary>Document keywords.</summary>
     public string? Keywords { get; set; }
+    /// <summary>Document producer.</summary>
     public string? Producer { get; set; }
+    /// <summary>Document subject.</summary>
     public string? Subject { get; set; }
+    /// <summary>Document title.</summary>
     public string? Title { get; set; }
+    /// <summary>Trapping information.</summary>
     public string? Trapped { get; set; }
+    /// <summary>PDF version used.</summary>
     public iText.Kernel.Pdf.PdfVersion Version { get; set; }
+    /// <summary>Total number of pages.</summary>
     public int PagesNumber { get; set; }
+    /// <summary>Left margin.</summary>
     public float MarginLeft { get; set; }
+    /// <summary>Right margin.</summary>
     public float MarginRight { get; set; }
+    /// <summary>Bottom margin.</summary>
     public float MarginBottom { get; set; }
+    /// <summary>Top margin.</summary>
     public float MarginTop { get; set; }
+    /// <summary>Information about individual pages.</summary>
     public System.Collections.Generic.Dictionary<int, PdfPageDetails> Pages { get; } = new();
 }
 

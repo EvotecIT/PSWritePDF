@@ -4,10 +4,35 @@ using iText.Layout;
 
 namespace PSWritePDF.Cmdlets;
 
+/// <summary>Gets descriptive information about a PDF document.</summary>
+/// <para>Returns metadata, margins, page sizes, and other details.</para>
+/// <list type="alertSet">
+/// <item>
+/// <term>Note</term>
+/// <description>The document is inspected but not modified.</description>
+/// </item>
+/// </list>
+/// <example>
+/// <summary>Retrieve document details.</summary>
+/// <code>
+/// <prefix>PS&gt; </prefix>Get-PDFDetails -Document $pdf
+/// </code>
+/// <para>Outputs a <c>PdfDocumentDetails</c> object.</para>
+/// </example>
+/// <example>
+/// <summary>Pipe from New-PDF.</summary>
+/// <code>
+/// <prefix>PS&gt; </prefix>New-PDF -FilePath 'out.pdf' | Get-PDFDetails
+/// </code>
+/// <para>Creates a PDF and immediately inspects it.</para>
+/// </example>
+/// <seealso href="https://learn.microsoft.com/dotnet/api/system.management.automation.cmdlet">MS Learn</seealso>
+/// <seealso href="https://evotec.xyz/hub/scripts/pswritepdf/">Project documentation</seealso>
 [Cmdlet(VerbsCommon.Get, "PDFDetails")]
 [OutputType(typeof(PdfDocumentDetails))]
 public class CmdletGetPDFDetails : PSCmdlet
 {
+    /// <summary>PDF document to analyze.</summary>
     [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
     public PdfDocument Document { get; set; } = null!;
 

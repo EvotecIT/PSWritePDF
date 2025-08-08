@@ -7,24 +7,54 @@ using iText.Kernel.Font;
 
 namespace PSWritePDF.Cmdlets;
 
+/// <summary>Registers a font for use in PDF generation.</summary>
+/// <para>Adds a font to the session cache and optionally sets it as default.</para>
+/// <list type="alertSet">
+/// <item>
+/// <term>Note</term>
+/// <description>Font files must exist on disk; missing paths trigger warnings.</description>
+/// </item>
+/// </list>
+/// <example>
+/// <summary>Register a font.</summary>
+/// <code>
+/// <prefix>PS&gt; </prefix>Register-PDFFont -FontName MyFont -FontPath 'c:\fonts\my.ttf'
+/// </code>
+/// <para>Makes the font available for later use.</para>
+/// </example>
+/// <example>
+/// <summary>Register and set as default.</summary>
+/// <code>
+/// <prefix>PS&gt; </prefix>Register-PDFFont -FontName MyFont -FontPath 'c:\fonts\my.ttf' -Default
+/// </code>
+/// <para>Subsequent text uses this font automatically.</para>
+/// </example>
+/// <seealso href="https://learn.microsoft.com/dotnet/api/system.management.automation.cmdlet">MS Learn</seealso>
+/// <seealso href="https://evotec.xyz/hub/scripts/pswritepdf/">Project documentation</seealso>
 [Cmdlet(VerbsLifecycle.Register, "PDFFont")]
 public class CmdletRegisterPDFFont : PSCmdlet
 {
+    /// <summary>Name used to reference the font.</summary>
     [Parameter(Mandatory = true)]
     public string FontName { get; set; } = string.Empty;
 
+    /// <summary>Path to the font file.</summary>
     [Parameter(Mandatory = true)]
     public string FontPath { get; set; } = string.Empty;
 
+    /// <summary>Optional encoding for the font.</summary>
     [Parameter]
     public PdfFontEncoding Encoding { get; set; } = PdfFontEncoding.None;
 
+    /// <summary>Embedding strategy for the font.</summary>
     [Parameter]
     public PdfFontFactory.EmbeddingStrategy EmbeddingStrategy { get; set; } = PdfFontFactory.EmbeddingStrategy.PREFER_EMBEDDED;
 
+    /// <summary>Cache the font for reuse.</summary>
     [Parameter]
     public SwitchParameter Cached { get; set; }
 
+    /// <summary>Set the font as default.</summary>
     [Parameter]
     public SwitchParameter Default { get; set; }
 

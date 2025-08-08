@@ -6,6 +6,30 @@ using iText.Kernel.Pdf;
 
 namespace PSWritePDF.Cmdlets;
 
+/// <summary>Splits a PDF into multiple documents.</summary>
+/// <para>Supports splitting by page count, page ranges, or bookmarks.</para>
+/// <list type="alertSet">
+/// <item>
+/// <term>Note</term>
+/// <description>Existing files in the destination may be overwritten when <c>Force</c> is specified.</description>
+/// </item>
+/// </list>
+/// <example>
+/// <summary>Split by page count.</summary>
+/// <code>
+/// <prefix>PS&gt; </prefix>Split-PDF -FilePath 'in.pdf' -OutputFolder './out' -SplitCount 2
+/// </code>
+/// <para>Creates output files containing two pages each.</para>
+/// </example>
+/// <example>
+/// <summary>Split by page ranges.</summary>
+/// <code>
+/// <prefix>PS&gt; </prefix>Split-PDF -FilePath 'in.pdf' -OutputFolder './out' -PageRange '1-3','4-6'
+/// </code>
+/// <para>Produces files for the specified ranges.</para>
+/// </example>
+/// <seealso href="https://learn.microsoft.com/dotnet/api/system.management.automation.cmdlet">MS Learn</seealso>
+/// <seealso href="https://evotec.xyz/hub/scripts/pswritepdf/">Project documentation</seealso>
 [Cmdlet(VerbsCommon.Split, "PDF", SupportsShouldProcess = true)]
 public class CmdletSplitPDF : PSCmdlet
 {
@@ -13,35 +37,43 @@ public class CmdletSplitPDF : PSCmdlet
     private const string PageRangeParameterSet = "PageRange";
     private const string BookmarkParameterSet = "Bookmark";
 
+    /// <summary>Path to the source PDF.</summary>
     [Parameter(Mandatory = true, ParameterSetName = SplitCountParameterSet)]
     [Parameter(Mandatory = true, ParameterSetName = PageRangeParameterSet)]
     [Parameter(Mandatory = true, ParameterSetName = BookmarkParameterSet)]
     public string FilePath { get; set; }
 
+    /// <summary>Destination folder for split files.</summary>
     [Parameter(Mandatory = true, ParameterSetName = SplitCountParameterSet)]
     [Parameter(Mandatory = true, ParameterSetName = PageRangeParameterSet)]
     [Parameter(Mandatory = true, ParameterSetName = BookmarkParameterSet)]
     public string OutputFolder { get; set; }
 
+    /// <summary>Base name for output files.</summary>
     [Parameter(ParameterSetName = SplitCountParameterSet)]
     [Parameter(ParameterSetName = PageRangeParameterSet)]
     [Parameter(ParameterSetName = BookmarkParameterSet)]
     public string OutputName { get; set; } = "OutputDocument";
 
+    /// <summary>Number of pages per output file.</summary>
     [Parameter(ParameterSetName = SplitCountParameterSet)]
     public int SplitCount { get; set; } = 1;
 
+    /// <summary>Page ranges to extract.</summary>
     [Parameter(ParameterSetName = PageRangeParameterSet)]
     public string[] PageRange { get; set; }
 
+    /// <summary>Bookmark titles that define splits.</summary>
     [Parameter(ParameterSetName = BookmarkParameterSet)]
     public string[] Bookmark { get; set; }
 
+    /// <summary>Ignore document protection.</summary>
     [Parameter(ParameterSetName = SplitCountParameterSet)]
     [Parameter(ParameterSetName = PageRangeParameterSet)]
     [Parameter(ParameterSetName = BookmarkParameterSet)]
     public SwitchParameter IgnoreProtection { get; set; }
 
+    /// <summary>Overwrite existing files without prompting.</summary>
     [Parameter(ParameterSetName = SplitCountParameterSet)]
     [Parameter(ParameterSetName = PageRangeParameterSet)]
     [Parameter(ParameterSetName = BookmarkParameterSet)]

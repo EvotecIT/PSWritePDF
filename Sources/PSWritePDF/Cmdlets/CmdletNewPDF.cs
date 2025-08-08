@@ -8,23 +8,57 @@ using iTextPdf = iText.Kernel.Pdf;
 
 namespace PSWritePDF.Cmdlets;
 
+/// <summary>Creates a new PDF document.</summary>
+/// <para>Builds a PDF file and optionally executes script block content to populate the document.</para>
+/// <list type="alertSet">
+/// <item>
+/// <term>Note</term>
+/// <description>Existing files at the target path are overwritten without confirmation.</description>
+/// </item>
+/// </list>
+/// <example>
+/// <summary>Create an empty PDF file.</summary>
+/// <code>
+/// <prefix>PS&gt; </prefix>New-PDF -FilePath 'out.pdf'
+/// </code>
+/// <para>Generates a PDF at the specified path.</para>
+/// </example>
+/// <example>
+/// <summary>Create and display a PDF.</summary>
+/// <code>
+/// <prefix>PS&gt; </prefix>New-PDF -FilePath 'out.pdf' -Show
+/// </code>
+/// <para>The created PDF opens in the default viewer.</para>
+/// </example>
+/// <seealso href="https://learn.microsoft.com/dotnet/api/system.management.automation.cmdlet">MS Learn</seealso>
+/// <seealso href="https://evotec.xyz/hub/scripts/pswritepdf/">Project documentation</seealso>
 [Cmdlet(VerbsCommon.New, "PDF")]
 public class CmdletNewPDF : PSCmdlet {
+    /// <summary>Script block defining PDF content.</summary>
     [Parameter(Position = 0)]
     public ScriptBlock? PDFContent { get; set; }
 
+    /// <summary>Output file path.</summary>
     [Parameter(Mandatory = true)]
     public string FilePath { get; set; } = string.Empty;
 
+    /// <summary>PDF version to use.</summary>
     [Parameter]
     public string? Version { get; set; }
 
+    /// <summary>Left margin in points.</summary>
     [Parameter] public double? MarginLeft { get; set; }
+    /// <summary>Right margin in points.</summary>
     [Parameter] public double? MarginRight { get; set; }
+    /// <summary>Top margin in points.</summary>
     [Parameter] public double? MarginTop { get; set; }
+    /// <summary>Bottom margin in points.</summary>
     [Parameter] public double? MarginBottom { get; set; }
+    /// <summary>Initial page size.</summary>
     [Parameter] public PdfPageSize? PageSize { get; set; }
+    /// <summary>Rotate the page 90 degrees.</summary>
     [Parameter] public SwitchParameter Rotate { get; set; }
+    /// <summary>Show the PDF after creation.</summary>
     [Parameter, Alias("Open")] public SwitchParameter Show { get; set; }
 
     protected override void ProcessRecord() {
