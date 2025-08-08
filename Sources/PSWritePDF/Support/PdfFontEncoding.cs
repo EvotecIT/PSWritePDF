@@ -1,5 +1,6 @@
 namespace PSWritePDF;
 
+/// <summary>Represents encoding options for PDF fonts.</summary>
 public enum PdfFontEncoding
 {
     None,

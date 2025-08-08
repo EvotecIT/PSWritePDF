@@ -9,23 +9,52 @@ using iText.Kernel.Pdf.Canvas.Parser;
 
 namespace PSWritePDF.Cmdlets;
 
+/// <summary>Converts PDF pages to plain text.</summary>
+/// <para>Extracts text from specified pages of a PDF document using iText strategies.</para>
+/// <list type="alertSet">
+/// <item>
+/// <term>Note</term>
+/// <description>Protected documents may require the <c>IgnoreProtection</c> switch to extract text.</description>
+/// </item>
+/// </list>
+/// <example>
+/// <summary>Extract text from a PDF.</summary>
+/// <code>
+/// <prefix>PS&gt; </prefix>Convert-PDFToText -FilePath 'file.pdf'
+/// </code>
+/// <para>Returns text objects for each page.</para>
+/// </example>
+/// <example>
+/// <summary>Save extracted text to a file.</summary>
+/// <code>
+/// <prefix>PS&gt; </prefix>Convert-PDFToText -FilePath 'file.pdf' -OutFile 'output.txt'
+/// </code>
+/// <para>Writes combined text to the specified file.</para>
+/// </example>
+/// <seealso href="https://learn.microsoft.com/dotnet/api/system.management.automation.cmdlet">MS Learn</seealso>
+/// <seealso href="https://evotec.xyz/hub/scripts/pswritepdf/">Project documentation</seealso>
 [Cmdlet(VerbsData.Convert, "PDFToText")]
 [OutputType(typeof(PSObject))]
 public class CmdletConvertPDFToText : PSCmdlet
 {
+    /// <summary>Path to the PDF file.</summary>
     [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
     [Alias("FullName")]
     public string FilePath { get; set; } = string.Empty;
 
+    /// <summary>Pages to extract.</summary>
     [Parameter]
     public int[] Page { get; set; } = Array.Empty<int>();
 
+    /// <summary>Extraction strategy to use.</summary>
     [Parameter]
     public PdfExtractionStrategyName ExtractionStrategy { get; set; } = PdfExtractionStrategyName.Simple;
 
+    /// <summary>Ignore document protection.</summary>
     [Parameter]
     public SwitchParameter IgnoreProtection { get; set; }
 
+    /// <summary>Optional output file.</summary>
     [Parameter]
     public string? OutFile { get; set; }
 

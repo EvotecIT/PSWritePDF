@@ -8,27 +8,57 @@ using iText.Kernel.Pdf;
 
 namespace PSWritePDF.Cmdlets;
 
+/// <summary>Sets values of PDF form fields.</summary>
+/// <para>Copies an existing PDF, populates AcroForm fields, and optionally flattens them.</para>
+/// <list type="alertSet">
+/// <item>
+/// <term>Note</term>
+/// <description>Source documents are read entirely and may require removal of protection for editing.</description>
+/// </item>
+/// </list>
+/// <example>
+/// <summary>Populate form fields.</summary>
+/// <code>
+/// <prefix>PS&gt; </prefix>Set-PDFForm -SourceFilePath 'in.pdf' -DestinationFilePath 'out.pdf' -FieldNameAndValueHashTable $hash
+/// </code>
+/// <para>Copies the source PDF and sets fields as specified.</para>
+/// </example>
+/// <example>
+/// <summary>Flatten fields.</summary>
+/// <code>
+/// <prefix>PS&gt; </prefix>Set-PDFForm -SourceFilePath 'in.pdf' -DestinationFilePath 'out.pdf' -Flatten
+/// </code>
+/// <para>Writes a new PDF with non-editable fields.</para>
+/// </example>
+/// <seealso href="https://learn.microsoft.com/dotnet/api/system.management.automation.cmdlet">MS Learn</seealso>
+/// <seealso href="https://evotec.xyz/hub/scripts/pswritepdf/">Project documentation</seealso>
 [Cmdlet(VerbsCommon.Set, "PDFForm")]
 public class CmdletSetPDFForm : PSCmdlet
 {
+    /// <summary>Path to the source PDF with form fields.</summary>
     [Parameter(Mandatory = true)]
     [ValidateNotNullOrEmpty]
     public string SourceFilePath { get; set; }
 
+    /// <summary>Destination path for the output PDF.</summary>
     [Parameter(Mandatory = true)]
     [ValidateNotNullOrEmpty]
     public string DestinationFilePath { get; set; }
 
+    /// <summary>Hashtable of field names and values.</summary>
     [Parameter(ValueFromPipeline = true)]
     public IDictionary FieldNameAndValueHashTable { get; set; }
 
+    /// <summary>Flatten the fields to make them read-only.</summary>
     [Parameter]
     [Alias("FlattenFields")]
     public SwitchParameter Flatten { get; set; }
 
+    /// <summary>Ignore document protection when reading.</summary>
     [Parameter]
     public SwitchParameter IgnoreProtection { get; set; }
 
+    /// <summary>Return the destination file path.</summary>
     [Parameter]
     public SwitchParameter PassThru { get; set; }
 

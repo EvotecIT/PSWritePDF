@@ -44,6 +44,7 @@
     <PropertyGroup>
         <!-- This is needed for XmlDoc2CmdletDoc to generate a PowerShell documentation file. -->
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <XmlDoc2CmdletDocArguments>-strict</XmlDoc2CmdletDocArguments>
     </PropertyGroup>
 
 

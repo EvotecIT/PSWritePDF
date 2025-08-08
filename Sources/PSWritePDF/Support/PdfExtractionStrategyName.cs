@@ -2,6 +2,7 @@ using iText.Kernel.Pdf.Canvas.Parser.Listener;
 
 namespace PSWritePDF;
 
+/// <summary>Defines text extraction strategies for PDFs.</summary>
 public enum PdfExtractionStrategyName
 {
     Simple,

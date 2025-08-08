@@ -8,6 +8,30 @@ using System.Threading.Tasks;
 
 namespace PSWritePDF.Cmdlets;
 
+/// <summary>Converts HTML content to a PDF file.</summary>
+/// <para>Accepts HTML from a URI, string content, or file and writes a PDF to disk.</para>
+/// <list type="alertSet">
+/// <item>
+/// <term>Note</term>
+/// <description>Existing output files are overwritten when <c>-Force</c> is specified.</description>
+/// </item>
+/// </list>
+/// <example>
+/// <summary>Convert from URI.</summary>
+/// <code>
+/// <prefix>PS&gt; </prefix>Convert-HTMLToPDF -Uri 'https://example.com' -OutputFilePath 'page.pdf'
+/// </code>
+/// <para>Downloads the page and saves it as PDF.</para>
+/// </example>
+/// <example>
+/// <summary>Convert from file with CSS.</summary>
+/// <code>
+/// <prefix>PS&gt; </prefix>Convert-HTMLToPDF -FilePath 'index.html' -CssFilePath 'style.css' -OutputFilePath 'out.pdf'
+/// </code>
+/// <para>Applies the specified CSS and writes the PDF.</para>
+/// </example>
+/// <seealso href="https://learn.microsoft.com/dotnet/api/system.management.automation.cmdlet">MS Learn</seealso>
+/// <seealso href="https://evotec.xyz/hub/scripts/pswritepdf/">Project documentation</seealso>
 [Cmdlet(VerbsData.Convert, "HTMLToPDF", DefaultParameterSetName = ParameterSetNames.Uri, SupportsShouldProcess = true)]
 public class CmdletConvertHTMLToPDF : AsyncPSCmdlet
 {
@@ -18,27 +42,35 @@ public class CmdletConvertHTMLToPDF : AsyncPSCmdlet
         public const string File = "File";
     }
 
+    /// <summary>URI of the HTML page.</summary>
     [Parameter(Mandatory = true, ParameterSetName = ParameterSetNames.Uri)]
     public string Uri { get; set; }
 
+    /// <summary>Raw HTML content.</summary>
     [Parameter(Mandatory = true, ParameterSetName = ParameterSetNames.Content)]
     public string Content { get; set; }
 
+    /// <summary>Path to an HTML file.</summary>
     [Parameter(Mandatory = true, ParameterSetName = ParameterSetNames.File)]
     public string FilePath { get; set; }
 
+    /// <summary>Output PDF path.</summary>
     [Parameter(Mandatory = true)]
     public string OutputFilePath { get; set; }
 
+    /// <summary>Open the PDF after creation.</summary>
     [Parameter]
     public SwitchParameter Open { get; set; }
 
+    /// <summary>Overwrite existing files.</summary>
     [Parameter]
     public SwitchParameter Force { get; set; }
 
+    /// <summary>Base URI for relative links.</summary>
     [Parameter]
     public string BaseUri { get; set; }
 
+    /// <summary>Paths to CSS files to include.</summary>
     [Parameter]
     public string[] CssFilePath { get; set; }
 
