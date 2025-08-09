@@ -1,4 +1,4 @@
-#Import-Module .\PSWritePDF.psd1 -Force
+Import-Module .\PSWritePDF.psd1 -Force
 
 New-PDF -PageSize A4 -Rotate {
     New-PDFText -Text 'Hello ', 'World' -Font HELVETICA, TIMES_ITALIC -FontColor GRAY, BLUE -FontBold $true, $false, $true

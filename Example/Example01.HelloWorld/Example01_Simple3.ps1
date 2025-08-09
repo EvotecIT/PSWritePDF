@@ -15,4 +15,4 @@ New-PDF -FilePath "$PSScriptRoot\Example01_Simple3-3.pdf" -PDFContent {
 
 }
 
-New-PDF -FilePath "D:\Example01_Simple2.pdf" -PDFContent { 'Test' }
+New-PDF -FilePath "$PSScriptRoot\Example01_Simple2.pdf" -PDFContent { 'Test' }
