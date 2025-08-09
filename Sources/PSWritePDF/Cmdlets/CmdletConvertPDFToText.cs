@@ -40,6 +40,7 @@ public class CmdletConvertPDFToText : PSCmdlet
     /// <summary>Path to the PDF file.</summary>
     [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
     [Alias("FullName")]
+    [ValidateNotNullOrEmpty]
     public string FilePath { get; set; } = string.Empty;
 
     /// <summary>Pages to extract.</summary>

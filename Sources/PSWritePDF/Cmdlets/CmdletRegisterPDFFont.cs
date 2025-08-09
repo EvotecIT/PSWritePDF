@@ -40,6 +40,7 @@ public class CmdletRegisterPDFFont : PSCmdlet
 
     /// <summary>Path to the font file.</summary>
     [Parameter(Mandatory = true)]
+    [ValidateNotNullOrEmpty]
     public string FontPath { get; set; } = string.Empty;
 
     /// <summary>Optional encoding for the font.</summary>

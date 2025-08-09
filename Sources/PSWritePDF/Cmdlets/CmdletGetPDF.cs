@@ -35,6 +35,7 @@ public class CmdletGetPDF : PSCmdlet
 {
     /// <summary>Path to the PDF file.</summary>
     [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [ValidateNotNullOrEmpty]
     public string FilePath { get; set; } = null!;
 
     /// <summary>Ignore document protection.</summary>

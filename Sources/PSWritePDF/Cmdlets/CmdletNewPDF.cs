@@ -40,6 +40,7 @@ public class CmdletNewPDF : PSCmdlet {
 
     /// <summary>Output file path.</summary>
     [Parameter(Mandatory = true)]
+    [ValidateNotNullOrEmpty]
     public string FilePath { get; set; } = string.Empty;
 
     /// <summary>PDF version to use.</summary>

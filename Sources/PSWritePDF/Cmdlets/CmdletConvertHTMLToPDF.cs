@@ -52,10 +52,12 @@ public class CmdletConvertHTMLToPDF : AsyncPSCmdlet
 
     /// <summary>Path to an HTML file.</summary>
     [Parameter(Mandatory = true, ParameterSetName = ParameterSetNames.File)]
+    [ValidateNotNullOrEmpty]
     public string FilePath { get; set; }
 
     /// <summary>Output PDF path.</summary>
     [Parameter(Mandatory = true)]
+    [ValidateNotNullOrEmpty]
     public string OutputFilePath { get; set; }
 
     /// <summary>Open the PDF after creation.</summary>

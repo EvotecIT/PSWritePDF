@@ -35,10 +35,12 @@ public class CmdletMergePDF : PSCmdlet
 {
     /// <summary>Paths to PDF files to merge.</summary>
     [Parameter(Mandatory = true)]
+    [ValidateNotNullOrEmpty]
     public string[] InputFile { get; set; }
 
     /// <summary>Path for the merged output.</summary>
     [Parameter(Mandatory = true)]
+    [ValidateNotNullOrEmpty]
     public string OutputFile { get; set; }
 
     /// <summary>Ignore protection on input files.</summary>
