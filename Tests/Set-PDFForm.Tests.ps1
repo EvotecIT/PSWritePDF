@@ -1,6 +1,6 @@
 Describe 'Set-PDFForm' -Tags "PDFForm" {
     BeforeAll {
-        New-Item -Path $PSScriptRoot -Force -ItemType Directory -Name 'Output'
+        New-Item -Path $PSScriptRoot -Force -ItemType Directory -Name 'Output' | Out-Null
     }
 
     It 'Set-PDForm Flatten should flatten forms' {
@@ -115,10 +115,12 @@ Describe 'Set-PDFForm' -Tags "PDFForm" {
         Close-PDF -Document $PDF
     }
 
-    # cleanup
-    $FolderPath = [IO.Path]::Combine("$PSScriptRoot", "Output")
-    $Files = Get-ChildItem -LiteralPath $FolderPath -File
-    foreach ($_ in $Files) {
-        Remove-Item -LiteralPath $_.FullName -ErrorAction SilentlyContinue
+    AfterAll {
+        $FolderPath = [IO.Path]::Combine("$PSScriptRoot", "Output")
+        if (Test-Path $FolderPath) {
+            Get-ChildItem -LiteralPath $FolderPath -File | ForEach-Object {
+                Remove-Item -LiteralPath $_.FullName -ErrorAction SilentlyContinue
+            }
+        }
     }
 }

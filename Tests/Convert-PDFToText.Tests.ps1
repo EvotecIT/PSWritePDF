@@ -1,8 +1,8 @@
 Describe 'Convert-PDFToText' {
     It 'returns objects with PageNumber and Text' {
-        $file = Join-Path $PSScriptRoot 'Input' 'SampleAcroForm.pdf'
+        $file = [IO.Path]::Combine($PSScriptRoot, 'Input', 'SampleAcroForm.pdf')
         $text = Convert-PDFToText -FilePath $file
-        $text | Should -AllBeOfType [pscustomobject]
+        $text | ForEach-Object { $_ | Should -BeOfType [psobject] }
         $text[0].PageNumber | Should -Be 1
         $text[0].Text | Should -Match 'Text 1'
     }
