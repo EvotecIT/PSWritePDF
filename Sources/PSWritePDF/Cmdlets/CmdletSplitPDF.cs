@@ -41,12 +41,14 @@ public class CmdletSplitPDF : PSCmdlet
     [Parameter(Mandatory = true, ParameterSetName = SplitCountParameterSet)]
     [Parameter(Mandatory = true, ParameterSetName = PageRangeParameterSet)]
     [Parameter(Mandatory = true, ParameterSetName = BookmarkParameterSet)]
+    [ValidateNotNullOrEmpty]
     public string FilePath { get; set; }
 
     /// <summary>Destination folder for split files.</summary>
     [Parameter(Mandatory = true, ParameterSetName = SplitCountParameterSet)]
     [Parameter(Mandatory = true, ParameterSetName = PageRangeParameterSet)]
     [Parameter(Mandatory = true, ParameterSetName = BookmarkParameterSet)]
+    [ValidateNotNullOrEmpty]
     public string OutputFolder { get; set; }
 
     /// <summary>Base name for output files.</summary>

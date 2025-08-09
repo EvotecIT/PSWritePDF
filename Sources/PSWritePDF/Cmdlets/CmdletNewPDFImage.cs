@@ -33,6 +33,7 @@ namespace PSWritePDF.Cmdlets;
 public class CmdletNewPDFImage : PSCmdlet {
     /// <summary>Path to the image file.</summary>
     [Parameter(Mandatory = true)]
+    [ValidateNotNullOrEmpty]
     public string ImagePath { get; set; } = string.Empty;
     /// <summary>Desired image width.</summary>
     [Parameter] public int Width { get; set; }
