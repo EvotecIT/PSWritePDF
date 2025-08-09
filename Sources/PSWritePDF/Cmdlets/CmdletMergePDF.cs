@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Management.Automation;
 using iText.Kernel.Pdf;
 using iText.Kernel.Utils;
@@ -53,13 +54,16 @@ public class CmdletMergePDF : PSCmdlet
             return;
         }
 
+        var inputFiles = InputFile.Select(f => GetUnresolvedProviderPathFromPSPath(f)).ToArray();
+        var outputFile = GetUnresolvedProviderPathFromPSPath(OutputFile);
+
         try
         {
-            using var writer = new PdfWriter(OutputFile);
+            using var writer = new PdfWriter(outputFile);
             using var pdf = new PdfDocument(writer);
             var merger = new PdfMerger(pdf);
 
-            foreach (var file in InputFile)
+            foreach (var file in inputFiles)
             {
                 if (!File.Exists(file))
                 {
@@ -86,7 +90,7 @@ public class CmdletMergePDF : PSCmdlet
         }
         catch (Exception ex)
         {
-            WriteWarning($"Saving document '{OutputFile}' failed with error: {ex.Message}");
+            WriteWarning($"Saving document '{outputFile}' failed with error: {ex.Message}");
         }
     }
 }

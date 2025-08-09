@@ -85,6 +85,12 @@ Describe 'New-PDF' {
         $Details.PagesNumber | Should -Be 2
     }
 
+    It 'creates file using provider path' {
+        $file = Join-Path TestDrive: 'provider.pdf'
+        New-PDF { New-PDFText -Text 'test' } -FilePath $file
+        Test-Path $file | Should -BeTrue
+    }
+
     AfterAll {
         Remove-Item -LiteralPath (Join-Path $PSScriptRoot 'Output') -Recurse -Force -ErrorAction SilentlyContinue
     }

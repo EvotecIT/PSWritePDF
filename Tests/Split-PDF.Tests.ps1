@@ -65,6 +65,17 @@ Describe 'Split-PDF' {
         $forced.Count | Should -BeGreaterThan 0
     }
 
+    It 'supports provider paths' {
+        $src = Join-Path $PSScriptRoot 'Input' 'SampleToSplit.pdf'
+        $file = Join-Path TestDrive: 'input.pdf'
+        Copy-Item $src $file
+        $outDir = Join-Path TestDrive: 'out'
+        New-Item -Path $outDir -ItemType Directory | Out-Null
+        $files = Split-PDF -FilePath $file -OutputFolder $outDir -SplitCount 1
+        $files.Count | Should -BeGreaterThan 1
+        $files | ForEach-Object { Test-Path $_ | Should -BeTrue }
+    }
+
     AfterAll {
         Remove-Item -LiteralPath (Join-Path $PSScriptRoot 'Input' 'Bookmarked.pdf') -Force
         Remove-Item -LiteralPath (Join-Path $PSScriptRoot 'Output') -Recurse -Force

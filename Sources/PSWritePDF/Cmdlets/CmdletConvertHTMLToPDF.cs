@@ -78,14 +78,16 @@ public class CmdletConvertHTMLToPDF : AsyncPSCmdlet
     {
         string html = Content;
 
+        string? filePath = null;
         if (ParameterSetName == ParameterSetNames.File)
         {
-            if (!File.Exists(FilePath))
+            filePath = GetUnresolvedProviderPathFromPSPath(FilePath);
+            if (!File.Exists(filePath))
             {
-                WriteWarning($"File '{FilePath}' doesn't exist.");
+                WriteWarning($"File '{filePath}' doesn't exist.");
                 return;
             }
-            html = File.ReadAllText(FilePath);
+            html = File.ReadAllText(filePath);
         }
         else if (ParameterSetName == ParameterSetNames.Uri)
         {
@@ -106,27 +108,30 @@ public class CmdletConvertHTMLToPDF : AsyncPSCmdlet
             return;
         }
 
-        if (File.Exists(OutputFilePath) && !Force.IsPresent)
+        var outputFilePath = GetUnresolvedProviderPathFromPSPath(OutputFilePath);
+
+        if (File.Exists(outputFilePath) && !Force.IsPresent)
         {
-            WriteWarning($"File '{OutputFilePath}' already exists. Use -Force to overwrite.");
+            WriteWarning($"File '{outputFilePath}' already exists. Use -Force to overwrite.");
             return;
         }
 
-        if (!ShouldProcess(OutputFilePath, "Convert HTML to PDF"))
+        if (!ShouldProcess(outputFilePath, "Convert HTML to PDF"))
         {
             return;
         }
 
         try
         {
-            if (CssFilePath != null && CssFilePath.Length > 0)
+            var cssFiles = CssFilePath?.Select(p => GetUnresolvedProviderPathFromPSPath(p)).ToArray();
+            if (cssFiles != null && cssFiles.Length > 0)
             {
                 var cssContent = new StringBuilder();
-                foreach (var css in CssFilePath.Where(File.Exists))
+                foreach (var css in cssFiles.Where(File.Exists))
                 {
                     cssContent.AppendLine(File.ReadAllText(css));
                 }
-                foreach (var missing in CssFilePath.Where(p => !File.Exists(p)))
+                foreach (var missing in cssFiles.Where(p => !File.Exists(p)))
                 {
                     WriteWarning($"CSS file '{missing}' doesn't exist.");
                 }
@@ -140,26 +145,27 @@ public class CmdletConvertHTMLToPDF : AsyncPSCmdlet
                 }
             }
 
-            using var fs = new FileStream(OutputFilePath, FileMode.Create, FileAccess.Write);
+            using var fs = new FileStream(outputFilePath, FileMode.Create, FileAccess.Write);
             var properties = new iText.Html2pdf.ConverterProperties();
-            if (!string.IsNullOrEmpty(BaseUri))
+            var baseUri = !string.IsNullOrEmpty(BaseUri) ? GetUnresolvedProviderPathFromPSPath(BaseUri) : null;
+            if (!string.IsNullOrEmpty(baseUri))
             {
-                properties.SetBaseUri(BaseUri);
+                properties.SetBaseUri(baseUri);
             }
             iText.Html2pdf.HtmlConverter.ConvertToPdf(html, fs, properties);
             if (Open.IsPresent)
             {
                 var psi = new System.Diagnostics.ProcessStartInfo
                 {
-                    FileName = OutputFilePath,
+                    FileName = outputFilePath,
                     UseShellExecute = true,
                 };
                 System.Diagnostics.Process.Start(psi);
             }
 
-            if (ShouldProcess(OutputFilePath, "Write output"))
+            if (ShouldProcess(outputFilePath, "Write output"))
             {
-                WriteObject(OutputFilePath);
+                WriteObject(outputFilePath);
             }
         }
         catch (Exception ex)

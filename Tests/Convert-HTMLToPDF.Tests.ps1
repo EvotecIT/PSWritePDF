@@ -47,6 +47,12 @@ Describe 'Convert-HTMLToPDF' {
         Remove-Item $assetDir -Recurse -Force
     }
 
+    It 'supports provider paths for output' {
+        $file = Join-Path TestDrive: 'html.pdf'
+        Convert-HTMLToPDF -Content '<html><body>Test</body></html>' -OutputFilePath $file | Out-Null
+        Test-Path $file | Should -BeTrue
+    }
+
     AfterAll {
         Remove-Item -LiteralPath $script:outputDir -Recurse -Force
     }
