@@ -81,33 +81,36 @@ public class CmdletSplitPDF : PSCmdlet
 
     protected override void ProcessRecord()
     {
-        if (!File.Exists(FilePath))
+        var filePath = GetUnresolvedProviderPathFromPSPath(FilePath);
+        var outputFolder = GetUnresolvedProviderPathFromPSPath(OutputFolder);
+
+        if (!File.Exists(filePath))
         {
-            WriteWarning($"Path '{FilePath}' doesn't exist. Terminating.");
+            WriteWarning($"Path '{filePath}' doesn't exist. Terminating.");
             return;
         }
 
-        if (!Directory.Exists(OutputFolder))
+        if (!Directory.Exists(outputFolder))
         {
-            WriteWarning($"Destination folder '{OutputFolder}' doesn't exist. Terminating.");
+            WriteWarning($"Destination folder '{outputFolder}' doesn't exist. Terminating.");
             return;
         }
 
         try
         {
-            if (!ShouldProcess(FilePath, $"Split into '{OutputFolder}'"))
+            if (!ShouldProcess(filePath, $"Split into '{outputFolder}'"))
             {
                 return;
             }
 
-            using var reader = new PdfReader(FilePath);
+            using var reader = new PdfReader(filePath);
             if (IgnoreProtection)
             {
                 reader.SetUnethicalReading(true);
             }
 
             using var document = new PdfDocument(reader);
-            var splitter = new PdfSequentialSplitter(document, OutputFolder, OutputName, Force.IsPresent);
+            var splitter = new PdfSequentialSplitter(document, outputFolder, OutputName, Force.IsPresent);
             IList<PdfDocument> documents;
 
             if (ParameterSetName == SplitCountParameterSet)

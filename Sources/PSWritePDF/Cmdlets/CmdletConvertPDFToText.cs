@@ -60,13 +60,16 @@ public class CmdletConvertPDFToText : PSCmdlet
 
     protected override void ProcessRecord()
     {
-        if (!File.Exists(FilePath))
+        var filePath = GetUnresolvedProviderPathFromPSPath(FilePath);
+        var outFile = !string.IsNullOrWhiteSpace(OutFile) ? GetUnresolvedProviderPathFromPSPath(OutFile) : null;
+
+        if (!File.Exists(filePath))
         {
-            WriteWarning($"Path '{FilePath}' doesn't exist. Terminating.");
+            WriteWarning($"Path '{filePath}' doesn't exist. Terminating.");
             return;
         }
 
-        using var reader = new PdfReader(FilePath);
+        using var reader = new PdfReader(filePath);
         if (IgnoreProtection)
         {
             reader.SetUnethicalReading(true);
@@ -82,7 +85,7 @@ public class CmdletConvertPDFToText : PSCmdlet
         {
             if (pageNum < 1 || pageNum > pagesCount)
             {
-                WriteWarning($"File '{FilePath}' doesn't contain page number {pageNum}. Skipping.");
+                WriteWarning($"File '{filePath}' doesn't contain page number {pageNum}. Skipping.");
                 continue;
             }
 
@@ -101,20 +104,20 @@ public class CmdletConvertPDFToText : PSCmdlet
             }
             catch (Exception ex)
             {
-                WriteWarning($"Processing document '{FilePath}' failed with error: {ex.Message}");
+                WriteWarning($"Processing document '{filePath}' failed with error: {ex.Message}");
             }
         }
 
-        if (!string.IsNullOrWhiteSpace(OutFile))
+        if (!string.IsNullOrWhiteSpace(outFile))
         {
             try
             {
                 var combined = string.Join(Environment.NewLine, collectedTexts);
-                File.WriteAllText(OutFile, combined, Encoding.UTF8);
+                File.WriteAllText(outFile, combined, Encoding.UTF8);
             }
             catch (Exception ex)
             {
-                WriteWarning($"Saving file '{OutFile}' failed with error: {ex.Message}");
+                WriteWarning($"Saving file '{outFile}' failed with error: {ex.Message}");
             }
         }
     }

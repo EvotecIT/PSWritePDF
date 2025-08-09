@@ -62,14 +62,16 @@ public class CmdletNewPDF : PSCmdlet {
     [Parameter, Alias("Open")] public SwitchParameter Show { get; set; }
 
     protected override void ProcessRecord() {
+        var filePath = GetUnresolvedProviderPathFromPSPath(FilePath);
+
         iTextPdf.PdfWriter writer;
         if (!string.IsNullOrEmpty(Version)) {
             var enumName = "PDF_" + Version.Replace('.', '_');
             var pdfVersion = (iTextPdf.PdfVersion)Enum.Parse(typeof(iTextPdf.PdfVersion), enumName, true);
             var props = new iTextPdf.WriterProperties().SetPdfVersion(pdfVersion);
-            writer = new iTextPdf.PdfWriter(FilePath, props);
+            writer = new iTextPdf.PdfWriter(filePath, props);
         } else {
-            writer = new iTextPdf.PdfWriter(FilePath);
+            writer = new iTextPdf.PdfWriter(filePath);
         }
 
         var pdfDocument = new iTextPdf.PdfDocument(writer);
@@ -82,8 +84,8 @@ public class CmdletNewPDF : PSCmdlet {
         if (PDFContent != null) {
             PDFContent.Invoke();
             document.Close();
-            if (Show.IsPresent && File.Exists(FilePath)) {
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(FilePath) { UseShellExecute = true });
+            if (Show.IsPresent && File.Exists(filePath)) {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(filePath) { UseShellExecute = true });
             }
         } else {
             WriteObject(pdfDocument);

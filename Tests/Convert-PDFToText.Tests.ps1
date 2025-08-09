@@ -19,4 +19,12 @@ Describe 'Convert-PDFToText' {
         ($result | Select-Object -ExpandProperty Text | Out-String) | Should -Match 'Text 1'
         (Get-Content $outFile -Raw) | Should -Match 'Text 1'
     }
+
+    It 'supports provider paths' {
+        $src = Join-Path $PSScriptRoot 'Input' 'SampleAcroForm.pdf'
+        $file = Join-Path TestDrive: 'sample.pdf'
+        Copy-Item $src $file
+        $text = Convert-PDFToText -FilePath $file
+        $text[0].Text | Should -Match 'Text 1'
+    }
 }
