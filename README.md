@@ -20,6 +20,9 @@
 
 # PSWritePDF
 
+> [!IMPORTANT]
+> PSWritePDF is archived and kept for historical compatibility only. Active PDF development has moved to [PSWriteOffice](https://github.com/EvotecIT/PSWriteOffice), backed by the no-dependency PDF engine in [OfficeIMO](https://github.com/EvotecIT/OfficeIMO). New PDF features, fixes, and issue follow-up should target PSWriteOffice/OfficeIMO instead of this repository.
+
 **PSWritePDF is** by no means a finished product. Like with most of my modules, I build some concept that matches view on how I would like it to look, and in the next months, I will probably update its functionality to match my expectations. Since PSWritePDF is based on **iText 7** it should be possible with some work to get all that functionality into **PowerShell**. That means that this module has excellent possibilities when it comes to potential use cases.
 
 For now, I've divided the module functionality into two categories:
@@ -53,4 +56,3 @@ All that additional software is required to work with iText and so it's part of 
 ```powershell
 Install-Module PSWritePDF -Force
 ```
-
